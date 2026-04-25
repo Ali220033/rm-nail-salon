@@ -1,0 +1,512 @@
+export const siteConfig = {
+  salonName: "RM Nail Salon",
+  location: "Midtown NYC",
+  specialty: "Russian Manicure",
+  bookingUrl:
+    "https://www.fresha.com/a/nailartnyc-new-york-nyu-york-ssha-308-8th-avenue-b-mndlihgo/booking?menu=true&share=true&pId=2824183&cartId=2db2c8b0-94cc-4c1e-9add-f53d8205410f",
+  instagramUrl: "#contact",
+  phone: "346-865-6565",
+  email: "rmnyc2026@gmail.com",
+  address: "875 3rd Ave, Concourse Level, New York, NY 10022",
+  hours: "Mon-Fri: 9:30 AM - 8:00 PM\nSat-Sun: 9:30 AM - 8:00 PM",
+  instagramHandle: "Instagram coming soon",
+  firstVisitOffer: "10% OFF First Visit",
+  processVideo: "/videos/rm-manicure-session.webm",
+  mapUrl:
+    "https://www.google.com/maps/search/?api=1&query=875%203rd%20Ave%20Concourse%20Level%20New%20York%20NY%2010022",
+  mapEmbedUrl:
+    "https://maps.google.com/maps?q=875%203rd%20Ave%20Concourse%20Level%2C%20New%20York%2C%20NY%2010022&t=m&z=14&output=embed"
+};
+
+const manicureImage = "/images/gallery-aqua-french.png";
+const processImage = "/images/work-reel-process.png";
+const extensionImage = "/images/service-extensions.png";
+const catEyeImage = "/images/gallery-cat-eye.png";
+const nudeImage = "/images/gallery-milky-oil.png";
+const plumImage = "/images/gallery-plum-gold.png";
+const blueImage = "/images/gallery-blue-gray.png";
+const russianClearImage = "/images/service-russian-clear.png";
+const mensManicureImage = "/images/service-mens-manicure.png";
+const japaneseManicureImage = "/images/service-japanese-manicure.png";
+const hardGelImage = "/images/service-hard-gel.png";
+const spaHardGelImage = "/images/service-spa-hard-gel-v2.png";
+const fillInImage = "/images/service-fill-in.png";
+const smartPedicureImage = "/images/service-smart-pedicure.png";
+const spaPedicureImage = "/images/service-spa-pedicure-v2.png";
+const gelPedicureImage = "/images/service-gel-pedicure.png";
+const spaGelPedicureImage = "/images/service-spa-gel-pedicure-v2.png";
+const comboImage = "/images/service-combo.png";
+const mensComboImage = "/images/service-mens-combo.png";
+const vipRoomImage = "/images/service-vip-room.png";
+const chromeImage = "/images/service-chrome.png";
+const ombreImage = "/images/service-ombre.png";
+const removalImage = "/images/service-removal.png";
+const repairImage = "/images/service-repair.png";
+const nailDesignImage = "/images/service-nail-design.png";
+const regularPolishImage = "/images/service-regular-polish.png";
+const frenchImage = "/images/ref-gallery-french-square.png";
+const catEyeServiceImage = "/images/ref-gallery-blue-glitter.png";
+const bestFriendsImage = "/images/ref-gallery-teal-orange.png";
+const extraLongImage = "/images/ref-gallery-gothic.png";
+const acrylicRemovalImage = "/images/ref-gallery-white-macro.png";
+const oneExtensionImage = "/images/ref-gallery-nude-almond.png";
+
+export const serviceMenu = [
+  {
+    category: "Manicure",
+    note: "Russian dry manicure standards with clean shaping, cuticle refinement, and a polished finish.",
+    services: [
+      {
+        id: "russian-clear",
+        name: "Russian Manicure",
+        shortName: "Russian Manicure",
+        time: "45 min",
+        price: "$55",
+        topTech: "$65",
+        image: russianClearImage,
+        description:
+          "A precise waterless manicure for clean cuticles, natural nail shaping, and a healthy polished look without color."
+      },
+      {
+        id: "mens-manicure",
+        name: "Men's Manicure",
+        shortName: "Men's Manicure",
+        time: "40 min",
+        price: "$65",
+        topTech: "$75",
+        image: mensManicureImage,
+        description:
+          "Clean grooming, precise cuticle care, nail shaping, and a refined natural finish for a polished appearance."
+      },
+      {
+        id: "japanese-manicure",
+        name: "Japanese Manicure",
+        shortName: "Japanese Care",
+        time: "1 hr",
+        price: "$85",
+        topTech: "$90",
+        image: japaneseManicureImage,
+        description:
+          "A restorative natural nail care ritual focused on shine, strength, and a soft healthy finish."
+      },
+      {
+        id: "russian-hard-gel",
+        name: "Russian Manicure with Hard Gel",
+        shortName: "Hard Gel Russian",
+        time: "1 hr 30 min",
+        price: "$105",
+        topTech: "$115",
+        image: hardGelImage,
+        description:
+          "The signature long-wear service: dry cuticle work, balanced hard gel overlay, color, and a glossy premium finish."
+      },
+      {
+        id: "spa-russian-hard-gel",
+        name: "Spa Russian Manicure with Hard Gel",
+        shortName: "Spa Hard Gel",
+        time: "2 hr",
+        price: "$120",
+        topTech: "$130",
+        image: spaHardGelImage,
+        description:
+          "The signature hard gel manicure with elevated spa care for clients who want extra softness and detail."
+      },
+      {
+        id: "nail-extensions",
+        name: "Nail Extensions",
+        shortName: "Extensions",
+        time: "2-3 hr",
+        price: "$175-$195",
+        topTech: "$195-$215",
+        image: extensionImage,
+        description:
+          "Sculpted length and architecture with a slim, elegant profile, finished with color or a refined clean look."
+      },
+      {
+        id: "fill-in",
+        name: "Fill-in Correction of Extended Nails",
+        shortName: "Fill-in",
+        time: "2 hr",
+        price: "$130",
+        topTech: "$140",
+        image: fillInImage,
+        description:
+          "Structure balancing, regrowth correction, shaping, and a refreshed finish for existing extensions."
+      }
+    ]
+  },
+  {
+    category: "Pedicure",
+    note: "Smart pedicure care with hygienic tools, polished skin work, and a clean glossy finish.",
+    services: [
+      {
+        id: "smart-pedicure",
+        name: "Russian Smart Pedicure",
+        shortName: "Smart Pedicure",
+        time: "1 hr",
+        price: "$85",
+        topTech: "$95",
+        image: smartPedicureImage,
+        description:
+          "Detailed foot and nail care with or without polish, designed for a fresh and hygienic finish."
+      },
+      {
+        id: "spa-smart-pedicure",
+        name: "Spa Russian Smart Pedicure",
+        shortName: "Spa Pedicure",
+        time: "1 hr 30 min",
+        price: "$115",
+        topTech: "$125",
+        image: spaPedicureImage,
+        description:
+          "A deeper spa pedicure experience with smoothing, grooming, and a calm luxury close."
+      },
+      {
+        id: "smart-gel-pedicure",
+        name: "Russian Smart Gel Pedicure",
+        shortName: "Smart Gel Pedicure",
+        time: "1 hr 15 min",
+        price: "$110",
+        topTech: "$120",
+        image: gelPedicureImage,
+        description:
+          "Smart pedicure care finished with gel color for a clean, glossy, longer-wearing result."
+      },
+      {
+        id: "spa-smart-gel-pedicure",
+        name: "Spa Russian Smart Gel Pedicure",
+        shortName: "Spa Gel Pedicure",
+        time: "1 hr 30 min",
+        price: "$140",
+        topTech: "$150",
+        image: spaGelPedicureImage,
+        description:
+          "The complete spa pedicure experience with gel polish, skin smoothing, and a premium finish."
+      }
+    ]
+  },
+  {
+    category: "Combo Services",
+    note: "Paired appointments for clients who want the full RM finish in one visit.",
+    services: [
+      {
+        id: "combo-clear",
+        name: "Combo Manicure No Polish + Pedicure",
+        shortName: "Clean Combo",
+        time: "1 hr 35 min",
+        price: "$135",
+        topTech: "$150",
+        image: comboImage,
+        description:
+          "Natural nail grooming for hands and feet with precise shaping, cuticle care, and a clean finish."
+      },
+      {
+        id: "hard-gel-smart",
+        name: "Hard Gel Manicure + Smart Pedicure",
+        shortName: "Hard Gel Combo",
+        time: "2 hr 45 min",
+        price: "$185",
+        topTech: "$200",
+        image: comboImage,
+        description:
+          "A polished hard gel manicure paired with smart pedicure care for a complete elevated look."
+      },
+      {
+        id: "hard-gel-smart-gel",
+        name: "Hard Gel Manicure + Smart Gel Pedicure",
+        shortName: "Gel Combo",
+        time: "2 hr 30 min",
+        price: "$210",
+        topTech: "$220",
+        image: gelPedicureImage,
+        description:
+          "Long-wear gel finish for hands and feet with meticulous shaping and glossy color."
+      },
+      {
+        id: "natural-care-combo",
+        name: "Natural Nail Care Combo",
+        shortName: "Natural Care",
+        time: "1 hr 45 min",
+        price: "$185",
+        topTech: "$200",
+        image: japaneseManicureImage,
+        description:
+          "Japanese manicure care paired with spa pedicure details for natural nails that look quietly expensive."
+      },
+      {
+        id: "mens-grooming-combo",
+        name: "Men's Grooming Combo",
+        shortName: "Men's Combo",
+        time: "1 hr 30 min",
+        price: "$140",
+        topTech: "$160",
+        image: mensComboImage,
+        description:
+          "Hands and feet groomed with clean cuticle work, shaping, and a polished natural finish."
+      },
+      {
+        id: "vip-room",
+        name: "VIP Room Service",
+        shortName: "VIP Room",
+        time: "By request",
+        price: "$285",
+        topTech: "$300",
+        image: vipRoomImage,
+        description:
+          "A more private and elevated booking experience for clients who want extra quiet and attention."
+      },
+      {
+        id: "best-friends-combo",
+        name: "Best Friends Combo",
+        shortName: "Best Friends",
+        time: "3 hr",
+        price: "$200",
+        topTech: "$220",
+        image: bestFriendsImage,
+        description:
+          "A shared appointment experience for two guests who want a polished manicure and pedicure moment together."
+      },
+      {
+        id: "mr-mrs-combo",
+        name: "Mr & Mrs Combo Service",
+        shortName: "Mr & Mrs",
+        time: "2 hr",
+        price: "$250",
+        topTech: "$275",
+        image: mensComboImage,
+        description:
+          "A couples service with refined grooming and polished care designed for two."
+      },
+      {
+        id: "four-hands-combo",
+        name: "4 Hands Same Time Combo",
+        shortName: "4 Hands",
+        time: "2 hr",
+        price: "$275",
+        topTech: "$290",
+        image: processImage,
+        description:
+          "A time-saving luxury appointment where two technicians work simultaneously for a complete finish."
+      }
+    ]
+  },
+  {
+    category: "Add-ons & Designs",
+    note: "Minimal, glossy, and editorial finishing touches for a signature set.",
+    services: [
+      {
+        id: "french",
+        name: "French",
+        shortName: "French",
+        time: "15 min",
+        price: "$25",
+        topTech: "$30",
+        image: frenchImage,
+        description:
+          "A clean French finish, from classic white to RM's signature aqua micro-French."
+      },
+      {
+        id: "cat-eye",
+        name: "Cat Eye",
+        shortName: "Cat Eye",
+        time: "15 min",
+        price: "$20",
+        topTech: "$25",
+        image: catEyeServiceImage,
+        description:
+          "Dimensional magnetic gel with a luminous line that moves beautifully in the light."
+      },
+      {
+        id: "chrome",
+        name: "Chrome",
+        shortName: "Chrome",
+        time: "15 min",
+        price: "$20",
+        topTech: "$25",
+        image: chromeImage,
+        description:
+          "A high-shine reflective finish for clients who want a modern editorial detail."
+      },
+      {
+        id: "ombre",
+        name: "Ombre",
+        shortName: "Ombre",
+        time: "20 min",
+        price: "$30",
+        topTech: "$35",
+        image: ombreImage,
+        description:
+          "Soft gradient color work with a clean, blended luxury effect."
+      },
+      {
+        id: "regular-polish",
+        name: "Regular Polish",
+        shortName: "Polish",
+        time: "15 min",
+        price: "$15",
+        topTech: "$20",
+        image: regularPolishImage,
+        description:
+          "A classic polish finish added to clean manicure or pedicure work."
+      },
+      {
+        id: "extra-long-nails",
+        name: "Extra Long Nails",
+        shortName: "Extra Long",
+        time: "15 min",
+        price: "$20",
+        topTech: "$25",
+        image: extraLongImage,
+        description:
+          "Added time and structure for extra-long length, shaping, and refinement."
+      }
+    ]
+  },
+  {
+    category: "Removal & Repair",
+    note: "Protective removal and small corrections before the next perfect set.",
+    services: [
+      {
+        id: "gel-removal",
+        name: "Gel Removal",
+        shortName: "Gel Removal",
+        time: "15 min",
+        price: "$5-$10",
+        topTech: null,
+        image: removalImage,
+        description:
+          "Gentle gel removal with care for the natural nail surface."
+      },
+      {
+        id: "acrylic-removal",
+        name: "Acrylic / Dip Removal",
+        shortName: "Acrylic Removal",
+        time: "20 min",
+        price: "$20",
+        topTech: null,
+        image: acrylicRemovalImage,
+        description:
+          "Safe removal for acrylic or dip product before repair, care, or a new service."
+      },
+      {
+        id: "nail-design",
+        name: "Nail Design",
+        shortName: "Nail Design",
+        time: "20 min",
+        price: "$25-$45",
+        topTech: null,
+        image: nailDesignImage,
+        description:
+          "Custom detail work priced by complexity, from fine accents to more involved design."
+      },
+      {
+        id: "one-nail-repair",
+        name: "One Nail Repair",
+        shortName: "Nail Repair",
+        time: "10 min",
+        price: "$5-$10",
+        topTech: null,
+        image: repairImage,
+        description:
+          "A focused repair for a chipped, cracked, or broken nail."
+      },
+      {
+        id: "one-nail-extension",
+        name: "One Nail Extension",
+        shortName: "One Extension",
+        time: "15 min",
+        price: "$10-$25",
+        topTech: null,
+        image: oneExtensionImage,
+        description:
+          "Single nail extension correction to restore length and balance."
+      },
+      {
+        id: "downward-correction",
+        name: "Downward Growing Nail Correction",
+        shortName: "Nail Correction",
+        time: "5-10 min",
+        price: "$3-$5",
+        topTech: null,
+        image: repairImage,
+        description:
+          "A focused correction for nails that grow downward, refined with a specialized restructuring technique."
+      }
+    ]
+  }
+];
+
+export const featuredServiceIds = [
+  "russian-hard-gel",
+  "spa-russian-hard-gel",
+  "smart-gel-pedicure",
+  "nail-extensions",
+  "cat-eye",
+  "gel-removal"
+];
+
+export const featuredServices = serviceMenu
+  .flatMap((group) => group.services.map((service) => ({ ...service, category: group.category })))
+  .filter((service) => featuredServiceIds.includes(service.id));
+
+export const galleryItems = [
+  { title: "Aqua French", caption: "Natural nude with RM's cyan signature edge.", tone: "aqua", size: "tall", image: manicureImage },
+  { title: "Cat Eye Plum", caption: "Glossy magnetic gel with aqua movement.", tone: "plum", size: "wide", image: catEyeImage },
+  { title: "Master at Work", caption: "A clean process moment with professional tools.", tone: "mist", size: "small", image: processImage },
+  { title: "Clean Russian", caption: "Immaculate natural cuticle line.", tone: "cream", size: "small", image: russianClearImage },
+  { title: "Chrome Light", caption: "Reflective shine with cyan movement.", tone: "gold", size: "wide", image: chromeImage },
+  { title: "Ombre Veil", caption: "Soft cream gradient with quiet luxury.", tone: "mist", size: "small", image: ombreImage },
+  { title: "Hard Gel", caption: "Balanced structure applied with precision.", tone: "cream", size: "wide", image: hardGelImage },
+  { title: "Spa Pedicure", caption: "Clean foot care in a cyan-lit suite.", tone: "plum", size: "tall", image: spaPedicureImage },
+  { title: "Gel Pedicure", caption: "Glossy toes, clean tools, long wear.", tone: "line", size: "small", image: gelPedicureImage },
+  { title: "Extensions", caption: "Length, structure, and refined shaping.", tone: "structure", size: "small", image: extensionImage },
+  { title: "VIP Room", caption: "A private cyan-lit salon moment.", tone: "aquaGold", size: "wide", image: vipRoomImage },
+  { title: "Men's Grooming", caption: "Natural grooming with the same RM precision.", tone: "mist", size: "small", image: mensManicureImage },
+  { title: "Nude Square", caption: "Reference-style clean nude square finish.", tone: "cream", size: "small", image: "/images/ref-gallery-nude-square.png" },
+  { title: "Ocean Art", caption: "Detailed hand-painted art for statement sets.", tone: "aqua", size: "wide", image: "/images/ref-gallery-ocean-art.png" },
+  { title: "Burgundy Gloss", caption: "Deep glossy color with editorial shine.", tone: "plum", size: "small", image: "/images/ref-gallery-burgundy.png" },
+  { title: "Leopard French", caption: "A bolder design direction with clean edges.", tone: "gold", size: "small", image: "/images/ref-gallery-leopard.png" },
+  { title: "Red Almond", caption: "Classic red with a luxury shape.", tone: "line", size: "small", image: "/images/ref-gallery-red.png" },
+  { title: "Glitter Cat Eye", caption: "Dimensional reflective color movement.", tone: "structure", size: "wide", image: "/images/ref-gallery-glitter-multi.png" },
+  { title: "Lavender Lines", caption: "Soft stripes and precise detailing.", tone: "mist", size: "small", image: "/images/ref-gallery-lavender-stripes.png" },
+  { title: "White Macro", caption: "Close-up polish detail and shine.", tone: "cream", size: "small", image: "/images/ref-gallery-white-macro.png" },
+  { title: "French Square", caption: "Clean French on a squared shape.", tone: "aquaGold", size: "small", image: "/images/ref-gallery-french-square.png" },
+  { title: "Blue Pedicure", caption: "Pedicure color inspiration with high shine.", tone: "line", size: "small", image: "/images/ref-gallery-pedi-blue.png" },
+  { title: "Turquoise French", caption: "Aqua-tipped inspiration for RM color.", tone: "aqua", size: "wide", image: "/images/ref-gallery-turquoise-french.jpg" }
+];
+
+export const proofBlocks = [
+  ["Midtown NYC", "A central studio experience made for clients booking from Instagram and city schedules."],
+  ["Hygienic Tools", "Clean tools, thoughtful preparation, and a process that feels visibly professional."],
+  ["Russian Precision", "E-file cuticle work, clean structure, and color placement handled with exacting detail."],
+  ["Long-Lasting Results", "A glossy finish designed to stay fresh, balanced, and polished for weeks."],
+  ["Clean Luxury", "A calm, feminine, cyan-lit salon experience that feels elevated without feeling cold."]
+];
+
+export const faqs = [
+  {
+    question: "What makes Russian manicure different?",
+    answer:
+      "Russian manicure is a dry, detail-focused technique that refines the cuticle area with precision tools for a very clean, long-lasting finish."
+  },
+  {
+    question: "How long does a hard gel Russian manicure last?",
+    answer:
+      "Most clients book maintenance around 3 to 4 weeks, depending on nail growth, lifestyle, and aftercare."
+  },
+  {
+    question: "Is the process hygienic?",
+    answer:
+      "The site is built around hygiene messaging because it is part of the premium standard: clean tools, careful prep, and a calm professional process."
+  },
+  {
+    question: "Can I book directly from the website?",
+    answer:
+      "Yes. All booking buttons are connected to the Fresha booking link in the config file, and the link can be replaced later if needed."
+  },
+  {
+    question: "Can the photos be replaced with real work later?",
+    answer:
+      "Yes. Every image path is centralized in the service and gallery data, so replacing generated placeholders with client-approved photos is simple."
+  }
+];
