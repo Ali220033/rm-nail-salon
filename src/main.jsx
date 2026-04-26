@@ -263,6 +263,7 @@ function HomePage({ navigate, setSelectedGallery }) {
     <>
       <Hero navigate={navigate} />
       <SignatureExperience navigate={navigate} />
+      <BrandRibbon />
       <FeaturedServicesHome />
       <WorkReel />
       <GalleryPreview setSelectedGallery={setSelectedGallery} navigate={navigate} />
@@ -330,6 +331,41 @@ function Hero({ navigate }) {
         <span>Russian Manicure</span>
         <span>Cyan Luxury Studio</span>
       </div>
+    </section>
+  );
+}
+
+function BrandRibbon() {
+  return (
+    <section className="brand-ribbon-section">
+      <motion.div
+        className="brand-ribbon"
+        initial={{ opacity: 0, y: 34 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.35 }}
+      >
+        <div className="brand-mark-panel">
+          <span>RM</span>
+          <p>Nail Salon</p>
+          <strong>Midtown NYC</strong>
+          <em>Russian Manicure</em>
+        </div>
+        <div className="brand-copy-panel">
+          <p className="eyebrow">Cyan Luxury Studio</p>
+          <h2>Clean precision, made instantly recognizable.</h2>
+          <p>
+            A darker editorial base with RM cyan as the signature glow, gold for booking moments, and cream for soft
+            luxury highlights.
+          </p>
+        </div>
+        <div className="brand-swatch-grid" aria-label="RM Nail Salon brand colors">
+          <span className="swatch aqua">#64E0DA</span>
+          <span className="swatch plum">#32292E</span>
+          <span className="swatch gold">#B09013</span>
+          <span className="swatch cream">#F1ED9B</span>
+          <span className="swatch mist">#709FA1</span>
+        </div>
+      </motion.div>
     </section>
   );
 }
@@ -519,6 +555,27 @@ function Proof() {
 }
 
 function Offer() {
+  const campaigns = [
+    {
+      image: "/images/rm-hero-editorial.png",
+      label: "New Client",
+      title: "10% OFF",
+      copy: "First visit"
+    },
+    {
+      image: "/images/work-reel-process.png",
+      label: "RM Standard",
+      title: "Precision",
+      copy: "Cuticle work, structure, gloss"
+    },
+    {
+      image: "/images/ref-gallery-turquoise-french.jpg",
+      label: "Cyan Mood",
+      title: "Book Today",
+      copy: "Midtown NYC Russian manicure"
+    }
+  ];
+
   return (
     <section className="invitation-section">
       <motion.div
@@ -530,6 +587,18 @@ function Offer() {
         <p className="eyebrow">First Visit Invitation</p>
         <h2>{siteConfig.firstVisitOffer}</h2>
         <span>Not a cheap coupon. A first appointment invitation to experience RM precision, hygiene, and polish.</span>
+        <div className="offer-campaigns">
+          {campaigns.map((campaign) => (
+            <article className="offer-campaign" key={campaign.title}>
+              <img src={campaign.image} alt="" />
+              <div>
+                <p>{campaign.label}</p>
+                <strong>{campaign.title}</strong>
+                <em>{campaign.copy}</em>
+              </div>
+            </article>
+          ))}
+        </div>
         <MagneticLink href={siteConfig.bookingUrl} className="plum-cta">
           Reserve the Offer <ArrowUpRight size={16} />
         </MagneticLink>
