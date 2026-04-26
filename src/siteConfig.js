@@ -18,13 +18,8 @@ export const siteConfig = {
     "https://maps.google.com/maps?q=875%203rd%20Ave%20Concourse%20Level%2C%20New%20York%2C%20NY%2010022&t=m&z=14&output=embed"
 };
 
-const manicureImage = "/images/gallery-aqua-french.png";
 const processImage = "/images/work-reel-process.png";
 const extensionImage = "/images/service-extensions.png";
-const catEyeImage = "/images/gallery-cat-eye.png";
-const nudeImage = "/images/gallery-milky-oil.png";
-const plumImage = "/images/gallery-plum-gold.png";
-const blueImage = "/images/gallery-blue-gray.png";
 const russianClearImage = "/images/service-russian-clear.png";
 const mensManicureImage = "/images/service-mens-manicure.png";
 const japaneseManicureImage = "/images/service-japanese-manicure.png";
@@ -37,13 +32,13 @@ const gelPedicureImage = "/images/service-gel-pedicure.png";
 const spaGelPedicureImage = "/images/service-spa-gel-pedicure-v2.png";
 const comboImage = "/images/service-combo.png";
 const mensComboImage = "/images/service-mens-combo.png";
-const vipRoomImage = "/images/service-vip-room.png";
+const vipRoomImage = "/images/brand-salon-front-full.jpg";
 const chromeImage = "/images/service-chrome.png";
 const ombreImage = "/images/service-ombre.png";
 const removalImage = "/images/service-removal.png";
 const repairImage = "/images/service-repair.png";
-const nailDesignImage = "/images/service-nail-design.png";
-const regularPolishImage = "/images/service-regular-polish.png";
+const nailDesignImage = "/images/brand-phone-red-nails.jpg";
+const regularPolishImage = "/images/brand-face-red-nails-tight.jpg";
 const frenchImage = "/images/ref-gallery-french-square.png";
 const catEyeServiceImage = "/images/ref-gallery-blue-glitter.png";
 const bestFriendsImage = "/images/ref-gallery-teal-orange.png";
@@ -450,18 +445,20 @@ export const featuredServices = serviceMenu
   .filter((service) => featuredServiceIds.includes(service.id));
 
 export const galleryItems = [
-  { title: "Aqua French", caption: "Natural nude with RM's cyan signature edge.", tone: "aqua", size: "tall", image: manicureImage },
-  { title: "Cat Eye Plum", caption: "Glossy magnetic gel with aqua movement.", tone: "plum", size: "wide", image: catEyeImage },
+  { title: "RM Campaign", caption: "Brandbook campaign mood with red manicure detail.", tone: "aqua", size: "tall", image: "/images/brand-face-red-nails-tight.jpg" },
+  { title: "Midtown Studio", caption: "Cyan RM storefront presence in Midtown NYC.", tone: "plum", size: "wide", image: "/images/brand-salon-front-full.jpg" },
   { title: "Master at Work", caption: "A clean process moment with professional tools.", tone: "mist", size: "small", image: processImage },
   { title: "Clean Russian", caption: "Immaculate natural cuticle line.", tone: "cream", size: "small", image: russianClearImage },
   { title: "Chrome Light", caption: "Reflective shine with cyan movement.", tone: "gold", size: "wide", image: chromeImage },
   { title: "Ombre Veil", caption: "Soft cream gradient with quiet luxury.", tone: "mist", size: "small", image: ombreImage },
   { title: "Hard Gel", caption: "Balanced structure applied with precision.", tone: "cream", size: "wide", image: hardGelImage },
-  { title: "Spa Pedicure", caption: "Clean foot care in a cyan-lit suite.", tone: "plum", size: "tall", image: spaPedicureImage },
+  { title: "Pedicure Detail", caption: "Clean foot care in a cyan-lit suite.", tone: "plum", size: "tall", image: spaPedicureImage },
   { title: "Gel Pedicure", caption: "Glossy toes, clean tools, long wear.", tone: "line", size: "small", image: gelPedicureImage },
   { title: "Extensions", caption: "Length, structure, and refined shaping.", tone: "structure", size: "small", image: extensionImage },
-  { title: "VIP Room", caption: "A private cyan-lit salon moment.", tone: "aquaGold", size: "wide", image: vipRoomImage },
+  { title: "Brandbook Social", caption: "RM visual system adapted for social-first clients.", tone: "aquaGold", size: "wide", image: "/images/brand-social-grid.jpg" },
   { title: "Men's Grooming", caption: "Natural grooming with the same RM precision.", tone: "mist", size: "small", image: mensManicureImage },
+  { title: "Early Bird", caption: "Special offer campaign from the RM brandbook.", tone: "gold", size: "small", image: "/images/brand-offer-earlybird-tight.jpg" },
+  { title: "Return Visit", caption: "A fashion-forward offer visual for repeat bookings.", tone: "aqua", size: "small", image: "/images/brand-offer-return-tight.jpg" },
   { title: "Nude Square", caption: "Reference-style clean nude square finish.", tone: "cream", size: "small", image: "/images/ref-gallery-nude-square.png" },
   { title: "Ocean Art", caption: "Detailed hand-painted art for statement sets.", tone: "aqua", size: "wide", image: "/images/ref-gallery-ocean-art.png" },
   { title: "Burgundy Gloss", caption: "Deep glossy color with editorial shine.", tone: "plum", size: "small", image: "/images/ref-gallery-burgundy.png" },
@@ -507,6 +504,6 @@ export const faqs = [
   {
     question: "Can the photos be replaced with real work later?",
     answer:
-      "Yes. Every image path is centralized in the service and gallery data, so replacing generated placeholders with client-approved photos is simple."
+      "Yes. Every image path is centralized in the service and gallery data, so replacing campaign or portfolio images with client-approved photos is simple."
   }
 ];

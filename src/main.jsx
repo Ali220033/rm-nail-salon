@@ -4,9 +4,7 @@ import {
   AnimatePresence,
   motion,
   useMotionValue,
-  useScroll,
-  useSpring,
-  useTransform
+  useSpring
 } from "framer-motion";
 import {
   ArrowUpRight,
@@ -109,7 +107,6 @@ function App() {
 
   return (
     <div className="lux-site">
-      <CursorGlow />
       <AnimatePresence>{loading && <Loader />}</AnimatePresence>
       <Nav compact={navCompact} route={route} navigate={navigate} />
       <main>
@@ -145,24 +142,6 @@ function Loader() {
       />
     </motion.div>
   );
-}
-
-function CursorGlow() {
-  const x = useMotionValue(-220);
-  const y = useMotionValue(-220);
-  const springX = useSpring(x, { stiffness: 80, damping: 24 });
-  const springY = useSpring(y, { stiffness: 80, damping: 24 });
-
-  useEffect(() => {
-    const move = (event) => {
-      x.set(event.clientX - 220);
-      y.set(event.clientY - 220);
-    };
-    window.addEventListener("mousemove", move);
-    return () => window.removeEventListener("mousemove", move);
-  }, [x, y]);
-
-  return <motion.div className="cursor-glow" style={{ x: springX, y: springY }} />;
 }
 
 function RouteLink({ to, navigate, className = "", children }) {
@@ -275,33 +254,25 @@ function HomePage({ navigate, setSelectedGallery }) {
 }
 
 function Hero({ navigate }) {
-  const { scrollY } = useScroll();
-  const imageY = useTransform(scrollY, [0, 850], [0, 120]);
-  const textY = useTransform(scrollY, [0, 850], [0, -62]);
-  const glossY = useTransform(scrollY, [0, 850], [0, 160]);
-
   return (
     <section className="hero-editorial">
-      <motion.img
+      <img
         className="hero-backdrop hero-backdrop-desktop"
         src="/images/rm-hero.png"
         alt="RM Nail Salon luxury Russian manicure hero"
-        style={{ y: imageY }}
       />
-      <motion.img
+      <img
         className="hero-backdrop hero-backdrop-mobile"
         src="/images/rm-hero-editorial.png"
         alt="RM Nail Salon luxury Russian manicure hero"
-        style={{ y: imageY }}
       />
-      <motion.div className="polish-orb orb-one" style={{ y: glossY }} />
-      <motion.div className="polish-orb orb-two" style={{ y: imageY }} />
+      <div className="polish-orb orb-one" />
+      <div className="polish-orb orb-two" />
       <div className="gel-ribbon ribbon-one" />
       <div className="gel-ribbon ribbon-two" />
 
       <motion.div
         className="hero-type"
-        style={{ y: textY }}
         initial="hidden"
         animate="show"
         variants={{ show: { transition: { staggerChildren: 0.11 } } }}
@@ -358,12 +329,12 @@ function BrandRibbon() {
             luxury highlights.
           </p>
         </div>
-        <div className="brand-swatch-grid" aria-label="RM Nail Salon brand colors">
-          <span className="swatch aqua">#64E0DA</span>
-          <span className="swatch plum">#32292E</span>
-          <span className="swatch gold">#B09013</span>
-          <span className="swatch cream">#F1ED9B</span>
-          <span className="swatch mist">#709FA1</span>
+        <div className="brand-media-panel">
+          <img src="/images/brand-salon-front-full.jpg" alt="RM Nail Salon Midtown NYC storefront" />
+          <div>
+            <span>875 3rd Ave</span>
+            <strong>Concourse Level</strong>
+          </div>
         </div>
       </motion.div>
     </section>
@@ -438,8 +409,8 @@ function FeaturedServicesHome() {
         <motion.div
           className="featured-service-visual organic-mask"
           key={active.id}
-          initial={{ opacity: 0, scale: 0.96 }}
-          animate={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{ duration: 0.45 }}
         >
           <img src={active.image} alt={`${active.name} example`} />
@@ -485,18 +456,20 @@ function WorkReel() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.35 }}
       >
-        <motion.video
-          src={siteConfig.processVideo}
-          poster="/images/work-reel-process.png"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          aria-label="RM Nail Salon Russian manicure work process"
-          animate={{ scale: [1, 1.045, 1], y: [0, -8, 0] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        />
+        <div className="process-stage" aria-label="RM Nail Salon Russian manicure work process">
+          <img className="process-shot process-shot-one" src="/images/work-reel-process.png" alt="" />
+          <img className="process-shot process-shot-two" src="/images/service-hard-gel.png" alt="" />
+          <img className="process-shot process-shot-three" src="/images/brand-face-red-nails-tight.jpg" alt="" />
+          <div className="process-light light-one" />
+          <div className="process-light light-two" />
+          <div className="animated-nails">
+            <i />
+            <i />
+            <i />
+            <i />
+            <i />
+          </div>
+        </div>
         <div className="reel-sheen" />
         <div className="reel-controls">
           <div>
@@ -517,8 +490,8 @@ function GalleryPreview({ setSelectedGallery, navigate }) {
     <section className="gallery-editorial preview">
       <SectionIntro
         label="Gallery"
-        title="Natural-looking placeholders with a cyan RM mood."
-        copy="A polished preview of clean shapes, glossy finishes, and cyan-lit salon detail."
+        title="Campaign polish, real-service clarity."
+        copy="A curated preview of clean shapes, glossy finishes, RM campaign moments, and cyan-lit salon detail."
       />
       <GalleryGrid items={galleryItems.slice(0, 9)} setSelectedGallery={setSelectedGallery} />
       <div className="section-action">
@@ -557,22 +530,22 @@ function Proof() {
 function Offer() {
   const campaigns = [
     {
-      image: "/images/rm-hero-editorial.png",
-      label: "New Client",
-      title: "10% OFF",
-      copy: "First visit"
+      image: "/images/brand-offer-earlybird-tight.jpg",
+      label: "Early Bird Special",
+      title: "10% OFF Before 12 PM",
+      copy: "Monday-Thursday"
     },
     {
-      image: "/images/work-reel-process.png",
-      label: "RM Standard",
-      title: "Precision",
-      copy: "Cuticle work, structure, gloss"
+      image: "/images/brand-offer-return-tight.jpg",
+      label: "Come Back Within 3 Weeks",
+      title: "Get 8% Off Your Next Visit",
+      copy: "Returning client offer"
     },
     {
-      image: "/images/ref-gallery-turquoise-french.jpg",
-      label: "Cyan Mood",
-      title: "Book Today",
-      copy: "Midtown NYC Russian manicure"
+      image: "/images/brand-offer-birthday-tight.jpg",
+      label: "Birthday Offer",
+      title: "Enjoy 10% Off",
+      copy: "Birthday week appointment"
     }
   ];
 
@@ -589,13 +562,12 @@ function Offer() {
         <span>Not a cheap coupon. A first appointment invitation to experience RM precision, hygiene, and polish.</span>
         <div className="offer-campaigns">
           {campaigns.map((campaign) => (
-            <article className="offer-campaign" key={campaign.title}>
-              <img src={campaign.image} alt="" />
-              <div>
-                <p>{campaign.label}</p>
-                <strong>{campaign.title}</strong>
-                <em>{campaign.copy}</em>
-              </div>
+            <article
+              className="offer-campaign"
+              key={campaign.title}
+              aria-label={`${campaign.label}: ${campaign.title}. ${campaign.copy}`}
+            >
+              <img src={campaign.image} alt={`${campaign.title} RM special offer`} />
             </article>
           ))}
         </div>
@@ -676,8 +648,8 @@ function ServicesPage() {
           <motion.div
             key={spotlight.id}
             className="lookbook-image organic-mask"
-            initial={{ opacity: 0, scale: 0.96 }}
-            animate={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{ duration: 0.45 }}
           >
             <img src={spotlight.image} alt={`${spotlight.name} service preview`} />
@@ -757,7 +729,7 @@ function AboutPage({ navigate }) {
         label="About RM"
         title="A Russian manicure studio built on restraint and precision."
         copy="RM Nail Salon is for clients who want a manicure that feels elevated, clean, and reliable before they even walk in."
-        image="/images/work-reel-process.png"
+        image="/images/brand-city-skyline-tight.jpg"
       />
       <section className="about-story">
         <div className="about-lead">
@@ -828,7 +800,6 @@ function GalleryGrid({ items, setSelectedGallery }) {
           initial={{ opacity: 0, y: 32 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          whileHover={{ y: -8 }}
         >
           <img src={item.image} alt={`${item.title} manicure gallery`} />
           <span>{String(index + 1).padStart(2, "0")}</span>

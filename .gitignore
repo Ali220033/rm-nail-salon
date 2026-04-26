@@ -8,4 +8,17 @@ rm-mobile-check.png
 rm-mobile-*.png
 rm-desktop-*.png
 rm-cyan-*.png
+rm-qa-*.png
 service-contact-sheet.jpg
+brandbook-guide.jpg
+public/images/brand-city-skyline.jpg
+public/images/brand-face-red-nails.jpg
+public/images/brand-model-sunglasses.jpg
+public/images/brand-offer-birthday.jpg
+public/images/brand-offer-earlybird.jpg
+public/images/brand-offer-return.jpg
+public/images/brand-salon-front.jpg
+public/images/brand-salon-front-tight.jpg
+qa-static-server.mjs
+qa-screenshot.mjs
+vite-qa.pid
