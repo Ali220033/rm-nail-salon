@@ -459,7 +459,7 @@ function WorkReel() {
         <div className="process-stage" aria-label="RM Nail Salon Russian manicure work process">
           <img className="process-shot process-shot-one" src="/images/work-reel-process.png" alt="" />
           <img className="process-shot process-shot-two" src="/images/service-hard-gel.png" alt="" />
-          <img className="process-shot process-shot-three" src="/images/brand-face-red-nails-tight.jpg" alt="" />
+          <img className="process-shot process-shot-three" src="/images/brand-face-red-nails-framed.jpg" alt="" />
           <div className="process-light light-one" />
           <div className="process-light light-two" />
           <div className="animated-nails">

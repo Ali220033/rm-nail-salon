@@ -2,6 +2,7 @@ node_modules/
 dist/
 .tools/
 *.tgz
+*.pid
 npm-latest.json
 *.log
 rm-mobile-check.png

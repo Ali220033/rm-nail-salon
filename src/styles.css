@@ -1011,38 +1011,42 @@ img {
 
 .reel-phone .process-shot {
   border: 1px solid rgba(100, 224, 218, 0.16);
+  background: rgba(8, 5, 7, 0.82);
   box-shadow: 0 22px 80px rgba(0, 0, 0, 0.34);
   object-fit: cover;
+  object-position: center;
   position: absolute;
 }
 
 .reel-phone .process-shot-one {
   animation: processOne 10s infinite ease-in-out;
   border-radius: 36px 36px 12px 36px;
-  height: 58%;
-  left: 8%;
-  top: 8%;
-  width: 84%;
+  height: 44%;
+  left: 7%;
+  object-position: center 48%;
+  top: 24%;
+  width: 86%;
 }
 
 .reel-phone .process-shot-two {
   animation: processTwo 10s infinite ease-in-out;
   border-radius: 28px 28px 10px 28px;
-  bottom: 13%;
-  height: 30%;
-  left: 10%;
+  bottom: 7.5%;
+  height: 23%;
+  left: 9%;
   opacity: 0.92;
-  width: 46%;
+  width: 38%;
 }
 
 .reel-phone .process-shot-three {
   animation: processThree 10s infinite ease-in-out;
   border-radius: 28px 28px 10px 28px;
-  bottom: 11%;
-  height: 34%;
+  bottom: 7.5%;
+  height: 23%;
+  object-position: center top;
   opacity: 0.9;
   right: 9%;
-  width: 42%;
+  width: 38%;
 }
 
 .process-light {
@@ -1072,7 +1076,7 @@ img {
 
 .animated-nails {
   align-items: end;
-  bottom: 25%;
+  bottom: 29%;
   display: flex;
   gap: 0.42rem;
   left: 50%;
@@ -1262,10 +1266,17 @@ img {
 }
 
 .masonry-item img {
+  background: rgba(8, 5, 7, 0.86);
   filter: brightness(0.84) saturate(0.98);
   inset: 0;
+  object-fit: cover;
+  object-position: center;
   position: absolute;
   transition: filter 0.35s ease;
+}
+
+.masonry-item:first-child img {
+  object-position: center top;
 }
 
 .masonry-item:hover img {
@@ -1695,9 +1706,11 @@ img {
 }
 
 .lookbook-image img {
+  background: rgba(8, 5, 7, 0.86);
   filter: brightness(0.86) saturate(1.04);
   height: 100%;
   object-fit: cover;
+  object-position: center;
   width: 100%;
 }
 
@@ -1774,10 +1787,12 @@ img {
 }
 
 .lookbook-rail img {
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 9 / 13;
+  background: rgba(8, 5, 7, 0.86);
   border-radius: 18px 18px 6px 18px;
   filter: brightness(0.84) saturate(1.02);
   object-fit: cover;
+  object-position: center;
   width: 100%;
 }
 
@@ -1863,9 +1878,19 @@ img {
 }
 
 .catalog-service img {
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 9 / 13;
+  background: rgba(8, 5, 7, 0.86);
   border-radius: 20px 20px 7px 20px;
   filter: brightness(0.86) saturate(1.08);
+  height: auto;
+  object-fit: cover;
+  object-position: center;
+}
+
+.modal-card img {
+  background: rgba(8, 5, 7, 0.9);
+  object-fit: contain;
+  object-position: center;
 }
 
 .catalog-copy {

@@ -445,7 +445,7 @@ export const featuredServices = serviceMenu
   .filter((service) => featuredServiceIds.includes(service.id));
 
 export const galleryItems = [
-  { title: "RM Campaign", caption: "Brandbook campaign mood with red manicure detail.", tone: "aqua", size: "tall", image: "/images/brand-face-red-nails-tight.jpg" },
+  { title: "RM Campaign", caption: "Brandbook campaign mood with red manicure detail.", tone: "aqua", size: "tall", image: "/images/brand-face-red-nails-framed.jpg" },
   { title: "Midtown Studio", caption: "Cyan RM storefront presence in Midtown NYC.", tone: "plum", size: "wide", image: "/images/brand-salon-front-full.jpg" },
   { title: "Master at Work", caption: "A clean process moment with professional tools.", tone: "mist", size: "small", image: processImage },
   { title: "Clean Russian", caption: "Immaculate natural cuticle line.", tone: "cream", size: "small", image: russianClearImage },
