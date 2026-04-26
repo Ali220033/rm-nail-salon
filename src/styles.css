@@ -55,6 +55,7 @@ button {
 }
 
 img {
+  color: transparent;
   display: block;
 }
 
@@ -2213,6 +2214,44 @@ img {
 
   .hero-actions {
     margin-top: 1.35rem;
+  }
+
+  .featured-service-visual,
+  .reel-phone,
+  .masonry-item,
+  .modal-card,
+  .lookbook-image,
+  .service-lookbook,
+  .catalog-service,
+  .offer-campaign,
+  .brand-ribbon {
+    box-shadow: 0 18px 58px rgba(0, 0, 0, 0.28);
+    contain: layout paint;
+  }
+
+  .masonry-item img,
+  .catalog-service img,
+  .lookbook-rail img,
+  .lookbook-image img,
+  .offer-campaign img,
+  .featured-service-visual img {
+    filter: none;
+    transition: none;
+  }
+
+  .nav.scrolled,
+  .floating-glass,
+  .service-lookbook,
+  .category-pills,
+  .floating-offer,
+  .mobile-book {
+    backdrop-filter: none;
+  }
+
+  .polish-orb,
+  .gel-ribbon,
+  .process-light {
+    animation: none;
   }
 
   .featured-service-list > .outline-cta,

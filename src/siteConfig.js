@@ -18,33 +18,35 @@ export const siteConfig = {
     "https://maps.google.com/maps?q=875%203rd%20Ave%20Concourse%20Level%2C%20New%20York%2C%20NY%2010022&t=m&z=14&output=embed"
 };
 
-const processImage = "/images/work-reel-process.png";
-const extensionImage = "/images/service-extensions.png";
-const russianClearImage = "/images/service-russian-clear.png";
-const mensManicureImage = "/images/service-mens-manicure.png";
-const japaneseManicureImage = "/images/service-japanese-manicure.png";
-const hardGelImage = "/images/service-hard-gel.png";
-const spaHardGelImage = "/images/service-spa-hard-gel-v2.png";
-const fillInImage = "/images/service-fill-in.png";
-const smartPedicureImage = "/images/service-smart-pedicure.png";
-const spaPedicureImage = "/images/service-spa-pedicure-v2.png";
-const gelPedicureImage = "/images/service-gel-pedicure.png";
-const spaGelPedicureImage = "/images/service-spa-gel-pedicure-v2.png";
-const comboImage = "/images/service-combo.png";
-const mensComboImage = "/images/service-mens-combo.png";
-const vipRoomImage = "/images/brand-salon-front-full.jpg";
-const chromeImage = "/images/service-chrome.png";
-const ombreImage = "/images/service-ombre.png";
-const removalImage = "/images/service-removal.png";
-const repairImage = "/images/service-repair.png";
-const nailDesignImage = "/images/brand-phone-red-nails.jpg";
-const regularPolishImage = "/images/brand-face-red-nails-tight.jpg";
-const frenchImage = "/images/ref-gallery-french-square.png";
-const catEyeServiceImage = "/images/ref-gallery-blue-glitter.png";
-const bestFriendsImage = "/images/ref-gallery-teal-orange.png";
-const extraLongImage = "/images/ref-gallery-gothic.png";
-const acrylicRemovalImage = "/images/ref-gallery-white-macro.png";
-const oneExtensionImage = "/images/ref-gallery-nude-almond.png";
+export const fastImage = (name) => `/images/fast/${name}.jpg`;
+
+const processImage = fastImage("work-reel-process");
+const extensionImage = fastImage("service-extensions");
+const russianClearImage = fastImage("service-russian-clear");
+const mensManicureImage = fastImage("service-mens-manicure");
+const japaneseManicureImage = fastImage("service-japanese-manicure");
+const hardGelImage = fastImage("service-hard-gel");
+const spaHardGelImage = fastImage("service-spa-hard-gel-v2");
+const fillInImage = fastImage("service-fill-in");
+const smartPedicureImage = fastImage("service-smart-pedicure");
+const spaPedicureImage = fastImage("service-spa-pedicure-v2");
+const gelPedicureImage = fastImage("service-gel-pedicure");
+const spaGelPedicureImage = fastImage("service-spa-gel-pedicure-v2");
+const comboImage = fastImage("service-combo");
+const mensComboImage = fastImage("service-mens-combo");
+const vipRoomImage = fastImage("brand-salon-front-full");
+const chromeImage = fastImage("service-chrome");
+const ombreImage = fastImage("service-ombre");
+const removalImage = fastImage("service-removal");
+const repairImage = fastImage("service-repair");
+const nailDesignImage = fastImage("brand-phone-red-nails");
+const regularPolishImage = fastImage("brand-face-red-nails-tight");
+const frenchImage = fastImage("ref-gallery-french-square");
+const catEyeServiceImage = fastImage("ref-gallery-blue-glitter");
+const bestFriendsImage = fastImage("ref-gallery-teal-orange");
+const extraLongImage = fastImage("ref-gallery-gothic");
+const acrylicRemovalImage = fastImage("ref-gallery-white-macro");
+const oneExtensionImage = fastImage("ref-gallery-nude-almond");
 
 export const serviceMenu = [
   {
@@ -445,8 +447,8 @@ export const featuredServices = serviceMenu
   .filter((service) => featuredServiceIds.includes(service.id));
 
 export const galleryItems = [
-  { title: "RM Campaign", caption: "Brandbook campaign mood with red manicure detail.", tone: "aqua", size: "tall", image: "/images/brand-face-red-nails-framed.jpg" },
-  { title: "Midtown Studio", caption: "Cyan RM storefront presence in Midtown NYC.", tone: "plum", size: "wide", image: "/images/brand-salon-front-full.jpg" },
+  { title: "RM Campaign", caption: "Brandbook campaign mood with red manicure detail.", tone: "aqua", size: "tall", image: fastImage("brand-face-red-nails-framed") },
+  { title: "Midtown Studio", caption: "Cyan RM storefront presence in Midtown NYC.", tone: "plum", size: "wide", image: fastImage("brand-salon-front-full") },
   { title: "Master at Work", caption: "A clean process moment with professional tools.", tone: "mist", size: "small", image: processImage },
   { title: "Clean Russian", caption: "Immaculate natural cuticle line.", tone: "cream", size: "small", image: russianClearImage },
   { title: "Chrome Light", caption: "Reflective shine with cyan movement.", tone: "gold", size: "wide", image: chromeImage },
@@ -455,21 +457,21 @@ export const galleryItems = [
   { title: "Pedicure Detail", caption: "Clean foot care in a cyan-lit suite.", tone: "plum", size: "tall", image: spaPedicureImage },
   { title: "Gel Pedicure", caption: "Glossy toes, clean tools, long wear.", tone: "line", size: "small", image: gelPedicureImage },
   { title: "Extensions", caption: "Length, structure, and refined shaping.", tone: "structure", size: "small", image: extensionImage },
-  { title: "Brandbook Social", caption: "RM visual system adapted for social-first clients.", tone: "aquaGold", size: "wide", image: "/images/brand-social-grid.jpg" },
+  { title: "Brandbook Social", caption: "RM visual system adapted for social-first clients.", tone: "aquaGold", size: "wide", image: fastImage("brand-social-grid") },
   { title: "Men's Grooming", caption: "Natural grooming with the same RM precision.", tone: "mist", size: "small", image: mensManicureImage },
-  { title: "Early Bird", caption: "Special offer campaign from the RM brandbook.", tone: "gold", size: "small", image: "/images/brand-offer-earlybird-tight.jpg" },
-  { title: "Return Visit", caption: "A fashion-forward offer visual for repeat bookings.", tone: "aqua", size: "small", image: "/images/brand-offer-return-tight.jpg" },
-  { title: "Nude Square", caption: "Reference-style clean nude square finish.", tone: "cream", size: "small", image: "/images/ref-gallery-nude-square.png" },
-  { title: "Ocean Art", caption: "Detailed hand-painted art for statement sets.", tone: "aqua", size: "wide", image: "/images/ref-gallery-ocean-art.png" },
-  { title: "Burgundy Gloss", caption: "Deep glossy color with editorial shine.", tone: "plum", size: "small", image: "/images/ref-gallery-burgundy.png" },
-  { title: "Leopard French", caption: "A bolder design direction with clean edges.", tone: "gold", size: "small", image: "/images/ref-gallery-leopard.png" },
-  { title: "Red Almond", caption: "Classic red with a luxury shape.", tone: "line", size: "small", image: "/images/ref-gallery-red.png" },
-  { title: "Glitter Cat Eye", caption: "Dimensional reflective color movement.", tone: "structure", size: "wide", image: "/images/ref-gallery-glitter-multi.png" },
-  { title: "Lavender Lines", caption: "Soft stripes and precise detailing.", tone: "mist", size: "small", image: "/images/ref-gallery-lavender-stripes.png" },
-  { title: "White Macro", caption: "Close-up polish detail and shine.", tone: "cream", size: "small", image: "/images/ref-gallery-white-macro.png" },
-  { title: "French Square", caption: "Clean French on a squared shape.", tone: "aquaGold", size: "small", image: "/images/ref-gallery-french-square.png" },
-  { title: "Blue Pedicure", caption: "Pedicure color inspiration with high shine.", tone: "line", size: "small", image: "/images/ref-gallery-pedi-blue.png" },
-  { title: "Turquoise French", caption: "Aqua-tipped inspiration for RM color.", tone: "aqua", size: "wide", image: "/images/ref-gallery-turquoise-french.jpg" }
+  { title: "Early Bird", caption: "Special offer campaign from the RM brandbook.", tone: "gold", size: "small", image: fastImage("brand-offer-earlybird-tight") },
+  { title: "Return Visit", caption: "A fashion-forward offer visual for repeat bookings.", tone: "aqua", size: "small", image: fastImage("brand-offer-return-tight") },
+  { title: "Nude Square", caption: "Reference-style clean nude square finish.", tone: "cream", size: "small", image: fastImage("ref-gallery-nude-square") },
+  { title: "Ocean Art", caption: "Detailed hand-painted art for statement sets.", tone: "aqua", size: "wide", image: fastImage("ref-gallery-ocean-art") },
+  { title: "Burgundy Gloss", caption: "Deep glossy color with editorial shine.", tone: "plum", size: "small", image: fastImage("ref-gallery-burgundy") },
+  { title: "Leopard French", caption: "A bolder design direction with clean edges.", tone: "gold", size: "small", image: fastImage("ref-gallery-leopard") },
+  { title: "Red Almond", caption: "Classic red with a luxury shape.", tone: "line", size: "small", image: fastImage("ref-gallery-red") },
+  { title: "Glitter Cat Eye", caption: "Dimensional reflective color movement.", tone: "structure", size: "wide", image: fastImage("ref-gallery-glitter-multi") },
+  { title: "Lavender Lines", caption: "Soft stripes and precise detailing.", tone: "mist", size: "small", image: fastImage("ref-gallery-lavender-stripes") },
+  { title: "White Macro", caption: "Close-up polish detail and shine.", tone: "cream", size: "small", image: fastImage("ref-gallery-white-macro") },
+  { title: "French Square", caption: "Clean French on a squared shape.", tone: "aquaGold", size: "small", image: fastImage("ref-gallery-french-square") },
+  { title: "Blue Pedicure", caption: "Pedicure color inspiration with high shine.", tone: "line", size: "small", image: fastImage("ref-gallery-pedi-blue") },
+  { title: "Turquoise French", caption: "Aqua-tipped inspiration for RM color.", tone: "aqua", size: "wide", image: fastImage("ref-gallery-turquoise-french") }
 ];
 
 export const proofBlocks = [

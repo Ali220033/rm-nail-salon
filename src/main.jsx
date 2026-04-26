@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 import {
   faqs,
+  fastImage,
   featuredServices,
   galleryItems,
   proofBlocks,
@@ -258,13 +259,19 @@ function Hero({ navigate }) {
     <section className="hero-editorial">
       <img
         className="hero-backdrop hero-backdrop-desktop"
-        src="/images/rm-hero.png"
+        src={fastImage("rm-hero")}
         alt="RM Nail Salon luxury Russian manicure hero"
+        decoding="async"
+        fetchPriority="high"
+        loading="eager"
       />
       <img
         className="hero-backdrop hero-backdrop-mobile"
-        src="/images/rm-hero-editorial.png"
+        src={fastImage("rm-hero-editorial")}
         alt="RM Nail Salon luxury Russian manicure hero"
+        decoding="async"
+        fetchPriority="high"
+        loading="eager"
       />
       <div className="polish-orb orb-one" />
       <div className="polish-orb orb-two" />
@@ -330,7 +337,7 @@ function BrandRibbon() {
           </p>
         </div>
         <div className="brand-media-panel">
-          <img src="/images/brand-salon-front-full.jpg" alt="RM Nail Salon Midtown NYC storefront" />
+          <img src={fastImage("brand-salon-front-full")} alt="RM Nail Salon Midtown NYC storefront" loading="lazy" decoding="async" />
           <div>
             <span>875 3rd Ave</span>
             <strong>Concourse Level</strong>
@@ -374,7 +381,7 @@ function SignatureExperience({ navigate }) {
           variants={{ show: { transition: { staggerChildren: 0.12 } } }}
         >
           <motion.div variants={reveal} className="composition-photo large organic-mask">
-            <img src="/images/gallery-aqua-french.png" alt="Aqua French manicure at RM Nail Salon" />
+            <img src={fastImage("gallery-aqua-french")} alt="Aqua French manicure at RM Nail Salon" loading="lazy" decoding="async" />
           </motion.div>
           <motion.div variants={reveal} className="floating-glass composition-card">
             <span>Russian manicure</span>
@@ -413,7 +420,7 @@ function FeaturedServicesHome() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.45 }}
         >
-          <img src={active.image} alt={`${active.name} example`} />
+          <img src={active.image} alt={`${active.name} example`} loading="eager" decoding="async" />
           <div className="featured-price">
             <span>{active.time}</span>
             <strong>{active.price}</strong>
@@ -457,9 +464,9 @@ function WorkReel() {
         viewport={{ once: true, amount: 0.35 }}
       >
         <div className="process-stage" aria-label="RM Nail Salon Russian manicure work process">
-          <img className="process-shot process-shot-one" src="/images/work-reel-process.png" alt="" />
-          <img className="process-shot process-shot-two" src="/images/service-hard-gel.png" alt="" />
-          <img className="process-shot process-shot-three" src="/images/brand-face-red-nails-framed.jpg" alt="" />
+          <img className="process-shot process-shot-one" src={fastImage("work-reel-process")} alt="" loading="lazy" decoding="async" />
+          <img className="process-shot process-shot-two" src={fastImage("service-hard-gel")} alt="" loading="lazy" decoding="async" />
+          <img className="process-shot process-shot-three" src={fastImage("brand-face-red-nails-framed")} alt="" loading="lazy" decoding="async" />
           <div className="process-light light-one" />
           <div className="process-light light-two" />
           <div className="animated-nails">
@@ -530,19 +537,19 @@ function Proof() {
 function Offer() {
   const campaigns = [
     {
-      image: "/images/brand-offer-earlybird-tight.jpg",
+      image: fastImage("brand-offer-earlybird-tight"),
       label: "Early Bird Special",
       title: "10% OFF Before 12 PM",
       copy: "Monday-Thursday"
     },
     {
-      image: "/images/brand-offer-return-tight.jpg",
+      image: fastImage("brand-offer-return-tight"),
       label: "Come Back Within 3 Weeks",
       title: "Get 8% Off Your Next Visit",
       copy: "Returning client offer"
     },
     {
-      image: "/images/brand-offer-birthday-tight.jpg",
+      image: fastImage("brand-offer-birthday-tight"),
       label: "Birthday Offer",
       title: "Enjoy 10% Off",
       copy: "Birthday week appointment"
@@ -567,7 +574,7 @@ function Offer() {
               key={campaign.title}
               aria-label={`${campaign.label}: ${campaign.title}. ${campaign.copy}`}
             >
-              <img src={campaign.image} alt={`${campaign.title} RM special offer`} />
+              <img src={campaign.image} alt={`${campaign.title} RM special offer`} loading="eager" decoding="async" />
             </article>
           ))}
         </div>
@@ -610,10 +617,10 @@ function Booking({ navigate }) {
   );
 }
 
-function PageHero({ label, title, copy, image = "/images/rm-hero-editorial.png" }) {
+function PageHero({ label, title, copy, image = fastImage("rm-hero-editorial") }) {
   return (
     <section className="page-hero">
-      <img src={image} alt="" />
+      <img src={image} alt="" loading="eager" decoding="async" />
       <div>
         <p className="eyebrow">{label}</p>
         <h1>{title}</h1>
@@ -641,7 +648,7 @@ function ServicesPage() {
         label="Service Menu"
         title="Full RM service catalog."
         copy="Explore signature manicures, pedicures, add-ons, and repair services with clear timing and pricing."
-        image="/images/ref-service-banner.jpg"
+        image={fastImage("ref-service-banner")}
       />
       <section className="catalog-section">
         <div className="service-lookbook">
@@ -652,7 +659,7 @@ function ServicesPage() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.45 }}
           >
-            <img src={spotlight.image} alt={`${spotlight.name} service preview`} />
+            <img src={spotlight.image} alt={`${spotlight.name} service preview`} loading="eager" decoding="async" />
             <div>
               <span>{spotlight.category}</span>
               <strong>{spotlight.name}</strong>
@@ -671,7 +678,7 @@ function ServicesPage() {
                   document.getElementById(service.id)?.scrollIntoView({ behavior: "smooth", block: "center" });
                 }}
               >
-                <img src={service.image} alt="" />
+                <img src={service.image} alt="" loading="eager" decoding="async" />
                 <span>{service.shortName}</span>
               </button>
             ))}
@@ -699,7 +706,7 @@ function ServicesPage() {
                   id={service.id}
                   onMouseEnter={() => setSpotlight({ ...service, category: group.category })}
                 >
-                  <img src={service.image} alt={`${service.name} service`} />
+                  <img src={service.image} alt="" loading="eager" decoding="async" />
                   <div className="catalog-copy">
                     <span>{service.time}</span>
                     <h3>{service.name}</h3>
@@ -729,7 +736,7 @@ function AboutPage({ navigate }) {
         label="About RM"
         title="A Russian manicure studio built on restraint and precision."
         copy="RM Nail Salon is for clients who want a manicure that feels elevated, clean, and reliable before they even walk in."
-        image="/images/brand-city-skyline-tight.jpg"
+        image={fastImage("brand-city-skyline-tight")}
       />
       <section className="about-story">
         <div className="about-lead">
@@ -780,7 +787,7 @@ function GalleryPage({ setSelectedGallery }) {
         label="Gallery"
         title="A portfolio wall for the RM finish."
         copy="Natural hands, cyan salon light, glossy details, and luxury color restraint define the RM visual language."
-        image="/images/gallery-aqua-french.png"
+        image={fastImage("gallery-aqua-french")}
       />
       <section className="gallery-editorial full">
         <GalleryGrid items={galleryItems} setSelectedGallery={setSelectedGallery} />
@@ -801,7 +808,7 @@ function GalleryGrid({ items, setSelectedGallery }) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
         >
-          <img src={item.image} alt={`${item.title} manicure gallery`} />
+          <img src={item.image} alt="" loading="eager" decoding="async" />
           <span>{String(index + 1).padStart(2, "0")}</span>
           <strong>{item.title}</strong>
           <em>{item.caption}</em>
@@ -829,7 +836,7 @@ function GalleryModal({ item, onClose }) {
             exit={{ scale: 0.94, opacity: 0, y: 24 }}
             onClick={(event) => event.stopPropagation()}
           >
-            <img src={item.image} alt={`${item.title} manicure preview`} />
+            <img src={item.image} alt={`${item.title} manicure preview`} decoding="async" />
             <button className="modal-close" onClick={onClose} aria-label="Close gallery preview">
               <X size={19} />
             </button>
@@ -854,7 +861,7 @@ function FaqPage() {
         label="FAQ"
         title="Questions clients ask before booking."
         copy="Clear answers for clients who care about precision, hygiene, timing, and long-lasting results."
-        image="/images/gallery-blue-gray.png"
+        image={fastImage("gallery-blue-gray")}
       />
       <section className="faq-section">
         {faqs.map((item, index) => (
@@ -897,7 +904,7 @@ function ContactPage() {
         label="Contact"
         title="Ready for the final links."
         copy="Book your appointment, message the studio, or save the Midtown NYC details for your next visit."
-        image="/images/rm-hero-editorial.png"
+        image={fastImage("rm-hero-editorial")}
       />
       <section id="contact" className="contact-editorial">
         <div className="contact-layout">
