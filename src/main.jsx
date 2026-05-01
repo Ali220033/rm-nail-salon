@@ -214,24 +214,41 @@ function MagneticLink({ href, className = "", children, onClick }) {
   const x = useSpring(mx, { stiffness: 170, damping: 15 });
   const y = useSpring(my, { stiffness: 170, damping: 15 });
   const external = href?.startsWith("http");
+  const canMagnet =
+    typeof window !== "undefined" &&
+    window.matchMedia?.("(hover: hover) and (pointer: fine)").matches;
+  const resetPosition = () => {
+    mx.set(0);
+    my.set(0);
+  };
+  const handleClick = (event) => {
+    resetPosition();
+    window.setTimeout(resetPosition, 120);
+    onClick?.(event);
+  };
 
   return (
     <motion.a
       href={href}
       className={`magnetic ${className}`}
       style={{ x, y }}
-      onClick={onClick}
+      onClick={handleClick}
       target={external ? "_blank" : undefined}
       rel={external ? "noreferrer" : undefined}
+      onPointerDown={resetPosition}
+      onPointerUp={resetPosition}
+      onPointerCancel={resetPosition}
       onMouseMove={(event) => {
+        if (!canMagnet) {
+          resetPosition();
+          return;
+        }
         const rect = event.currentTarget.getBoundingClientRect();
         mx.set((event.clientX - rect.left - rect.width / 2) * 0.18);
         my.set((event.clientY - rect.top - rect.height / 2) * 0.22);
       }}
-      onMouseLeave={() => {
-        mx.set(0);
-        my.set(0);
-      }}
+      onMouseLeave={resetPosition}
+      onBlur={resetPosition}
     >
       {children}
     </motion.a>
