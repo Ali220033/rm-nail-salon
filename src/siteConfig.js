@@ -2,14 +2,13 @@ export const siteConfig = {
   salonName: "RM Nail Salon",
   location: "Midtown NYC",
   specialty: "Russian Manicure",
-  bookingUrl:
-    "https://www.fresha.com/a/nailartnyc-new-york-nyu-york-ssha-308-8th-avenue-b-mndlihgo/booking?menu=true&share=true&pId=2824183&cartId=2db2c8b0-94cc-4c1e-9add-f53d8205410f",
-  instagramUrl: "#contact",
+  bookingUrl: "tel:+13468656565",
+  instagramUrl: "https://www.instagram.com/rmnailsalon.nyc?igsh=eWIyNXhxZTNwOGdh&utm_source=qr",
   phone: "346-865-6565",
   email: "rmnyc2026@gmail.com",
   address: "875 3rd Ave, Concourse Level, New York, NY 10022",
   hours: "Mon-Fri: 9:30 AM - 8:00 PM\nSat-Sun: 9:30 AM - 8:00 PM",
-  instagramHandle: "Instagram coming soon",
+  instagramHandle: "@rmnailsalon.nyc",
   firstVisitOffer: "10% OFF First Visit",
   processVideo: "/videos/rm-manicure-session.webm",
   mapUrl:
