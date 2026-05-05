@@ -2,7 +2,7 @@ export const siteConfig = {
   salonName: "RM Nail Salon",
   location: "Midtown NYC",
   specialty: "Russian Manicure",
-  bookingUrl: "tel:+13468656565",
+  bookingUrl: "https://booksy.com/en-us/dl/show-business/1762849?utm_medium=c2c_referral",
   instagramUrl: "https://www.instagram.com/rmnailsalon.nyc?igsh=eWIyNXhxZTNwOGdh&utm_source=qr",
   phone: "346-865-6565",
   email: "rmnyc2026@gmail.com",
@@ -45,7 +45,6 @@ const catEyeServiceImage = fastImage("ref-gallery-blue-glitter");
 const bestFriendsImage = fastImage("ref-gallery-teal-orange");
 const extraLongImage = fastImage("ref-gallery-gothic");
 const acrylicRemovalImage = fastImage("ref-gallery-white-macro");
-const oneExtensionImage = fastImage("ref-gallery-nude-almond");
 
 export const serviceMenu = [
   {
@@ -54,7 +53,7 @@ export const serviceMenu = [
     services: [
       {
         id: "russian-clear",
-        name: "Russian Manicure",
+        name: "Russian Manicure (clear/no polish)",
         shortName: "Russian Manicure",
         time: "45 min",
         price: "$55",
@@ -65,7 +64,7 @@ export const serviceMenu = [
       },
       {
         id: "mens-manicure",
-        name: "Men's Manicure",
+        name: "Men's Manicure (no polish)",
         shortName: "Men's Manicure",
         time: "40 min",
         price: "$65",
@@ -76,7 +75,7 @@ export const serviceMenu = [
       },
       {
         id: "japanese-manicure",
-        name: "Japanese Manicure",
+        name: "Japanese Manicure (clear)",
         shortName: "Japanese Care",
         time: "1 hr",
         price: "$85",
@@ -87,7 +86,7 @@ export const serviceMenu = [
       },
       {
         id: "russian-hard-gel",
-        name: "Russian Manicure with Hard Gel",
+        name: "Russian Manicure (hard gel)",
         shortName: "Hard Gel Russian",
         time: "1 hr 30 min",
         price: "$105",
@@ -98,7 +97,7 @@ export const serviceMenu = [
       },
       {
         id: "spa-russian-hard-gel",
-        name: "Spa Russian Manicure with Hard Gel",
+        name: "Spa Russian Manicure (hard gel)",
         shortName: "Spa Hard Gel",
         time: "2 hr",
         price: "$120",
@@ -111,16 +110,16 @@ export const serviceMenu = [
         id: "nail-extensions",
         name: "Nail Extensions",
         shortName: "Extensions",
-        time: "2-3 hr",
-        price: "$175-$195",
-        topTech: "$195-$215",
+        time: "2 hr 30 min",
+        price: "$175+",
+        topTech: "$195+",
         image: extensionImage,
         description:
           "Sculpted length and architecture with a slim, elegant profile, finished with color or a refined clean look."
       },
       {
         id: "fill-in",
-        name: "Fill-in Correction of Extended Nails",
+        name: "Fill-in (correction of extended nails)",
         shortName: "Fill-in",
         time: "2 hr",
         price: "$130",
@@ -137,9 +136,9 @@ export const serviceMenu = [
     services: [
       {
         id: "smart-pedicure",
-        name: "Russian Smart Pedicure",
+        name: "Russian Smart Pedicure (with/without reg polish)",
         shortName: "Smart Pedicure",
-        time: "1 hr",
+        time: "1 hr 15 min",
         price: "$85",
         topTech: "$95",
         image: smartPedicureImage,
@@ -148,7 +147,7 @@ export const serviceMenu = [
       },
       {
         id: "spa-smart-pedicure",
-        name: "Spa Russian Smart Pedicure",
+        name: "Spa Russian Smart Pedicure w/without reg polish",
         shortName: "Spa Pedicure",
         time: "1 hr 30 min",
         price: "$115",
@@ -187,9 +186,9 @@ export const serviceMenu = [
     services: [
       {
         id: "combo-clear",
-        name: "Combo Manicure No Polish + Pedicure",
+        name: "No polish Manicure + Regular/No polish Pedicure",
         shortName: "Clean Combo",
-        time: "1 hr 35 min",
+        time: "2 hr",
         price: "$135",
         topTech: "$150",
         image: comboImage,
@@ -198,7 +197,7 @@ export const serviceMenu = [
       },
       {
         id: "hard-gel-smart",
-        name: "Hard Gel Manicure + Smart Pedicure",
+        name: "Gel Manicure+Pedicure w/no polish",
         shortName: "Hard Gel Combo",
         time: "2 hr 45 min",
         price: "$185",
@@ -209,9 +208,9 @@ export const serviceMenu = [
       },
       {
         id: "hard-gel-smart-gel",
-        name: "Hard Gel Manicure + Smart Gel Pedicure",
+        name: "Russian Gel Manicure+Russian Smart Gel Pedicure",
         shortName: "Gel Combo",
-        time: "2 hr 30 min",
+        time: "2 hr 45 min",
         price: "$210",
         topTech: "$220",
         image: gelPedicureImage,
@@ -222,7 +221,7 @@ export const serviceMenu = [
         id: "natural-care-combo",
         name: "Natural Nail Care Combo",
         shortName: "Natural Care",
-        time: "1 hr 45 min",
+        time: "2 hr 30 min",
         price: "$185",
         topTech: "$200",
         image: japaneseManicureImage,
@@ -233,7 +232,7 @@ export const serviceMenu = [
         id: "mens-grooming-combo",
         name: "Men's Grooming Combo",
         shortName: "Men's Combo",
-        time: "1 hr 30 min",
+        time: "1 hr 55 min",
         price: "$140",
         topTech: "$160",
         image: mensComboImage,
@@ -244,7 +243,7 @@ export const serviceMenu = [
         id: "vip-room",
         name: "VIP Room Service",
         shortName: "VIP Room",
-        time: "By request",
+        time: "2 hr",
         price: "$285",
         topTech: "$300",
         image: vipRoomImage,
@@ -255,7 +254,7 @@ export const serviceMenu = [
         id: "best-friends-combo",
         name: "Best Friends Combo",
         shortName: "Best Friends",
-        time: "3 hr",
+        time: "1 hr 30 min",
         price: "$200",
         topTech: "$220",
         image: bestFriendsImage,
@@ -266,7 +265,7 @@ export const serviceMenu = [
         id: "mr-mrs-combo",
         name: "Mr & Mrs Combo Service",
         shortName: "Mr & Mrs",
-        time: "2 hr",
+        time: "1 hr 30 min",
         price: "$250",
         topTech: "$275",
         image: mensComboImage,
@@ -275,9 +274,9 @@ export const serviceMenu = [
       },
       {
         id: "four-hands-combo",
-        name: "4 Hands Same Time Combo",
+        name: "SAME TIME (4 Hands) combo",
         shortName: "4 Hands",
-        time: "2 hr",
+        time: "1 hr 30 min",
         price: "$275",
         topTech: "$290",
         image: processImage,
@@ -295,8 +294,8 @@ export const serviceMenu = [
         name: "French",
         shortName: "French",
         time: "15 min",
-        price: "$25",
-        topTech: "$30",
+        price: "$25+",
+        topTech: null,
         image: frenchImage,
         description:
           "A clean French finish, from classic white to RM's signature aqua micro-French."
@@ -306,8 +305,8 @@ export const serviceMenu = [
         name: "Cat Eye",
         shortName: "Cat Eye",
         time: "15 min",
-        price: "$20",
-        topTech: "$25",
+        price: "$20+",
+        topTech: null,
         image: catEyeServiceImage,
         description:
           "Dimensional magnetic gel with a luminous line that moves beautifully in the light."
@@ -318,7 +317,7 @@ export const serviceMenu = [
         shortName: "Chrome",
         time: "15 min",
         price: "$20",
-        topTech: "$25",
+        topTech: null,
         image: chromeImage,
         description:
           "A high-shine reflective finish for clients who want a modern editorial detail."
@@ -329,7 +328,7 @@ export const serviceMenu = [
         shortName: "Ombre",
         time: "20 min",
         price: "$30",
-        topTech: "$35",
+        topTech: null,
         image: ombreImage,
         description:
           "Soft gradient color work with a clean, blended luxury effect."
@@ -339,8 +338,8 @@ export const serviceMenu = [
         name: "Regular Polish",
         shortName: "Polish",
         time: "15 min",
-        price: "$15",
-        topTech: "$20",
+        price: "$15+",
+        topTech: null,
         image: regularPolishImage,
         description:
           "A classic polish finish added to clean manicure or pedicure work."
@@ -350,8 +349,8 @@ export const serviceMenu = [
         name: "Extra Long Nails",
         shortName: "Extra Long",
         time: "15 min",
-        price: "$20",
-        topTech: "$25",
+        price: "$20+",
+        topTech: null,
         image: extraLongImage,
         description:
           "Added time and structure for extra-long length, shaping, and refinement."
@@ -363,22 +362,44 @@ export const serviceMenu = [
     note: "Protective removal and small corrections before the next perfect set.",
     services: [
       {
-        id: "gel-removal",
-        name: "Gel Removal",
-        shortName: "Gel Removal",
+        id: "gel-removal-toes",
+        name: "Gel Removal Only (toes)",
+        shortName: "Toe Gel Removal",
         time: "15 min",
-        price: "$5-$10",
+        price: "$15",
         topTech: null,
         image: removalImage,
         description:
-          "Gentle gel removal with care for the natural nail surface."
+          "Standalone gel removal for toes with careful product removal and nail-surface protection."
+      },
+      {
+        id: "gel-removal-hands",
+        name: "Gel Removal Only (hands)",
+        shortName: "Hand Gel Removal",
+        time: "20 min",
+        price: "$20",
+        topTech: null,
+        image: removalImage,
+        description:
+          "Standalone hand gel removal handled gently to protect the natural nail."
+      },
+      {
+        id: "gel-removal",
+        name: "Gel removal",
+        shortName: "Gel Removal",
+        time: "15 min",
+        price: "$25",
+        topTech: null,
+        image: removalImage,
+        description:
+          "Gel removal service for clients preparing for care, repair, or a fresh set."
       },
       {
         id: "acrylic-removal",
-        name: "Acrylic / Dip Removal",
+        name: "Acrylic / Dip removal",
         shortName: "Acrylic Removal",
-        time: "20 min",
-        price: "$20",
+        time: "25 min",
+        price: "$25",
         topTech: null,
         image: acrylicRemovalImage,
         description:
@@ -386,10 +407,10 @@ export const serviceMenu = [
       },
       {
         id: "nail-design",
-        name: "Nail Design",
+        name: "Nail Designs",
         shortName: "Nail Design",
         time: "20 min",
-        price: "$25-$45",
+        price: "$25",
         topTech: null,
         image: nailDesignImage,
         description:
@@ -400,33 +421,22 @@ export const serviceMenu = [
         name: "One Nail Repair",
         shortName: "Nail Repair",
         time: "10 min",
-        price: "$5-$10",
+        price: "$5+",
         topTech: null,
         image: repairImage,
         description:
           "A focused repair for a chipped, cracked, or broken nail."
       },
       {
-        id: "one-nail-extension",
-        name: "One Nail Extension",
-        shortName: "One Extension",
-        time: "15 min",
-        price: "$10-$25",
-        topTech: null,
-        image: oneExtensionImage,
-        description:
-          "Single nail extension correction to restore length and balance."
-      },
-      {
-        id: "downward-correction",
-        name: "Downward Growing Nail Correction",
-        shortName: "Nail Correction",
-        time: "5-10 min",
-        price: "$3-$5",
+        id: "hooked-nail-fix",
+        name: "Hooked nail fix",
+        shortName: "Hooked Nail Fix",
+        time: "5 min",
+        price: "$3",
         topTech: null,
         image: repairImage,
         description:
-          "A focused correction for nails that grow downward, refined with a specialized restructuring technique."
+          "A quick correction for a hooked or downward-growing nail shape."
       }
     ]
   }

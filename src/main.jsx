@@ -197,7 +197,7 @@ function Nav({ compact, route, navigate }) {
             {item.label}
           </RouteLink>
         ))}
-        <a className="menu-book" href={siteConfig.bookingUrl}>
+        <a className="menu-book" href={siteConfig.bookingUrl} target="_blank" rel="noreferrer">
           Book Appointment
         </a>
         <a className="menu-instagram" href={siteConfig.instagramUrl} target="_blank" rel="noreferrer">
@@ -456,7 +456,7 @@ function FeaturedServicesHome() {
             </button>
           ))}
           <MagneticLink href={siteConfig.bookingUrl} className="outline-cta">
-            Call to Book <CalendarDays size={16} />
+            Book Appointment <CalendarDays size={16} />
           </MagneticLink>
         </div>
       </div>
@@ -981,7 +981,7 @@ function Footer({ navigate }) {
 
 function MobileBook() {
   return (
-    <a href={siteConfig.bookingUrl} className="mobile-book">
+    <a href={siteConfig.bookingUrl} className="mobile-book" target="_blank" rel="noreferrer">
       Book Now
     </a>
   );
@@ -989,7 +989,7 @@ function MobileBook() {
 
 function FloatingOffer() {
   return (
-    <a href={siteConfig.bookingUrl} className="floating-offer">
+    <a href={siteConfig.bookingUrl} className="floating-offer" target="_blank" rel="noreferrer">
       <span>10% OFF</span>
       <em>First Visit</em>
     </a>
