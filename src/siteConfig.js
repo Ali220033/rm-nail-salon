@@ -2,7 +2,7 @@ export const siteConfig = {
   salonName: "RM Nail Salon",
   location: "Midtown NYC",
   specialty: "Russian Manicure",
-  bookingUrl: "https://booksy.com/en-us/dl/show-business/1762849?utm_medium=c2c_referral",
+  bookingUrl: "https://booksy.com/en-us/1762849_rm-nail-salon-midtown-nyc_nail-salon_30067_new-york-city",
   instagramUrl: "https://www.instagram.com/rmnailsalon.nyc?igsh=eWIyNXhxZTNwOGdh&utm_source=qr",
   phone: "346-865-6565",
   email: "rmnyc2026@gmail.com",
@@ -510,7 +510,7 @@ export const faqs = [
   {
     question: "Can I book directly from the website?",
     answer:
-      "Yes. All booking buttons are connected to the Fresha booking link in the config file, and the link can be replaced later if needed."
+      "Yes. All booking buttons are connected to the direct Booksy booking page in the config file, and the link can be replaced later if needed."
   },
   {
     question: "Can the photos be replaced with real work later?",
