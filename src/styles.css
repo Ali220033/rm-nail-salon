@@ -1251,6 +1251,7 @@ img {
 .masonry-gallery {
   display: grid;
   gap: 0.75rem;
+  grid-auto-flow: dense;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   margin: 3rem auto 0;
   max-width: 1360px;
@@ -1262,13 +1263,21 @@ img {
   border-radius: 34px 34px 12px 34px;
   color: white;
   min-height: 240px;
-  padding: 0.8rem;
+  padding: 0;
   text-align: left;
+}
+
+.masonry-item::before {
+  background:
+    radial-gradient(circle at 60% 20%, rgba(100, 224, 218, 0.08), transparent 32%),
+    linear-gradient(to top, rgba(13, 9, 12, 0.12), transparent 55%);
+  pointer-events: none;
+  z-index: 1;
 }
 
 .masonry-item img {
   background: rgba(8, 5, 7, 0.86);
-  filter: brightness(0.84) saturate(0.98);
+  filter: brightness(0.9) saturate(1.04);
   inset: 0;
   object-fit: cover;
   object-position: center;
@@ -1281,7 +1290,7 @@ img {
 }
 
 .masonry-item:hover img {
-  filter: brightness(0.94) saturate(1.08);
+  filter: brightness(1) saturate(1.1);
 }
 
 .masonry-gallery > .masonry-item:last-child:nth-child(odd) {
@@ -1352,19 +1361,34 @@ img {
 }
 
 .modal-card {
-  aspect-ratio: 4 / 5;
+  aspect-ratio: auto;
+  background: rgba(8, 5, 7, 0.92);
   border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 36px 36px 14px 36px;
-  max-width: 560px;
-  width: min(100%, 560px);
+  border-radius: 32px 32px 12px 32px;
+  display: grid;
+  max-height: 92vh;
+  max-width: min(96vw, 1180px);
+  min-height: 0;
+  place-items: center;
+  width: auto;
+}
+
+.modal-card::before {
+  display: none;
 }
 
 .modal-card img {
-  filter: brightness(0.82) saturate(1);
-  position: absolute;
+  filter: none;
+  height: auto;
+  max-height: 90vh;
+  max-width: min(94vw, 1160px);
+  object-fit: contain;
+  position: relative;
+  width: auto;
 }
 
 .modal-card > div {
+  display: none;
   bottom: 0;
   left: 0;
   padding: 1.6rem;

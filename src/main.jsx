@@ -826,15 +826,13 @@ function GalleryGrid({ items, setSelectedGallery }) {
         <motion.button
           key={`${item.title}-${index}`}
           className={`masonry-item ${item.size} tone-${item.tone}`}
+          aria-label={`Open ${item.title} gallery photo`}
           onClick={() => setSelectedGallery({ ...item, index })}
           initial={{ opacity: 0, y: 32 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
         >
           <img src={item.image} alt="" loading="eager" decoding="async" />
-          <span>{String(index + 1).padStart(2, "0")}</span>
-          <strong>{item.title}</strong>
-          <em>{item.caption}</em>
         </motion.button>
       ))}
     </div>
@@ -859,15 +857,10 @@ function GalleryModal({ item, onClose }) {
             exit={{ scale: 0.94, opacity: 0, y: 24 }}
             onClick={(event) => event.stopPropagation()}
           >
-            <img src={item.image} alt={`${item.title} manicure preview`} decoding="async" />
+            <img src={item.image} alt={`${item.title} manicure close-up`} decoding="async" />
             <button className="modal-close" onClick={onClose} aria-label="Close gallery preview">
               <X size={19} />
             </button>
-            <div>
-              <span>{String(item.index + 1).padStart(2, "0")}</span>
-              <h3>{item.title}</h3>
-              <p>{item.caption}</p>
-            </div>
           </motion.div>
         </motion.div>
       )}

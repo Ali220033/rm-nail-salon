@@ -35,7 +35,9 @@ const driveOfferBackImage = fastImage("drive-offer-back");
 const driveOfferBirdImage = fastImage("drive-offer-bird");
 const driveOfferBirthdayImage = fastImage("drive-offer-birthday");
 const driveOfferShareImage = fastImage("drive-offer-share");
-const extensionImage = fastImage("service-extensions");
+const extensionImage = driveAsian6Image;
+const cleanComboImage = fastImage("service-combo-clean-real");
+const gelNoPolishComboImage = fastImage("service-combo-gel-no-polish");
 const russianClearImage = fastImage("ref-gallery-nude-square");
 const mensManicureImage = fastImage("service-mens-manicure");
 const japaneseManicureImage = fastImage("service-japanese-manicure");
@@ -46,7 +48,6 @@ const smartPedicureImage = fastImage("service-smart-pedicure");
 const spaPedicureImage = fastImage("service-spa-pedicure-v2");
 const gelPedicureImage = fastImage("service-gel-pedicure");
 const spaGelPedicureImage = fastImage("service-spa-gel-pedicure-v2");
-const comboImage = fastImage("service-combo");
 const mensComboImage = fastImage("service-mens-combo");
 const vipRoomImage = driveWhiteImage;
 const chromeImage = fastImage("service-chrome");
@@ -206,7 +207,7 @@ export const serviceMenu = [
         time: "2 hr",
         price: "$135",
         topTech: "$150",
-        image: comboImage,
+        image: cleanComboImage,
         description:
           "Natural nail grooming for hands and feet with precise shaping, cuticle care, and a clean finish."
       },
@@ -217,7 +218,7 @@ export const serviceMenu = [
         time: "2 hr 45 min",
         price: "$185",
         topTech: "$200",
-        image: comboImage,
+        image: gelNoPolishComboImage,
         description:
           "A polished hard gel manicure paired with smart pedicure care for a complete elevated look."
       },
@@ -481,7 +482,6 @@ export const galleryItems = [
   { title: "Pedicure Detail", caption: "Clean foot care in a cyan-lit suite.", tone: "plum", size: "tall", image: spaPedicureImage },
   { title: "Gel Pedicure", caption: "Glossy toes, clean tools, long wear.", tone: "line", size: "small", image: gelPedicureImage },
   { title: "Extensions", caption: "Length, structure, and refined shaping.", tone: "structure", size: "small", image: extensionImage },
-  { title: "Brandbook Social", caption: "RM visual system adapted for social-first clients.", tone: "aquaGold", size: "wide", image: fastImage("brand-social-grid") },
   { title: "Cyan City", caption: "An RM fashion frame in Midtown light.", tone: "aqua", size: "small", image: driveAsian1Image },
   { title: "City Perspective", caption: "A vertical Midtown campaign frame with RM attitude.", tone: "aquaGold", size: "small", image: driveAsian5Image },
   { title: "After Dark", caption: "Black manicure mood with a polished editorial edge.", tone: "plum", size: "small", image: driveBlackImage },
