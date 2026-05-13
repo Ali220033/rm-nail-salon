@@ -354,7 +354,7 @@ function BrandRibbon() {
           </p>
         </div>
         <div className="brand-media-panel">
-          <img src={fastImage("brand-salon-front-full")} alt="RM Nail Salon Midtown NYC storefront" loading="lazy" decoding="async" />
+          <img src={fastImage("drive-midtown")} alt="RM Nail Salon Midtown NYC campaign skyline" loading="lazy" decoding="async" />
           <div>
             <span>875 3rd Ave</span>
             <strong>Concourse Level</strong>
@@ -554,22 +554,28 @@ function Proof() {
 function Offer() {
   const campaigns = [
     {
-      image: fastImage("brand-offer-earlybird-tight"),
+      image: fastImage("drive-offer-bird"),
       label: "Early Bird Special",
       title: "10% OFF Before 12 PM",
       copy: "Monday-Thursday"
     },
     {
-      image: fastImage("brand-offer-return-tight"),
+      image: fastImage("drive-offer-back"),
       label: "Come Back Within 3 Weeks",
       title: "Get 8% Off Your Next Visit",
       copy: "Returning client offer"
     },
     {
-      image: fastImage("brand-offer-birthday-tight"),
+      image: fastImage("drive-offer-birthday"),
       label: "Birthday Offer",
       title: "Enjoy 10% Off",
       copy: "Birthday week appointment"
+    },
+    {
+      image: fastImage("drive-offer-share"),
+      label: "Share With Your Bestie",
+      title: "Enjoy 10% Off",
+      copy: "Bestie referral story"
     }
   ];
 

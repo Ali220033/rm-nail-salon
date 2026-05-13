@@ -20,8 +20,23 @@ export const siteConfig = {
 export const fastImage = (name) => `/images/fast/${name}.jpg`;
 
 const processImage = fastImage("work-reel-process");
+const driveAsian1Image = fastImage("drive-asian-1");
+const driveAsian3Image = fastImage("drive-asian-3");
+const driveAsian4Image = fastImage("drive-asian-4");
+const driveAsian5Image = fastImage("drive-asian-5");
+const driveAsian6Image = fastImage("drive-asian-6");
+const driveAsian8Image = fastImage("drive-asian-8");
+const driveBlackImage = fastImage("drive-black");
+const driveBrown1Image = fastImage("drive-brown-1");
+const driveBrown2Image = fastImage("drive-brown-2");
+const driveMidtownImage = fastImage("drive-midtown");
+const driveWhiteImage = fastImage("drive-white");
+const driveOfferBackImage = fastImage("drive-offer-back");
+const driveOfferBirdImage = fastImage("drive-offer-bird");
+const driveOfferBirthdayImage = fastImage("drive-offer-birthday");
+const driveOfferShareImage = fastImage("drive-offer-share");
 const extensionImage = fastImage("service-extensions");
-const russianClearImage = fastImage("service-russian-clear");
+const russianClearImage = fastImage("ref-gallery-nude-square");
 const mensManicureImage = fastImage("service-mens-manicure");
 const japaneseManicureImage = fastImage("service-japanese-manicure");
 const hardGelImage = fastImage("service-hard-gel");
@@ -33,17 +48,17 @@ const gelPedicureImage = fastImage("service-gel-pedicure");
 const spaGelPedicureImage = fastImage("service-spa-gel-pedicure-v2");
 const comboImage = fastImage("service-combo");
 const mensComboImage = fastImage("service-mens-combo");
-const vipRoomImage = fastImage("brand-salon-front-full");
+const vipRoomImage = driveWhiteImage;
 const chromeImage = fastImage("service-chrome");
 const ombreImage = fastImage("service-ombre");
 const removalImage = fastImage("service-removal");
 const repairImage = fastImage("service-repair");
-const nailDesignImage = fastImage("brand-phone-red-nails");
-const regularPolishImage = fastImage("brand-face-red-nails-tight");
+const nailDesignImage = driveAsian6Image;
+const regularPolishImage = driveBrown2Image;
 const frenchImage = fastImage("ref-gallery-french-square");
 const catEyeServiceImage = fastImage("ref-gallery-blue-glitter");
-const bestFriendsImage = fastImage("ref-gallery-teal-orange");
-const extraLongImage = fastImage("ref-gallery-gothic");
+const bestFriendsImage = driveAsian3Image;
+const extraLongImage = driveAsian8Image;
 const acrylicRemovalImage = fastImage("ref-gallery-white-macro");
 
 export const serviceMenu = [
@@ -456,10 +471,10 @@ export const featuredServices = serviceMenu
   .filter((service) => featuredServiceIds.includes(service.id));
 
 export const galleryItems = [
-  { title: "RM Campaign", caption: "Brandbook campaign mood with red manicure detail.", tone: "aqua", size: "tall", image: fastImage("brand-face-red-nails-framed") },
-  { title: "Midtown Studio", caption: "Cyan RM storefront presence in Midtown NYC.", tone: "plum", size: "wide", image: fastImage("brand-salon-front-full") },
+  { title: "RM Campaign", caption: "Editorial campaign mood with glossy RM pink detail.", tone: "aqua", size: "tall", image: driveAsian4Image },
+  { title: "Midtown Glow", caption: "NYC campaign skyline with the RM cyan signature.", tone: "plum", size: "wide", image: driveMidtownImage },
   { title: "Master at Work", caption: "A clean process moment with professional tools.", tone: "mist", size: "small", image: processImage },
-  { title: "Clean Russian", caption: "Immaculate natural cuticle line.", tone: "cream", size: "small", image: russianClearImage },
+  { title: "Clean Russian", caption: "Natural nude finish with a precise cuticle line.", tone: "cream", size: "small", image: russianClearImage },
   { title: "Chrome Light", caption: "Reflective shine with cyan movement.", tone: "gold", size: "wide", image: chromeImage },
   { title: "Ombre Veil", caption: "Soft cream gradient with quiet luxury.", tone: "mist", size: "small", image: ombreImage },
   { title: "Hard Gel", caption: "Balanced structure applied with precision.", tone: "cream", size: "wide", image: hardGelImage },
@@ -467,9 +482,15 @@ export const galleryItems = [
   { title: "Gel Pedicure", caption: "Glossy toes, clean tools, long wear.", tone: "line", size: "small", image: gelPedicureImage },
   { title: "Extensions", caption: "Length, structure, and refined shaping.", tone: "structure", size: "small", image: extensionImage },
   { title: "Brandbook Social", caption: "RM visual system adapted for social-first clients.", tone: "aquaGold", size: "wide", image: fastImage("brand-social-grid") },
+  { title: "Cyan City", caption: "An RM fashion frame in Midtown light.", tone: "aqua", size: "small", image: driveAsian1Image },
+  { title: "City Perspective", caption: "A vertical Midtown campaign frame with RM attitude.", tone: "aquaGold", size: "small", image: driveAsian5Image },
+  { title: "After Dark", caption: "Black manicure mood with a polished editorial edge.", tone: "plum", size: "small", image: driveBlackImage },
+  { title: "Golden Hour", caption: "Red manicure detail against a warm city mood.", tone: "gold", size: "small", image: driveBrown1Image },
+  { title: "Return Visit", caption: "A fashion-forward offer visual for repeat bookings.", tone: "aqua", size: "small", image: driveOfferBackImage },
+  { title: "Early Bird", caption: "Special offer campaign from the RM brandbook.", tone: "gold", size: "small", image: driveOfferBirdImage },
+  { title: "Birthday Offer", caption: "Birthday-week invitation styled for social.", tone: "line", size: "small", image: driveOfferBirthdayImage },
+  { title: "Share With Bestie", caption: "A social offer moment for RM clients.", tone: "structure", size: "small", image: driveOfferShareImage },
   { title: "Men's Grooming", caption: "Natural grooming with the same RM precision.", tone: "mist", size: "small", image: mensManicureImage },
-  { title: "Early Bird", caption: "Special offer campaign from the RM brandbook.", tone: "gold", size: "small", image: fastImage("brand-offer-earlybird-tight") },
-  { title: "Return Visit", caption: "A fashion-forward offer visual for repeat bookings.", tone: "aqua", size: "small", image: fastImage("brand-offer-return-tight") },
   { title: "Nude Square", caption: "Reference-style clean nude square finish.", tone: "cream", size: "small", image: fastImage("ref-gallery-nude-square") },
   { title: "Ocean Art", caption: "Detailed hand-painted art for statement sets.", tone: "aqua", size: "wide", image: fastImage("ref-gallery-ocean-art") },
   { title: "Burgundy Gloss", caption: "Deep glossy color with editorial shine.", tone: "plum", size: "small", image: fastImage("ref-gallery-burgundy") },
