@@ -7,7 +7,7 @@ export const siteConfig = {
   phone: "346-865-6565",
   email: "rmnyc2026@gmail.com",
   address: "875 3rd Ave, Concourse Level, New York, NY 10022",
-  hours: "Mon-Fri: 9:30 AM - 8:00 PM\nSat-Sun: 9:30 AM - 8:00 PM",
+  hours: "Every day: 9:30 AM - 7:30 PM",
   instagramHandle: "@rmnailsalon.nyc",
   firstVisitOffer: "10% OFF First Visit",
   processVideo: "/videos/rm-manicure-session.webm",
@@ -25,17 +25,15 @@ const driveAsian3Image = fastImage("drive-asian-3");
 const driveAsian4Image = fastImage("drive-asian-4");
 const driveAsian5Image = fastImage("drive-asian-5");
 const driveAsian6Image = fastImage("drive-asian-6");
-const driveAsian8Image = fastImage("drive-asian-8");
 const driveBlackImage = fastImage("drive-black");
 const driveBrown1Image = fastImage("drive-brown-1");
-const driveBrown2Image = fastImage("drive-brown-2");
 const driveMidtownImage = fastImage("drive-midtown");
 const driveWhiteImage = fastImage("drive-white");
 const driveOfferBackImage = fastImage("drive-offer-back");
 const driveOfferBirdImage = fastImage("drive-offer-bird");
 const driveOfferBirthdayImage = fastImage("drive-offer-birthday");
 const driveOfferShareImage = fastImage("drive-offer-share");
-const extensionImage = driveAsian6Image;
+const extensionImage = fastImage("service-extensions");
 const cleanComboImage = fastImage("service-combo-clean-real");
 const gelNoPolishComboImage = fastImage("service-combo-gel-no-polish");
 const russianClearImage = fastImage("ref-gallery-nude-square");
@@ -54,12 +52,12 @@ const chromeImage = fastImage("service-chrome");
 const ombreImage = fastImage("service-ombre");
 const removalImage = fastImage("service-removal");
 const repairImage = fastImage("service-repair");
-const nailDesignImage = driveAsian6Image;
-const regularPolishImage = driveBrown2Image;
+const nailDesignImage = fastImage("service-nail-design");
+const regularPolishImage = fastImage("service-regular-polish");
 const frenchImage = fastImage("ref-gallery-french-square");
 const catEyeServiceImage = fastImage("ref-gallery-blue-glitter");
 const bestFriendsImage = driveAsian3Image;
-const extraLongImage = driveAsian8Image;
+const extraLongImage = driveAsian6Image;
 const acrylicRemovalImage = fastImage("ref-gallery-white-macro");
 
 export const serviceMenu = [
