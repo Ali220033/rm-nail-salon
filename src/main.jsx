@@ -29,6 +29,18 @@ import {
   serviceMenu,
   siteConfig
 } from "./siteConfig";
+import {
+  absoluteImage,
+  absoluteUrl,
+  buildStructuredData,
+  geoLandingPages,
+  getRelatedSeoPages,
+  getSeoPage,
+  getServiceById,
+  reviewSummary,
+  seoPages,
+  serviceLandingPages
+} from "./seoData";
 import "./styles.css";
 
 const reveal = {
@@ -51,9 +63,63 @@ const routes = [
   { to: "/contact", label: "Contact" }
 ];
 
+function SeoHead({ route }) {
+  useEffect(() => {
+    const page = getSeoPage(route);
+    document.documentElement.lang = "en";
+    document.title = page.title;
+    setMeta("name", "description", page.description);
+    setMeta("property", "og:title", page.title);
+    setMeta("property", "og:description", page.description);
+    setMeta("property", "og:type", "website");
+    setMeta("property", "og:url", absoluteUrl(page.path));
+    setMeta("property", "og:image", absoluteImage(page.image));
+    setMeta("name", "twitter:card", "summary_large_image");
+    setMeta("name", "twitter:title", page.title);
+    setMeta("name", "twitter:description", page.description);
+    setMeta("name", "twitter:image", absoluteImage(page.image));
+    setCanonical(absoluteUrl(page.path));
+    setJsonLd(buildStructuredData(page.path));
+  }, [route]);
+
+  return null;
+}
+
+function setMeta(attribute, key, content) {
+  if (!content) return;
+  let tag = document.head.querySelector(`meta[${attribute}="${key}"]`);
+  if (!tag) {
+    tag = document.createElement("meta");
+    tag.setAttribute(attribute, key);
+    document.head.appendChild(tag);
+  }
+  tag.setAttribute("content", content);
+}
+
+function setCanonical(href) {
+  let tag = document.head.querySelector('link[rel="canonical"]');
+  if (!tag) {
+    tag = document.createElement("link");
+    tag.setAttribute("rel", "canonical");
+    document.head.appendChild(tag);
+  }
+  tag.setAttribute("href", href);
+}
+
+function setJsonLd(data) {
+  let tag = document.getElementById("rm-jsonld");
+  if (!tag) {
+    tag = document.createElement("script");
+    tag.id = "rm-jsonld";
+    tag.type = "application/ld+json";
+    document.head.appendChild(tag);
+  }
+  tag.textContent = JSON.stringify(data);
+}
+
 function normalizePath() {
   const path = window.location.pathname.replace(/\/$/, "") || "/";
-  return routes.some((route) => route.to === path) ? path : "/";
+  return seoPages.some((page) => page.path === path) ? path : "/";
 }
 
 function App() {
@@ -90,6 +156,16 @@ function App() {
   };
 
   const page = useMemo(() => {
+    const serviceSeoPage = serviceLandingPages.find((item) => item.path === route);
+    if (serviceSeoPage) {
+      return <ServiceLandingPage page={serviceSeoPage} navigate={navigate} />;
+    }
+
+    const geoSeoPage = geoLandingPages.find((item) => item.path === route);
+    if (geoSeoPage) {
+      return <GeoLandingPage page={geoSeoPage} navigate={navigate} />;
+    }
+
     switch (route) {
       case "/services":
         return <ServicesPage />;
@@ -108,6 +184,7 @@ function App() {
 
   return (
     <div className="lux-site">
+      <SeoHead route={route} />
       <AnimatePresence>{loading && <Loader />}</AnimatePresence>
       <Nav compact={navCompact} route={route} navigate={navigate} />
       <main>
@@ -437,7 +514,7 @@ function FeaturedServicesHome() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.45 }}
         >
-          <img src={active.image} alt={`${active.name} example`} loading="eager" decoding="async" />
+          <img src={active.image} alt={`${active.name} example at RM Nail Salon`} loading="lazy" decoding="async" />
           <div className="featured-price">
             <span>{active.time}</span>
             <strong>{active.price}</strong>
@@ -481,9 +558,9 @@ function WorkReel() {
         viewport={{ once: true, amount: 0.35 }}
       >
         <div className="process-stage" aria-label="RM Nail Salon Russian manicure work process">
-          <img className="process-shot process-shot-one" src={fastImage("work-reel-process")} alt="" loading="lazy" decoding="async" />
-          <img className="process-shot process-shot-two" src={fastImage("service-hard-gel")} alt="" loading="lazy" decoding="async" />
-          <img className="process-shot process-shot-three" src={fastImage("brand-face-red-nails-framed")} alt="" loading="lazy" decoding="async" />
+          <img className="process-shot process-shot-one" src={fastImage("work-reel-process")} alt="Russian manicure cuticle prep at RM Nail Salon" loading="lazy" decoding="async" />
+          <img className="process-shot process-shot-two" src={fastImage("service-hard-gel")} alt="Hard gel manicure work in progress at RM Nail Salon" loading="lazy" decoding="async" />
+          <img className="process-shot process-shot-three" src={fastImage("brand-face-red-nails-framed")} alt="RM Nail Salon editorial red manicure campaign image" loading="lazy" decoding="async" />
           <div className="process-light light-one" />
           <div className="process-light light-two" />
           <div className="animated-nails">
@@ -597,7 +674,7 @@ function Offer() {
               key={campaign.title}
               aria-label={`${campaign.label}: ${campaign.title}. ${campaign.copy}`}
             >
-              <img src={campaign.image} alt={`${campaign.title} RM special offer`} loading="eager" decoding="async" />
+              <img src={campaign.image} alt={`${campaign.title} RM special offer`} loading="lazy" decoding="async" />
             </article>
           ))}
         </div>
@@ -640,10 +717,10 @@ function Booking({ navigate }) {
   );
 }
 
-function PageHero({ label, title, copy, image = fastImage("rm-hero-editorial") }) {
+function PageHero({ label, title, copy, image = fastImage("rm-hero-editorial"), alt = "" }) {
   return (
     <section className="page-hero">
-      <img src={image} alt="" loading="eager" decoding="async" />
+      <img src={image} alt={alt} loading="eager" decoding="async" fetchPriority="high" />
       <div>
         <p className="eyebrow">{label}</p>
         <h1>{title}</h1>
@@ -669,9 +746,10 @@ function ServicesPage() {
     <>
       <PageHero
         label="Service Menu"
-        title="Full RM service catalog."
-        copy="Explore signature manicures, pedicures, add-ons, and repair services with clear timing and pricing."
+        title="Russian manicure services, pricing, and booking options."
+        copy="Compare RM Nail Salon manicures, pedicures, hard gel overlays, extensions, nail art, and repair services before booking in Midtown NYC."
         image={fastImage("ref-service-banner")}
+        alt="RM Nail Salon Russian manicure service menu in Midtown NYC"
       />
       <section className="catalog-section">
         <div className="service-lookbook">
@@ -682,7 +760,7 @@ function ServicesPage() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.45 }}
           >
-            <img src={spotlight.image} alt={`${spotlight.name} service preview`} loading="eager" decoding="async" />
+            <img src={spotlight.image} alt={`${spotlight.name} service preview at RM Nail Salon`} loading="lazy" decoding="async" />
             <div>
               <span>{spotlight.category}</span>
               <strong>{spotlight.name}</strong>
@@ -701,7 +779,7 @@ function ServicesPage() {
                   document.getElementById(service.id)?.scrollIntoView({ behavior: "smooth", block: "center" });
                 }}
               >
-                <img src={service.image} alt="" loading="eager" decoding="async" />
+                <img src={service.image} alt={`${service.name} thumbnail at RM Nail Salon`} loading="lazy" decoding="async" />
                 <span>{service.shortName}</span>
               </button>
             ))}
@@ -729,7 +807,7 @@ function ServicesPage() {
                   id={service.id}
                   onMouseEnter={() => setSpotlight({ ...service, category: group.category })}
                 >
-                  <img src={service.image} alt="" loading="eager" decoding="async" />
+                  <img src={service.image} alt={`${service.name} service image at RM Nail Salon`} loading="lazy" decoding="async" />
                   <div className="catalog-copy">
                     <span>{service.time}</span>
                     <h3>{service.name}</h3>
@@ -752,14 +830,178 @@ function ServicesPage() {
   );
 }
 
+function ServiceLandingPage({ page, navigate }) {
+  const services = page.serviceIds.map(getServiceById).filter(Boolean);
+  const relatedPages = getRelatedSeoPages(page.related);
+
+  return (
+    <>
+      <PageHero
+        label={page.label}
+        title={page.h1}
+        copy={page.heroCopy}
+        image={page.image}
+        alt={page.imageAlt}
+      />
+      <section className="seo-landing-section service-seo">
+        <div className="seo-lead-block">
+          <p className="eyebrow">{page.serviceType}</p>
+          <h2>{page.introTitle}</h2>
+          <p>{page.intro}</p>
+          <div className="seo-cta-row">
+            <MagneticLink href={siteConfig.bookingUrl} className="gold-cta">
+              Book This Service <CalendarDays size={16} />
+            </MagneticLink>
+            <RouteLink to="/services" navigate={navigate} className="aqua-cta">
+              View Full Menu <ArrowUpRight size={16} />
+            </RouteLink>
+          </div>
+        </div>
+
+        <div className="seo-proof-grid">
+          {page.highlights.map(([title, copy], index) => (
+            <article key={title}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <h3>{title}</h3>
+              <p>{copy}</p>
+            </article>
+          ))}
+        </div>
+
+        <div className="seo-service-list">
+          <div className="seo-list-heading">
+            <p className="eyebrow">Related RM Services</p>
+            <h2>Choose the version that fits your nails.</h2>
+          </div>
+          {services.map((service) => (
+            <article key={service.id} className="seo-service-card">
+              <img
+                src={service.image}
+                alt={`${service.name} at RM Nail Salon in Midtown NYC`}
+                loading="lazy"
+                decoding="async"
+              />
+              <div>
+                <span>{service.category} / {service.time}</span>
+                <h3>{service.name}</h3>
+                <p>{service.description}</p>
+              </div>
+              <strong>{service.price}</strong>
+              <MagneticLink href={siteConfig.bookingUrl} className="mini-book">
+                Book <ArrowUpRight size={14} />
+              </MagneticLink>
+            </article>
+          ))}
+        </div>
+
+        <RelatedSeoLinks
+          title="Continue through the RM service path."
+          links={relatedPages}
+          navigate={navigate}
+        />
+      </section>
+      <Booking navigate={navigate} />
+    </>
+  );
+}
+
+function GeoLandingPage({ page, navigate }) {
+  const relatedPages = getRelatedSeoPages(page.related);
+
+  return (
+    <>
+      <PageHero
+        label={page.label}
+        title={page.h1}
+        copy={page.heroCopy}
+        image={page.image}
+        alt={page.imageAlt}
+      />
+      <section className="seo-landing-section geo-seo">
+        <div className="geo-story-grid">
+          <article className="geo-story-main">
+            <p className="eyebrow">{page.area} Nail Studio</p>
+            <h2>{page.introTitle}</h2>
+            <p>{page.intro}</p>
+            <p>
+              RM Nail Salon is located at {siteConfig.address}, with booking available online and daily appointments
+              from 9:30 AM to 7:30 PM.
+            </p>
+            <div className="seo-cta-row">
+              <MagneticLink href={siteConfig.bookingUrl} className="gold-cta">
+                Book Appointment <CalendarDays size={16} />
+              </MagneticLink>
+              <RouteLink to="/contact" navigate={navigate} className="outline-cta">
+                View Map <MapPin size={16} />
+              </RouteLink>
+            </div>
+          </article>
+          <div className="landmark-panel">
+            <p className="eyebrow">Nearby</p>
+            <h3>Clients visit RM from:</h3>
+            <ul>
+              {page.landmarks.map((landmark) => (
+                <li key={landmark}>{landmark}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <div className="geo-service-path">
+          <div className="seo-list-heading">
+            <p className="eyebrow">Popular For {page.area}</p>
+            <h2>Services clients often pair with this location page.</h2>
+          </div>
+          {relatedPages.map((item) => (
+            <RouteLink key={item.path} to={item.path} navigate={navigate} className="geo-path-card">
+              <img src={item.image} alt={item.imageAlt} loading="lazy" decoding="async" />
+              <div>
+                <span>{item.navLabel}</span>
+                <h3>{item.h1}</h3>
+                <p>{item.description}</p>
+              </div>
+              <ArrowUpRight size={17} />
+            </RouteLink>
+          ))}
+        </div>
+
+        <RelatedSeoLinks
+          title="Explore more Midtown NYC service areas."
+          links={geoLandingPages.filter((item) => item.path !== page.path).slice(0, 5)}
+          navigate={navigate}
+        />
+      </section>
+      <Booking navigate={navigate} />
+    </>
+  );
+}
+
+function RelatedSeoLinks({ title, links, navigate }) {
+  return (
+    <div className="related-seo-links">
+      <p className="eyebrow">Internal Links</p>
+      <h2>{title}</h2>
+      <div>
+        {links.map((item) => (
+          <RouteLink key={item.path} to={item.path} navigate={navigate}>
+            {item.navLabel || item.h1}
+            <ArrowUpRight size={14} />
+          </RouteLink>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function AboutPage({ navigate }) {
   return (
     <>
       <PageHero
         label="About RM"
-        title="A Russian manicure studio built on restraint and precision."
-        copy="RM Nail Salon is for clients who want a manicure that feels elevated, clean, and reliable before they even walk in."
+        title="A Midtown NYC studio built for precision, hygiene, and polish."
+        copy="RM Nail Salon brings Russian manicure standards, cyan-lit luxury, and carefully paced appointments to 875 3rd Ave."
         image={fastImage("brand-city-skyline-tight")}
+        alt="RM Nail Salon Midtown NYC campaign image"
       />
       <section className="about-story">
         <div className="about-lead">
@@ -808,9 +1050,10 @@ function GalleryPage({ setSelectedGallery }) {
     <>
       <PageHero
         label="Gallery"
-        title="A portfolio wall for the RM finish."
-        copy="Natural hands, cyan salon light, glossy details, and luxury color restraint define the RM visual language."
+        title="Russian manicure gallery with clean shape, shine, and detail."
+        copy="Browse RM manicure, pedicure, chrome, French, extension, and nail art inspiration before choosing your next appointment."
         image={fastImage("gallery-aqua-french")}
+        alt="Aqua French manicure gallery photo at RM Nail Salon"
       />
       <section className="gallery-editorial full">
         <GalleryGrid items={galleryItems} setSelectedGallery={setSelectedGallery} />
@@ -832,7 +1075,7 @@ function GalleryGrid({ items, setSelectedGallery }) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
         >
-          <img src={item.image} alt="" loading="eager" decoding="async" />
+          <img src={item.image} alt={item.alt || `${item.title} manicure gallery photo at RM Nail Salon`} loading="lazy" decoding="async" />
         </motion.button>
       ))}
     </div>
@@ -875,9 +1118,10 @@ function FaqPage() {
     <>
       <PageHero
         label="FAQ"
-        title="Questions clients ask before booking."
-        copy="Clear answers for clients who care about precision, hygiene, timing, and long-lasting results."
+        title="Russian manicure questions answered before you book."
+        copy="Learn how Russian manicure works, how long hard gel can last, what hygiene standards mean, and how to choose your RM service."
         image={fastImage("gallery-blue-gray")}
+        alt="Blue gray manicure detail for Russian manicure FAQ"
       />
       <section className="faq-section">
         {faqs.map((item, index) => (
@@ -918,9 +1162,10 @@ function ContactPage() {
     <>
       <PageHero
         label="Contact"
-        title="Ready for the final links."
-        copy="Book your appointment, message the studio, or save the Midtown NYC details for your next visit."
+        title="Book or contact RM Nail Salon in Midtown NYC."
+        copy="Find our address, phone number, Instagram, booking link, daily hours, and map for your next appointment."
         image={fastImage("rm-hero-editorial")}
+        alt="RM Nail Salon contact page manicure detail"
       />
       <section id="contact" className="contact-editorial">
         <div className="contact-layout">
@@ -966,6 +1211,15 @@ function Footer({ navigate }) {
       <RouteLink to="/" navigate={navigate} className="footer-logo">
         {siteConfig.salonName}
       </RouteLink>
+      <div className="footer-review-proof">
+        <strong>{reviewSummary.ratingValue}</strong>
+        <span>{reviewSummary.source} rating from {reviewSummary.reviewCount} client reviews</span>
+        <div>
+          {reviewSummary.reviews.map((review) => (
+            <q key={review.author}>{review.reviewBody}</q>
+          ))}
+        </div>
+      </div>
       <nav>
         {routes.slice(1).map((item) => (
           <RouteLink key={item.to} to={item.to} navigate={navigate}>
@@ -973,6 +1227,24 @@ function Footer({ navigate }) {
           </RouteLink>
         ))}
       </nav>
+      <div className="footer-seo-nav">
+        <div>
+          <span>Signature Services</span>
+          {serviceLandingPages.map((item) => (
+            <RouteLink key={item.path} to={item.path} navigate={navigate}>
+              {item.navLabel}
+            </RouteLink>
+          ))}
+        </div>
+        <div>
+          <span>Nearby Areas</span>
+          {geoLandingPages.slice(0, 7).map((item) => (
+            <RouteLink key={item.path} to={item.path} navigate={navigate}>
+              {item.navLabel}
+            </RouteLink>
+          ))}
+        </div>
+      </div>
       <span>Copyright 2026 RM Nail Salon</span>
     </footer>
   );

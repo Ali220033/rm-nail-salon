@@ -1,5 +1,6 @@
 export const siteConfig = {
   salonName: "RM Nail Salon",
+  siteUrl: "https://www.rmnailsalon.com",
   location: "Midtown NYC",
   specialty: "Russian Manicure",
   bookingUrl: "https://booksy.com/en-us/1762849_rm-nail-salon-midtown-nyc_nail-salon_30067_new-york-city",
@@ -17,7 +18,7 @@ export const siteConfig = {
     "https://maps.google.com/maps?q=875%203rd%20Ave%20Concourse%20Level%2C%20New%20York%2C%20NY%2010022&t=m&z=14&output=embed"
 };
 
-export const fastImage = (name) => `/images/fast/${name}.jpg`;
+export const fastImage = (name) => `/images/fast/${name}.webp`;
 
 const processImage = fastImage("work-reel-process");
 const driveAsian1Image = fastImage("drive-asian-1");

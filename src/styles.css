@@ -167,6 +167,7 @@ img {
 
 .nav-links {
   background: linear-gradient(145deg, #0d090c 0%, #13383a 54%, #185052 100%);
+  background-color: #0d090c;
   border: 1px solid rgba(100, 224, 218, 0.28);
   border-radius: 30px 30px 12px 30px;
   box-shadow: 0 28px 90px rgba(0, 0, 0, 0.36);
@@ -1683,9 +1684,9 @@ img {
 }
 
 .page-hero h1 {
-  font-size: clamp(3.6rem, 15vw, 10rem);
+  font-size: clamp(3.1rem, 12vw, 7.8rem);
   letter-spacing: -0.055em;
-  line-height: 0.78;
+  line-height: 0.82;
   margin-top: 1rem;
 }
 
@@ -2134,6 +2135,266 @@ img {
   font-size: 0.82rem;
 }
 
+.footer-review-proof {
+  background:
+    radial-gradient(circle at 15% 20%, rgba(100, 224, 218, 0.18), transparent 9rem),
+    rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(100, 224, 218, 0.18);
+  border-radius: 24px 24px 8px 24px;
+  display: grid;
+  gap: 0.65rem;
+  max-width: 920px;
+  padding: 1rem;
+}
+
+.footer-review-proof strong {
+  color: var(--cream);
+  font-family: "Playfair Display", serif;
+  font-size: 2.7rem;
+  font-weight: 400;
+  line-height: 0.9;
+}
+
+.footer-review-proof div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.footer-review-proof q {
+  border: 1px solid rgba(100, 224, 218, 0.16);
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.72rem;
+  padding: 0.45rem 0.68rem;
+}
+
+.footer-seo-nav {
+  display: grid;
+  gap: 1rem;
+}
+
+.footer-seo-nav div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.footer-seo-nav div > span {
+  color: var(--aqua);
+  flex: 0 0 100%;
+  font-size: 0.66rem;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.footer-seo-nav a {
+  border: 1px solid rgba(100, 224, 218, 0.16);
+  border-radius: 999px;
+  padding: 0.5rem 0.7rem;
+}
+
+.seo-landing-section {
+  display: grid;
+  gap: 4rem;
+  padding: 5.5rem 1rem;
+}
+
+.seo-lead-block,
+.geo-story-grid,
+.seo-service-list,
+.related-seo-links,
+.geo-service-path {
+  margin: 0 auto;
+  max-width: 1240px;
+  width: 100%;
+}
+
+.seo-lead-block {
+  display: grid;
+  gap: 1.1rem;
+}
+
+.seo-lead-block h2,
+.seo-list-heading h2,
+.related-seo-links h2,
+.geo-story-main h2 {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(2.9rem, 11vw, 7.2rem);
+  font-weight: 400;
+  letter-spacing: -0.045em;
+  line-height: 0.84;
+}
+
+.seo-lead-block > p:not(.eyebrow),
+.geo-story-main p,
+.seo-service-card p,
+.geo-path-card p,
+.related-seo-links p:not(.eyebrow),
+.landmark-panel li {
+  color: var(--white-soft);
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.seo-cta-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+
+.seo-proof-grid {
+  display: grid;
+  gap: 0.9rem;
+  margin: 0 auto;
+  max-width: 1240px;
+  width: 100%;
+}
+
+.seo-proof-grid article,
+.landmark-panel,
+.seo-service-card,
+.geo-path-card,
+.related-seo-links {
+  background:
+    radial-gradient(circle at 86% 14%, rgba(100, 224, 218, 0.18), transparent 10rem),
+    rgba(255, 255, 255, 0.052);
+  border: 1px solid rgba(100, 224, 218, 0.16);
+  border-radius: 28px 28px 10px 28px;
+  box-shadow: 0 26px 90px rgba(0, 0, 0, 0.24);
+}
+
+.seo-proof-grid article {
+  padding: 1.1rem;
+}
+
+.seo-proof-grid span,
+.seo-service-card span,
+.geo-path-card span {
+  color: var(--aqua);
+  display: block;
+  font-size: 0.66rem;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.seo-proof-grid h3,
+.seo-service-card h3,
+.geo-path-card h3,
+.landmark-panel h3 {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(1.45rem, 6vw, 2.4rem);
+  font-weight: 400;
+  line-height: 0.98;
+  margin-top: 0.65rem;
+}
+
+.seo-proof-grid p {
+  color: rgba(255, 255, 255, 0.66);
+  line-height: 1.7;
+  margin-top: 0.8rem;
+}
+
+.seo-service-list,
+.geo-service-path {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.seo-list-heading {
+  display: grid;
+  gap: 0.7rem;
+  margin-bottom: 0.4rem;
+}
+
+.seo-service-card {
+  align-items: center;
+  display: grid;
+  gap: 1rem;
+  overflow: hidden;
+  padding: 0.55rem;
+}
+
+.seo-service-card img,
+.geo-path-card img {
+  aspect-ratio: 9 / 13;
+  background: rgba(8, 5, 7, 0.86);
+  border-radius: 22px 22px 8px 22px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.seo-service-card strong {
+  color: var(--cream);
+  font-family: "Playfair Display", serif;
+  font-size: 2.25rem;
+  font-weight: 400;
+}
+
+.geo-story-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.geo-story-main,
+.landmark-panel {
+  padding: 1.2rem;
+}
+
+.landmark-panel ul {
+  display: grid;
+  gap: 0.55rem;
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+}
+
+.landmark-panel li {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 0.55rem;
+}
+
+.geo-path-card {
+  align-items: center;
+  color: white;
+  display: grid;
+  gap: 1rem;
+  padding: 0.55rem;
+}
+
+.geo-path-card svg {
+  color: var(--aqua);
+}
+
+.related-seo-links {
+  padding: 1.2rem;
+}
+
+.related-seo-links > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 1.2rem;
+}
+
+.related-seo-links a {
+  align-items: center;
+  background: rgba(100, 224, 218, 0.1);
+  border: 1px solid rgba(100, 224, 218, 0.28);
+  border-radius: 999px;
+  color: var(--aqua);
+  display: inline-flex;
+  font-size: 0.7rem;
+  font-weight: 900;
+  gap: 0.35rem;
+  letter-spacing: 0.12em;
+  padding: 0.78rem 0.9rem;
+  text-transform: uppercase;
+}
+
 .mobile-book {
   background: linear-gradient(135deg, var(--gold), #e5d16e);
   border-radius: 999px;
@@ -2207,6 +2468,15 @@ img {
 }
 
 @media (max-width: 760px) {
+  .page-hero h1 {
+    font-size: clamp(3rem, 12.5vw, 5.7rem);
+    line-height: 0.86;
+  }
+
+  .seo-landing-section {
+    padding-top: 13rem;
+  }
+
   .hero-backdrop {
     filter: brightness(1.14) saturate(1.14) contrast(1.02);
   }
@@ -2319,7 +2589,8 @@ img {
 
 @media (min-width: 640px) {
   .hero-actions,
-  .booking-actions {
+  .booking-actions,
+  .seo-cta-row {
     flex-direction: row;
   }
 
@@ -2329,7 +2600,12 @@ img {
   }
 
   .contact-cards,
-  .values-flow {
+  .values-flow,
+  .seo-proof-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .footer-seo-nav {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
@@ -2447,6 +2723,10 @@ img {
   .about-story,
   .values-flow,
   .faq-section {
+    padding: 8rem 3rem;
+  }
+
+  .seo-landing-section {
     padding: 8rem 3rem;
   }
 
@@ -2577,6 +2857,38 @@ img {
     padding: 0.75rem;
   }
 
+  .seo-lead-block {
+    grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.65fr);
+  }
+
+  .seo-lead-block .eyebrow,
+  .seo-lead-block h2 {
+    grid-column: 1;
+  }
+
+  .seo-lead-block > p:not(.eyebrow),
+  .seo-lead-block .seo-cta-row {
+    grid-column: 2;
+  }
+
+  .seo-proof-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .seo-service-card {
+    grid-template-columns: 180px 1fr auto auto;
+    padding: 0.75rem;
+  }
+
+  .geo-story-grid {
+    grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.55fr);
+  }
+
+  .geo-path-card {
+    grid-template-columns: 180px 1fr auto;
+    padding: 0.75rem;
+  }
+
   .catalog-list {
     gap: 1rem;
     grid-template-columns: 1fr;
@@ -2693,6 +3005,14 @@ img {
 
   .mobile-book {
     display: none;
+  }
+
+  .floating-offer {
+    bottom: auto;
+    left: auto;
+    right: 2rem;
+    top: 5.7rem;
+    transform: none;
   }
 }
 
