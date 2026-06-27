@@ -127,6 +127,16 @@ function buildStaticSnapshot(page) {
       ].join("")
     : "";
 
+  const articleHtml = page.sections?.length
+    ? [
+        '<section aria-label="Article guide">',
+        ...page.sections.map(
+          ([heading, copy]) => `<article><h2>${escapeHtml(heading)}</h2><p>${escapeHtml(copy)}</p></article>`
+        ),
+        "</section>"
+      ].join("")
+    : "";
+
   const relatedHtml = relatedPages.length
     ? [
         '<nav aria-label="Related RM Nail Salon pages">',
@@ -153,6 +163,7 @@ function buildStaticSnapshot(page) {
       .map((item) => `<article><h3>${escapeHtml(item[0])}</h3><p>${escapeHtml(item[1])}</p></article>`)
       .join(""),
     "</section>",
+    articleHtml,
     servicesHtml,
     relatedHtml,
     "</main>"

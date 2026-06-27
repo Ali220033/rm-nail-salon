@@ -28,10 +28,10 @@ export const coreSeoPages = [
   {
     path: "/",
     navLabel: "Home",
-    title: "RM Nail Salon | Russian Manicure Midtown NYC",
+    title: "Russian Manicure NYC | Luxury Nail Salon in Midtown Manhattan | RM Nail Salon",
     description:
-      "Book premium Russian manicures, hard gel, smart pedicures, nail extensions, and nail art at RM Nail Salon in Midtown NYC near Grand Central.",
-    h1: "RM Nail Salon",
+      "RM Nail Salon offers luxury Russian manicures, hard gel, gel manicures, pedicures, and nail art in Midtown Manhattan. Book your appointment today.",
+    h1: "Manhattan's Luxury Russian Manicure Experience",
     image: fastImage("rm-hero"),
     imageAlt: "RM Nail Salon Russian manicure studio in Midtown NYC",
     priority: "1.0"
@@ -90,6 +90,45 @@ export const coreSeoPages = [
     image: fastImage("rm-hero-editorial"),
     imageAlt: "RM Nail Salon contact page manicure detail",
     priority: "0.6"
+  },
+  {
+    path: "/team",
+    navLabel: "Meet the Artists",
+    title: "Meet the Nail Artists | RM Nail Salon Midtown NYC",
+    description:
+      "Meet the RM Nail Salon artists behind precise Russian manicures, hard gel overlays, extensions, nail art, and hygienic Midtown NYC nail care.",
+    h1: "Meet the artists behind the RM finish",
+    label: "Nail Artists",
+    image: fastImage("drive-white"),
+    imageAlt: "RM Nail Salon artist profile image for Midtown NYC nail team",
+    priority: "0.62",
+    related: ["/russian-manicure-nyc", "/hard-gel-manicure-nyc", "/sterilization-process"]
+  },
+  {
+    path: "/sterilization-process",
+    navLabel: "Sterilization",
+    title: "Nail Salon Sterilization Process | RM Nail Salon NYC",
+    description:
+      "Learn how RM Nail Salon approaches clean tools, hygienic manicure prep, appointment care, and professional Russian manicure standards in Midtown NYC.",
+    h1: "A cleaner process for a more confident manicure",
+    label: "Hygiene Standards",
+    image: fastImage("work-reel-process"),
+    imageAlt: "RM Nail Salon manicure process with professional nail tools",
+    priority: "0.64",
+    related: ["/russian-manicure-nyc", "/faq", "/team"]
+  },
+  {
+    path: "/blog",
+    navLabel: "Journal",
+    title: "Russian Manicure Blog NYC | RM Nail Salon Journal",
+    description:
+      "Read RM Nail Salon guides on Russian manicures, hard gel, dry manicure safety, BIAB comparisons, nail lifting, and Midtown NYC nail care.",
+    h1: "The RM Journal for better manicure decisions",
+    label: "Education",
+    image: fastImage("brand-phone-red-nails"),
+    imageAlt: "RM Nail Salon editorial red manicure campaign image",
+    priority: "0.65",
+    related: ["/russian-manicure-nyc", "/hard-gel-manicure-nyc", "/faq"]
   }
 ];
 
@@ -145,6 +184,31 @@ export const serviceLandingPages = [
     priority: "0.9"
   },
   {
+    path: "/gel-manicure-midtown-nyc",
+    navLabel: "Gel Manicure Midtown NYC",
+    label: "Glossy Gel Finish",
+    title: "Gel Manicure Midtown NYC | RM Nail Salon",
+    description:
+      "Book a luxury gel manicure in Midtown NYC with Russian manicure prep, clean shaping, glossy color, structured options, and long-lasting RM polish.",
+    h1: "Gel manicure in Midtown NYC with a cleaner RM finish.",
+    heroCopy:
+      "For clients who want glossy color, careful prep, and a manicure that feels more refined than a rushed gel appointment.",
+    image: fastImage("service-spa-hard-gel-v2"),
+    imageAlt: "Gel manicure with glossy finish at RM Nail Salon in Midtown NYC",
+    introTitle: "Gel looks better when the prep work is precise.",
+    intro:
+      "RM pairs gel color with detailed cuticle care, clean nail shaping, and optional structured support so the manicure looks polished up close and wears beautifully.",
+    serviceType: "Gel Manicure",
+    serviceIds: ["russian-hard-gel", "spa-russian-hard-gel", "regular-polish"],
+    highlights: [
+      ["Cleaner prep", "Dry manicure standards help the gel finish look neat around the cuticle line."],
+      ["Glossy wear", "Color is applied with attention to reflection, edges, and a smooth surface."],
+      ["Midtown booking", "Easy online booking for clients near Third Avenue, Grand Central, and Midtown East."]
+    ],
+    related: ["/russian-manicure-nyc", "/hard-gel-manicure-nyc", "/nail-art-nyc"],
+    priority: "0.88"
+  },
+  {
     path: "/smart-pedicure-nyc",
     navLabel: "Smart Pedicure NYC",
     label: "Pedicure Detail",
@@ -168,6 +232,31 @@ export const serviceLandingPages = [
     ],
     related: ["/russian-manicure-nyc", "/hard-gel-manicure-nyc", "/nail-art-nyc"],
     priority: "0.88"
+  },
+  {
+    path: "/pedicure-midtown-nyc",
+    navLabel: "Pedicure Midtown NYC",
+    label: "Midtown Pedicure",
+    title: "Pedicure Midtown NYC | RM Nail Salon",
+    description:
+      "Book a clean pedicure in Midtown NYC at RM Nail Salon, including Russian smart pedicure care, spa options, hygienic tools, and gel polish.",
+    h1: "Pedicure in Midtown NYC with a clean luxury standard.",
+    heroCopy:
+      "RM pedicure appointments are designed for clients who want careful foot care, polished shaping, and a calm Midtown studio experience.",
+    image: fastImage("service-smart-pedicure"),
+    imageAlt: "Smart pedicure service at RM Nail Salon in Midtown Manhattan",
+    introTitle: "Pedicure care should feel hygienic, detailed, and calm.",
+    intro:
+      "From natural grooming to gel pedicure finishes, RM focuses on clean tools, careful shaping, and a polished result that feels professional from start to finish.",
+    serviceType: "Pedicure",
+    serviceIds: ["smart-pedicure", "spa-smart-pedicure", "smart-gel-pedicure", "spa-smart-gel-pedicure"],
+    highlights: [
+      ["Smart pedicure detail", "Nail and foot care are paced carefully instead of feeling rushed."],
+      ["Gel or no polish", "Choose a glossy gel finish or a clean natural result."],
+      ["Central location", "Convenient for Midtown East, Grand Central, Sutton Place, and Turtle Bay clients."]
+    ],
+    related: ["/smart-pedicure-nyc", "/russian-manicure-nyc", "/gel-manicure-midtown-nyc"],
+    priority: "0.84"
   },
   {
     path: "/gel-extensions-nyc",
@@ -288,6 +377,26 @@ export const geoLandingPages = [
     priority: "0.82"
   },
   {
+    path: "/nail-salon-midtown-nyc",
+    navLabel: "Nail Salon Midtown NYC",
+    label: "Midtown NYC",
+    title: "Nail Salon Midtown NYC | RM Nail Salon",
+    description:
+      "RM Nail Salon is a luxury nail salon in Midtown NYC for Russian manicures, hard gel, gel manicures, pedicures, extensions, and nail art.",
+    h1: "A luxury nail salon in Midtown NYC for precise manicure work.",
+    heroCopy:
+      "RM gives Midtown clients a more polished alternative to generic nail appointments, with Russian manicure standards and a cyan-lit studio mood.",
+    image: fastImage("brand-salon-front-full"),
+    imageAlt: "RM Nail Salon storefront in Midtown NYC",
+    area: "Midtown NYC",
+    landmarks: ["Third Avenue", "Grand Central Terminal", "Midtown East", "Lexington Avenue"],
+    introTitle: "A central Midtown studio built for clients who notice details.",
+    intro:
+      "RM Nail Salon serves clients who want clean cuticle work, structured gel, smart pedicure care, and a luxury appointment near the center of Manhattan.",
+    related: ["/russian-manicure-nyc", "/gel-manicure-midtown-nyc", "/pedicure-midtown-nyc"],
+    priority: "0.82"
+  },
+  {
     path: "/nail-salon-grand-central",
     navLabel: "Grand Central",
     label: "Grand Central",
@@ -305,6 +414,26 @@ export const geoLandingPages = [
     intro:
       "RM is designed for clients who want appointment quality, not walk-in chaos. Services are structured around Russian manicure precision and a polished Midtown client experience.",
     related: ["/russian-manicure-nyc", "/hard-gel-manicure-nyc", "/smart-pedicure-nyc"],
+    priority: "0.78"
+  },
+  {
+    path: "/russian-manicure-grand-central",
+    navLabel: "Russian Manicure Grand Central",
+    label: "Grand Central",
+    title: "Russian Manicure Near Grand Central | RM Nail Salon",
+    description:
+      "Book a Russian manicure near Grand Central at RM Nail Salon in Midtown NYC, with precise cuticle care, hard gel options, and clean polish.",
+    h1: "Russian manicure near Grand Central for polished city schedules.",
+    heroCopy:
+      "For commuters and Midtown professionals, RM offers a detail-focused Russian manicure close to Grand Central and the Chrysler Building.",
+    image: fastImage("brand-city-skyline-tight"),
+    imageAlt: "Russian manicure near Grand Central at RM Nail Salon",
+    area: "Grand Central",
+    landmarks: ["Grand Central Terminal", "Chrysler Building", "Lexington Avenue", "Park Avenue"],
+    introTitle: "A clean manicure appointment near the station.",
+    intro:
+      "Clients near Grand Central book RM for precise cuticle care, structured gel, and a studio experience that feels calm before or after a busy Manhattan day.",
+    related: ["/russian-manicure-nyc", "/hard-gel-manicure-nyc", "/gel-manicure-midtown-nyc"],
     priority: "0.78"
   },
   {
@@ -408,6 +537,26 @@ export const geoLandingPages = [
     priority: "0.72"
   },
   {
+    path: "/russian-manicure-turtle-bay",
+    navLabel: "Russian Manicure Turtle Bay",
+    label: "Turtle Bay",
+    title: "Russian Manicure Near Turtle Bay | RM Nail Salon",
+    description:
+      "RM Nail Salon serves Turtle Bay clients with Russian manicures, hard gel, pedicures, extensions, and clean nail art near Midtown East.",
+    h1: "Russian manicure near Turtle Bay with clean RM precision.",
+    heroCopy:
+      "For nearby East Side clients, RM offers a polished Russian manicure experience with careful prep and long-lasting finish.",
+    image: fastImage("drive-white"),
+    imageAlt: "Russian manicure service near Turtle Bay at RM Nail Salon",
+    area: "Turtle Bay",
+    landmarks: ["Turtle Bay", "United Nations", "Third Avenue", "Lexington Avenue"],
+    introTitle: "A nearby East Side appointment with a more refined standard.",
+    intro:
+      "Turtle Bay clients can book RM for detail-focused cuticle work, hard gel, and clean polish application in a calmer Midtown setting.",
+    related: ["/russian-manicure-nyc", "/hard-gel-manicure-nyc", "/pedicure-midtown-nyc"],
+    priority: "0.72"
+  },
+  {
     path: "/nail-salon-murray-hill",
     navLabel: "Murray Hill",
     label: "Murray Hill",
@@ -426,10 +575,201 @@ export const geoLandingPages = [
       "Murray Hill clients book RM when they want a cleaner finish than a basic neighborhood manicure: structured gel, careful cuticles, and refined color placement.",
     related: ["/russian-manicure-nyc", "/smart-pedicure-nyc", "/gel-extensions-nyc"],
     priority: "0.72"
+  },
+  {
+    path: "/russian-manicure-murray-hill",
+    navLabel: "Russian Manicure Murray Hill",
+    label: "Murray Hill",
+    title: "Russian Manicure Near Murray Hill | RM Nail Salon",
+    description:
+      "Book a Russian manicure near Murray Hill at RM Nail Salon in Midtown NYC, with precise cuticle care, hard gel, gel manicures, and pedicures.",
+    h1: "Russian manicure near Murray Hill for a cleaner polished finish.",
+    heroCopy:
+      "RM serves Murray Hill clients looking for Russian manicure detail, structured gel, and a luxury Midtown appointment.",
+    image: fastImage("service-combo-clean-real"),
+    imageAlt: "Russian manicure and pedicure near Murray Hill at RM Nail Salon",
+    area: "Murray Hill",
+    landmarks: ["Murray Hill", "Park Avenue", "Madison Avenue", "Grand Central Terminal"],
+    introTitle: "A short Midtown trip for cleaner cuticle work.",
+    intro:
+      "Clients coming from Murray Hill book RM when they want a precise manicure experience with a more elevated finish than a basic salon visit.",
+    related: ["/russian-manicure-nyc", "/gel-manicure-midtown-nyc", "/smart-pedicure-nyc"],
+    priority: "0.72"
   }
 ];
 
-export const seoPages = [...coreSeoPages, ...serviceLandingPages, ...geoLandingPages];
+export const blogArticlePages = [
+  {
+    path: "/blog/russian-manicure-vs-regular-manicure",
+    navLabel: "Russian vs Regular",
+    label: "Russian Manicure Guide",
+    title: "Russian Manicure vs Regular Manicure | RM Nail Salon NYC",
+    description:
+      "Compare Russian manicure and regular manicure prep, cuticle detail, polish wear, safety, timing, and who should book each service in NYC.",
+    h1: "Russian manicure vs regular manicure: what changes?",
+    heroCopy:
+      "The difference is not just polish. It is prep, precision, structure, and how clean the manicure looks as it grows.",
+    image: fastImage("service-russian-clear"),
+    imageAlt: "Clean Russian manicure natural nail result at RM Nail Salon",
+    category: "Russian Manicure",
+    author: "RM Nail Salon Editorial Team",
+    datePublished: "2026-06-27",
+    introTitle: "A regular manicure refreshes the nail. A Russian manicure refines the entire nail frame.",
+    intro:
+      "Clients search for Russian manicures because they want a closer cuticle line, neater shaping, and a manicure that still looks intentional weeks later. At RM Nail Salon in Midtown NYC, the service is built around dry manicure preparation and controlled detail work.",
+    excerpt:
+      "Understand how Russian manicure prep differs from a regular manicure before booking in Midtown NYC.",
+    sections: [
+      ["Prep style", "A regular manicure often softens the cuticle with water and trims the visible edge. Russian manicure is usually dry and uses detailed e-file refinement to clean the nail fold more precisely."],
+      ["Final look", "Russian manicure creates a cleaner polish edge, especially in close-up photos. The result can look more editorial because the cuticle line and nail shape are treated as part of the design."],
+      ["Who should choose it", "Choose Russian manicure if you want a highly polished, long-wearing finish. Choose regular care if you prefer a faster appointment or very minimal cuticle work."]
+    ],
+    related: ["/russian-manicure-nyc", "/hard-gel-manicure-nyc", "/sterilization-process"],
+    priority: "0.58"
+  },
+  {
+    path: "/blog/how-long-does-hard-gel-last",
+    navLabel: "Hard Gel Longevity",
+    label: "Hard Gel Guide",
+    title: "How Long Does Hard Gel Last? | RM Nail Salon NYC",
+    description:
+      "Learn how long hard gel manicures last, what affects lifting, when to book a fill-in, and how RM Nail Salon builds structured gel in Midtown NYC.",
+    h1: "How long does hard gel last?",
+    heroCopy:
+      "Hard gel can keep nails stronger and glossier, but longevity depends on prep, structure, nail habits, and timing your maintenance.",
+    image: fastImage("service-hard-gel"),
+    imageAlt: "Hard gel manicure structure at RM Nail Salon in Midtown NYC",
+    category: "Hard Gel",
+    author: "RM Nail Salon Editorial Team",
+    datePublished: "2026-06-27",
+    introTitle: "Hard gel is a structure service, not just a color choice.",
+    intro:
+      "For many RM clients, hard gel is chosen because it reinforces the natural nail while preserving a slim, expensive-looking profile. Most clients plan maintenance around natural nail growth rather than waiting for the manicure to fail.",
+    excerpt:
+      "A practical hard gel guide for clients comparing overlay, fill-in, and long-wear manicure options.",
+    sections: [
+      ["Typical wear", "Hard gel often looks fresh for several weeks when the nail is properly prepared and the structure is balanced for the client."],
+      ["Fill-in timing", "A fill-in is usually booked when growth becomes visible or the apex needs to be rebalanced. Waiting too long can make the nail feel heavy or more vulnerable."],
+      ["What affects longevity", "Cuticle prep, nail oil habits, daily work with water, picking, and nail length all affect wear. The strongest result comes from precise prep and realistic maintenance."]
+    ],
+    related: ["/hard-gel-manicure-nyc", "/builder-gel-nyc", "/blog/gel-lifting-reasons"],
+    priority: "0.58"
+  },
+  {
+    path: "/blog/is-russian-manicure-safe",
+    navLabel: "Russian Manicure Safety",
+    label: "Safety Guide",
+    title: "Is Russian Manicure Safe? | RM Nail Salon Midtown NYC",
+    description:
+      "Learn what makes a Russian manicure safe, why training and tool hygiene matter, and how to choose a careful Russian manicure studio in NYC.",
+    h1: "Is Russian manicure safe?",
+    heroCopy:
+      "A Russian manicure should feel controlled, clean, and professional. Safety depends on training, tool hygiene, and how carefully the service is performed.",
+    image: fastImage("work-reel-process"),
+    imageAlt: "Professional Russian manicure tool work at RM Nail Salon",
+    category: "Safety",
+    author: "RM Nail Salon Editorial Team",
+    datePublished: "2026-06-27",
+    introTitle: "The technique is only as good as the professional performing it.",
+    intro:
+      "Russian manicure work requires precision around the cuticle area. Clients should look for a salon that values hygiene, controlled technique, and a service pace that does not feel rushed.",
+    excerpt:
+      "What to know about Russian manicure safety, tools, and professional hygiene before booking.",
+    sections: [
+      ["Training matters", "The service should be performed by a technician who understands cuticle anatomy, e-file control, and when to keep the work conservative."],
+      ["Clean tools matter", "Hygienic processing and clean appointment setup are part of the experience, especially for detailed cuticle services."],
+      ["Client comfort matters", "A premium appointment should never feel aggressive. Tell your technician if you feel discomfort so the service can be adjusted immediately."]
+    ],
+    related: ["/sterilization-process", "/russian-manicure-nyc", "/faq"],
+    priority: "0.58"
+  },
+  {
+    path: "/blog/dry-manicure-explained",
+    navLabel: "Dry Manicure",
+    label: "Technique Guide",
+    title: "Dry Manicure Explained | RM Nail Salon NYC",
+    description:
+      "Dry manicure explained by RM Nail Salon: why Russian manicures avoid soaking, how dry prep helps polish application, and who it is best for.",
+    h1: "Dry manicure explained for first-time Russian manicure clients",
+    heroCopy:
+      "Dry prep helps the technician see the nail clearly, refine the cuticle line carefully, and create a more controlled polish finish.",
+    image: fastImage("rm-hero-editorial"),
+    imageAlt: "Dry manicure preparation with professional nail tool",
+    category: "Technique",
+    author: "RM Nail Salon Editorial Team",
+    datePublished: "2026-06-27",
+    introTitle: "No soaking does not mean less care.",
+    intro:
+      "Dry manicure work is intentionally controlled. Without water swelling the nail plate, the technician can prepare the nail and cuticle area with more visual accuracy before polish or gel is applied.",
+    excerpt:
+      "Why dry manicure prep is central to the clean, long-lasting Russian manicure look.",
+    sections: [
+      ["Why dry prep is used", "Dry prep keeps the nail surface more stable before product application and supports a neat polish edge."],
+      ["How it feels", "A good dry manicure should feel precise, not harsh. The service focuses on controlled refinement rather than force."],
+      ["When it pairs best", "Dry prep pairs beautifully with hard gel, gel polish, French, chrome, and clean natural finishes."]
+    ],
+    related: ["/russian-manicure-nyc", "/gel-manicure-midtown-nyc", "/blog/russian-manicure-vs-regular-manicure"],
+    priority: "0.56"
+  },
+  {
+    path: "/blog/hard-gel-vs-biab",
+    navLabel: "Hard Gel vs BIAB",
+    label: "Gel Education",
+    title: "Hard Gel vs BIAB | RM Nail Salon Midtown NYC",
+    description:
+      "Compare hard gel and BIAB-style builder gel for natural nail support, flexibility, structure, fill-ins, and polished manicure results in NYC.",
+    h1: "Hard gel vs BIAB: how to choose your structure",
+    heroCopy:
+      "Both services can strengthen the natural nail. The right choice depends on your nail goals, length, flexibility, and maintenance routine.",
+    image: fastImage("service-spa-hard-gel-v2"),
+    imageAlt: "Structured gel manicure result at RM Nail Salon",
+    category: "Builder Gel",
+    author: "RM Nail Salon Editorial Team",
+    datePublished: "2026-06-27",
+    introTitle: "Structure is personal. The manicure should be built around your nails.",
+    intro:
+      "Clients often compare hard gel, builder gel, and BIAB-style services when they want more strength than regular gel. RM focuses on choosing a structure that looks slim, balanced, and appropriate for the natural nail.",
+    excerpt:
+      "A simple guide to hard gel and BIAB-style builder gel before choosing a manicure service.",
+    sections: [
+      ["Hard gel", "Hard gel is often chosen for stronger structure, overlays, corrections, and extension maintenance."],
+      ["Builder gel or BIAB-style support", "Builder-style gel can be a good option for natural nail reinforcement when the client wants strength without full extensions."],
+      ["How RM chooses", "The technician considers nail condition, length, lifestyle, and desired finish before recommending the service."]
+    ],
+    related: ["/hard-gel-manicure-nyc", "/builder-gel-nyc", "/gel-extensions-nyc"],
+    priority: "0.56"
+  },
+  {
+    path: "/blog/gel-lifting-reasons",
+    navLabel: "Gel Lifting Reasons",
+    label: "Aftercare Guide",
+    title: "Why Does Gel Lift? | RM Nail Salon NYC",
+    description:
+      "Learn why gel manicures lift, including prep, cuticle flooding, nail habits, water exposure, timing, and how RM Nail Salon helps prevent lifting.",
+    h1: "Why does gel lift?",
+    heroCopy:
+      "Lifting usually has a reason. Better prep, better structure, and better aftercare help the manicure stay cleaner for longer.",
+    image: fastImage("service-fill-in"),
+    imageAlt: "Gel manicure fill-in and correction work at RM Nail Salon",
+    category: "Aftercare",
+    author: "RM Nail Salon Editorial Team",
+    datePublished: "2026-06-27",
+    introTitle: "Gel lifting is usually a mix of prep, product placement, and daily habits.",
+    intro:
+      "Clients come to RM for manicures that look cleaner and wear longer. Understanding why gel lifts helps you protect the result after leaving the salon.",
+    excerpt:
+      "Common reasons gel lifts and how precise Russian manicure prep can help reduce problems.",
+    sections: [
+      ["Prep problems", "Product does not wear well if the nail plate is not prepared cleanly or if cuticle residue remains near the polish edge."],
+      ["Lifestyle factors", "Frequent water exposure, picking, using nails as tools, and very long lengths can increase lifting risk."],
+      ["Maintenance timing", "Booking fill-ins before the structure grows too far out helps prevent imbalance and keeps the manicure looking intentional."]
+    ],
+    related: ["/hard-gel-manicure-nyc", "/blog/how-long-does-hard-gel-last", "/sterilization-process"],
+    priority: "0.56"
+  }
+];
+
+export const seoPages = [...coreSeoPages, ...serviceLandingPages, ...geoLandingPages, ...blogArticlePages];
 
 export function getSeoPage(pathname = "/") {
   const normalized = normalizePathname(pathname);
@@ -481,6 +821,15 @@ export function buildStructuredData(pathname = "/") {
 
   if (page.path === "/faq") {
     graph.push(faqPageSchema());
+  }
+
+  if (page.path === "/blog") {
+    graph.push(blogCollectionSchema());
+  }
+
+  const blogPage = blogArticlePages.find((item) => item.path === page.path);
+  if (blogPage) {
+    graph.push(articleSchema(blogPage));
   }
 
   const servicePage = serviceLandingPages.find((item) => item.path === page.path);
@@ -549,6 +898,7 @@ function localBusinessSchema() {
     ],
     areaServed: [
       "Midtown Manhattan",
+      "Midtown NYC",
       "Midtown East",
       "Grand Central",
       "Rockefeller Center",
@@ -557,6 +907,9 @@ function localBusinessSchema() {
       "Sutton Place",
       "Turtle Bay",
       "Murray Hill",
+      "Third Avenue",
+      "Lexington Avenue",
+      "Park Avenue",
       "New York City"
     ],
     sameAs: [siteConfig.instagramUrl, siteConfig.bookingUrl],
@@ -714,6 +1067,52 @@ function serviceSchema(page) {
         price: extractPrice(service.price)
       }))
     }
+  };
+}
+
+function blogCollectionSchema() {
+  return {
+    "@type": "CollectionPage",
+    "@id": `${absoluteUrl("/blog")}#collection`,
+    name: "RM Nail Salon Journal",
+    description: getSeoPage("/blog").description,
+    hasPart: blogArticlePages.map((article) => ({
+      "@type": "BlogPosting",
+      headline: article.h1,
+      url: absoluteUrl(article.path),
+      image: absoluteImage(article.image),
+      datePublished: article.datePublished,
+      author: {
+        "@type": "Organization",
+        name: siteConfig.salonName
+      }
+    }))
+  };
+}
+
+function articleSchema(article) {
+  return {
+    "@type": "BlogPosting",
+    "@id": `${absoluteUrl(article.path)}#article`,
+    headline: article.h1,
+    name: article.title,
+    description: article.description,
+    image: absoluteImage(article.image),
+    datePublished: article.datePublished,
+    dateModified: article.datePublished,
+    author: {
+      "@type": "Organization",
+      name: siteConfig.salonName,
+      url: siteConfig.siteUrl
+    },
+    publisher: {
+      "@id": `${siteConfig.siteUrl}/#organization`
+    },
+    mainEntityOfPage: {
+      "@id": `${absoluteUrl(article.path)}#webpage`
+    },
+    articleSection: article.category,
+    inLanguage: "en-US"
   };
 }
 

@@ -513,28 +513,43 @@ export const proofBlocks = [
 
 export const faqs = [
   {
-    question: "What makes Russian manicure different?",
+    question: "What is a Russian manicure?",
     answer:
-      "Russian manicure is a dry, detail-focused technique that refines the cuticle area with precision tools for a very clean, long-lasting finish."
+      "A Russian manicure is a dry, detail-focused manicure technique that refines the cuticle area and nail plate before polish or gel is applied, creating an exceptionally clean finish."
   },
   {
-    question: "How long does a hard gel Russian manicure last?",
+    question: "How long does a Russian manicure last?",
     answer:
-      "Most clients book maintenance around 3 to 4 weeks, depending on nail growth, lifestyle, and aftercare."
+      "Most clients schedule maintenance around 3 to 4 weeks, depending on nail growth, lifestyle, product choice, and aftercare."
   },
   {
-    question: "Is the process hygienic?",
+    question: "Is Russian manicure safe?",
     answer:
-      "The site is built around hygiene messaging because it is part of the premium standard: clean tools, careful prep, and a calm professional process."
+      "Russian manicure should be performed by a trained specialist with careful technique and hygienic tools. RM focuses on controlled prep, clean standards, and a professional appointment pace."
   },
   {
-    question: "Can I book directly from the website?",
+    question: "What is the difference between Russian manicure and regular manicure?",
     answer:
-      "Yes. All booking buttons are connected to the direct Booksy booking page in the config file, and the link can be replaced later if needed."
+      "A regular manicure usually focuses on basic shaping and polish. Russian manicure is more detail-driven around the cuticle area and nail plate, which helps the final result look cleaner and more precise."
   },
   {
-    question: "Can the photos be replaced with real work later?",
+    question: "How long does hard gel last?",
     answer:
-      "Yes. Every image path is centralized in the service and gallery data, so replacing campaign or portfolio images with client-approved photos is simple."
+      "Hard gel maintenance is commonly booked around 3 to 4 weeks. Retention depends on nail condition, length, daily habits, and aftercare."
+  },
+  {
+    question: "Do you sterilize your tools?",
+    answer:
+      "The RM experience is built around clean tools, thoughtful preparation, and a hygienic process. Final sterilization-policy wording can be updated with the salon's exact procedure."
+  },
+  {
+    question: "Where are you located in Midtown NYC?",
+    answer:
+      "RM Nail Salon is located at 875 3rd Ave, Concourse Level, New York, NY 10022, close to Midtown East, Grand Central, Turtle Bay, Sutton Place, and Rockefeller Center."
+  },
+  {
+    question: "How do I book an appointment?",
+    answer:
+      "Use any Book Appointment button on the website to open the RM Nail Salon Booksy booking page and choose your service, date, and time."
   }
 ];

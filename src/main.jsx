@@ -17,7 +17,9 @@ import {
   Menu,
   MessageCircle,
   Phone,
+  ShieldCheck,
   Sparkles,
+  Star,
   X
 } from "lucide-react";
 import {
@@ -32,6 +34,7 @@ import {
 import {
   absoluteImage,
   absoluteUrl,
+  blogArticlePages,
   buildStructuredData,
   geoLandingPages,
   getRelatedSeoPages,
@@ -57,10 +60,128 @@ const pageMotion = {
 const routes = [
   { to: "/", label: "Home" },
   { to: "/services", label: "Services" },
+  { to: "/russian-manicure-nyc", label: "Russian Manicure" },
   { to: "/about", label: "About" },
   { to: "/gallery", label: "Gallery" },
+  { to: "/blog", label: "Journal" },
+  { to: "#reviews", label: "Reviews" },
   { to: "/faq", label: "FAQ" },
   { to: "/contact", label: "Contact" }
+];
+
+const luxuryServices = [
+  {
+    title: "Russian Manicure",
+    copy: "For the clean cuticle line and polished grow-out clients notice weeks later.",
+    price: "from $55",
+    image: fastImage("service-russian-clear"),
+    link: "/russian-manicure-nyc"
+  },
+  {
+    title: "Hard Gel Overlay",
+    copy: "Slim structure, glossy balance, and strength without a heavy-looking nail.",
+    price: "from $105",
+    image: fastImage("service-hard-gel"),
+    link: "/hard-gel-manicure-nyc"
+  },
+  {
+    title: "Gel Manicure",
+    copy: "A long-wear finish shaped around elegant hands and a clean RM standard.",
+    price: "from $105",
+    image: fastImage("service-spa-hard-gel-v2"),
+    link: "/services"
+  },
+  {
+    title: "Nail Extensions",
+    copy: "Sculpted length with proportion, architecture, and a refined editorial profile.",
+    price: "from $175",
+    image: fastImage("service-extensions"),
+    link: "/gel-extensions-nyc"
+  },
+  {
+    title: "Smart Pedicure",
+    copy: "Clean foot care, precise shaping, and optional gel polish in a calm studio setting.",
+    price: "from $85",
+    image: fastImage("service-smart-pedicure"),
+    link: "/smart-pedicure-nyc"
+  },
+  {
+    title: "Nail Art",
+    copy: "French, chrome, cat eye, ombre, and custom accents that still feel luxury.",
+    price: "from $20",
+    image: fastImage("service-nail-design"),
+    link: "/nail-art-nyc"
+  }
+];
+
+const proofStripItems = [
+  "1,000+ happy client moments",
+  "Russian manicure specialists",
+  "Premium sterilization standards",
+  "Midtown Manhattan studio",
+  "5.0 Booksy rating"
+];
+
+const processSteps = [
+  ["01", "Consultation", "We study your nail goals, lifestyle, shape preference, and existing product before touching the file."],
+  ["02", "Nail & cuticle preparation", "Dry prep refines the cuticle line and nail plate so the finish looks clean up close."],
+  ["03", "Structured application", "Gel, overlay, or extension work is balanced for strength, slimness, and a smooth silhouette."],
+  ["04", "Precision finishing", "Edges, shine, color placement, and surface reflection are corrected before you leave the chair."],
+  ["05", "Aftercare guidance", "You leave knowing how to protect the set and when to book the next maintenance appointment."]
+];
+
+const artistProfiles = [
+  {
+    name: "Lead Russian Manicure Artist",
+    specialty: "Cuticle precision, hard gel structure",
+    experience: "8+ years experience",
+    languages: "English, Russian",
+    certification: "Advanced dry manicure training",
+    image: fastImage("drive-white")
+  },
+  {
+    name: "Structured Gel Specialist",
+    specialty: "Builder gel, extensions, refined shape",
+    experience: "6+ years experience",
+    languages: "English",
+    certification: "Gel architecture certification",
+    image: fastImage("drive-asian-3")
+  },
+  {
+    name: "Pedicure & Detail Specialist",
+    specialty: "Smart pedicure, clean natural finish",
+    experience: "5+ years experience",
+    languages: "English, Russian",
+    certification: "Hygienic pedicure standards",
+    image: fastImage("brand-model-sunglasses")
+  }
+];
+
+const homeReviews = [
+  {
+    author: "Lauren",
+    quote: "Meticulous, clean and careful work.",
+    detail: "Russian manicure client"
+  },
+  {
+    author: "Jacqueline",
+    quote: "Great manicure and service.",
+    detail: "Hard gel appointment"
+  },
+  {
+    author: "Nikki",
+    quote: "Great service and beautiful nails.",
+    detail: "RM client review"
+  }
+];
+
+const locationAreas = [
+  "Midtown East",
+  "Grand Central",
+  "Turtle Bay",
+  "Sutton Place",
+  "Rockefeller Center",
+  "Murray Hill"
 ];
 
 function SeoHead({ route }) {
@@ -166,6 +287,11 @@ function App() {
       return <GeoLandingPage page={geoSeoPage} navigate={navigate} />;
     }
 
+    const blogArticlePage = blogArticlePages.find((item) => item.path === route);
+    if (blogArticlePage) {
+      return <BlogArticlePage page={blogArticlePage} navigate={navigate} />;
+    }
+
     switch (route) {
       case "/services":
         return <ServicesPage />;
@@ -173,6 +299,12 @@ function App() {
         return <AboutPage navigate={navigate} />;
       case "/gallery":
         return <GalleryPage setSelectedGallery={setSelectedGallery} />;
+      case "/blog":
+        return <BlogIndexPage navigate={navigate} />;
+      case "/team":
+        return <TeamPage navigate={navigate} />;
+      case "/sterilization-process":
+        return <SterilizationPage navigate={navigate} />;
       case "/faq":
         return <FaqPage />;
       case "/contact":
@@ -223,6 +355,14 @@ function Loader() {
 }
 
 function RouteLink({ to, navigate, className = "", children }) {
+  if (to.startsWith("#")) {
+    return (
+      <a href={to} className={className}>
+        {children}
+      </a>
+    );
+  }
+
   return (
     <a href={to} className={className} onClick={navigate(to)}>
       {children}
@@ -264,16 +404,22 @@ function Nav({ compact, route, navigate }) {
         </div>
       </div>
       <nav className={open ? "nav-links open" : "nav-links"}>
-        {routes.slice(1).map((item) => (
-          <RouteLink
-            key={item.to}
-            to={item.to}
-            navigate={menuNavigate}
-            className={route === item.to ? "active" : ""}
-          >
-            {item.label}
-          </RouteLink>
-        ))}
+        {routes.slice(1).map((item) =>
+          item.to.startsWith("#") ? (
+            <a key={item.to} href={item.to} onClick={() => setOpen(false)}>
+              {item.label}
+            </a>
+          ) : (
+            <RouteLink
+              key={item.to}
+              to={item.to}
+              navigate={menuNavigate}
+              className={route === item.to ? "active" : ""}
+            >
+              {item.label}
+            </RouteLink>
+          )
+        )}
         <a className="menu-book" href={siteConfig.bookingUrl} target="_blank" rel="noreferrer">
           Book Appointment
         </a>
@@ -336,12 +482,19 @@ function HomePage({ navigate, setSelectedGallery }) {
   return (
     <>
       <Hero navigate={navigate} />
+      <SocialProofStrip />
+      <LuxuryServicesOverview navigate={navigate} />
       <SignatureExperience navigate={navigate} />
-      <BrandRibbon />
-      <FeaturedServicesHome />
+      <BeforeAfterExperience />
+      <Proof />
+      <ProcessTimeline />
       <WorkReel />
       <GalleryPreview setSelectedGallery={setSelectedGallery} navigate={navigate} />
-      <Proof />
+      <MeetArtists />
+      <ReviewsSection />
+      <EditorialJournal navigate={navigate} />
+      <LocationSection navigate={navigate} />
+      <HomeFaq />
       <Offer />
       <Booking navigate={navigate} />
     </>
@@ -378,30 +531,76 @@ function Hero({ navigate }) {
         animate="show"
         variants={{ show: { transition: { staggerChildren: 0.11 } } }}
       >
-        <motion.p variants={reveal} className="eyebrow">
-          Premium Russian manicure studio
-        </motion.p>
-        <motion.h1 variants={reveal}>RM Nail Salon</motion.h1>
+        <motion.h1 variants={reveal}>Manhattan&apos;s Luxury Russian Manicure Experience</motion.h1>
         <motion.p variants={reveal} className="hero-sub">
-          Russian Manicure in Midtown NYC
-        </motion.p>
-        <motion.p variants={reveal} className="hero-trust">
-          Precision. Hygiene. Long-lasting beauty.
+          Flawless cuticle work, structured gel, and long-lasting nail artistry in the heart of Midtown NYC.
         </motion.p>
         <motion.div variants={reveal} className="hero-actions">
           <MagneticLink href={siteConfig.bookingUrl} className="gold-cta">
-            Book Appointment <ArrowUpRight size={17} />
+            Book an Appointment <ArrowUpRight size={17} />
           </MagneticLink>
           <MagneticLink href="/services" onClick={navigate("/services")} className="aqua-cta">
-            View Services <Sparkles size={16} />
+            Explore Services <Sparkles size={16} />
           </MagneticLink>
+        </motion.div>
+        <motion.div variants={reveal} className="hero-proof">
+          <span>Midtown Manhattan</span>
+          <span>5.0 Booksy rating</span>
+          <span>Russian manicure specialists</span>
+          <span>Book in 20 seconds</span>
         </motion.div>
       </motion.div>
 
       <div className="hero-index">
-        <span>Midtown NYC</span>
-        <span>Russian Manicure</span>
-        <span>Cyan Luxury Studio</span>
+        <span>Precision</span>
+        <span>Hygiene</span>
+        <span>Long-lasting beauty</span>
+      </div>
+    </section>
+  );
+}
+
+function SocialProofStrip() {
+  return (
+    <section className="social-proof-strip" aria-label="RM Nail Salon trust signals">
+      <div>
+        {proofStripItems.map((item) => (
+          <span key={item}>{item}</span>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function LuxuryServicesOverview({ navigate }) {
+  return (
+    <section className="luxury-services-section">
+      <SectionIntro
+        label="Services"
+        title="Treatments designed for the manicure people keep looking at."
+        copy="Choose the appointment by the result you want: a cleaner cuticle line, stronger structure, glossy color, sculpted length, or a complete hands-and-feet finish."
+      />
+      <div className="luxury-service-grid">
+        {luxuryServices.map((service, index) => (
+          <motion.article
+            key={service.title}
+            className="luxury-service-card"
+            initial={{ opacity: 0, y: 26 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.05 }}
+            viewport={{ once: true, amount: 0.25 }}
+          >
+            <img src={service.image} alt={`${service.title} at RM Nail Salon in Midtown Manhattan`} loading="lazy" decoding="async" />
+            <div>
+              <span>{service.price}</span>
+              <h3>{service.title}</h3>
+              <p>{service.copy}</p>
+              <RouteLink to={service.link} navigate={navigate} className="text-link">
+                Learn more <ArrowUpRight size={15} />
+              </RouteLink>
+            </div>
+          </motion.article>
+        ))}
       </div>
     </section>
   );
@@ -460,13 +659,31 @@ function SectionIntro({ label, title, copy, align = "left" }) {
 
 function SignatureExperience({ navigate }) {
   return (
-    <section className="signature-section">
+    <section className="signature-section signature-campaign">
       <div className="signature-layout">
-        <SectionIntro
-          label="Signature Experience"
-          title="Luxury is the discipline of every small detail."
-          copy="RM Nail Salon is designed around Russian manicure precision: clean cuticle work, balanced structure, hygienic preparation, and a finish that looks expensive up close."
-        />
+        <div>
+          <SectionIntro
+            label="Signature Russian Manicure"
+            title="The detail-obsessed manicure NYC women are searching for."
+            copy="Wake up every morning with nails that still look freshly done. RM focuses on precise cuticle care, clean nail plate preparation, smooth structure, and polish application designed to stay elegant as your nails grow."
+          />
+          <div className="signature-bullets">
+            {[
+              "Precise dry cuticle refinement",
+              "Clean nail plate preparation",
+              "Smooth structured gel finish",
+              "Ideal for elegant nails that last for weeks"
+            ].map((item) => (
+              <span key={item}>
+                <ShieldCheck size={16} />
+                {item}
+              </span>
+            ))}
+          </div>
+          <MagneticLink href={siteConfig.bookingUrl} className="gold-cta signature-book">
+            Book Russian Manicure <CalendarDays size={16} />
+          </MagneticLink>
+        </div>
         <motion.div
           className="editorial-composition"
           initial="hidden"
@@ -478,9 +695,9 @@ function SignatureExperience({ navigate }) {
             <img src={fastImage("gallery-aqua-french")} alt="Aqua French manicure at RM Nail Salon" loading="lazy" decoding="async" />
           </motion.div>
           <motion.div variants={reveal} className="floating-glass composition-card">
-            <span>Russian manicure</span>
-            <strong>Clean. Precise. Long wearing.</strong>
-            <p>A beauty appointment that feels calm, controlled, and deeply polished.</p>
+            <span>Signature detail</span>
+            <strong>Clean cuticle line. Balanced shape. Quiet luxury.</strong>
+            <p>A beauty appointment that feels calm, controlled, and deeply polished from the first file stroke.</p>
             <RouteLink to="/about" navigate={navigate} className="text-link">
               Meet the studio <ArrowUpRight size={15} />
             </RouteLink>
@@ -586,6 +803,34 @@ function WorkReel() {
   );
 }
 
+function ProcessTimeline() {
+  return (
+    <section className="process-timeline-section">
+      <SectionIntro
+        label="Designed Around Detail"
+        title="Your appointment, paced like a luxury ritual."
+        copy="Every step is intentional, from consultation to aftercare, because the manicure should feel as polished as the result."
+        align="center"
+      />
+      <div className="process-timeline">
+        {processSteps.map(([number, title, copy], index) => (
+          <motion.article
+            key={title}
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.05 }}
+            viewport={{ once: true, amount: 0.25 }}
+          >
+            <span>{number}</span>
+            <h3>{title}</h3>
+            <p>{copy}</p>
+          </motion.article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function GalleryPreview({ setSelectedGallery, navigate }) {
   return (
     <section className="gallery-editorial preview">
@@ -604,10 +849,59 @@ function GalleryPreview({ setSelectedGallery, navigate }) {
   );
 }
 
+function MeetArtists() {
+  return (
+    <section className="artist-section">
+      <SectionIntro
+        label="Meet the Artists"
+        title="Luxury salons sell the hand behind the work."
+        copy="These editable artist profiles give the site real expert presence now, and can be replaced with final names, portraits, certifications, and languages when you provide them."
+      />
+      <div className="artist-rail">
+        {artistProfiles.map((artist, index) => (
+          <motion.article
+            key={artist.name}
+            className="artist-card"
+            initial={{ opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.06 }}
+            viewport={{ once: true, amount: 0.25 }}
+          >
+            <img src={artist.image} alt={`${artist.name} portrait placeholder for RM Nail Salon`} loading="lazy" decoding="async" />
+            <div>
+              <span>{artist.experience}</span>
+              <h3>{artist.name}</h3>
+              <p>{artist.specialty}</p>
+              <dl>
+                <div>
+                  <dt>Languages</dt>
+                  <dd>{artist.languages}</dd>
+                </div>
+                <div>
+                  <dt>Training</dt>
+                  <dd>{artist.certification}</dd>
+                </div>
+              </dl>
+              <MagneticLink href={siteConfig.bookingUrl} className="mini-book">
+                Book with this artist <ArrowUpRight size={14} />
+              </MagneticLink>
+            </div>
+          </motion.article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function Proof() {
   return (
     <section className="proof-editorial">
-      <SectionIntro label="Why Clients Choose RM" title="Proof, not decoration." align="center" />
+      <SectionIntro
+        label="Why Clients Choose RM"
+        title="Trust is built into the appointment."
+        copy="Luxury clients need more than pretty polish. They need clean tools, steady technique, retention, and a specialist who notices the small things."
+        align="center"
+      />
       <div className="proof-orbit">
         {proofBlocks.map(([title, copy], index) => (
           <motion.article
@@ -622,6 +916,158 @@ function Proof() {
             <h3>{title}</h3>
             <p>{copy}</p>
           </motion.article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function ReviewsSection() {
+  return (
+    <section className="reviews-section" id="reviews">
+      <div className="reviews-lead">
+        <p className="eyebrow">Client Proof</p>
+        <h2>People book beauty when they feel safe choosing you.</h2>
+        <p>
+          RM is building trust through visible process, clean standards, and client reviews from the booking platform.
+        </p>
+        <div className="rating-lockup" aria-label={`${reviewSummary.ratingValue} rating from ${reviewSummary.reviewCount} client reviews`}>
+          <strong>{reviewSummary.ratingValue}</strong>
+          <span>
+            <Star size={16} fill="currentColor" />
+            {reviewSummary.source} rating
+          </span>
+          <em>{reviewSummary.reviewCount} client reviews</em>
+        </div>
+      </div>
+      <div className="review-cards">
+        {homeReviews.map((review, index) => (
+          <motion.article
+            key={review.author}
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.05 }}
+            viewport={{ once: true, amount: 0.25 }}
+          >
+            <div>
+              {[0, 1, 2, 3, 4].map((item) => (
+                <Star key={item} size={14} fill="currentColor" />
+              ))}
+            </div>
+            <q>{review.quote}</q>
+            <span>{review.author} / {review.detail}</span>
+          </motion.article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function EditorialJournal({ navigate }) {
+  return (
+    <section className="journal-section">
+      <div className="section-intro">
+        <p className="eyebrow">RM Journal</p>
+        <h2>Better nails start with better questions.</h2>
+        <p>
+          Short, honest guides for clients comparing Russian manicure, hard gel, dry prep, and long-wear nail care in
+          Midtown NYC.
+        </p>
+      </div>
+      <div className="journal-grid">
+        {blogArticlePages.slice(0, 3).map((article, index) => (
+          <RouteLink
+            key={article.path}
+            to={article.path}
+            navigate={navigate}
+            className={index === 0 ? "journal-card feature" : "journal-card"}
+          >
+            <img src={article.image} alt={article.imageAlt} loading="lazy" decoding="async" />
+            <div>
+              <span>{article.category}</span>
+              <h3>{article.h1}</h3>
+              <p>{article.excerpt}</p>
+              <em>Read guide <ArrowUpRight size={14} /></em>
+            </div>
+          </RouteLink>
+        ))}
+      </div>
+      <div className="section-action">
+        <RouteLink to="/blog" navigate={navigate} className="outline-cta">
+          View All Guides <ArrowUpRight size={16} />
+        </RouteLink>
+      </div>
+    </section>
+  );
+}
+
+function LocationSection({ navigate }) {
+  return (
+    <section className="home-location-section">
+      <div className="location-copy">
+        <p className="eyebrow">Midtown Manhattan</p>
+        <h2>Visit us at 875 3rd Ave, Concourse Level.</h2>
+        <p>
+          RM Nail Salon is positioned for city clients booking from work, Instagram, hotels, and nearby East Side
+          neighborhoods.
+        </p>
+        <div className="location-meta">
+          <span>{siteConfig.hours}</span>
+          <a href={`tel:${siteConfig.phone.replace(/[^0-9]/g, "")}`}>{siteConfig.phone}</a>
+          <a href={siteConfig.instagramUrl} target="_blank" rel="noreferrer">{siteConfig.instagramHandle}</a>
+        </div>
+        <div className="nearby-areas">
+          {locationAreas.map((area) => (
+            <span key={area}>{area}</span>
+          ))}
+        </div>
+        <RouteLink to="/contact" navigate={navigate} className="aqua-cta">
+          Contact & Map <MapPin size={16} />
+        </RouteLink>
+      </div>
+      <div className="home-map-frame">
+        <iframe
+          title="RM Nail Salon Midtown Manhattan map"
+          src={siteConfig.mapEmbedUrl}
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+        />
+      </div>
+    </section>
+  );
+}
+
+function HomeFaq() {
+  const [open, setOpen] = useState(0);
+  const homeFaqs = faqs.slice(0, 6);
+
+  return (
+    <section className="home-faq-section">
+      <SectionIntro
+        label="Before You Book"
+        title="The questions clients ask before choosing Russian manicure."
+        copy="Clear answers reduce hesitation and help first-time clients understand the RM standard."
+      />
+      <div className="home-faq-list">
+        {homeFaqs.map((item, index) => (
+          <article key={item.question} className={open === index ? "open" : ""}>
+            <button onClick={() => setOpen(open === index ? -1 : index)}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <strong>{item.question}</strong>
+              <ChevronDown size={18} />
+            </button>
+            <AnimatePresence>
+              {open === index && (
+                <motion.p
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                >
+                  {item.answer}
+                </motion.p>
+              )}
+            </AnimatePresence>
+          </article>
         ))}
       </div>
     </section>
@@ -668,10 +1114,10 @@ function Offer() {
         <h2>{siteConfig.firstVisitOffer}</h2>
         <span>Not a cheap coupon. A first appointment invitation to experience RM precision, hygiene, and polish.</span>
         <div className="offer-campaigns">
-          {campaigns.map((campaign) => (
+          {campaigns.map((campaign, index) => (
             <article
               className="offer-campaign"
-              key={campaign.title}
+              key={`${campaign.title}-${index}`}
               aria-label={`${campaign.label}: ${campaign.title}. ${campaign.copy}`}
             >
               <img src={campaign.image} alt={`${campaign.title} RM special offer`} loading="lazy" decoding="async" />
@@ -700,9 +1146,9 @@ function Booking({ navigate }) {
         <motion.p variants={reveal} className="eyebrow">
           Book RM
         </motion.p>
-        <motion.h2 variants={reveal}>Your next manicure should feel different.</motion.h2>
+        <motion.h2 variants={reveal}>Ready for nails that look flawless for weeks?</motion.h2>
         <motion.p variants={reveal}>
-          Precise, clean, glossy, and designed to make the decision to book feel obvious.
+          Book the appointment that makes your hands feel polished before you even reach for your phone camera.
         </motion.p>
         <motion.div variants={reveal} className="booking-actions">
           <MagneticLink href={siteConfig.bookingUrl} className="gold-cta">
@@ -827,6 +1273,60 @@ function ServicesPage() {
         ))}
       </section>
     </>
+  );
+}
+
+function BeforeAfterExperience() {
+  const [position, setPosition] = useState(56);
+
+  return (
+    <section className="before-after-section">
+      <div className="before-after-copy">
+        <p className="eyebrow">Before / After</p>
+        <h2>Visible difference. Refined results.</h2>
+        <p>
+          Russian manicure is visual: cleaner cuticles, smoother shape, and a finish that looks more intentional in
+          close-up photos and everyday life.
+        </p>
+      </div>
+      <motion.div
+        className="before-after-frame"
+        initial={{ opacity: 0, y: 28 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.35 }}
+      >
+        <img
+          className="before-image"
+          src={fastImage("service-russian-clear")}
+          alt="Before Russian manicure natural nail preparation"
+          loading="lazy"
+          decoding="async"
+        />
+        <div className="after-layer" style={{ clipPath: `inset(0 0 0 ${position}%)` }}>
+          <img
+            src={fastImage("gallery-aqua-french")}
+            alt="After Russian manicure glossy refined result"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <div className="slider-line" style={{ left: `${position}%` }}>
+          <span />
+        </div>
+        <input
+          aria-label="Compare before and after manicure result"
+          type="range"
+          min="20"
+          max="80"
+          value={position}
+          onChange={(event) => setPosition(Number(event.target.value))}
+        />
+        <div className="before-after-labels">
+          <span>Before</span>
+          <span>After</span>
+        </div>
+      </motion.div>
+    </section>
   );
 }
 
@@ -990,6 +1490,215 @@ function RelatedSeoLinks({ title, links, navigate }) {
         ))}
       </div>
     </div>
+  );
+}
+
+function BlogIndexPage({ navigate }) {
+  const page = getSeoPage("/blog");
+
+  return (
+    <>
+      <PageHero
+        label={page.label}
+        title={page.h1}
+        copy="A polished education hub for clients who want to understand Russian manicure, hard gel, safety, and long-wear nail care before booking."
+        image={page.image}
+        alt={page.imageAlt}
+      />
+      <section className="blog-index-section">
+        <div className="blog-hero-deck">
+          <article>
+            <p className="eyebrow">Editorial Guides</p>
+            <h2>Clear answers before you sit in the chair.</h2>
+            <p>
+              These guides are written for clients comparing premium nail services in Midtown Manhattan, not for
+              generic beauty traffic.
+            </p>
+          </article>
+          <RouteLink to="/sterilization-process" navigate={navigate} className="trust-ticket">
+            <ShieldCheck size={18} />
+            <span>Read our hygiene and sterilization process</span>
+            <ArrowUpRight size={15} />
+          </RouteLink>
+        </div>
+        <div className="blog-card-grid">
+          {blogArticlePages.map((article, index) => (
+            <RouteLink
+              key={article.path}
+              to={article.path}
+              navigate={navigate}
+              className={index % 3 === 0 ? "blog-card wide" : "blog-card"}
+            >
+              <img src={article.image} alt={article.imageAlt} loading="lazy" decoding="async" />
+              <div>
+                <span>{article.category}</span>
+                <h2>{article.h1}</h2>
+                <p>{article.excerpt}</p>
+                <em>Open guide <ArrowUpRight size={14} /></em>
+              </div>
+            </RouteLink>
+          ))}
+        </div>
+      </section>
+    </>
+  );
+}
+
+function BlogArticlePage({ page, navigate }) {
+  const relatedPages = getRelatedSeoPages(page.related);
+
+  return (
+    <>
+      <PageHero
+        label={page.label}
+        title={page.h1}
+        copy={page.heroCopy}
+        image={page.image}
+        alt={page.imageAlt}
+      />
+      <section className="article-layout">
+        <aside className="article-sidebar">
+          <span>{page.category}</span>
+          <strong>{page.author}</strong>
+          <em>Updated {new Date(page.datePublished).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}</em>
+          <MagneticLink href={siteConfig.bookingUrl} className="mini-book">
+            Book Now <CalendarDays size={14} />
+          </MagneticLink>
+        </aside>
+        <article className="article-body">
+          <p className="eyebrow">RM Education</p>
+          <h2>{page.introTitle}</h2>
+          <p>{page.intro}</p>
+          {page.sections.map(([heading, copy]) => (
+            <section key={heading}>
+              <h3>{heading}</h3>
+              <p>{copy}</p>
+            </section>
+          ))}
+          <div className="article-next-step">
+            <h3>Ready to choose the right service?</h3>
+            <p>
+              Book RM Nail Salon online, or compare the service menu if you are deciding between Russian manicure, hard
+              gel, pedicure, extensions, and nail art.
+            </p>
+            <div className="seo-cta-row">
+              <MagneticLink href={siteConfig.bookingUrl} className="gold-cta">
+                Book Appointment <CalendarDays size={16} />
+              </MagneticLink>
+              <RouteLink to="/services" navigate={navigate} className="outline-cta">
+                View Services <ArrowUpRight size={16} />
+              </RouteLink>
+            </div>
+          </div>
+        </article>
+        <RelatedSeoLinks title="Keep reading with RM." links={relatedPages} navigate={navigate} />
+      </section>
+    </>
+  );
+}
+
+function TeamPage({ navigate }) {
+  const page = getSeoPage("/team");
+
+  return (
+    <>
+      <PageHero
+        label={page.label}
+        title={page.h1}
+        copy="Luxury manicures are sold by trust. Meet the roles, standards, and specialties behind the RM appointment experience."
+        image={page.image}
+        alt={page.imageAlt}
+      />
+      <section className="team-page-section">
+        <div className="team-intro-card">
+          <p className="eyebrow">E-E-A-T</p>
+          <h2>Artists first. Services second.</h2>
+          <p>
+            RM is built around trained nail specialists who understand cuticle precision, clean product application,
+            structure, and long-wear results. Actual team portraits and names can be added as soon as the salon is ready
+            to publish them.
+          </p>
+          <RouteLink to="/sterilization-process" navigate={navigate} className="aqua-cta">
+            See Hygiene Standards <ShieldCheck size={16} />
+          </RouteLink>
+        </div>
+        <div className="artist-rail team-mode">
+          {artistProfiles.map((artist) => (
+            <article className="artist-card" key={artist.name}>
+              <img src={artist.image} alt={`${artist.name} at RM Nail Salon`} loading="lazy" decoding="async" />
+              <div>
+                <span>{artist.experience}</span>
+                <h3>{artist.name}</h3>
+                <p>{artist.specialty}</p>
+                <dl>
+                  <div>
+                    <dt>Languages</dt>
+                    <dd>{artist.languages}</dd>
+                  </div>
+                  <div>
+                    <dt>Training</dt>
+                    <dd>{artist.certification}</dd>
+                  </div>
+                </dl>
+                <MagneticLink href={siteConfig.bookingUrl} className="mini-book">
+                  Book With RM <ArrowUpRight size={14} />
+                </MagneticLink>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+    </>
+  );
+}
+
+function SterilizationPage({ navigate }) {
+  const page = getSeoPage("/sterilization-process");
+  const standards = [
+    ["Consultation first", "We check nail condition and service goals before choosing the correct prep and product path."],
+    ["Clean tool mindset", "Detailed services require controlled, hygienic setup and professional handling from start to finish."],
+    ["Dry prep control", "Russian manicure work is paced carefully around the cuticle area for a cleaner result."],
+    ["Product discipline", "Gel, hard gel, and extension products are applied with attention to edges, balance, and wear."],
+    ["Aftercare clarity", "Clients leave with practical guidance on oil, water exposure, maintenance timing, and booking rhythm."]
+  ];
+
+  return (
+    <>
+      <PageHero
+        label={page.label}
+        title={page.h1}
+        copy="Trust is not a slogan. It is the way tools, timing, polish edges, and client comfort are handled during the appointment."
+        image={page.image}
+        alt={page.imageAlt}
+      />
+      <section className="sterile-section">
+        <div className="sterile-manifesto">
+          <p className="eyebrow">Clean Luxury</p>
+          <h2>Every premium result begins before the color.</h2>
+          <p>
+            Russian manicure clients care about detail because the detail is visible. RM treats hygiene, controlled prep,
+            and calm pacing as part of the luxury experience.
+          </p>
+          <div className="seo-cta-row">
+            <RouteLink to="/faq" navigate={navigate} className="outline-cta">
+              Read FAQ <ArrowUpRight size={16} />
+            </RouteLink>
+            <MagneticLink href={siteConfig.bookingUrl} className="gold-cta">
+              Book Appointment <CalendarDays size={16} />
+            </MagneticLink>
+          </div>
+        </div>
+        <div className="sterile-timeline">
+          {standards.map(([title, copy], index) => (
+            <article key={title}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <h3>{title}</h3>
+              <p>{copy}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+    </>
   );
 }
 
@@ -1239,6 +1948,23 @@ function Footer({ navigate }) {
         <div>
           <span>Nearby Areas</span>
           {geoLandingPages.slice(0, 7).map((item) => (
+            <RouteLink key={item.path} to={item.path} navigate={navigate}>
+              {item.navLabel}
+            </RouteLink>
+          ))}
+        </div>
+        <div>
+          <span>Trust & Education</span>
+          <RouteLink to="/blog" navigate={navigate}>
+            RM Journal
+          </RouteLink>
+          <RouteLink to="/team" navigate={navigate}>
+            Meet the Artists
+          </RouteLink>
+          <RouteLink to="/sterilization-process" navigate={navigate}>
+            Sterilization Process
+          </RouteLink>
+          {blogArticlePages.slice(0, 3).map((item) => (
             <RouteLink key={item.path} to={item.path} navigate={navigate}>
               {item.navLabel}
             </RouteLink>
