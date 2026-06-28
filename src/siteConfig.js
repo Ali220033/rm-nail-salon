@@ -5,6 +5,7 @@ export const siteConfig = {
   specialty: "Russian Manicure",
   bookingUrl: "https://booksy.com/en-us/1762849_rm-nail-salon-midtown-nyc_nail-salon_30067_new-york-city",
   instagramUrl: "https://www.instagram.com/rmnailsalon.nyc?igsh=eWIyNXhxZTNwOGdh&utm_source=qr",
+  instagramCleanUrl: "https://www.instagram.com/rmnailsalon.nyc/",
   phone: "346-865-6565",
   email: "rmnyc2026@gmail.com",
   address: "875 3rd Ave, Concourse Level, New York, NY 10022",
@@ -37,7 +38,7 @@ const driveOfferShareImage = fastImage("drive-offer-share");
 const extensionImage = fastImage("service-extensions");
 const cleanComboImage = fastImage("service-combo-clean-real");
 const gelNoPolishComboImage = fastImage("service-combo-gel-no-polish");
-const russianClearImage = fastImage("ref-gallery-nude-square");
+const russianClearImage = fastImage("service-russian-clear");
 const mensManicureImage = fastImage("service-mens-manicure");
 const japaneseManicureImage = fastImage("service-japanese-manicure");
 const hardGelImage = fastImage("service-hard-gel");
@@ -48,7 +49,7 @@ const spaPedicureImage = fastImage("service-spa-pedicure-v2");
 const gelPedicureImage = fastImage("service-gel-pedicure");
 const spaGelPedicureImage = fastImage("service-spa-gel-pedicure-v2");
 const mensComboImage = fastImage("service-mens-combo");
-const vipRoomImage = driveWhiteImage;
+const vipRoomImage = fastImage("service-vip-room");
 const chromeImage = fastImage("service-chrome");
 const ombreImage = fastImage("service-ombre");
 const removalImage = fastImage("service-removal");
@@ -57,8 +58,8 @@ const nailDesignImage = fastImage("service-nail-design");
 const regularPolishImage = fastImage("service-regular-polish");
 const frenchImage = fastImage("ref-gallery-french-square");
 const catEyeServiceImage = fastImage("ref-gallery-blue-glitter");
-const bestFriendsImage = driveAsian3Image;
-const extraLongImage = driveAsian6Image;
+const bestFriendsImage = cleanComboImage;
+const extraLongImage = extensionImage;
 const acrylicRemovalImage = fastImage("ref-gallery-white-macro");
 
 export const serviceMenu = [
@@ -471,36 +472,186 @@ export const featuredServices = serviceMenu
   .filter((service) => featuredServiceIds.includes(service.id));
 
 export const galleryItems = [
-  { title: "RM Campaign", caption: "Editorial campaign mood with glossy RM pink detail.", tone: "aqua", size: "tall", image: driveAsian4Image },
-  { title: "Midtown Glow", caption: "NYC campaign skyline with the RM cyan signature.", tone: "plum", size: "wide", image: driveMidtownImage },
-  { title: "Master at Work", caption: "A clean process moment with professional tools.", tone: "mist", size: "small", image: processImage },
-  { title: "Clean Russian", caption: "Natural nude finish with a precise cuticle line.", tone: "cream", size: "small", image: russianClearImage },
-  { title: "Chrome Light", caption: "Reflective shine with cyan movement.", tone: "gold", size: "wide", image: chromeImage },
-  { title: "Ombre Veil", caption: "Soft cream gradient with quiet luxury.", tone: "mist", size: "small", image: ombreImage },
-  { title: "Hard Gel", caption: "Balanced structure applied with precision.", tone: "cream", size: "wide", image: hardGelImage },
-  { title: "Pedicure Detail", caption: "Clean foot care in a cyan-lit suite.", tone: "plum", size: "tall", image: spaPedicureImage },
-  { title: "Gel Pedicure", caption: "Glossy toes, clean tools, long wear.", tone: "line", size: "small", image: gelPedicureImage },
-  { title: "Extensions", caption: "Length, structure, and refined shaping.", tone: "structure", size: "small", image: extensionImage },
-  { title: "Cyan City", caption: "An RM fashion frame in Midtown light.", tone: "aqua", size: "small", image: driveAsian1Image },
-  { title: "City Perspective", caption: "A vertical Midtown campaign frame with RM attitude.", tone: "aquaGold", size: "small", image: driveAsian5Image },
-  { title: "After Dark", caption: "Black manicure mood with a polished editorial edge.", tone: "plum", size: "small", image: driveBlackImage },
-  { title: "Golden Hour", caption: "Red manicure detail against a warm city mood.", tone: "gold", size: "small", image: driveBrown1Image },
-  { title: "Return Visit", caption: "A fashion-forward offer visual for repeat bookings.", tone: "aqua", size: "small", image: driveOfferBackImage },
-  { title: "Early Bird", caption: "Special offer campaign from the RM brandbook.", tone: "gold", size: "small", image: driveOfferBirdImage },
-  { title: "Birthday Offer", caption: "Birthday-week invitation styled for social.", tone: "line", size: "small", image: driveOfferBirthdayImage },
-  { title: "Share With Bestie", caption: "A social offer moment for RM clients.", tone: "structure", size: "small", image: driveOfferShareImage },
-  { title: "Men's Grooming", caption: "Natural grooming with the same RM precision.", tone: "mist", size: "small", image: mensManicureImage },
-  { title: "Nude Square", caption: "Reference-style clean nude square finish.", tone: "cream", size: "small", image: fastImage("ref-gallery-nude-square") },
-  { title: "Ocean Art", caption: "Detailed hand-painted art for statement sets.", tone: "aqua", size: "wide", image: fastImage("ref-gallery-ocean-art") },
-  { title: "Burgundy Gloss", caption: "Deep glossy color with editorial shine.", tone: "plum", size: "small", image: fastImage("ref-gallery-burgundy") },
-  { title: "Leopard French", caption: "A bolder design direction with clean edges.", tone: "gold", size: "small", image: fastImage("ref-gallery-leopard") },
-  { title: "Red Almond", caption: "Classic red with a luxury shape.", tone: "line", size: "small", image: fastImage("ref-gallery-red") },
-  { title: "Glitter Cat Eye", caption: "Dimensional reflective color movement.", tone: "structure", size: "wide", image: fastImage("ref-gallery-glitter-multi") },
-  { title: "Lavender Lines", caption: "Soft stripes and precise detailing.", tone: "mist", size: "small", image: fastImage("ref-gallery-lavender-stripes") },
-  { title: "White Macro", caption: "Close-up polish detail and shine.", tone: "cream", size: "small", image: fastImage("ref-gallery-white-macro") },
-  { title: "French Square", caption: "Clean French on a squared shape.", tone: "aquaGold", size: "small", image: fastImage("ref-gallery-french-square") },
-  { title: "Blue Pedicure", caption: "Pedicure color inspiration with high shine.", tone: "line", size: "small", image: fastImage("ref-gallery-pedi-blue") },
-  { title: "Turquoise French", caption: "Aqua-tipped inspiration for RM color.", tone: "aqua", size: "wide", image: fastImage("ref-gallery-turquoise-french") }
+  {
+    title: "Clean Russian Manicure",
+    caption: "Full-hand natural finish with clean cuticle detail.",
+    category: "Russian Manicure",
+    tone: "cream",
+    size: "tall",
+    image: russianClearImage,
+    alt: "Full hands with clean natural Russian manicure finish",
+    focal: "50% 42%"
+  },
+  {
+    title: "Hard Gel Structure",
+    caption: "Balanced hard gel application with a glossy surface.",
+    category: "Hard Gel",
+    tone: "cream",
+    size: "wide",
+    image: hardGelImage,
+    alt: "Hard gel manicure structure being applied to a natural nail",
+    focal: "48% 38%"
+  },
+  {
+    title: "Master at Work",
+    caption: "A controlled process moment with professional manicure tools.",
+    category: "Process",
+    tone: "mist",
+    size: "small",
+    image: processImage,
+    alt: "Technician performing detailed cuticle work with professional tools",
+    focal: "52% 42%"
+  },
+  {
+    title: "Smart Pedicure",
+    caption: "Clean foot care with precise shaping and polish detail.",
+    category: "Pedicure",
+    tone: "plum",
+    size: "tall",
+    image: spaPedicureImage,
+    alt: "Smart pedicure service with clean toe nail shaping",
+    focal: "50% 42%"
+  },
+  {
+    title: "Gel Pedicure",
+    caption: "Glossy gel pedicure result for a clean long-wear finish.",
+    category: "Pedicure",
+    tone: "line",
+    size: "small",
+    image: gelPedicureImage,
+    alt: "Glossy gel pedicure result with clean toe polish",
+    focal: "50% 50%"
+  },
+  {
+    title: "Nail Extensions",
+    caption: "Sculpted length with refined shape and slim structure.",
+    category: "Extensions",
+    tone: "structure",
+    size: "small",
+    image: extensionImage,
+    alt: "Long nail extensions with refined shape and glossy finish",
+    focal: "50% 44%"
+  },
+  {
+    title: "Chrome Finish",
+    caption: "Reflective chrome shine with a polished editorial edge.",
+    category: "Nail Art",
+    tone: "gold",
+    size: "wide",
+    image: chromeImage,
+    alt: "Chrome manicure with reflective polished finish",
+    focal: "50% 46%"
+  },
+  {
+    title: "Ombre Detail",
+    caption: "Soft gradient color work with a clean blended finish.",
+    category: "Nail Art",
+    tone: "mist",
+    size: "small",
+    image: ombreImage,
+    alt: "Ombre manicure with soft gradient polish",
+    focal: "50% 45%"
+  },
+  {
+    title: "Men's Grooming",
+    caption: "Natural grooming with the same clean RM precision.",
+    category: "Natural Care",
+    tone: "mist",
+    size: "small",
+    image: mensManicureImage,
+    alt: "Men's manicure with clean natural nail grooming",
+    focal: "50% 44%"
+  },
+  {
+    title: "French Square",
+    caption: "Clean French finish on a squared shape.",
+    category: "French",
+    tone: "aquaGold",
+    size: "small",
+    image: fastImage("ref-gallery-french-square"),
+    alt: "Square French manicure inspiration with clean white tips",
+    focal: "50% 48%"
+  },
+  {
+    title: "Burgundy Gloss",
+    caption: "Deep glossy color with a refined shape.",
+    category: "Color",
+    tone: "plum",
+    size: "small",
+    image: fastImage("ref-gallery-burgundy"),
+    alt: "Burgundy glossy manicure inspiration on shaped nails",
+    focal: "50% 46%"
+  },
+  {
+    title: "Red Almond",
+    caption: "Classic red manicure inspiration with a luxury shape.",
+    category: "Color",
+    tone: "line",
+    size: "small",
+    image: fastImage("ref-gallery-red"),
+    alt: "Classic red almond manicure inspiration",
+    focal: "50% 48%"
+  },
+  {
+    title: "Ocean Art",
+    caption: "Detailed hand-painted nail art for a statement set.",
+    category: "Nail Art",
+    tone: "aqua",
+    size: "wide",
+    image: fastImage("ref-gallery-ocean-art"),
+    alt: "Detailed ocean-inspired nail art inspiration",
+    focal: "50% 50%"
+  },
+  {
+    title: "Glitter Cat Eye",
+    caption: "Dimensional reflective color movement.",
+    category: "Cat Eye",
+    tone: "structure",
+    size: "wide",
+    image: fastImage("ref-gallery-glitter-multi"),
+    alt: "Glitter cat eye manicure inspiration with reflective polish",
+    focal: "50% 50%"
+  },
+  {
+    title: "Studio Detail",
+    caption: "Cyan-lit RM studio atmosphere in Midtown.",
+    category: "Studio",
+    tone: "plum",
+    size: "wide",
+    image: vipRoomImage,
+    alt: "Cyan-lit manicure station with tools inside a premium nail studio",
+    focal: "50% 48%"
+  },
+  {
+    title: "Midtown Studio Front",
+    caption: "RM Nail Salon at 875 3rd Ave, Concourse Level.",
+    category: "Location",
+    tone: "aqua",
+    size: "small",
+    image: fastImage("brand-salon-front-full"),
+    alt: "RM Nail Salon storefront at 875 3rd Ave in Midtown Manhattan",
+    focal: "50% 45%"
+  },
+  {
+    title: "RM Campaign",
+    caption: "Brand campaign mood with red manicure detail.",
+    category: "Campaign",
+    tone: "aqua",
+    size: "small",
+    image: driveAsian4Image,
+    alt: "RM Nail Salon campaign image with red manicure detail",
+    focal: "50% 38%"
+  },
+  {
+    title: "Midtown Glow",
+    caption: "NYC skyline campaign frame with the RM cyan signature.",
+    category: "Campaign",
+    tone: "plum",
+    size: "small",
+    image: driveMidtownImage,
+    alt: "Midtown Manhattan skyline campaign image for RM Nail Salon",
+    focal: "50% 50%"
+  }
 ];
 
 export const proofBlocks = [

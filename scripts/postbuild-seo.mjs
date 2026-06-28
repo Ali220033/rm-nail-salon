@@ -15,7 +15,6 @@ import { siteConfig } from "../src/siteConfig.js";
 const distDir = path.resolve("dist");
 const indexPath = path.join(distDir, "index.html");
 const template = await readFile(indexPath, "utf8");
-const buildDate = new Date().toISOString();
 
 for (const page of seoPages) {
   const html = injectSeo(template, page);
@@ -48,6 +47,9 @@ function injectSeo(html, page) {
     `<meta property="og:type" content="website" />`,
     `<meta property="og:url" content="${absoluteUrl(page.path)}" />`,
     `<meta property="og:image" content="${absoluteImage(page.image)}" />`,
+    `<meta property="og:image:alt" content="${escapeHtml(page.imageAlt || page.h1 || page.title)}" />`,
+    `<meta property="og:image:width" content="1200" />`,
+    `<meta property="og:image:height" content="1600" />`,
     `<meta name="twitter:card" content="summary_large_image" />`,
     `<meta name="twitter:title" content="${escapeHtml(page.title)}" />`,
     `<meta name="twitter:description" content="${escapeHtml(page.description)}" />`,
@@ -75,7 +77,6 @@ function buildSitemap() {
       return [
         "  <url>",
         `    <loc>${absoluteUrl(page.path)}</loc>`,
-        `    <lastmod>${buildDate}</lastmod>`,
         "    <changefreq>weekly</changefreq>",
         `    <priority>${page.priority || "0.6"}</priority>`,
         "  </url>"

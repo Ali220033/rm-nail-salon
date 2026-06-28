@@ -140,12 +140,12 @@ export const serviceLandingPages = [
     title: "Russian Manicure NYC | RM Nail Salon Midtown",
     description:
       "Book a precise Russian manicure in Midtown NYC with detailed cuticle care, clean shaping, hygienic tools, hard gel options, and long-lasting shine.",
-    h1: "Russian manicure in Midtown NYC, finished with restraint.",
+    h1: "Russian Manicure in Midtown NYC with clean cuticle work.",
     heroCopy:
       "RM Nail Salon specializes in clean waterless manicure work for clients who want polish that looks expensive up close.",
     image: fastImage("service-russian-clear"),
     imageAlt: "Russian manicure with clean natural nails at RM Nail Salon",
-    introTitle: "A cleaner cuticle line is the whole point.",
+    introTitle: "Precision prep before the polish.",
     intro:
       "Russian manicure is a dry, detail-focused technique. At RM, the appointment is built around careful nail prep, precise cuticle refinement, balanced shaping, and a polished finish that stays clean as the nail grows.",
     serviceType: "Russian Manicure",
@@ -155,6 +155,11 @@ export const serviceLandingPages = [
       ["Long-wear finish", "Hard gel and polish options are structured for shine, balance, and a refined grow-out."],
       ["Midtown access", "The studio is close to Lexington Avenue, Park Avenue, and Grand Central for city appointments."]
     ],
+    ctaLabel: "Book Russian Manicure",
+    decisionTitle: "Why Russian manicure is different from a basic manicure.",
+    decisionCopy:
+      "The value is in the prep: clean cuticle work, careful shaping, controlled technique, and a finish that looks polished up close as the nails grow.",
+    relatedTitle: "Pair Russian manicure with the next RM service.",
     related: ["/hard-gel-manicure-nyc", "/smart-pedicure-nyc", "/nail-art-nyc"],
     priority: "0.95"
   },
@@ -165,7 +170,7 @@ export const serviceLandingPages = [
     title: "Hard Gel Manicure NYC | RM Nail Salon Midtown",
     description:
       "Hard gel manicures in Midtown NYC with Russian cuticle work, balanced structure, glossy color, fill-in options, and a polished long-wear result.",
-    h1: "Hard gel manicure for structure, shine, and clean grow-out.",
+    h1: "Hard Gel Manicure in Midtown NYC for strength without bulk.",
     heroCopy:
       "A hard gel appointment at RM combines Russian manicure prep with structure that feels slim, glossy, and durable.",
     image: fastImage("service-hard-gel"),
@@ -180,6 +185,11 @@ export const serviceLandingPages = [
       ["Russian prep first", "Cuticle work and nail prep happen before gel structure, so the finish looks sharp."],
       ["Maintenance rhythm", "Most clients schedule fill-in or refresh appointments around their natural growth cycle."]
     ],
+    ctaLabel: "Book Hard Gel",
+    decisionTitle: "Why hard gel costs more than regular gel polish.",
+    decisionCopy:
+      "Hard gel is a structured service. It requires prep, product control, surface refinement, and balance so the nail feels stronger without looking thick.",
+    relatedTitle: "Compare hard gel with related RM services.",
     related: ["/russian-manicure-nyc", "/builder-gel-nyc", "/gel-extensions-nyc"],
     priority: "0.9"
   },
@@ -205,6 +215,11 @@ export const serviceLandingPages = [
       ["Glossy wear", "Color is applied with attention to reflection, edges, and a smooth surface."],
       ["Midtown booking", "Easy online booking for clients near Third Avenue, Grand Central, and Midtown East."]
     ],
+    ctaLabel: "Book Gel Manicure",
+    decisionTitle: "Why RM gel manicures start with detailed prep.",
+    decisionCopy:
+      "A gel manicure looks more refined when the cuticle area, nail plate, and polish edges are prepared carefully before color is applied.",
+    relatedTitle: "Choose the gel service that fits your nails.",
     related: ["/russian-manicure-nyc", "/hard-gel-manicure-nyc", "/nail-art-nyc"],
     priority: "0.88"
   },
@@ -215,7 +230,7 @@ export const serviceLandingPages = [
     title: "Smart Pedicure NYC | RM Nail Salon Midtown",
     description:
       "Book a Russian smart pedicure in Midtown NYC with hygienic tools, clean nail care, smooth detail work, spa options, and optional gel polish.",
-    h1: "Smart pedicure care that feels clean, exact, and finished.",
+    h1: "Smart Pedicure in Midtown NYC for clean, detailed foot care.",
     heroCopy:
       "RM pedicure services focus on hygienic tools, precise shaping, and a calm salon experience for hands-and-feet clients.",
     image: fastImage("service-smart-pedicure"),
@@ -230,6 +245,11 @@ export const serviceLandingPages = [
       ["Gel or natural finish", "Choose a polished gel look or a clean no-polish result depending on the appointment."],
       ["Pairs well", "Many clients book smart pedicure care with Russian manicure or hard gel services."]
     ],
+    ctaLabel: "Book Smart Pedicure",
+    decisionTitle: "Why smart pedicure clients choose detail over speed.",
+    decisionCopy:
+      "This service is for clients who want careful foot and nail care, clean shaping, and a polished finish without the rushed feeling of a basic pedicure.",
+    relatedTitle: "Pair your smart pedicure with manicure services.",
     related: ["/russian-manicure-nyc", "/hard-gel-manicure-nyc", "/nail-art-nyc"],
     priority: "0.88"
   },
@@ -255,6 +275,11 @@ export const serviceLandingPages = [
       ["Gel or no polish", "Choose a glossy gel finish or a clean natural result."],
       ["Central location", "Convenient for Midtown East, Grand Central, Sutton Place, and Turtle Bay clients."]
     ],
+    ctaLabel: "Book Pedicure",
+    decisionTitle: "Why a clean pedicure appointment should feel unrushed.",
+    decisionCopy:
+      "Pedicure work should be hygienic, comfortable, and precise. RM keeps the focus on careful shaping, clean tools, and a calm Midtown experience.",
+    relatedTitle: "Explore related pedicure and manicure options.",
     related: ["/smart-pedicure-nyc", "/russian-manicure-nyc", "/gel-manicure-midtown-nyc"],
     priority: "0.84"
   },
@@ -265,7 +290,7 @@ export const serviceLandingPages = [
     title: "Gel Extensions NYC | RM Nail Salon Midtown",
     description:
       "Gel nail extensions in Midtown NYC with sculpted length, slim architecture, clean Russian manicure prep, refined shaping, and nail art options.",
-    h1: "Gel extensions with length that still looks elegant.",
+    h1: "Gel Extensions in Midtown NYC with length that still looks elegant.",
     heroCopy:
       "For clients who want more length, RM builds extensions with balanced architecture and a refined high-end profile.",
     image: fastImage("service-extensions"),
@@ -280,6 +305,11 @@ export const serviceLandingPages = [
       ["Russian manicure base", "The clean prep work supports the final shape and keeps the set looking refined."],
       ["Design-ready", "Extensions can be finished natural, glossy, chrome, French, or with custom nail art."]
     ],
+    ctaLabel: "Book Gel Extensions",
+    decisionTitle: "Why extensions require structure, not just length.",
+    decisionCopy:
+      "A refined extension set depends on proportion, sidewalls, balance, prep, and finish. RM designs length to look polished rather than heavy.",
+    relatedTitle: "Complete your extension appointment.",
     related: ["/builder-gel-nyc", "/nail-art-nyc", "/hard-gel-manicure-nyc"],
     priority: "0.88"
   },
@@ -305,6 +335,11 @@ export const serviceLandingPages = [
       ["Smooth architecture", "The surface is shaped for a glossy salon finish, not a thick artificial look."],
       ["Good transition service", "Ideal for clients moving from regular gel to a stronger structured manicure."]
     ],
+    ctaLabel: "Book Builder Gel",
+    decisionTitle: "Why builder gel is a structural service.",
+    decisionCopy:
+      "Builder gel adds support and shape while keeping the manicure clean. The result depends on prep, balance, and surface refinement.",
+    relatedTitle: "Compare builder gel with hard gel and extensions.",
     related: ["/hard-gel-manicure-nyc", "/russian-manicure-nyc", "/gel-extensions-nyc"],
     priority: "0.84"
   },
@@ -315,12 +350,12 @@ export const serviceLandingPages = [
     title: "Nail Art NYC | RM Nail Salon Midtown",
     description:
       "Nail art in Midtown NYC from French and chrome to cat eye, ombre, custom details, and editorial accents paired with precise RM manicure prep.",
-    h1: "Nail art that feels editorial, not overdone.",
+    h1: "Nail Art in Midtown NYC, from French to chrome.",
     heroCopy:
       "RM uses nail art as a luxury detail: clean, glossy, balanced, and designed around the shape of the hand.",
     image: fastImage("service-nail-design"),
     imageAlt: "Detailed nail art design at RM Nail Salon",
-    introTitle: "The best design still starts with clean prep.",
+    introTitle: "Detailed nail art designed to look refined, not heavy.",
     intro:
       "Nail art looks more expensive when the base manicure is precise. RM pairs Russian manicure standards with French, chrome, cat eye, ombre, and custom accent work for clients who want detail without visual noise.",
     serviceType: "Nail Art",
@@ -330,6 +365,11 @@ export const serviceLandingPages = [
       ["Service pairing", "Art can be added to hard gel, extensions, regular polish, or a Russian manicure appointment."],
       ["Instagram-ready", "The final set is built for close-up details, clean photos, and a polished social finish."]
     ],
+    ctaLabel: "Book Nail Art",
+    decisionTitle: "Why nail art should be planned around the full set.",
+    decisionCopy:
+      "The design looks best when it fits the nail length, shape, base color, and service timing. RM keeps detail work polished and wearable.",
+    relatedTitle: "Choose the base service for your nail art.",
     related: ["/gel-extensions-nyc", "/hard-gel-manicure-nyc", "/russian-manicure-nyc"],
     priority: "0.86"
   }
@@ -823,6 +863,49 @@ const defaultDecisionFaqs = [
   ["Why does Russian manicure cost more than a basic manicure?", "It takes more time, more detailed preparation, and more controlled technique around the cuticle and nail plate."]
 ];
 
+const serviceFaqsByPath = {
+  "/russian-manicure-nyc": [
+    ["What makes Russian manicure different?", "Russian manicure is a dry, detail-focused service that refines the cuticle area and nail plate before polish, gel, or a natural finish is applied."],
+    ["Can I book Russian manicure with no polish?", "Yes. RM offers Russian Manicure (clear/no polish) for clients who want clean cuticles, shaping, and a natural polished look."],
+    ["How often should I maintain it?", "Many clients return around 3 to 4 weeks, depending on nail growth, product choice, lifestyle, and aftercare."]
+  ],
+  "/hard-gel-manicure-nyc": [
+    ["Who is hard gel best for?", "Hard gel is best for clients who want more strength, smoother structure, or a longer-wearing manicure without a bulky-looking nail."],
+    ["Is hard gel the same as regular gel polish?", "No. Gel polish adds color, while hard gel adds structure and support. RM pairs hard gel with Russian manicure prep for a cleaner finish."],
+    ["Do I need a fill-in?", "Most hard gel clients maintain the structure with a fill-in around their natural growth cycle."]
+  ],
+  "/gel-manicure-midtown-nyc": [
+    ["Why does RM gel manicure look cleaner?", "RM focuses on detailed prep, cuticle area neatness, and smooth polish edges before the glossy gel finish is cured."],
+    ["Can I add nail art to a gel manicure?", "Yes. French, chrome, cat eye, ombre, and custom details can be added depending on timing and design complexity."],
+    ["Where can I see current availability?", "Use the Book Appointment button to open Booksy and choose the exact service, date, and time."]
+  ],
+  "/smart-pedicure-nyc": [
+    ["What is a Russian smart pedicure?", "It is a detailed pedicure service focused on clean nail care, shaping, hygienic prep, and either a natural, regular polish, or gel finish."],
+    ["Can I book smart pedicure without polish?", "Yes. The menu includes smart pedicure options with or without regular polish, plus gel pedicure options."],
+    ["Can I pair it with manicure?", "Yes. Many clients book manicure and pedicure together or choose one of the combo services on the service menu."]
+  ],
+  "/pedicure-midtown-nyc": [
+    ["Do you offer gel pedicure?", "Yes. RM offers Russian Smart Gel Pedicure and Spa Russian Smart Gel Pedicure options."],
+    ["Is pedicure available every day?", "RM lists daily hours from 9:30 AM to 7:30 PM. Current availability is shown on Booksy."],
+    ["Can I book no-polish pedicure?", "Yes. The smart pedicure menu includes with or without regular polish options."]
+  ],
+  "/gel-extensions-nyc": [
+    ["Who should book extensions?", "Extensions are best for clients who want added length, a shape transformation, or a base for more detailed nail art."],
+    ["Can extensions look natural?", "Yes. RM focuses on proportion, structure, and sidewall refinement so added length still looks elegant."],
+    ["How do I maintain extensions?", "Book timely fill-ins or corrections before the structure grows too far out or becomes imbalanced."]
+  ],
+  "/builder-gel-nyc": [
+    ["Is builder gel good for weak nails?", "Builder-style gel can help support natural nails when they need more structure than gel polish alone."],
+    ["Will builder gel look thick?", "RM focuses on balance and surface refinement so structured gel looks slim and polished."],
+    ["How is builder gel different from extensions?", "Builder gel supports the natural nail. Extensions add length and require more architecture."]
+  ],
+  "/nail-art-nyc": [
+    ["What nail art can I book?", "RM offers French, chrome, cat eye, ombre, and custom nail design options depending on complexity."],
+    ["Should I book nail art separately?", "Nail art is usually added to a manicure, hard gel, or extension service. Book the base service first when choosing your appointment."],
+    ["How is nail art priced?", "Pricing depends on the design type and complexity. Booksy shows the current menu and availability."]
+  ]
+};
+
 export function getDecisionDetails(page) {
   return serviceDecisionByPath[page.path] || defaultServiceDecision;
 }
@@ -830,8 +913,9 @@ export function getDecisionDetails(page) {
 export function getDecisionFaqs(page) {
   if (!serviceLandingPages.some((item) => item.path === page.path)) return [];
   const serviceType = page.serviceType || "this service";
+  const pageFaqs = serviceFaqsByPath[page.path] || defaultDecisionFaqs;
   return [
-    ...defaultDecisionFaqs,
+    ...pageFaqs,
     ["How do I book?", `Use the Book Appointment button to open RM Nail Salon on Booksy and reserve ${serviceType} online.`]
   ];
 }
@@ -917,7 +1001,7 @@ function organizationSchema() {
     url: siteConfig.siteUrl,
     logo: absoluteImage("/favicon.svg"),
     image: absoluteImage(fastImage("brand-salon-front-full")),
-    sameAs: [siteConfig.instagramUrl],
+    sameAs: [siteConfig.instagramCleanUrl || siteConfig.instagramUrl],
     contactPoint: [
       {
         "@type": "ContactPoint",
@@ -932,10 +1016,11 @@ function organizationSchema() {
 
 function localBusinessSchema() {
   return {
-    "@type": ["LocalBusiness", "BeautySalon", "NailSalon"],
+    "@type": "NailSalon",
     "@id": `${siteConfig.siteUrl}/#nailsalon`,
     name: siteConfig.salonName,
     url: siteConfig.siteUrl,
+    additionalType: "https://schema.org/BeautySalon",
     image: [
       absoluteImage(fastImage("rm-hero")),
       absoluteImage(fastImage("brand-salon-front-full")),
@@ -979,7 +1064,7 @@ function localBusinessSchema() {
       "New York City"
     ],
     hasMap: siteConfig.mapUrl,
-    sameAs: [siteConfig.instagramUrl, siteConfig.bookingUrl],
+    sameAs: [siteConfig.instagramCleanUrl || siteConfig.instagramUrl, siteConfig.bookingUrl],
     potentialAction: {
       "@type": "ReserveAction",
       target: siteConfig.bookingUrl,
@@ -987,32 +1072,7 @@ function localBusinessSchema() {
         "@type": "Reservation",
         name: "RM Nail Salon appointment"
       }
-    },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: reviewSummary.ratingValue,
-      reviewCount: reviewSummary.reviewCount,
-      bestRating: "5",
-      worstRating: "1"
-    },
-    review: reviewSummary.reviews.map((review) => ({
-      "@type": "Review",
-      author: {
-        "@type": "Person",
-        name: review.author
-      },
-      reviewRating: {
-        "@type": "Rating",
-        ratingValue: review.ratingValue,
-        bestRating: "5",
-        worstRating: "1"
-      },
-      reviewBody: review.reviewBody,
-      publisher: {
-        "@type": "Organization",
-        name: reviewSummary.source
-      }
-    }))
+    }
   };
 }
 

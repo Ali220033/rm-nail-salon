@@ -2,8 +2,10 @@ import React, { useEffect, useMemo, useState } from "react";
 import { createRoot } from "react-dom/client";
 import {
   AnimatePresence,
+  MotionConfig,
   motion,
   useMotionValue,
+  useReducedMotion,
   useSpring
 } from "framer-motion";
 import {
@@ -71,6 +73,12 @@ const routes = [
   { to: "/contact", label: "Contact" }
 ];
 
+const prefersReducedScroll = () =>
+  typeof window !== "undefined" &&
+  window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+
+const scrollBehavior = () => (prefersReducedScroll() ? "auto" : "smooth");
+
 const luxuryServices = [
   {
     title: "Russian Manicure",
@@ -130,11 +138,100 @@ const luxuryServices = [
 
 const proofStripItems = [
   "5.0 Booksy rating",
-  "7 verified Booksy reviews",
+  "7 Booksy client reviews",
   "875 3rd Ave, Concourse Level",
   "Daily 9:30 AM - 7:30 PM",
-  "Online booking in seconds"
+  "Russian manicure specialists"
 ];
+
+const serviceDetails = {
+  "russian-clear": {
+    bestFor: "Clean cuticles and natural nails",
+    includes: "Dry cuticle work, shaping, and a clean no-polish finish.",
+    learnMorePath: "/russian-manicure-nyc",
+    bookLabel: "Book Russian Manicure",
+    imageAlt: "Full hands with clean natural Russian manicure result"
+  },
+  "russian-hard-gel": {
+    bestFor: "Strength without a bulky look",
+    includes: "Russian prep, hard gel overlay, color, and glossy finish.",
+    learnMorePath: "/hard-gel-manicure-nyc",
+    bookLabel: "Book Hard Gel",
+    imageAlt: "Hard gel manicure structure applied after Russian manicure prep"
+  },
+  "spa-russian-hard-gel": {
+    bestFor: "Extra care with structured gel",
+    includes: "Hard gel manicure plus elevated spa-style detail.",
+    learnMorePath: "/gel-manicure-midtown-nyc",
+    bookLabel: "Book Spa Hard Gel",
+    imageAlt: "Gel manicure service with precise polish application"
+  },
+  "nail-extensions": {
+    bestFor: "Length and shape transformation",
+    includes: "Sculpted structure, refined sidewalls, shaping, and color.",
+    learnMorePath: "/gel-extensions-nyc",
+    bookLabel: "Book Extensions",
+    imageAlt: "Long nail extensions with refined shape and glossy finish"
+  },
+  "smart-pedicure": {
+    bestFor: "Clean foot care",
+    includes: "Detailed shaping, hygienic prep, and regular or no-polish finish.",
+    learnMorePath: "/smart-pedicure-nyc",
+    bookLabel: "Book Smart Pedicure",
+    imageAlt: "Smart pedicure care with clean toe nail shaping"
+  },
+  "smart-gel-pedicure": {
+    bestFor: "Glossy long-wear toes",
+    includes: "Smart pedicure care finished with gel color.",
+    learnMorePath: "/smart-pedicure-nyc",
+    bookLabel: "Book Gel Pedicure",
+    imageAlt: "Gel pedicure result with glossy toe polish"
+  },
+  "nail-design": {
+    bestFor: "Custom detail or statement accents",
+    includes: "Custom detail work priced by complexity.",
+    learnMorePath: "/nail-art-nyc",
+    bookLabel: "Book Nail Art",
+    imageAlt: "Custom nail design detail with glossy finish"
+  },
+  french: {
+    bestFor: "Classic clean tips",
+    includes: "French finish added to manicure or pedicure service.",
+    learnMorePath: "/nail-art-nyc",
+    bookLabel: "Book French Add-On",
+    imageAlt: "French manicure inspiration with clean white tips"
+  },
+  chrome: {
+    bestFor: "Reflective editorial shine",
+    includes: "Chrome finish added to a manicure service.",
+    learnMorePath: "/nail-art-nyc",
+    bookLabel: "Book Chrome Add-On",
+    imageAlt: "Chrome manicure with reflective polish finish"
+  },
+  "cat-eye": {
+    bestFor: "Dimensional magnetic shine",
+    includes: "Cat eye gel finish added to a manicure service.",
+    learnMorePath: "/nail-art-nyc",
+    bookLabel: "Book Cat Eye Add-On",
+    imageAlt: "Cat eye manicure with reflective magnetic polish"
+  }
+};
+
+function enrichService(service) {
+  const defaults = {
+    bestFor: service.category ? `${service.category.toLowerCase()} detail` : "A polished RM finish",
+    includes: service.description,
+    learnMorePath: "/services",
+    bookLabel: `Book ${service.shortName || service.name}`,
+    imageAlt: `${service.name} service example`
+  };
+
+  return {
+    ...service,
+    ...defaults,
+    ...(serviceDetails[service.id] || {})
+  };
+}
 
 const processSteps = [
   ["01", "Consultation", "We study your nail goals, lifestyle, shape preference, and existing product before touching the file."],
@@ -171,24 +268,6 @@ const artistProfiles = [
   }
 ];
 
-const homeReviews = [
-  {
-    author: "Lauren",
-    quote: "Meticulous, clean and careful work.",
-    detail: "Russian manicure client"
-  },
-  {
-    author: "Jacqueline",
-    quote: "Great manicure and service.",
-    detail: "Hard gel appointment"
-  },
-  {
-    author: "Nikki",
-    quote: "Great service and beautiful nails.",
-    detail: "RM client review"
-  }
-];
-
 const locationAreas = [
   "Midtown East",
   "Grand Central",
@@ -209,6 +288,9 @@ function SeoHead({ route }) {
     setMeta("property", "og:type", "website");
     setMeta("property", "og:url", absoluteUrl(page.path));
     setMeta("property", "og:image", absoluteImage(page.image));
+    setMeta("property", "og:image:alt", page.imageAlt || page.h1 || page.title);
+    setMeta("property", "og:image:width", "1200");
+    setMeta("property", "og:image:height", "1600");
     setMeta("name", "twitter:card", "summary_large_image");
     setMeta("name", "twitter:title", page.title);
     setMeta("name", "twitter:description", page.description);
@@ -262,23 +344,37 @@ function App() {
   const [selectedGallery, setSelectedGallery] = useState(null);
   const [route, setRoute] = useState(normalizePath);
   const [navCompact, setNavCompact] = useState(false);
+  const [mobileBookVisible, setMobileBookVisible] = useState(false);
 
   useEffect(() => {
     const timer = window.setTimeout(() => setLoading(false), 1000);
-    const onScroll = () => setNavCompact(window.scrollY > 42);
+    let frame = 0;
+    const updateScrollState = () => {
+      frame = 0;
+      const compact = window.scrollY > 42;
+      const showMobileBook = window.scrollY > Math.min(760, window.innerHeight * 0.78);
+      setNavCompact((value) => (value === compact ? value : compact));
+      setMobileBookVisible((value) => (value === showMobileBook ? value : showMobileBook));
+    };
+    const onScroll = () => {
+      if (!frame) {
+        frame = window.requestAnimationFrame(updateScrollState);
+      }
+    };
     const onPop = () => setRoute(normalizePath());
-    onScroll();
+    updateScrollState();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("popstate", onPop);
     return () => {
       window.clearTimeout(timer);
+      if (frame) window.cancelAnimationFrame(frame);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("popstate", onPop);
     };
   }, []);
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: scrollBehavior() });
   }, [route]);
 
   const navigate = (to) => (event) => {
@@ -308,7 +404,7 @@ function App() {
 
     switch (route) {
       case "/services":
-        return <ServicesPage />;
+        return <ServicesPage navigate={navigate} />;
       case "/about":
         return <AboutPage navigate={navigate} />;
       case "/gallery":
@@ -329,21 +425,23 @@ function App() {
   }, [route]);
 
   return (
-    <div className="lux-site">
-      <SeoHead route={route} />
-      <AnimatePresence>{loading && <Loader />}</AnimatePresence>
-      <Nav compact={navCompact} route={route} navigate={navigate} />
-      <main>
-        <AnimatePresence mode="wait">
-          <motion.div key={route} {...pageMotion}>
-            {page}
-          </motion.div>
-        </AnimatePresence>
-      </main>
-      <Footer navigate={navigate} />
-      <MobileBook />
-      <GalleryModal item={selectedGallery} onClose={() => setSelectedGallery(null)} />
-    </div>
+    <MotionConfig reducedMotion="user">
+      <div className="lux-site">
+        <SeoHead route={route} />
+        <AnimatePresence>{loading && <Loader />}</AnimatePresence>
+        <Nav compact={navCompact} route={route} navigate={navigate} />
+        <main>
+          <AnimatePresence mode="wait">
+            <motion.div key={route} {...pageMotion}>
+              {page}
+            </motion.div>
+          </AnimatePresence>
+        </main>
+        <Footer navigate={navigate} />
+        <MobileBook visible={mobileBookVisible} />
+        <GalleryModal item={selectedGallery} onClose={() => setSelectedGallery(null)} />
+      </div>
+    </MotionConfig>
   );
 }
 
@@ -367,17 +465,19 @@ function Loader() {
   );
 }
 
-function RouteLink({ to, navigate, className = "", children }) {
-  if (to.startsWith("#")) {
+function RouteLink({ to = "/", navigate, className = "", children }) {
+  const safeTo = to || "/";
+
+  if (safeTo.startsWith("#")) {
     return (
-      <a href={to} className={className}>
+      <a href={safeTo} className={className}>
         {children}
       </a>
     );
   }
 
   return (
-    <a href={to} className={className} onClick={navigate(to)}>
+    <a href={safeTo} className={className} onClick={navigate(safeTo)}>
       {children}
     </a>
   );
@@ -410,7 +510,7 @@ function Nav({ compact, route, navigate }) {
             className="nav-menu-toggle"
             onClick={() => setOpen((value) => !value)}
             aria-expanded={open}
-            aria-label="Open navigation menu"
+            aria-label={open ? "Close navigation menu" : "Open navigation menu"}
           >
             {open ? <X size={22} /> : <Menu size={23} />}
           </button>
@@ -428,7 +528,10 @@ function Nav({ compact, route, navigate }) {
                   event.preventDefault();
                   window.history.pushState({}, "", `/${item.to}`);
                   window.dispatchEvent(new PopStateEvent("popstate"));
-                  window.setTimeout(() => document.querySelector(item.to)?.scrollIntoView({ behavior: "smooth" }), 90);
+                  window.setTimeout(
+                    () => document.querySelector(item.to)?.scrollIntoView({ behavior: scrollBehavior() }),
+                    90
+                  );
                 }
               }}
             >
@@ -457,12 +560,14 @@ function Nav({ compact, route, navigate }) {
 }
 
 function MagneticLink({ href, className = "", children, onClick }) {
+  const reduceMotion = useReducedMotion();
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
   const x = useSpring(mx, { stiffness: 170, damping: 15 });
   const y = useSpring(my, { stiffness: 170, damping: 15 });
   const external = href?.startsWith("http");
   const canMagnet =
+    !reduceMotion &&
     typeof window !== "undefined" &&
     window.matchMedia?.("(hover: hover) and (pointer: fine)").matches;
   const resetPosition = () => {
@@ -509,14 +614,14 @@ function HomePage({ navigate, setSelectedGallery }) {
       <Hero navigate={navigate} />
       <SocialProofStrip />
       <LuxuryServicesOverview navigate={navigate} />
-      <SignatureExperience navigate={navigate} />
-      <BeforeAfterExperience />
       <Proof />
+      <GalleryPreview setSelectedGallery={setSelectedGallery} navigate={navigate} />
+      <CleanProcessPreview navigate={navigate} />
+      <SignatureExperience navigate={navigate} />
+      <FeaturedServicesHome navigate={navigate} />
+      <ReviewsSection />
       <ProcessTimeline />
       <WorkReel />
-      <GalleryPreview setSelectedGallery={setSelectedGallery} navigate={navigate} />
-      <MeetArtists />
-      <ReviewsSection />
       <EditorialJournal navigate={navigate} />
       <LocationSection navigate={navigate} />
       <HomeFaq />
@@ -550,19 +655,19 @@ function Hero({ navigate }) {
       >
         <motion.h1 variants={reveal}>Midtown&apos;s Luxury Russian Manicure Studio</motion.h1>
         <motion.p variants={reveal} className="hero-sub">
-          Precision cuticle work, refined nail structure, and a flawless finish designed to last beautifully for weeks.
+          Precision cuticle work, refined nail structure, and a flawless finish designed to look beautiful for weeks.
         </motion.p>
         <motion.div variants={reveal} className="hero-proof-line">
-          <span>5.0 Booksy rating</span>
+          <span>Russian manicure specialists</span>
           <span>Midtown Manhattan</span>
-          <span>Book in 20 seconds</span>
+          <span>Online booking available</span>
         </motion.div>
         <motion.div variants={reveal} className="hero-actions">
           <MagneticLink href={siteConfig.bookingUrl} className="gold-cta">
             Book Appointment <ArrowUpRight size={17} />
           </MagneticLink>
           <MagneticLink href="/services" onClick={navigate("/services")} className="aqua-cta">
-            View Services <Sparkles size={16} />
+            Explore Services <Sparkles size={16} />
           </MagneticLink>
         </motion.div>
       </motion.div>
@@ -734,8 +839,10 @@ function SignatureExperience({ navigate }) {
   );
 }
 
-function FeaturedServicesHome() {
-  const [active, setActive] = useState(featuredServices[0]);
+function FeaturedServicesHome({ navigate }) {
+  const homeFeaturedServices = useMemo(() => featuredServices.map(enrichService), []);
+  const [activeId, setActiveId] = useState(homeFeaturedServices[0]?.id);
+  const active = homeFeaturedServices.find((service) => service.id === activeId) || homeFeaturedServices[0];
 
   return (
     <section className="featured-service-section">
@@ -753,27 +860,36 @@ function FeaturedServicesHome() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.45 }}
         >
-          <img src={active.image} alt={`${active.name} example at RM Nail Salon`} loading="lazy" decoding="async" />
+          <img src={active.image} alt={active.imageAlt} loading="lazy" decoding="async" />
           <div className="featured-price">
             <span>{active.time}</span>
             <strong>{active.price}</strong>
           </div>
         </motion.div>
         <div className="featured-service-list">
-          {featuredServices.map((service) => (
+          {homeFeaturedServices.map((service) => (
             <button
               key={service.id}
               className={active.id === service.id ? "featured-service-row active" : "featured-service-row"}
-              onClick={() => setActive(service)}
+              onClick={() => setActiveId(service.id)}
             >
               <span>{service.category}</span>
               <strong>{service.shortName}</strong>
               <em>{service.price}</em>
             </button>
           ))}
-          <MagneticLink href={siteConfig.bookingUrl} className="outline-cta">
-            Book Appointment <CalendarDays size={16} />
-          </MagneticLink>
+          <div className="featured-service-detail">
+            <span>Best for: {active.bestFor}</span>
+            <p>{active.includes}</p>
+            <div>
+              <MagneticLink href={siteConfig.bookingUrl} className="gold-cta">
+                {active.bookLabel} <CalendarDays size={16} />
+              </MagneticLink>
+              <RouteLink to={active.learnMorePath} navigate={navigate} className="outline-cta">
+                Learn More <ArrowUpRight size={16} />
+              </RouteLink>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -944,15 +1060,65 @@ function Proof() {
   );
 }
 
+function CleanProcessPreview({ navigate }) {
+  const cleanSteps = [
+    ["Prepared Tools", "Tools and work surfaces are prepared between appointments with a clean-service mindset."],
+    ["Careful E-File Work", "Cuticle prep is paced carefully, with controlled technique around the nail plate."],
+    ["Fresh Workstation", "The station is reset before service so the appointment feels calm, organized, and professional."],
+    ["Comfort Check", "Your nail condition, length, and product history guide the service choice before polish begins."]
+  ];
+
+  return (
+    <section className="clean-process-section">
+      <div className="clean-process-layout">
+        <div className="clean-process-copy">
+          <p className="eyebrow">Our Clean Process</p>
+          <h2>Precision should feel comfortable before it looks beautiful.</h2>
+          <p>
+            Russian manicure requires trust. RM approaches every appointment with careful preparation, controlled
+            technique, and a clean workstation so the experience feels professional from start to finish.
+          </p>
+          <div className="clean-step-grid">
+            {cleanSteps.map(([title, copy]) => (
+              <article key={title}>
+                <ShieldCheck size={17} />
+                <h3>{title}</h3>
+                <p>{copy}</p>
+              </article>
+            ))}
+          </div>
+          <RouteLink to="/sterilization-process" navigate={navigate} className="outline-cta">
+            Read the Clean Process <ArrowUpRight size={16} />
+          </RouteLink>
+        </div>
+        <div className="clean-process-media">
+          <img
+            src={fastImage("work-reel-process")}
+            alt="Technician performing detailed Russian manicure prep with professional tools"
+            loading="lazy"
+            decoding="async"
+          />
+          <img
+            src={fastImage("service-vip-room")}
+            alt="Clean cyan-lit manicure station prepared for a nail appointment"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function ReviewsSection() {
   return (
     <section className="reviews-section" id="reviews">
       <div className="reviews-lead">
         <p className="eyebrow">Client Proof</p>
-        <h2>Real reviews, presented with restraint.</h2>
+        <h2>Booksy client reviews from real appointments.</h2>
         <p>
-          RM does not need fake numbers to feel premium. We show the verified Booksy rating clearly, then let process,
-          cleanliness, and visible results support the decision to book.
+          RM currently shows a 5.0 rating on Booksy from 7 listed client reviews. Read the full listing before choosing
+          your appointment time.
         </p>
         <div className="rating-lockup" aria-label={`${reviewSummary.ratingValue} rating from ${reviewSummary.reviewCount} client reviews`}>
           <strong>{reviewSummary.ratingValue}</strong>
@@ -962,9 +1128,12 @@ function ReviewsSection() {
           </span>
           <em>{reviewSummary.reviewCount} client reviews</em>
         </div>
+        <MagneticLink href={reviewSummary.sourceUrl} className="outline-cta review-booksy-link">
+          Read Reviews on Booksy <ArrowUpRight size={16} />
+        </MagneticLink>
       </div>
       <div className="review-cards">
-        {homeReviews.map((review, index) => (
+        {reviewSummary.reviews.map((review, index) => (
           <motion.article
             key={review.author}
             initial={{ opacity: 0, y: 24 }}
@@ -977,8 +1146,8 @@ function ReviewsSection() {
                 <Star key={item} size={14} fill="currentColor" />
               ))}
             </div>
-            <q>{review.quote}</q>
-            <span>{review.author} / {review.detail}</span>
+            <q>{review.reviewBody}</q>
+            <span>{review.author} / Booksy client review</span>
           </motion.article>
         ))}
       </div>
@@ -1074,7 +1243,11 @@ function HomeFaq() {
       <div className="home-faq-list">
         {homeFaqs.map((item, index) => (
           <article key={item.question} className={open === index ? "open" : ""}>
-            <button onClick={() => setOpen(open === index ? -1 : index)}>
+            <button
+              onClick={() => setOpen(open === index ? -1 : index)}
+              aria-expanded={open === index}
+              aria-controls={`home-faq-${index}`}
+            >
               <span>{String(index + 1).padStart(2, "0")}</span>
               <strong>{item.question}</strong>
               <ChevronDown size={18} />
@@ -1082,6 +1255,7 @@ function HomeFaq() {
             <AnimatePresence>
               {open === index && (
                 <motion.p
+                  id={`home-faq-${index}`}
                   initial={{ height: 0, opacity: 0 }}
                   animate={{ height: "auto", opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}
@@ -1199,16 +1373,22 @@ function PageHero({ label, title, copy, image = fastImage("rm-hero-editorial"), 
   );
 }
 
-function ServicesPage() {
-  const allServices = serviceMenu.flatMap((group) =>
-    group.services.map((service) => ({ ...service, category: group.category }))
+function ServicesPage({ navigate }) {
+  const serviceGroups = useMemo(
+    () =>
+      serviceMenu.map((group) => ({
+        ...group,
+        services: group.services.map((service) => enrichService({ ...service, category: group.category }))
+      })),
+    []
   );
+  const allServices = useMemo(() => serviceGroups.flatMap((group) => group.services), [serviceGroups]);
   const [spotlight, setSpotlight] = useState(
     allServices.find((service) => service.id === "russian-hard-gel") || allServices[0]
   );
 
   const scrollToCategory = (category) => {
-    document.getElementById(slug(category))?.scrollIntoView({ behavior: "smooth", block: "start" });
+    document.getElementById(slug(category))?.scrollIntoView({ behavior: scrollBehavior(), block: "start" });
   };
 
   return (
@@ -1229,39 +1409,45 @@ function ServicesPage() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.45 }}
           >
-            <img src={spotlight.image} alt={`${spotlight.name} service preview at RM Nail Salon`} loading="lazy" decoding="async" />
+            <img src={spotlight.image} alt={spotlight.imageAlt} loading="lazy" decoding="async" />
             <div>
               <span>{spotlight.category}</span>
               <strong>{spotlight.name}</strong>
               <em>{spotlight.price}</em>
+              <p>{spotlight.bestFor}</p>
             </div>
           </motion.div>
           <div className="lookbook-rail" aria-label="Service image previews">
             {allServices.map((service) => (
               <button
                 key={service.id}
+                aria-label={`Preview ${service.shortName} service`}
                 className={spotlight.id === service.id ? "active" : ""}
                 onMouseEnter={() => setSpotlight(service)}
                 onFocus={() => setSpotlight(service)}
                 onClick={() => {
                   setSpotlight(service);
-                  document.getElementById(service.id)?.scrollIntoView({ behavior: "smooth", block: "center" });
+                  document.getElementById(service.id)?.scrollIntoView({ behavior: scrollBehavior(), block: "center" });
                 }}
               >
-                <img src={service.image} alt={`${service.name} thumbnail at RM Nail Salon`} loading="lazy" decoding="async" />
+                <span
+                  className="rail-thumb"
+                  aria-hidden="true"
+                  style={{ "--rail-image": `url(${service.image})` }}
+                />
                 <span>{service.shortName}</span>
               </button>
             ))}
           </div>
         </div>
         <div className="category-pills" aria-label="Service categories">
-          {serviceMenu.map((group) => (
+          {serviceGroups.map((group) => (
             <button key={group.category} onClick={() => scrollToCategory(group.category)}>
               {group.category}
             </button>
           ))}
         </div>
-        {serviceMenu.map((group) => (
+        {serviceGroups.map((group) => (
           <div className="catalog-group" id={slug(group.category)} key={group.category}>
             <div className="catalog-group-heading">
               <p className="eyebrow">{group.category}</p>
@@ -1276,18 +1462,23 @@ function ServicesPage() {
                   id={service.id}
                   onMouseEnter={() => setSpotlight({ ...service, category: group.category })}
                 >
-                  <img src={service.image} alt={`${service.name} service image at RM Nail Salon`} loading="lazy" decoding="async" />
+                  <img src={service.image} alt={service.imageAlt} loading="lazy" decoding="async" />
                   <div className="catalog-copy">
                     <span>{service.time}</span>
                     <h3>{service.name}</h3>
+                    <em>Best for: {service.bestFor}</em>
                     <p>{service.description}</p>
+                    <small>{service.includes}</small>
                   </div>
                   <div className="catalog-price">
                     <strong>{service.price}</strong>
                     {service.topTech && <span>Top tech {service.topTech}</span>}
                     <MagneticLink href={siteConfig.bookingUrl} className="mini-book">
-                      Book <ArrowUpRight size={14} />
+                      {service.bookLabel} <ArrowUpRight size={14} />
                     </MagneticLink>
+                    <RouteLink to={service.learnMorePath} navigate={navigate} className="service-learn-link">
+                      Learn more
+                    </RouteLink>
                   </div>
                 </article>
               ))}
@@ -1354,7 +1545,7 @@ function BeforeAfterExperience() {
 }
 
 function ServiceLandingPage({ page, navigate }) {
-  const services = page.serviceIds.map(getServiceById).filter(Boolean);
+  const services = page.serviceIds.map(getServiceById).filter(Boolean).map(enrichService);
   const relatedPages = getRelatedSeoPages(page.related);
   const decision = getDecisionDetails(page);
   const decisionFaqs = getDecisionFaqs(page);
@@ -1375,7 +1566,7 @@ function ServiceLandingPage({ page, navigate }) {
           <p>{page.intro}</p>
           <div className="seo-cta-row">
             <MagneticLink href={siteConfig.bookingUrl} className="gold-cta">
-              Book This Service <CalendarDays size={16} />
+              {page.ctaLabel || `Book ${page.serviceType}`} <CalendarDays size={16} />
             </MagneticLink>
             <RouteLink to="/services" navigate={navigate} className="aqua-cta">
               View Full Menu <ArrowUpRight size={16} />
@@ -1396,10 +1587,10 @@ function ServiceLandingPage({ page, navigate }) {
         <div className="service-decision-panel">
           <div>
             <p className="eyebrow">Book Confidently</p>
-            <h2>Why this appointment costs more than a basic manicure.</h2>
+            <h2>{page.decisionTitle || "Why this appointment costs more than a basic manicure."}</h2>
             <p>
-              Premium nail work is not just polish. It is preparation, structure, hygiene, and the judgement to keep the
-              final result refined.
+              {page.decisionCopy ||
+                "Premium nail work is not just polish. It is preparation, structure, hygiene, and the judgement to keep the final result refined."}
             </p>
           </div>
           <div className="decision-columns">
@@ -1433,7 +1624,7 @@ function ServiceLandingPage({ page, navigate }) {
             <article key={service.id} className="seo-service-card">
               <img
                 src={service.image}
-                alt={`${service.name} at RM Nail Salon in Midtown NYC`}
+                alt={service.imageAlt}
                 loading="lazy"
                 decoding="async"
               />
@@ -1441,17 +1632,18 @@ function ServiceLandingPage({ page, navigate }) {
                 <span>{service.category} / {service.time}</span>
                 <h3>{service.name}</h3>
                 <p>{service.description}</p>
+                <small>Best for: {service.bestFor}</small>
               </div>
               <strong>{service.price}</strong>
               <MagneticLink href={siteConfig.bookingUrl} className="mini-book">
-                Book <ArrowUpRight size={14} />
+                {service.bookLabel} <ArrowUpRight size={14} />
               </MagneticLink>
             </article>
           ))}
         </div>
 
         <RelatedSeoLinks
-          title="Continue through the RM service path."
+          title={page.relatedTitle || "Choose the next service for your appointment."}
           links={relatedPages}
           navigate={navigate}
         />
@@ -1546,13 +1738,18 @@ function GeoLandingPage({ page, navigate }) {
 function RelatedSeoLinks({ title, links, navigate }) {
   return (
     <div className="related-seo-links">
-      <p className="eyebrow">Continue Exploring</p>
+      <p className="eyebrow">Explore Our Signature Services</p>
       <h2>{title}</h2>
-      <div>
+      <div className="related-card-grid">
         {links.map((item) => (
-          <RouteLink key={item.path} to={item.path} navigate={navigate}>
-            {item.navLabel || item.h1}
-            <ArrowUpRight size={14} />
+          <RouteLink key={item.path} to={item.path} navigate={navigate} className="related-service-card">
+            <img src={item.image} alt={item.imageAlt} loading="lazy" decoding="async" />
+            <span>{item.navLabel || item.label || "RM Nail Salon"}</span>
+            <h3>{item.h1}</h3>
+            <p>{item.description}</p>
+            <em>
+              Learn more <ArrowUpRight size={14} />
+            </em>
           </RouteLink>
         ))}
       </div>
@@ -1834,8 +2031,8 @@ function GalleryPage({ setSelectedGallery }) {
       <section className="gallery-editorial full">
         <SectionIntro
           label="RM Portfolio"
-          title="A visual proof system, not a photo dump."
-          copy="Explore clean cuticle work, hard gel structure, pedicure detail, extensions, and editorial nail art through a more curated RM lens."
+          title="Clean results, studio detail, and appointment inspiration."
+          copy="Explore cuticle work, hard gel structure, pedicure detail, extensions, and editorial nail art through a curated RM portfolio."
         />
         <GalleryGrid items={galleryItems} setSelectedGallery={setSelectedGallery} />
       </section>
@@ -1855,8 +2052,15 @@ function GalleryGrid({ items, setSelectedGallery }) {
           initial={{ opacity: 0, y: 32 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
+          style={{ "--image-focus": item.focal || "center" }}
         >
-          <img src={item.image} alt={item.alt || `${item.title} manicure gallery photo at RM Nail Salon`} loading="lazy" decoding="async" />
+          <img src={item.image} alt={item.alt || `${item.title} manicure gallery photo`} loading="lazy" decoding="async" />
+          <div className="masonry-caption">
+            <span>{item.category || "RM Gallery"}</span>
+            <strong>{item.title}</strong>
+            <em>{item.caption}</em>
+            <small>Book this look <ArrowUpRight size={13} /></small>
+          </div>
         </motion.button>
       ))}
     </div>
@@ -1864,11 +2068,23 @@ function GalleryGrid({ items, setSelectedGallery }) {
 }
 
 function GalleryModal({ item, onClose }) {
+  useEffect(() => {
+    if (!item) return undefined;
+    const onKeyDown = (event) => {
+      if (event.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [item, onClose]);
+
   return (
     <AnimatePresence>
       {item && (
         <motion.div
           className="modal-backdrop"
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${item.title} gallery preview`}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -1905,9 +2121,19 @@ function FaqPage() {
         alt="Blue gray manicure detail for Russian manicure FAQ"
       />
       <section className="faq-section">
+        <SectionIntro
+          label="Before You Book"
+          title="Clear answers for a more confident appointment."
+          copy="Use these details to choose between Russian manicure, hard gel, pedicure, extensions, nail art, and repair services."
+          align="center"
+        />
         {faqs.map((item, index) => (
           <article className={open === index ? "faq-item open" : "faq-item"} key={item.question}>
-            <button onClick={() => setOpen(open === index ? -1 : index)}>
+            <button
+              onClick={() => setOpen(open === index ? -1 : index)}
+              aria-expanded={open === index}
+              aria-controls={`faq-answer-${index}`}
+            >
               <span>{String(index + 1).padStart(2, "0")}</span>
               <strong>{item.question}</strong>
               <ChevronDown size={19} />
@@ -1915,6 +2141,7 @@ function FaqPage() {
             <AnimatePresence>
               {open === index && (
                 <motion.p
+                  id={`faq-answer-${index}`}
                   initial={{ height: 0, opacity: 0 }}
                   animate={{ height: "auto", opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}
@@ -1949,6 +2176,12 @@ function ContactPage() {
         alt="RM Nail Salon contact page manicure detail"
       />
       <section id="contact" className="contact-editorial">
+        <SectionIntro
+          label="Visit RM"
+          title="Book online, call, or find us in Midtown Manhattan."
+          copy="RM Nail Salon is located at 875 3rd Ave, Concourse Level, with daily appointments and online booking through Booksy."
+          align="center"
+        />
         <div className="contact-layout">
           <div className="contact-cards">
             {contacts.map(([Icon, label, value, href]) => {
@@ -2002,11 +2235,29 @@ function Footer({ navigate }) {
         </div>
       </div>
       <nav>
-        {routes.slice(1).map((item) => (
-          <RouteLink key={item.to} to={item.to} navigate={navigate}>
-            {item.label}
-          </RouteLink>
-        ))}
+        {routes.slice(1).map((item) =>
+          item.to.startsWith("#") ? (
+            <a
+              key={item.to}
+              href={`/${item.to}`}
+              onClick={(event) => {
+                event.preventDefault();
+                window.history.pushState({}, "", `/${item.to}`);
+                window.dispatchEvent(new PopStateEvent("popstate"));
+                window.setTimeout(
+                  () => document.querySelector(item.to)?.scrollIntoView({ behavior: scrollBehavior() }),
+                  90
+                );
+              }}
+            >
+              {item.label}
+            </a>
+          ) : (
+            <RouteLink key={item.to} to={item.to} navigate={navigate}>
+              {item.label}
+            </RouteLink>
+          )
+        )}
       </nav>
       <div className="footer-seo-nav">
         <div>
@@ -2048,11 +2299,11 @@ function Footer({ navigate }) {
   );
 }
 
-function MobileBook() {
+function MobileBook({ visible }) {
   return (
-    <a href={siteConfig.bookingUrl} className="mobile-book" target="_blank" rel="noreferrer">
+    <a href={siteConfig.bookingUrl} className={visible ? "mobile-book visible" : "mobile-book"} target="_blank" rel="noreferrer">
       <span>Book Appointment</span>
-      <em>10% off first visit</em>
+      <em>View availability on Booksy</em>
     </a>
   );
 }
