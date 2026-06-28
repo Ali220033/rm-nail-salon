@@ -4,6 +4,8 @@ import {
   absoluteImage,
   absoluteUrl,
   buildStructuredData,
+  getDecisionDetails,
+  getDecisionFaqs,
   getRelatedSeoPages,
   getServiceById,
   seoPages
@@ -103,6 +105,8 @@ function buildStaticSnapshot(page) {
     page.related || ["/services", "/russian-manicure-nyc", "/hard-gel-manicure-nyc", "/smart-pedicure-nyc"]
   ).filter((related) => related.path !== page.path);
   const serviceItems = (page.serviceIds || []).map(getServiceById).filter(Boolean);
+  const decisionFaqs = getDecisionFaqs(page);
+  const decision = page.serviceIds?.length ? getDecisionDetails(page) : null;
   const supportingTitle = page.introTitle || page.label || "Premium Russian manicure studio in Midtown NYC";
   const supportingText = page.intro || page.heroCopy || page.description;
   const detailCards = page.highlights || [
@@ -137,6 +141,27 @@ function buildStaticSnapshot(page) {
       ].join("")
     : "";
 
+  const decisionHtml = decision
+    ? [
+        '<section aria-label="Service decision guide">',
+        "<h2>Book confidently</h2>",
+        `<p>${escapeHtml(decision.maintenance)}</p>`,
+        `<p>${escapeHtml(decision.aftercare)}</p>`,
+        "</section>"
+      ].join("")
+    : "";
+
+  const faqHtml = decisionFaqs.length
+    ? [
+        '<section aria-label="Service FAQs">',
+        "<h2>Service questions</h2>",
+        ...decisionFaqs.map(
+          ([question, answer]) => `<article><h3>${escapeHtml(question)}</h3><p>${escapeHtml(answer)}</p></article>`
+        ),
+        "</section>"
+      ].join("")
+    : "";
+
   const relatedHtml = relatedPages.length
     ? [
         '<nav aria-label="Related RM Nail Salon pages">',
@@ -164,7 +189,9 @@ function buildStaticSnapshot(page) {
       .join(""),
     "</section>",
     articleHtml,
+    decisionHtml,
     servicesHtml,
+    faqHtml,
     relatedHtml,
     "</main>"
   ].join("");

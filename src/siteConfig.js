@@ -540,7 +540,7 @@ export const faqs = [
   {
     question: "Do you sterilize your tools?",
     answer:
-      "The RM experience is built around clean tools, thoughtful preparation, and a hygienic process. Final sterilization-policy wording can be updated with the salon's exact procedure."
+      "RM follows a clean-service workflow: tools are disinfected and prepared between clients, the workspace is reset before each appointment, and detailed cuticle work is performed with controlled professional technique."
   },
   {
     question: "Where are you located in Midtown NYC?",

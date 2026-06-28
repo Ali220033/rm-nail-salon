@@ -37,6 +37,8 @@ import {
   blogArticlePages,
   buildStructuredData,
   geoLandingPages,
+  getDecisionDetails,
+  getDecisionFaqs,
   getRelatedSeoPages,
   getSeoPage,
   getServiceById,
@@ -72,54 +74,66 @@ const routes = [
 const luxuryServices = [
   {
     title: "Russian Manicure",
-    copy: "For the clean cuticle line and polished grow-out clients notice weeks later.",
+    copy: "Dry cuticle refinement, natural nail shaping, and a clean finish that photographs beautifully up close.",
     price: "from $55",
+    time: "45 min",
+    bestFor: "Clean cuticles",
     image: fastImage("service-russian-clear"),
     link: "/russian-manicure-nyc"
   },
   {
     title: "Hard Gel Overlay",
-    copy: "Slim structure, glossy balance, and strength without a heavy-looking nail.",
+    copy: "Structured strength with a slim profile, glossy surface, and balanced grow-out.",
     price: "from $105",
+    time: "90 min",
+    bestFor: "Long-wear structure",
     image: fastImage("service-hard-gel"),
     link: "/hard-gel-manicure-nyc"
   },
   {
     title: "Gel Manicure",
-    copy: "A long-wear finish shaped around elegant hands and a clean RM standard.",
+    copy: "Glossy color over precise RM prep for clients who want polish to look cleaner for longer.",
     price: "from $105",
+    time: "90 min",
+    bestFor: "Glossy color",
     image: fastImage("service-spa-hard-gel-v2"),
-    link: "/services"
+    link: "/gel-manicure-midtown-nyc"
   },
   {
     title: "Nail Extensions",
-    copy: "Sculpted length with proportion, architecture, and a refined editorial profile.",
+    copy: "Sculpted length, refined sidewalls, and shape architecture that reads elegant, not heavy.",
     price: "from $175",
+    time: "150 min",
+    bestFor: "Full transformation",
     image: fastImage("service-extensions"),
     link: "/gel-extensions-nyc"
   },
   {
     title: "Smart Pedicure",
-    copy: "Clean foot care, precise shaping, and optional gel polish in a calm studio setting.",
+    copy: "Hygienic foot care, precise shaping, and optional gel polish in a calm studio setting.",
     price: "from $85",
+    time: "75 min",
+    bestFor: "Clean foot care",
     image: fastImage("service-smart-pedicure"),
     link: "/smart-pedicure-nyc"
   },
   {
     title: "Nail Art",
-    copy: "French, chrome, cat eye, ombre, and custom accents that still feel luxury.",
+    copy: "French, chrome, cat eye, ombre, and custom accents designed with restraint.",
     price: "from $20",
+    time: "15+ min",
+    bestFor: "Editorial detail",
     image: fastImage("service-nail-design"),
     link: "/nail-art-nyc"
   }
 ];
 
 const proofStripItems = [
-  "1,000+ happy client moments",
-  "Russian manicure specialists",
-  "Premium sterilization standards",
-  "Midtown Manhattan studio",
-  "5.0 Booksy rating"
+  "5.0 Booksy rating",
+  "7 verified Booksy reviews",
+  "875 3rd Ave, Concourse Level",
+  "Daily 9:30 AM - 7:30 PM",
+  "Online booking in seconds"
 ];
 
 const processSteps = [
@@ -327,7 +341,6 @@ function App() {
         </AnimatePresence>
       </main>
       <Footer navigate={navigate} />
-      <FloatingOffer />
       <MobileBook />
       <GalleryModal item={selectedGallery} onClose={() => setSelectedGallery(null)} />
     </div>
@@ -406,7 +419,19 @@ function Nav({ compact, route, navigate }) {
       <nav className={open ? "nav-links open" : "nav-links"}>
         {routes.slice(1).map((item) =>
           item.to.startsWith("#") ? (
-            <a key={item.to} href={item.to} onClick={() => setOpen(false)}>
+            <a
+              key={item.to}
+              href={route === "/" ? item.to : `/${item.to}`}
+              onClick={(event) => {
+                setOpen(false);
+                if (route !== "/") {
+                  event.preventDefault();
+                  window.history.pushState({}, "", `/${item.to}`);
+                  window.dispatchEvent(new PopStateEvent("popstate"));
+                  window.setTimeout(() => document.querySelector(item.to)?.scrollIntoView({ behavior: "smooth" }), 90);
+                }
+              }}
+            >
               {item.label}
             </a>
           ) : (
@@ -504,26 +529,18 @@ function HomePage({ navigate, setSelectedGallery }) {
 function Hero({ navigate }) {
   return (
     <section className="hero-editorial">
-      <img
-        className="hero-backdrop hero-backdrop-desktop"
-        src={fastImage("rm-hero")}
-        alt="RM Nail Salon luxury Russian manicure hero"
-        decoding="async"
-        fetchPriority="high"
-        loading="eager"
-      />
-      <img
-        className="hero-backdrop hero-backdrop-mobile"
-        src={fastImage("rm-hero-editorial")}
-        alt="RM Nail Salon luxury Russian manicure hero"
-        decoding="async"
-        fetchPriority="high"
-        loading="eager"
-      />
-      <div className="polish-orb orb-one" />
-      <div className="polish-orb orb-two" />
-      <div className="gel-ribbon ribbon-one" />
-      <div className="gel-ribbon ribbon-two" />
+      <picture>
+        <source media="(min-width: 820px)" srcSet={fastImage("rm-hero")} />
+        <img
+          className="hero-backdrop"
+          src={fastImage("rm-hero-editorial")}
+          alt="RM Nail Salon luxury Russian manicure hero"
+          decoding="async"
+          fetchPriority="high"
+          loading="eager"
+        />
+      </picture>
+      <div className="hero-progress" />
 
       <motion.div
         className="hero-type"
@@ -531,23 +548,22 @@ function Hero({ navigate }) {
         animate="show"
         variants={{ show: { transition: { staggerChildren: 0.11 } } }}
       >
-        <motion.h1 variants={reveal}>Manhattan&apos;s Luxury Russian Manicure Experience</motion.h1>
+        <motion.h1 variants={reveal}>Midtown&apos;s Luxury Russian Manicure Studio</motion.h1>
         <motion.p variants={reveal} className="hero-sub">
-          Flawless cuticle work, structured gel, and long-lasting nail artistry in the heart of Midtown NYC.
+          Precision cuticle work, refined nail structure, and a flawless finish designed to last beautifully for weeks.
         </motion.p>
+        <motion.div variants={reveal} className="hero-proof-line">
+          <span>5.0 Booksy rating</span>
+          <span>Midtown Manhattan</span>
+          <span>Book in 20 seconds</span>
+        </motion.div>
         <motion.div variants={reveal} className="hero-actions">
           <MagneticLink href={siteConfig.bookingUrl} className="gold-cta">
-            Book an Appointment <ArrowUpRight size={17} />
+            Book Appointment <ArrowUpRight size={17} />
           </MagneticLink>
           <MagneticLink href="/services" onClick={navigate("/services")} className="aqua-cta">
-            Explore Services <Sparkles size={16} />
+            View Services <Sparkles size={16} />
           </MagneticLink>
-        </motion.div>
-        <motion.div variants={reveal} className="hero-proof">
-          <span>Midtown Manhattan</span>
-          <span>5.0 Booksy rating</span>
-          <span>Russian manicure specialists</span>
-          <span>Book in 20 seconds</span>
         </motion.div>
       </motion.div>
 
@@ -575,31 +591,37 @@ function SocialProofStrip() {
 function LuxuryServicesOverview({ navigate }) {
   return (
     <section className="luxury-services-section">
-      <SectionIntro
-        label="Services"
-        title="Treatments designed for the manicure people keep looking at."
-        copy="Choose the appointment by the result you want: a cleaner cuticle line, stronger structure, glossy color, sculpted length, or a complete hands-and-feet finish."
-      />
-      <div className="luxury-service-grid">
+      <div className="services-editorial-head">
+        <SectionIntro
+          label="Signature Services"
+          title="Choose by the result you want to see three weeks later."
+          copy="Every RM service starts with clean prep and ends with a polished finish. Compare the most-booked appointments by structure, timing, and intent."
+        />
+        <MagneticLink href="/services" onClick={navigate("/services")} className="gold-cta">
+          View All Services <ArrowUpRight size={16} />
+        </MagneticLink>
+      </div>
+      <div className="services-editorial-list">
         {luxuryServices.map((service, index) => (
-          <motion.article
+          <RouteLink
             key={service.title}
-            className="luxury-service-card"
-            initial={{ opacity: 0, y: 26 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.05 }}
-            viewport={{ once: true, amount: 0.25 }}
+            to={service.link}
+            navigate={navigate}
+            className={index === 0 ? "service-line feature" : "service-line"}
           >
+            <span>{String(index + 1).padStart(2, "0")}</span>
             <img src={service.image} alt={`${service.title} at RM Nail Salon in Midtown Manhattan`} loading="lazy" decoding="async" />
             <div>
-              <span>{service.price}</span>
+              <em>{service.bestFor}</em>
               <h3>{service.title}</h3>
               <p>{service.copy}</p>
-              <RouteLink to={service.link} navigate={navigate} className="text-link">
-                Learn more <ArrowUpRight size={15} />
-              </RouteLink>
             </div>
-          </motion.article>
+            <strong>
+              {service.price}
+              <small>{service.time}</small>
+            </strong>
+            <ArrowUpRight size={18} />
+          </RouteLink>
         ))}
       </div>
     </section>
@@ -853,9 +875,9 @@ function MeetArtists() {
   return (
     <section className="artist-section">
       <SectionIntro
-        label="Meet the Artists"
-        title="Luxury salons sell the hand behind the work."
-        copy="These editable artist profiles give the site real expert presence now, and can be replaced with final names, portraits, certifications, and languages when you provide them."
+        label="The Hand Behind the Work"
+        title="A premium manicure is only as good as the specialist performing it."
+        copy="RM highlights technique, pacing, and service standards before personality. Final technician names and portraits can be added when the salon is ready to publish them."
       />
       <div className="artist-rail">
         {artistProfiles.map((artist, index) => (
@@ -867,7 +889,7 @@ function MeetArtists() {
             transition={{ delay: index * 0.06 }}
             viewport={{ once: true, amount: 0.25 }}
           >
-            <img src={artist.image} alt={`${artist.name} portrait placeholder for RM Nail Salon`} loading="lazy" decoding="async" />
+            <img src={artist.image} alt={`${artist.name} at RM Nail Salon`} loading="lazy" decoding="async" />
             <div>
               <span>{artist.experience}</span>
               <h3>{artist.name}</h3>
@@ -927,9 +949,10 @@ function ReviewsSection() {
     <section className="reviews-section" id="reviews">
       <div className="reviews-lead">
         <p className="eyebrow">Client Proof</p>
-        <h2>People book beauty when they feel safe choosing you.</h2>
+        <h2>Real reviews, presented with restraint.</h2>
         <p>
-          RM is building trust through visible process, clean standards, and client reviews from the booking platform.
+          RM does not need fake numbers to feel premium. We show the verified Booksy rating clearly, then let process,
+          cleanliness, and visible results support the decision to book.
         </p>
         <div className="rating-lockup" aria-label={`${reviewSummary.ratingValue} rating from ${reviewSummary.reviewCount} client reviews`}>
           <strong>{reviewSummary.ratingValue}</strong>
@@ -1333,6 +1356,8 @@ function BeforeAfterExperience() {
 function ServiceLandingPage({ page, navigate }) {
   const services = page.serviceIds.map(getServiceById).filter(Boolean);
   const relatedPages = getRelatedSeoPages(page.related);
+  const decision = getDecisionDetails(page);
+  const decisionFaqs = getDecisionFaqs(page);
 
   return (
     <>
@@ -1368,6 +1393,37 @@ function ServiceLandingPage({ page, navigate }) {
           ))}
         </div>
 
+        <div className="service-decision-panel">
+          <div>
+            <p className="eyebrow">Book Confidently</p>
+            <h2>Why this appointment costs more than a basic manicure.</h2>
+            <p>
+              Premium nail work is not just polish. It is preparation, structure, hygiene, and the judgement to keep the
+              final result refined.
+            </p>
+          </div>
+          <div className="decision-columns">
+            <article>
+              <span>Best For</span>
+              {decision.bestFor.map((item) => (
+                <p key={item}>{item}</p>
+              ))}
+            </article>
+            <article>
+              <span>Process</span>
+              {decision.process.map((item) => (
+                <p key={item}>{item}</p>
+              ))}
+            </article>
+            <article>
+              <span>Maintenance</span>
+              <p>{decision.maintenance}</p>
+              <span>Aftercare</span>
+              <p>{decision.aftercare}</p>
+            </article>
+          </div>
+        </div>
+
         <div className="seo-service-list">
           <div className="seo-list-heading">
             <p className="eyebrow">Related RM Services</p>
@@ -1399,6 +1455,17 @@ function ServiceLandingPage({ page, navigate }) {
           links={relatedPages}
           navigate={navigate}
         />
+
+        <div className="service-page-faqs">
+          <p className="eyebrow">Service FAQ</p>
+          <h2>Before you book {page.serviceType.toLowerCase()}.</h2>
+          {decisionFaqs.map(([question, answer]) => (
+            <article key={question}>
+              <h3>{question}</h3>
+              <p>{answer}</p>
+            </article>
+          ))}
+        </div>
       </section>
       <Booking navigate={navigate} />
     </>
@@ -1479,7 +1546,7 @@ function GeoLandingPage({ page, navigate }) {
 function RelatedSeoLinks({ title, links, navigate }) {
   return (
     <div className="related-seo-links">
-      <p className="eyebrow">Internal Links</p>
+      <p className="eyebrow">Continue Exploring</p>
       <h2>{title}</h2>
       <div>
         {links.map((item) => (
@@ -1765,6 +1832,11 @@ function GalleryPage({ setSelectedGallery }) {
         alt="Aqua French manicure gallery photo at RM Nail Salon"
       />
       <section className="gallery-editorial full">
+        <SectionIntro
+          label="RM Portfolio"
+          title="A visual proof system, not a photo dump."
+          copy="Explore clean cuticle work, hard gel structure, pedicure detail, extensions, and editorial nail art through a more curated RM lens."
+        />
         <GalleryGrid items={galleryItems} setSelectedGallery={setSelectedGallery} />
       </section>
     </>
@@ -1979,7 +2051,8 @@ function Footer({ navigate }) {
 function MobileBook() {
   return (
     <a href={siteConfig.bookingUrl} className="mobile-book" target="_blank" rel="noreferrer">
-      Book Now
+      <span>Book Appointment</span>
+      <em>10% off first visit</em>
     </a>
   );
 }

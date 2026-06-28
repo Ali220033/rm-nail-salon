@@ -28,10 +28,10 @@ export const coreSeoPages = [
   {
     path: "/",
     navLabel: "Home",
-    title: "Russian Manicure NYC | Luxury Nail Salon in Midtown Manhattan | RM Nail Salon",
+    title: "Russian Manicure NYC | Midtown Nail Salon | RM Nail Salon",
     description:
       "RM Nail Salon offers luxury Russian manicures, hard gel, gel manicures, pedicures, and nail art in Midtown Manhattan. Book your appointment today.",
-    h1: "Manhattan's Luxury Russian Manicure Experience",
+    h1: "Midtown's Luxury Russian Manicure Studio",
     image: fastImage("rm-hero"),
     imageAlt: "RM Nail Salon Russian manicure studio in Midtown NYC",
     priority: "1.0"
@@ -771,6 +771,71 @@ export const blogArticlePages = [
 
 export const seoPages = [...coreSeoPages, ...serviceLandingPages, ...geoLandingPages, ...blogArticlePages];
 
+const defaultServiceDecision = {
+  bestFor: ["Clients who notice cuticle detail", "A cleaner finish in close-up photos", "Appointments where longevity matters"],
+  process: ["Consultation and nail assessment", "Dry prep and careful cuticle refinement", "Product or polish application", "Shape, shine, and aftercare review"],
+  maintenance: "Most RM clients plan maintenance around 3 to 4 weeks, depending on nail growth, product choice, length, and daily habits.",
+  aftercare: "Use cuticle oil, avoid picking, wear gloves for heavy water or cleaning exposure, and book maintenance before the structure grows too far out."
+};
+
+const serviceDecisionByPath = {
+  "/russian-manicure-nyc": {
+    bestFor: ["Clean natural nails", "Crisp cuticle lines", "First-time RM clients comparing regular and Russian manicure"],
+    process: ["Dry cuticle and nail plate assessment", "Detailed e-file refinement", "Natural shaping", "Clear, polish, or hard gel finish"],
+    maintenance: "A clean Russian manicure is commonly maintained around 3 to 4 weeks, depending on nail growth and product choice.",
+    aftercare: "Keep the cuticle area hydrated and avoid picking at the polish edge so the manicure grows out cleanly."
+  },
+  "/hard-gel-manicure-nyc": {
+    bestFor: ["Weak natural nails", "Longer-lasting structure", "Clients who want strength without a bulky look"],
+    process: ["Russian manicure prep", "Hard gel structure", "Apex and surface refinement", "Color or glossy finish"],
+    maintenance: "Hard gel is usually refreshed with a fill-in around 3 to 4 weeks, before the structure becomes too grown out.",
+    aftercare: "Avoid using nails as tools and book a fill before the balance shifts toward the free edge."
+  },
+  "/gel-extensions-nyc": {
+    bestFor: ["Added length", "Shape transformation", "Clients who want design-ready nails"],
+    process: ["Natural nail prep", "Length and architecture planning", "Extension sculpting", "Shape refinement and finish"],
+    maintenance: "Extensions need timely fill-ins or correction appointments to keep the profile balanced and elegant.",
+    aftercare: "Protect longer nails from hard impact and schedule maintenance before lifting or imbalance begins."
+  },
+  "/smart-pedicure-nyc": {
+    bestFor: ["Clean foot care", "No-rush pedicure detail", "Gel or natural toe finish"],
+    process: ["Foot and nail assessment", "Smart pedicure preparation", "Shaping and skin detail", "Regular, gel, or no-polish finish"],
+    maintenance: "Pedicure timing depends on polish type, nail growth, and skin-care needs. Many clients pair it with manicure visits.",
+    aftercare: "Moisturize feet regularly and avoid tight shoes immediately after polish or gel service."
+  },
+  "/pedicure-midtown-nyc": {
+    bestFor: ["Midtown pedicure appointments", "Clean natural toes", "Gel pedicure finishes"],
+    process: ["Consultation", "Hygienic pedicure prep", "Nail shaping", "Regular, gel, or no-polish finish"],
+    maintenance: "Most clients refresh pedicure care based on nail growth, polish condition, and seasonal foot-care needs.",
+    aftercare: "Let regular polish fully set and protect gel polish from hard impact after the appointment."
+  },
+  "/nail-art-nyc": {
+    bestFor: ["French, chrome, cat eye, or ombre", "Editorial details", "Clients who want design without visual noise"],
+    process: ["Choose a design direction", "Prepare the base manicure", "Apply detail work by complexity", "Seal and refine the finish"],
+    maintenance: "Nail art wears best when paired with a well-prepped manicure and a finish appropriate for your nail length.",
+    aftercare: "Avoid picking at raised or detailed elements and book repair quickly if a single nail is damaged."
+  }
+};
+
+const defaultDecisionFaqs = [
+  ["How do I choose the right RM service?", "Choose Russian manicure for clean cuticle work, hard gel or builder gel for structure, extensions for length, and smart pedicure for detailed foot care."],
+  ["How long should I expect the result to last?", "Many RM services are maintained around 3 to 4 weeks, but wear depends on nail growth, lifestyle, product type, and aftercare."],
+  ["Why does Russian manicure cost more than a basic manicure?", "It takes more time, more detailed preparation, and more controlled technique around the cuticle and nail plate."]
+];
+
+export function getDecisionDetails(page) {
+  return serviceDecisionByPath[page.path] || defaultServiceDecision;
+}
+
+export function getDecisionFaqs(page) {
+  if (!serviceLandingPages.some((item) => item.path === page.path)) return [];
+  const serviceType = page.serviceType || "this service";
+  return [
+    ...defaultDecisionFaqs,
+    ["How do I book?", `Use the Book Appointment button to open RM Nail Salon on Booksy and reserve ${serviceType} online.`]
+  ];
+}
+
 export function getSeoPage(pathname = "/") {
   const normalized = normalizePathname(pathname);
   return seoPages.find((page) => page.path === normalized) || coreSeoPages[0];
@@ -835,6 +900,7 @@ export function buildStructuredData(pathname = "/") {
   const servicePage = serviceLandingPages.find((item) => item.path === page.path);
   if (servicePage) {
     graph.push(serviceSchema(servicePage));
+    graph.push(faqSchemaForPage(servicePage, getDecisionFaqs(servicePage), "service-faq"));
   }
 
   return {
@@ -912,7 +978,16 @@ function localBusinessSchema() {
       "Park Avenue",
       "New York City"
     ],
+    hasMap: siteConfig.mapUrl,
     sameAs: [siteConfig.instagramUrl, siteConfig.bookingUrl],
+    potentialAction: {
+      "@type": "ReserveAction",
+      target: siteConfig.bookingUrl,
+      result: {
+        "@type": "Reservation",
+        name: "RM Nail Salon appointment"
+      }
+    },
     aggregateRating: {
       "@type": "AggregateRating",
       ratingValue: reviewSummary.ratingValue,
@@ -1011,15 +1086,20 @@ function imageObjectSchema(page) {
 }
 
 function faqPageSchema() {
+  return faqSchemaForPage(getSeoPage("/faq"), faqs.map((item) => [item.question, item.answer]), "faq");
+}
+
+function faqSchemaForPage(page, pageFaqs = [], id = "faq") {
+  if (!pageFaqs.length) return null;
   return {
     "@type": "FAQPage",
-    "@id": `${absoluteUrl("/faq")}#faq`,
-    mainEntity: faqs.map((item) => ({
+    "@id": `${absoluteUrl(page.path)}#${id}`,
+    mainEntity: pageFaqs.map(([question, answer]) => ({
       "@type": "Question",
-      name: item.question,
+      name: question,
       acceptedAnswer: {
         "@type": "Answer",
-        text: item.answer
+        text: answer
       }
     }))
   };
@@ -1127,13 +1207,14 @@ function serviceToSchema(service, id) {
     provider: {
       "@id": `${siteConfig.siteUrl}/#nailsalon`
     },
-    areaServed: "New York City",
+    areaServed: ["Midtown Manhattan", "Midtown East", "New York City"],
     offers: {
       "@type": "Offer",
       priceCurrency: "USD",
       price: extractPrice(service.price),
       availability: "https://schema.org/InStock",
-      url: siteConfig.bookingUrl
+      url: siteConfig.bookingUrl,
+      eligibleRegion: "New York, NY"
     }
   };
 }
