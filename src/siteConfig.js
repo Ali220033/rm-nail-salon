@@ -35,16 +35,19 @@ const driveOfferBackImage = fastImage("drive-offer-back");
 const driveOfferBirdImage = fastImage("drive-offer-bird");
 const driveOfferBirthdayImage = fastImage("drive-offer-birthday");
 const driveOfferShareImage = fastImage("drive-offer-share");
-const extensionImage = fastImage("service-extensions");
+const extensionProcessImage = fastImage("service-extensions");
+const extensionImage = fastImage("gallery-extensions");
 const cleanComboImage = fastImage("service-combo-clean-real");
 const gelNoPolishComboImage = fastImage("service-combo-gel-no-polish");
 const russianClearImage = fastImage("service-russian-clear");
 const mensManicureImage = fastImage("service-mens-manicure");
 const japaneseManicureImage = fastImage("service-japanese-manicure");
-const hardGelImage = fastImage("service-hard-gel");
-const spaHardGelImage = fastImage("service-spa-hard-gel-v2");
+const hardGelProcessImage = fastImage("service-hard-gel");
+const hardGelImage = fastImage("gallery-aqua-french");
+const spaHardGelImage = fastImage("service-ombre");
 const fillInImage = fastImage("service-fill-in");
-const smartPedicureImage = fastImage("service-smart-pedicure");
+const smartPedicureProcessImage = fastImage("service-smart-pedicure");
+const smartPedicureImage = fastImage("gallery-pedicure");
 const spaPedicureImage = fastImage("service-spa-pedicure-v2");
 const gelPedicureImage = fastImage("service-gel-pedicure");
 const spaGelPedicureImage = fastImage("service-spa-gel-pedicure-v2");
@@ -54,7 +57,8 @@ const chromeImage = fastImage("service-chrome");
 const ombreImage = fastImage("service-ombre");
 const removalImage = fastImage("service-removal");
 const repairImage = fastImage("service-repair");
-const nailDesignImage = fastImage("service-nail-design");
+const nailDesignProcessImage = fastImage("service-nail-design");
+const nailDesignImage = fastImage("gallery-plum-gold");
 const regularPolishImage = fastImage("service-regular-polish");
 const frenchImage = fastImage("ref-gallery-french-square");
 const catEyeServiceImage = fastImage("ref-gallery-blue-glitter");
@@ -69,11 +73,11 @@ export const serviceMenu = [
     services: [
       {
         id: "russian-clear",
-        name: "Russian Manicure (clear/no polish)",
+        name: "Russian Manicure Clear",
         shortName: "Russian Manicure",
         time: "45 min",
-        price: "$55",
-        topTech: "$65",
+        price: "from $65",
+        topTech: null,
         image: russianClearImage,
         description:
           "A precise waterless manicure for clean cuticles, natural nail shaping, and a healthy polished look without color."
@@ -102,22 +106,22 @@ export const serviceMenu = [
       },
       {
         id: "russian-hard-gel",
-        name: "Russian Manicure (hard gel)",
+        name: "Russian Manicure Hard Gel",
         shortName: "Hard Gel Russian",
         time: "1 hr 30 min",
-        price: "$105",
-        topTech: "$115",
+        price: "from $115",
+        topTech: null,
         image: hardGelImage,
         description:
           "The signature long-wear service: dry cuticle work, balanced hard gel overlay, color, and a glossy premium finish."
       },
       {
         id: "spa-russian-hard-gel",
-        name: "Spa Russian Manicure (hard gel)",
+        name: "Spa Russian Manicure Hard Gel",
         shortName: "Spa Hard Gel",
         time: "2 hr",
-        price: "$120",
-        topTech: "$130",
+        price: "from $130",
+        topTech: null,
         image: spaHardGelImage,
         description:
           "The signature hard gel manicure with elevated spa care for clients who want extra softness and detail."
@@ -152,22 +156,22 @@ export const serviceMenu = [
     services: [
       {
         id: "smart-pedicure",
-        name: "Russian Smart Pedicure (with/without reg polish)",
+        name: "Russian Smart Pedicure",
         shortName: "Smart Pedicure",
-        time: "1 hr 15 min",
-        price: "$85",
-        topTech: "$95",
+        time: "1 hr",
+        price: "from $95",
+        topTech: null,
         image: smartPedicureImage,
         description:
-          "Detailed foot and nail care with or without polish, designed for a fresh and hygienic finish."
+          "Detailed foot and nail care with optional regular polish or a clean natural finish."
       },
       {
         id: "spa-smart-pedicure",
-        name: "Spa Russian Smart Pedicure w/without reg polish",
+        name: "Spa Russian Smart Pedicure",
         shortName: "Spa Pedicure",
         time: "1 hr 30 min",
-        price: "$115",
-        topTech: "$125",
+        price: "from $125",
+        topTech: null,
         image: spaPedicureImage,
         description:
           "A deeper spa pedicure experience with smoothing, grooming, and a calm luxury close."
@@ -177,8 +181,8 @@ export const serviceMenu = [
         name: "Russian Smart Gel Pedicure",
         shortName: "Smart Gel Pedicure",
         time: "1 hr 15 min",
-        price: "$110",
-        topTech: "$120",
+        price: "from $120",
+        topTech: null,
         image: gelPedicureImage,
         description:
           "Smart pedicure care finished with gel color for a clean, glossy, longer-wearing result."
@@ -188,8 +192,8 @@ export const serviceMenu = [
         name: "Spa Russian Smart Gel Pedicure",
         shortName: "Spa Gel Pedicure",
         time: "1 hr 30 min",
-        price: "$140",
-        topTech: "$150",
+        price: "from $150",
+        topTech: null,
         image: spaGelPedicureImage,
         description:
           "The complete spa pedicure experience with gel polish, skin smoothing, and a premium finish."
@@ -242,7 +246,7 @@ export const serviceMenu = [
         topTech: "$200",
         image: japaneseManicureImage,
         description:
-          "Japanese manicure care paired with spa pedicure details for natural nails that look quietly expensive."
+          "Japanese manicure care paired with spa pedicure details for natural nails that look quietly refined."
       },
       {
         id: "mens-grooming-combo",
@@ -314,7 +318,7 @@ export const serviceMenu = [
         topTech: null,
         image: frenchImage,
         description:
-          "A clean French finish, from classic white to RM's signature aqua micro-French."
+          "A clean French finish, from classic white to fine aqua or tonal tip details."
       },
       {
         id: "cat-eye",
@@ -332,7 +336,7 @@ export const serviceMenu = [
         name: "Chrome",
         shortName: "Chrome",
         time: "15 min",
-        price: "$20",
+        price: "$20+",
         topTech: null,
         image: chromeImage,
         description:
@@ -343,7 +347,7 @@ export const serviceMenu = [
         name: "Ombre",
         shortName: "Ombre",
         time: "20 min",
-        price: "$30",
+        price: "$30+",
         topTech: null,
         image: ombreImage,
         description:
@@ -423,10 +427,10 @@ export const serviceMenu = [
       },
       {
         id: "nail-design",
-        name: "Nail Designs",
+        name: "Nail Design",
         shortName: "Nail Design",
         time: "20 min",
-        price: "$25",
+        price: "$25+",
         topTech: null,
         image: nailDesignImage,
         description:
@@ -459,12 +463,13 @@ export const serviceMenu = [
 ];
 
 export const featuredServiceIds = [
+  "russian-clear",
   "russian-hard-gel",
   "spa-russian-hard-gel",
   "smart-gel-pedicure",
   "nail-extensions",
-  "cat-eye",
-  "gel-removal"
+  "chrome",
+  "cat-eye"
 ];
 
 export const featuredServices = serviceMenu
@@ -484,12 +489,12 @@ export const galleryItems = [
   },
   {
     title: "Hard Gel Structure",
-    caption: "Balanced hard gel application with a glossy surface.",
+    caption: "Balanced hard gel result with a glossy surface.",
     category: "Hard Gel",
     tone: "cream",
     size: "wide",
     image: hardGelImage,
-    alt: "Hard gel manicure structure being applied to a natural nail",
+    alt: "Finished hard gel manicure with glossy structured surface",
     focal: "48% 38%"
   },
   {

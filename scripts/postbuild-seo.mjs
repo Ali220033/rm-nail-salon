@@ -8,9 +8,10 @@ import {
   getDecisionFaqs,
   getRelatedSeoPages,
   getServiceById,
+  reviewSummary,
   seoPages
 } from "../src/seoData.js";
-import { siteConfig } from "../src/siteConfig.js";
+import { featuredServices, galleryItems, proofBlocks, serviceMenu, siteConfig } from "../src/siteConfig.js";
 
 const distDir = path.resolve("dist");
 const indexPath = path.join(distDir, "index.html");
@@ -45,6 +46,8 @@ function injectSeo(html, page) {
     `<meta property="og:title" content="${escapeHtml(page.title)}" />`,
     `<meta property="og:description" content="${escapeHtml(page.description)}" />`,
     `<meta property="og:type" content="website" />`,
+    `<meta property="og:site_name" content="${escapeHtml(siteConfig.salonName)}" />`,
+    `<meta property="og:locale" content="en_US" />`,
     `<meta property="og:url" content="${absoluteUrl(page.path)}" />`,
     `<meta property="og:image" content="${absoluteImage(page.image)}" />`,
     `<meta property="og:image:alt" content="${escapeHtml(page.imageAlt || page.h1 || page.title)}" />`,
@@ -54,6 +57,7 @@ function injectSeo(html, page) {
     `<meta name="twitter:title" content="${escapeHtml(page.title)}" />`,
     `<meta name="twitter:description" content="${escapeHtml(page.description)}" />`,
     `<meta name="twitter:image" content="${absoluteImage(page.image)}" />`,
+    `<meta name="twitter:image:alt" content="${escapeHtml(page.imageAlt || page.h1 || page.title)}" />`,
     `<script id="rm-jsonld" type="application/ld+json">${jsonForHtml(buildStructuredData(page.path))}</script>`
   ].join("\n    ");
 
@@ -72,11 +76,13 @@ function buildRobots() {
 }
 
 function buildSitemap() {
+  const lastmod = new Date().toISOString().slice(0, 10);
   const urls = seoPages
     .map((page) => {
       return [
         "  <url>",
         `    <loc>${absoluteUrl(page.path)}</loc>`,
+        `    <lastmod>${lastmod}</lastmod>`,
         "    <changefreq>weekly</changefreq>",
         `    <priority>${page.priority || "0.6"}</priority>`,
         "  </url>"
@@ -102,6 +108,9 @@ function escapeHtml(value = "") {
 }
 
 function buildStaticSnapshot(page) {
+  if (page.path === "/") return buildHomeSnapshot(page);
+  if (page.path === "/services") return buildServicesSnapshot(page);
+
   const relatedPages = getRelatedSeoPages(
     page.related || ["/services", "/russian-manicure-nyc", "/hard-gel-manicure-nyc", "/smart-pedicure-nyc"]
   ).filter((related) => related.path !== page.path);
@@ -123,9 +132,11 @@ function buildStaticSnapshot(page) {
         '<ul class="seo-static-services">',
         ...serviceItems.map(
           (service) =>
-            `<li><h3>${escapeHtml(service.name)}</h3><p>${escapeHtml(service.description)}</p><a href="/services#${escapeHtml(
-              service.id
-            )}">View ${escapeHtml(service.shortName || service.name)}</a></li>`
+            `<li><img src="${service.image}" alt="${escapeHtml(service.name)} at RM Nail Salon" loading="lazy" /><h3>${escapeHtml(
+              service.name
+            )}</h3><p>${escapeHtml(service.description)}</p><strong>${escapeHtml(service.price || "")} / ${escapeHtml(
+              service.time || ""
+            )}</strong><a href="${siteConfig.bookingUrl}">Book ${escapeHtml(service.shortName || service.name)}</a></li>`
         ),
         "</ul>",
         "</section>"
@@ -145,7 +156,7 @@ function buildStaticSnapshot(page) {
   const decisionHtml = decision
     ? [
         '<section aria-label="Service decision guide">',
-        "<h2>Book confidently</h2>",
+        "<h2>Before your appointment</h2>",
         `<p>${escapeHtml(decision.maintenance)}</p>`,
         `<p>${escapeHtml(decision.aftercare)}</p>`,
         "</section>"
@@ -166,7 +177,7 @@ function buildStaticSnapshot(page) {
   const relatedHtml = relatedPages.length
     ? [
         '<nav aria-label="Related RM Nail Salon pages">',
-        "<h2>Continue exploring RM Nail Salon</h2>",
+        "<h2>Plan your RM appointment</h2>",
         ...relatedPages
           .slice(0, 4)
           .map((related) => `<a href="${related.path}">${escapeHtml(related.navLabel || related.h1)}</a>`)
@@ -196,6 +207,108 @@ function buildStaticSnapshot(page) {
     relatedHtml,
     "</main>"
   ].join("");
+}
+
+function buildHomeSnapshot(page) {
+  return [
+    '<main class="seo-static-snapshot seo-static-home">',
+    '<section aria-label="RM Nail Salon hero">',
+    `<img src="${page.image}" alt="${escapeHtml(page.imageAlt || page.h1)}" loading="eager" />`,
+    `<p>${escapeHtml(siteConfig.specialty)}</p>`,
+    `<h1>${escapeHtml(page.h1)}</h1>`,
+    `<p>${escapeHtml(page.description)}</p>`,
+    `<a href="${siteConfig.bookingUrl}">Book Appointment</a>`,
+    "</section>",
+    '<section aria-label="RM Nail Salon trust bar">',
+    `<h2>${escapeHtml(reviewSummary.ratingValue)} ${escapeHtml(reviewSummary.source)} rating near Midtown Manhattan</h2>`,
+    `<p>${escapeHtml(siteConfig.address)}. ${escapeHtml(siteConfig.hours)}.</p>`,
+    "</section>",
+    '<section aria-label="Signature RM Nail Salon services">',
+    "<h2>Signature services with starting prices</h2>",
+    '<ul class="seo-static-services">',
+    ...featuredServices.slice(0, 6).map(renderStaticService),
+    "</ul>",
+    '<a href="/services">View full service menu</a>',
+    "</section>",
+    '<section aria-label="Gallery preview">',
+    "<h2>Russian manicure gallery preview</h2>",
+    '<ul class="seo-static-gallery">',
+    ...galleryItems.slice(0, 8).map(
+      (item) =>
+        `<li><img src="${item.image}" alt="${escapeHtml(item.alt || item.title)}" loading="lazy" /><h3>${escapeHtml(
+          item.title
+        )}</h3><p>${escapeHtml(item.caption)}</p></li>`
+    ),
+    "</ul>",
+    "</section>",
+    '<section aria-label="Why clients choose RM Nail Salon">',
+    "<h2>Why clients choose RM Nail Salon</h2>",
+    ...proofBlocks
+      .slice(0, 5)
+      .map(([title, copy]) => `<article><h3>${escapeHtml(title)}</h3><p>${escapeHtml(copy)}</p></article>`)
+      .join(""),
+    "</section>",
+    '<section aria-label="Booksy client proof">',
+    `<h2>${escapeHtml(reviewSummary.ratingValue)} rating from ${escapeHtml(
+      reviewSummary.reviewCount
+    )} Booksy client reviews</h2>`,
+    ...reviewSummary.reviews
+      .map((review) => `<blockquote><p>${escapeHtml(review.reviewBody)}</p><cite>${escapeHtml(review.author)}</cite></blockquote>`)
+      .join(""),
+    `<a href="${siteConfig.bookingUrl}">Read reviews and book on Booksy</a>`,
+    "</section>",
+    '<section aria-label="RM Nail Salon location and booking">',
+    "<h2>Visit RM Nail Salon in Midtown NYC</h2>",
+    `<p>${escapeHtml(siteConfig.address)}</p>`,
+    `<p>${escapeHtml(siteConfig.hours)}. Phone: ${escapeHtml(siteConfig.phone)}. Instagram: ${escapeHtml(
+      siteConfig.instagramHandle
+    )}.</p>`,
+    `<a href="${siteConfig.bookingUrl}">Book Appointment</a>`,
+    `<a href="${siteConfig.mapUrl}">Open map</a>`,
+    "</section>",
+    "</main>"
+  ].join("");
+}
+
+function buildServicesSnapshot(page) {
+  return [
+    '<main class="seo-static-snapshot seo-static-services-page">',
+    `<img src="${page.image}" alt="${escapeHtml(page.imageAlt || page.h1)}" loading="eager" />`,
+    `<p>${escapeHtml(page.label || "Service Menu")}</p>`,
+    `<h1>${escapeHtml(page.h1)}</h1>`,
+    `<p>${escapeHtml(page.description)}</p>`,
+    '<section aria-label="Full RM Nail Salon service menu">',
+    "<h2>Full service menu with starting prices</h2>",
+    ...serviceMenu
+      .map(
+        (group) => `
+          <section>
+            <h3>${escapeHtml(group.category)}</h3>
+            <p>${escapeHtml(group.note)}</p>
+            <ul class="seo-static-services">
+              ${group.services.map(renderStaticService).join("")}
+            </ul>
+          </section>`
+      )
+      .join(""),
+    "</section>",
+    '<section aria-label="Book RM Nail Salon">',
+    "<h2>Ready to book?</h2>",
+    `<p>Choose your service, date, and time on Booksy. RM Nail Salon is located at ${escapeHtml(siteConfig.address)}.</p>`,
+    `<a href="${siteConfig.bookingUrl}">Book Appointment</a>`,
+    "</section>",
+    "</main>"
+  ].join("");
+}
+
+function renderStaticService(service) {
+  return `<li id="${escapeHtml(service.id)}"><img src="${service.image}" alt="${escapeHtml(
+    service.name
+  )} at RM Nail Salon" loading="lazy" /><h3>${escapeHtml(service.name)}</h3><p>${escapeHtml(
+    service.description
+  )}</p><strong>${escapeHtml(service.price || "")} / ${escapeHtml(service.time || "")}</strong><a href="${
+    siteConfig.bookingUrl
+  }">Book this service</a></li>`;
 }
 
 function jsonForHtml(value) {

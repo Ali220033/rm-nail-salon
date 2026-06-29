@@ -140,9 +140,9 @@ export const serviceLandingPages = [
     title: "Russian Manicure NYC | RM Nail Salon Midtown",
     description:
       "Book a precise Russian manicure in Midtown NYC with detailed cuticle care, clean shaping, hygienic tools, hard gel options, and long-lasting shine.",
-    h1: "Russian Manicure in Midtown NYC with clean cuticle work.",
+    h1: "Russian Manicure in Midtown NYC",
     heroCopy:
-      "RM Nail Salon specializes in clean waterless manicure work for clients who want polish that looks expensive up close.",
+      "RM Nail Salon specializes in clean waterless manicure work for clients who want a polished finish that looks refined up close.",
     image: fastImage("service-russian-clear"),
     imageAlt: "Russian manicure with clean natural nails at RM Nail Salon",
     introTitle: "Precision prep before the polish.",
@@ -170,16 +170,30 @@ export const serviceLandingPages = [
     title: "Hard Gel Manicure NYC | RM Nail Salon Midtown",
     description:
       "Hard gel manicures in Midtown NYC with Russian cuticle work, balanced structure, glossy color, fill-in options, and a polished long-wear result.",
-    h1: "Hard Gel Manicure in Midtown NYC for strength without bulk.",
+    h1: "Hard Gel Manicure in Midtown NYC",
     heroCopy:
       "A hard gel appointment at RM combines Russian manicure prep with structure that feels slim, glossy, and durable.",
-    image: fastImage("service-hard-gel"),
-    imageAlt: "Hard gel manicure application at RM Nail Salon in Midtown NYC",
+    image: fastImage("gallery-aqua-french"),
+    imageAlt: "Finished hard gel manicure result at RM Nail Salon in Midtown NYC",
     introTitle: "For clients who want strength without a bulky look.",
     intro:
       "Hard gel is ideal when natural nails need extra support, shape correction, or a longer-wearing finish. The RM approach keeps the profile refined while protecting the clean luxury look clients expect from a Russian manicure studio.",
     serviceType: "Hard Gel Manicure",
     serviceIds: ["russian-hard-gel", "spa-russian-hard-gel", "fill-in"],
+    processImage: fastImage("service-hard-gel"),
+    processAlt: "Hard gel manicure application process at RM Nail Salon",
+    processTitle: "How Hard Gel Is Applied",
+    processHeading: "Structure is built after clean Russian prep.",
+    processCopy:
+      "The process image shows the controlled application work behind the finished surface: prep, product placement, balance, and refinement.",
+    resultTitle: "A glossy structure that still looks slim.",
+    resultCopy:
+      "Clients choose hard gel when they want strength and longevity without a thick or heavy-looking manicure.",
+    comparisonRows: [
+      ["Hard gel vs gel polish", "Gel polish adds color. Hard gel adds structure, strength, and shape support over the natural nail."],
+      ["Hard gel vs builder gel", "Both are structural options. RM positions hard gel for stronger support and longer-wear architecture."],
+      ["Hard gel vs extensions", "Hard gel supports your natural length. Extensions are chosen when you want added length or a shape transformation."]
+    ],
     highlights: [
       ["Structured overlay", "The nail is balanced for strength, arch, and a smooth glossy surface."],
       ["Russian prep first", "Cuticle work and nail prep happen before gel structure, so the finish looks sharp."],
@@ -200,11 +214,11 @@ export const serviceLandingPages = [
     title: "Gel Manicure Midtown NYC | RM Nail Salon",
     description:
       "Book a luxury gel manicure in Midtown NYC with Russian manicure prep, clean shaping, glossy color, structured options, and long-lasting RM polish.",
-    h1: "Gel manicure in Midtown NYC with a cleaner RM finish.",
+    h1: "Gel Manicure in Midtown NYC",
     heroCopy:
       "For clients who want glossy color, careful prep, and a manicure that feels more refined than a rushed gel appointment.",
-    image: fastImage("service-spa-hard-gel-v2"),
-    imageAlt: "Gel manicure with glossy finish at RM Nail Salon in Midtown NYC",
+    image: fastImage("service-ombre"),
+    imageAlt: "Glossy gel manicure finish at RM Nail Salon in Midtown NYC",
     introTitle: "Gel looks better when the prep work is precise.",
     intro:
       "RM pairs gel color with detailed cuticle care, clean nail shaping, and optional structured support so the manicure looks polished up close and wears beautifully.",
@@ -230,16 +244,22 @@ export const serviceLandingPages = [
     title: "Smart Pedicure NYC | RM Nail Salon Midtown",
     description:
       "Book a Russian smart pedicure in Midtown NYC with hygienic tools, clean nail care, smooth detail work, spa options, and optional gel polish.",
-    h1: "Smart Pedicure in Midtown NYC for clean, detailed foot care.",
+    h1: "Smart Pedicure in Midtown NYC",
     heroCopy:
       "RM pedicure services focus on hygienic tools, precise shaping, and a calm salon experience for hands-and-feet clients.",
-    image: fastImage("service-smart-pedicure"),
-    imageAlt: "Russian smart pedicure service at RM Nail Salon",
-    introTitle: "Pedicure work should look polished and feel hygienic.",
+    image: fastImage("gallery-pedicure"),
+    imageAlt: "Finished smart pedicure result at RM Nail Salon",
+    introTitle: "Detailed smart pedicure care for clean, polished, comfortable feet.",
     intro:
       "A smart pedicure is built for clients who want careful foot and nail care without a rushed salon feel. RM pairs clean technique with a premium Midtown studio setting and optional regular or gel polish.",
     serviceType: "Russian Smart Pedicure",
     serviceIds: ["smart-pedicure", "spa-smart-pedicure", "smart-gel-pedicure", "spa-smart-gel-pedicure"],
+    processImage: fastImage("service-smart-pedicure"),
+    processAlt: "Smart pedicure preparation process at RM Nail Salon",
+    processTitle: "Pedicure Detail",
+    processHeading: "Finished comfort, supported by hygienic prep.",
+    processCopy:
+      "The process work stays calm and controlled, while the first image shows what clients actually want to feel and see: clean, polished feet.",
     highlights: [
       ["Hygienic process", "The service emphasizes clean tools, steady prep, and careful foot-care detail."],
       ["Gel or natural finish", "Choose a polished gel look or a clean no-polish result depending on the appointment."],
@@ -260,11 +280,11 @@ export const serviceLandingPages = [
     title: "Pedicure Midtown NYC | RM Nail Salon",
     description:
       "Book a clean pedicure in Midtown NYC at RM Nail Salon, including Russian smart pedicure care, spa options, hygienic tools, and gel polish.",
-    h1: "Pedicure in Midtown NYC with a clean luxury standard.",
+    h1: "Pedicure in Midtown NYC",
     heroCopy:
       "RM pedicure appointments are designed for clients who want careful foot care, polished shaping, and a calm Midtown studio experience.",
-    image: fastImage("service-smart-pedicure"),
-    imageAlt: "Smart pedicure service at RM Nail Salon in Midtown Manhattan",
+    image: fastImage("gallery-pedicure"),
+    imageAlt: "Finished pedicure result at RM Nail Salon in Midtown Manhattan",
     introTitle: "Pedicure care should feel hygienic, detailed, and calm.",
     intro:
       "From natural grooming to gel pedicure finishes, RM focuses on clean tools, careful shaping, and a polished result that feels professional from start to finish.",
@@ -290,16 +310,27 @@ export const serviceLandingPages = [
     title: "Gel Extensions NYC | RM Nail Salon Midtown",
     description:
       "Gel nail extensions in Midtown NYC with sculpted length, slim architecture, clean Russian manicure prep, refined shaping, and nail art options.",
-    h1: "Gel Extensions in Midtown NYC with length that still looks elegant.",
+    h1: "Gel Extensions in Midtown NYC",
     heroCopy:
       "For clients who want more length, RM builds extensions with balanced architecture and a refined high-end profile.",
-    image: fastImage("service-extensions"),
-    imageAlt: "Gel nail extensions being sculpted at RM Nail Salon",
-    introTitle: "Length should look intentional, not heavy.",
+    image: fastImage("gallery-extensions"),
+    imageAlt: "Finished gel nail extensions at RM Nail Salon",
+    introTitle: "Elegant gel extensions with balanced shape, clean cuticle work, and refined structure.",
     intro:
-      "RM Nail Salon approaches extensions like architecture. The service focuses on structure, proportion, and cuticle cleanliness so long nails still feel polished, feminine, and expensive.",
+      "RM Nail Salon approaches extensions like architecture. The service focuses on structure, proportion, and cuticle cleanliness so long nails still feel refined, balanced, and elegant.",
     serviceType: "Gel Nail Extensions",
     serviceIds: ["nail-extensions", "fill-in", "extra-long-nails"],
+    processImage: fastImage("service-extensions"),
+    processAlt: "Gel extension form and structure process at RM Nail Salon",
+    processTitle: "How Extensions Are Built",
+    processHeading: "The technical work stays below the beauty result.",
+    processCopy:
+      "Forms and structure are part of the craft, but the client-facing promise is a slim, proportioned shape that feels intentional.",
+    comparisonRows: [
+      ["Choose Extensions if", "You want added length, a shape transformation, or a stronger base for detailed nail art."],
+      ["Choose Hard Gel if", "You like your natural length but need more structure, strength, and long-wear support."],
+      ["Choose Nail Art if", "Your length and shape are already right and you want French, chrome, cat eye, ombre, or custom detail."]
+    ],
     highlights: [
       ["Sculpted form", "Length is built with attention to nail architecture, sidewalls, and a balanced apex."],
       ["Russian manicure base", "The clean prep work supports the final shape and keeps the set looking refined."],
@@ -320,16 +351,23 @@ export const serviceLandingPages = [
     title: "Builder Gel NYC | RM Nail Salon Midtown",
     description:
       "Builder gel and hard gel overlays in Midtown NYC for stronger natural nails, clean structure, Russian manicure prep, glossy color, and fill-ins.",
-    h1: "Builder gel for stronger natural nails with a clean finish.",
+    h1: "Builder Gel in Midtown NYC",
     heroCopy:
       "When nails need reinforcement but not full extensions, RM uses structured gel services to keep the look slim and polished.",
-    image: fastImage("service-spa-hard-gel-v2"),
-    imageAlt: "Builder gel style overlay manicure at RM Nail Salon",
+    image: fastImage("gallery-aqua-french"),
+    imageAlt: "Structured builder gel style manicure result at RM Nail Salon",
     introTitle: "Support, shape, and shine without visual weight.",
     intro:
       "Builder gel is used when a client wants strength, smoother shape, or a more durable manicure on natural nails. RM pairs the overlay with Russian cuticle preparation so the finish stays crisp around the nail fold.",
     serviceType: "Builder Gel Manicure",
     serviceIds: ["russian-hard-gel", "spa-russian-hard-gel", "fill-in"],
+    comparisonLabel: "Builder, Hard Gel, Extensions",
+    comparisonTitle: "Choose by what your natural nails need.",
+    comparisonRows: [
+      ["Choose Builder Gel if", "Your natural nails need support, smoother shape, or reinforcement, but you do not want added length."],
+      ["Choose Hard Gel if", "You want stronger structure, longer-wear balance, and a polished overlay with Russian manicure prep."],
+      ["Choose Extensions if", "You want new length, a shape transformation, or a more dramatic design-ready manicure."]
+    ],
     highlights: [
       ["Natural nail support", "Builder-style gel helps reinforce nails while keeping the manicure refined."],
       ["Smooth architecture", "The surface is shaped for a glossy salon finish, not a thick artificial look."],
@@ -350,20 +388,20 @@ export const serviceLandingPages = [
     title: "Nail Art NYC | RM Nail Salon Midtown",
     description:
       "Nail art in Midtown NYC from French and chrome to cat eye, ombre, custom details, and editorial accents paired with precise RM manicure prep.",
-    h1: "Nail Art in Midtown NYC, from French to chrome.",
+    h1: "Nail Art in Midtown NYC",
     heroCopy:
       "RM uses nail art as a luxury detail: clean, glossy, balanced, and designed around the shape of the hand.",
-    image: fastImage("service-nail-design"),
-    imageAlt: "Detailed nail art design at RM Nail Salon",
+    image: fastImage("gallery-plum-gold"),
+    imageAlt: "Finished nail art manicure at RM Nail Salon",
     introTitle: "Detailed nail art designed to look refined, not heavy.",
     intro:
-      "Nail art looks more expensive when the base manicure is precise. RM pairs Russian manicure standards with French, chrome, cat eye, ombre, and custom accent work for clients who want detail without visual noise.",
+      "Nail art looks more refined when the base manicure is precise. RM pairs Russian manicure standards with French, chrome, cat eye, ombre, and custom accent work for clients who want detail without visual noise.",
     serviceType: "Nail Art",
     serviceIds: ["french", "chrome", "cat-eye", "ombre", "nail-design"],
     highlights: [
       ["Design restraint", "Fine accents, reflective finishes, and clean color placement keep the result high-end."],
       ["Service pairing", "Art can be added to hard gel, extensions, regular polish, or a Russian manicure appointment."],
-      ["Instagram-ready", "The final set is built for close-up details, clean photos, and a polished social finish."]
+      ["Photo-ready detail", "The final set is built for close-up detail, clean photos, and a polished finish."]
     ],
     ctaLabel: "Book Nail Art",
     decisionTitle: "Why nail art should be planned around the full set.",
@@ -505,7 +543,7 @@ export const geoLandingPages = [
       "Premium nail salon near Fifth Avenue in Midtown NYC for Russian manicures, hard gel, gel extensions, smart pedicures, chrome finishes, and nail art.",
     h1: "A Fifth Avenue-level finish without the generic salon feel.",
     heroCopy:
-      "RM brings an editorial beauty standard to Midtown clients who want manicures that feel clean, modern, and expensive.",
+      "RM brings an editorial beauty standard to Midtown clients who want manicures that feel clean, modern, and refined.",
     image: fastImage("drive-brown-1"),
     imageAlt: "Editorial red manicure image for Fifth Avenue nail salon page",
     area: "Fifth Avenue",
@@ -684,7 +722,7 @@ export const blogArticlePages = [
     datePublished: "2026-06-27",
     introTitle: "Hard gel is a structure service, not just a color choice.",
     intro:
-      "For many RM clients, hard gel is chosen because it reinforces the natural nail while preserving a slim, expensive-looking profile. Most clients plan maintenance around natural nail growth rather than waiting for the manicure to fail.",
+      "For many RM clients, hard gel is chosen because it reinforces the natural nail while preserving a slim, refined profile. Most clients plan maintenance around natural nail growth rather than waiting for the manicure to fail.",
     excerpt:
       "A practical hard gel guide for clients comparing overlay, fill-in, and long-wear manicure options.",
     sections: [

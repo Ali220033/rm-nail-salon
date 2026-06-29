@@ -83,7 +83,7 @@ const luxuryServices = [
   {
     title: "Russian Manicure",
     copy: "Dry cuticle refinement, natural nail shaping, and a clean finish that photographs beautifully up close.",
-    price: "from $55",
+    price: "from $65",
     time: "45 min",
     bestFor: "Clean cuticles",
     image: fastImage("service-russian-clear"),
@@ -92,19 +92,19 @@ const luxuryServices = [
   {
     title: "Hard Gel Overlay",
     copy: "Structured strength with a slim profile, glossy surface, and balanced grow-out.",
-    price: "from $105",
+    price: "from $115",
     time: "90 min",
     bestFor: "Long-wear structure",
-    image: fastImage("service-hard-gel"),
+    image: fastImage("gallery-aqua-french"),
     link: "/hard-gel-manicure-nyc"
   },
   {
     title: "Gel Manicure",
     copy: "Glossy color over precise RM prep for clients who want polish to look cleaner for longer.",
-    price: "from $105",
+    price: "from $115",
     time: "90 min",
     bestFor: "Glossy color",
-    image: fastImage("service-spa-hard-gel-v2"),
+    image: fastImage("service-ombre"),
     link: "/gel-manicure-midtown-nyc"
   },
   {
@@ -113,25 +113,25 @@ const luxuryServices = [
     price: "from $175",
     time: "150 min",
     bestFor: "Full transformation",
-    image: fastImage("service-extensions"),
+    image: fastImage("gallery-extensions"),
     link: "/gel-extensions-nyc"
   },
   {
     title: "Smart Pedicure",
     copy: "Hygienic foot care, precise shaping, and optional gel polish in a calm studio setting.",
-    price: "from $85",
-    time: "75 min",
+    price: "from $95",
+    time: "60 min",
     bestFor: "Clean foot care",
-    image: fastImage("service-smart-pedicure"),
+    image: fastImage("gallery-pedicure"),
     link: "/smart-pedicure-nyc"
   },
   {
     title: "Nail Art",
     copy: "French, chrome, cat eye, ombre, and custom accents designed with restraint.",
-    price: "from $20",
+    price: "from $20+",
     time: "15+ min",
     bestFor: "Editorial detail",
-    image: fastImage("service-nail-design"),
+    image: fastImage("gallery-plum-gold"),
     link: "/nail-art-nyc"
   }
 ];
@@ -157,7 +157,7 @@ const serviceDetails = {
     includes: "Russian prep, hard gel overlay, color, and glossy finish.",
     learnMorePath: "/hard-gel-manicure-nyc",
     bookLabel: "Book Hard Gel",
-    imageAlt: "Hard gel manicure structure applied after Russian manicure prep"
+    imageAlt: "Finished hard gel manicure result after Russian manicure prep"
   },
   "spa-russian-hard-gel": {
     bestFor: "Extra care with structured gel",
@@ -171,7 +171,7 @@ const serviceDetails = {
     includes: "Sculpted structure, refined sidewalls, shaping, and color.",
     learnMorePath: "/gel-extensions-nyc",
     bookLabel: "Book Extensions",
-    imageAlt: "Long nail extensions with refined shape and glossy finish"
+    imageAlt: "Finished long nail extensions with refined shape and glossy finish"
   },
   "smart-pedicure": {
     bestFor: "Clean foot care",
@@ -347,7 +347,7 @@ function App() {
   const [mobileBookVisible, setMobileBookVisible] = useState(false);
 
   useEffect(() => {
-    const timer = window.setTimeout(() => setLoading(false), 1000);
+    const timer = window.setTimeout(() => setLoading(false), 420);
     let frame = 0;
     const updateScrollState = () => {
       frame = 0;
@@ -614,18 +614,11 @@ function HomePage({ navigate, setSelectedGallery }) {
       <Hero navigate={navigate} />
       <SocialProofStrip />
       <LuxuryServicesOverview navigate={navigate} />
-      <Proof />
       <GalleryPreview setSelectedGallery={setSelectedGallery} navigate={navigate} />
-      <CleanProcessPreview navigate={navigate} />
-      <SignatureExperience navigate={navigate} />
-      <FeaturedServicesHome navigate={navigate} />
+      <Proof />
       <ReviewsSection />
-      <ProcessTimeline />
       <WorkReel />
-      <EditorialJournal navigate={navigate} />
       <LocationSection navigate={navigate} />
-      <HomeFaq />
-      <Offer />
       <Booking navigate={navigate} />
     </>
   );
@@ -645,6 +638,17 @@ function Hero({ navigate }) {
           loading="eager"
         />
       </picture>
+      <video
+        className="hero-motion"
+        src={siteConfig.processVideo}
+        poster={fastImage("rm-hero-editorial")}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        aria-hidden="true"
+      />
       <div className="hero-progress" />
 
       <motion.div
@@ -655,12 +659,12 @@ function Hero({ navigate }) {
       >
         <motion.h1 variants={reveal}>Midtown&apos;s Luxury Russian Manicure Studio</motion.h1>
         <motion.p variants={reveal} className="hero-sub">
-          Precision cuticle work, refined nail structure, and a flawless finish designed to look beautiful for weeks.
+          Precision Russian manicure, hard gel, smart pedicure, and nail art at 875 3rd Ave.
         </motion.p>
         <motion.div variants={reveal} className="hero-proof-line">
-          <span>Russian manicure specialists</span>
-          <span>Midtown Manhattan</span>
-          <span>Online booking available</span>
+          <span>5.0 Booksy rating</span>
+          <span>Book in 20 seconds</span>
+          <span>Daily 9:30 AM - 7:30 PM</span>
         </motion.div>
         <motion.div variants={reveal} className="hero-actions">
           <MagneticLink href={siteConfig.bookingUrl} className="gold-cta">
@@ -1430,10 +1434,13 @@ function ServicesPage({ navigate }) {
                   document.getElementById(service.id)?.scrollIntoView({ behavior: scrollBehavior(), block: "center" });
                 }}
               >
-                <span
+                <img
                   className="rail-thumb"
+                  src={service.image}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
                   aria-hidden="true"
-                  style={{ "--rail-image": `url(${service.image})` }}
                 />
                 <span>{service.shortName}</span>
               </button>
@@ -1584,9 +1591,46 @@ function ServiceLandingPage({ page, navigate }) {
           ))}
         </div>
 
+        {(page.processImage || page.comparisonRows) && (
+          <div className="service-context-panel">
+            {page.processImage && (
+              <div className="service-image-story">
+                <article>
+                  <img src={page.resultImage || page.image} alt={page.resultAlt || page.imageAlt} loading="lazy" decoding="async" />
+                  <div>
+                    <span>Final result first</span>
+                    <h3>{page.resultTitle || "The finish clients are booking for."}</h3>
+                    <p>{page.resultCopy || "A polished result should look clean up close before the process becomes part of the story."}</p>
+                  </div>
+                </article>
+                <article>
+                  <img src={page.processImage} alt={page.processAlt || `${page.serviceType} process at RM Nail Salon`} loading="lazy" decoding="async" />
+                  <div>
+                    <span>{page.processTitle || "How the work happens"}</span>
+                    <h3>{page.processHeading || "Controlled technique, clean preparation."}</h3>
+                    <p>{page.processCopy || "Process photography belongs here: it builds trust after the client has already seen the result."}</p>
+                  </div>
+                </article>
+              </div>
+            )}
+            {page.comparisonRows && (
+              <div className="service-comparison-table">
+                <p className="eyebrow">{page.comparisonLabel || "Service Comparison"}</p>
+                <h2>{page.comparisonTitle || "Choose the right structure for your nails."}</h2>
+                {page.comparisonRows.map(([title, copy]) => (
+                  <article key={title}>
+                    <strong>{title}</strong>
+                    <p>{copy}</p>
+                  </article>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
         <div className="service-decision-panel">
           <div>
-            <p className="eyebrow">Book Confidently</p>
+            <p className="eyebrow">{page.decisionLabel || "Before Your Appointment"}</p>
             <h2>{page.decisionTitle || "Why this appointment costs more than a basic manicure."}</h2>
             <p>
               {page.decisionCopy ||
@@ -1644,6 +1688,7 @@ function ServiceLandingPage({ page, navigate }) {
 
         <RelatedSeoLinks
           title={page.relatedTitle || "Choose the next service for your appointment."}
+          eyebrow={page.relatedEyebrow || "Appointment Path"}
           links={relatedPages}
           navigate={navigate}
         />
@@ -1726,6 +1771,7 @@ function GeoLandingPage({ page, navigate }) {
 
         <RelatedSeoLinks
           title="Explore more Midtown NYC service areas."
+          eyebrow="Nearby Midtown Routes"
           links={geoLandingPages.filter((item) => item.path !== page.path).slice(0, 5)}
           navigate={navigate}
         />
@@ -1735,10 +1781,10 @@ function GeoLandingPage({ page, navigate }) {
   );
 }
 
-function RelatedSeoLinks({ title, links, navigate }) {
+function RelatedSeoLinks({ title, links, navigate, eyebrow = "Appointment Path" }) {
   return (
     <div className="related-seo-links">
-      <p className="eyebrow">Explore Our Signature Services</p>
+      <p className="eyebrow">{eyebrow}</p>
       <h2>{title}</h2>
       <div className="related-card-grid">
         {links.map((item) => (

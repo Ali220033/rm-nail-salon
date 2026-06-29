@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap");
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -295,6 +293,18 @@ img {
   z-index: 0;
 }
 
+.hero-motion {
+  height: 100%;
+  inset: 0;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.18;
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+}
+
 .hero-backdrop-desktop {
   display: none;
   object-position: 66% center;
@@ -311,7 +321,7 @@ img {
   content: "";
   inset: 0;
   position: absolute;
-  z-index: 1;
+  z-index: 2;
 }
 
 .hero-editorial::before {
@@ -323,7 +333,7 @@ img {
   opacity: 0.92;
   position: absolute;
   width: min(9rem, 42vw);
-  z-index: 1;
+  z-index: 3;
 }
 
 .hero-progress {
@@ -333,7 +343,7 @@ img {
   left: 1rem;
   position: absolute;
   right: 1rem;
-  z-index: 1;
+  z-index: 3;
 }
 
 .polish-orb {
@@ -488,7 +498,7 @@ img {
   font-size: 0.72rem;
   font-weight: 900;
   letter-spacing: 0.13em;
-  min-height: 3.15rem;
+  min-height: 2.76rem;
   padding: 0 1.25rem;
   text-align: center;
   text-transform: uppercase;
@@ -2801,13 +2811,11 @@ img {
 
 .lookbook-rail .rail-thumb {
   aspect-ratio: 9 / 13;
-  background:
-    linear-gradient(to top, rgba(8, 5, 7, 0.08), transparent),
-    var(--rail-image) center / cover no-repeat,
-    rgba(8, 5, 7, 0.86);
   border-radius: 18px 18px 6px 18px;
   filter: brightness(0.84) saturate(1.02);
   display: block;
+  object-fit: cover;
+  object-position: center;
   width: 100%;
 }
 
@@ -3388,6 +3396,86 @@ img {
   color: var(--aqua);
 }
 
+.service-context-panel {
+  display: grid;
+  gap: 1rem;
+  margin: 0 auto;
+  max-width: 1240px;
+  width: 100%;
+}
+
+.service-image-story {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.service-image-story article,
+.service-comparison-table {
+  background:
+    radial-gradient(circle at 86% 10%, rgba(100, 224, 218, 0.14), transparent 14rem),
+    rgba(255, 255, 255, 0.048);
+  border: 1px solid rgba(100, 224, 218, 0.16);
+  border-radius: 34px 34px 12px 34px;
+  overflow: hidden;
+}
+
+.service-image-story img {
+  aspect-ratio: 16 / 12;
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.service-image-story div,
+.service-comparison-table {
+  padding: 1.1rem;
+}
+
+.service-image-story span {
+  color: var(--aqua);
+  display: block;
+  font-size: 0.64rem;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.service-image-story h3,
+.service-comparison-table h2 {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(1.75rem, 7vw, 3.8rem);
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  line-height: 0.9;
+  margin-top: 0.58rem;
+}
+
+.service-image-story p,
+.service-comparison-table p {
+  color: rgba(255, 255, 255, 0.68);
+  line-height: 1.7;
+  margin-top: 0.7rem;
+}
+
+.service-comparison-table {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.service-comparison-table article {
+  border-top: 1px solid rgba(241, 237, 155, 0.16);
+  padding-top: 0.8rem;
+}
+
+.service-comparison-table strong {
+  color: var(--cream);
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
 .service-decision-panel,
 .service-page-faqs {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.052), rgba(100, 224, 218, 0.045));
@@ -3526,43 +3614,44 @@ img {
 .mobile-book {
   background: linear-gradient(135deg, var(--gold), #e5d16e);
   border: 1px solid rgba(255, 255, 255, 0.24);
-  border-radius: 24px;
-  bottom: max(0.72rem, env(safe-area-inset-bottom));
+  border-radius: 999px;
+  bottom: max(0.55rem, env(safe-area-inset-bottom));
   box-shadow: 0 20px 80px rgba(176, 144, 19, 0.3);
   color: #171215;
-  display: grid;
-  gap: 0.18rem;
-  justify-items: center;
-  left: 1rem;
-  min-height: 4.2rem;
+  display: inline-flex;
+  gap: 0.45rem;
+  justify-content: center;
+  left: 50%;
+  min-height: 3.15rem;
   opacity: 0;
-  padding: 0.76rem 1rem;
+  padding: 0.58rem 1rem;
   pointer-events: none;
   position: fixed;
-  right: 1rem;
+  right: auto;
   text-align: center;
-  transform: translateY(calc(100% + 1.5rem));
+  transform: translate(-50%, calc(100% + 1.5rem));
   transition: opacity 0.28s ease, transform 0.28s ease;
+  width: min(18.5rem, calc(100vw - 2rem));
   z-index: 40;
 }
 
 .mobile-book.visible {
   opacity: 1;
   pointer-events: auto;
-  transform: translateY(0);
+  transform: translate(-50%, 0);
 }
 
 .mobile-book span {
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 950;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
 }
 
 .mobile-book em {
-  font-family: "Playfair Display", serif;
-  font-size: 0.88rem;
+  font-size: 0.58rem;
   font-style: italic;
+  font-weight: 800;
   letter-spacing: 0.02em;
   text-transform: lowercase;
 }
@@ -3633,6 +3722,11 @@ img {
 }
 
 @media (max-width: 819px) {
+  .nav,
+  .nav-compact {
+    background: linear-gradient(90deg, #0d090c 0%, #102d30 58%, #0d090c 100%);
+  }
+
   main,
   .footer-editorial {
     padding-bottom: calc(7.25rem + env(safe-area-inset-bottom));
@@ -3674,6 +3768,10 @@ img {
   .hero-backdrop {
     filter: brightness(0.98) saturate(0.96) contrast(1.04);
     object-position: 52% center;
+  }
+
+  .hero-motion {
+    display: none;
   }
 
   .hero-editorial::after {
@@ -3886,13 +3984,12 @@ img {
     display: none;
   }
 
-  .floating-offer {
+  .mobile-book em {
     display: none;
   }
 
-  .mobile-book {
-    left: 1rem;
-    right: 1rem;
+  .floating-offer {
+    display: none;
   }
 
   .floating-offer span {
@@ -4401,6 +4498,32 @@ img {
   .seo-service-card {
     grid-template-columns: 180px 1fr auto auto;
     padding: 0.75rem;
+  }
+
+  .service-image-story {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .service-image-story article {
+    display: grid;
+    grid-template-rows: minmax(360px, 1fr) auto;
+  }
+
+  .service-comparison-table {
+    grid-template-columns: 0.9fr repeat(3, minmax(0, 1fr));
+    align-items: start;
+  }
+
+  .service-comparison-table .eyebrow,
+  .service-comparison-table h2 {
+    grid-column: 1;
+  }
+
+  .service-comparison-table article {
+    border-left: 1px solid rgba(241, 237, 155, 0.14);
+    border-top: 0;
+    min-height: 100%;
+    padding: 0 0 0 1rem;
   }
 
   .geo-story-grid {
