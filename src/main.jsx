@@ -2,8 +2,10 @@ import React, { useEffect, useMemo, useState } from "react";
 import { createRoot } from "react-dom/client";
 import {
   AnimatePresence,
+  LazyMotion,
   MotionConfig,
-  motion,
+  domAnimation,
+  m as motion,
   useMotionValue,
   useReducedMotion,
   useSpring
@@ -426,21 +428,23 @@ function App() {
 
   return (
     <MotionConfig reducedMotion="user">
-      <div className="lux-site">
-        <SeoHead route={route} />
-        <AnimatePresence>{loading && <Loader />}</AnimatePresence>
-        <Nav compact={navCompact} route={route} navigate={navigate} />
-        <main>
-          <AnimatePresence mode="wait">
-            <motion.div key={route} {...pageMotion}>
-              {page}
-            </motion.div>
-          </AnimatePresence>
-        </main>
-        <Footer navigate={navigate} />
-        <MobileBook visible={mobileBookVisible} />
-        <GalleryModal item={selectedGallery} onClose={() => setSelectedGallery(null)} />
-      </div>
+      <LazyMotion features={domAnimation} strict>
+        <div className="lux-site">
+          <SeoHead route={route} />
+          <AnimatePresence>{loading && <Loader />}</AnimatePresence>
+          <Nav compact={navCompact} route={route} navigate={navigate} />
+          <main>
+            <AnimatePresence mode="wait">
+              <motion.div key={route} {...pageMotion}>
+                {page}
+              </motion.div>
+            </AnimatePresence>
+          </main>
+          <Footer navigate={navigate} />
+          <MobileBook visible={mobileBookVisible} />
+          <GalleryModal item={selectedGallery} onClose={() => setSelectedGallery(null)} />
+        </div>
+      </LazyMotion>
     </MotionConfig>
   );
 }
