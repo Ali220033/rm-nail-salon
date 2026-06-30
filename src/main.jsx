@@ -490,6 +490,25 @@ function Nav({ compact, route, navigate }) {
     setOpen(false);
   }, [route]);
 
+  useEffect(() => {
+    if (!open) return undefined;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [open]);
+
   const menuNavigate = (to) => (event) => {
     setOpen(false);
     navigate(to)(event);
@@ -510,13 +529,14 @@ function Nav({ compact, route, navigate }) {
             className="nav-menu-toggle"
             onClick={() => setOpen((value) => !value)}
             aria-expanded={open}
+            aria-controls="mobile-navigation"
             aria-label={open ? "Close navigation menu" : "Open navigation menu"}
           >
             {open ? <X size={22} /> : <Menu size={23} />}
           </button>
         </div>
       </div>
-      <nav className={open ? "nav-links open" : "nav-links"}>
+      <nav id="mobile-navigation" className={open ? "nav-links open" : "nav-links"}>
         {routes.slice(1).map((item) =>
           item.to.startsWith("#") ? (
             <a

@@ -27,7 +27,86 @@ for (const page of seoPages) {
 await writeFile(path.join(distDir, "robots.txt"), buildRobots());
 await writeFile(path.join(distDir, "sitemap.xml"), buildSitemap());
 
+await auditStaticOutput();
+
 console.log(`Generated SEO HTML, sitemap, and robots for ${seoPages.length} routes.`);
+
+async function auditStaticOutput() {
+  const routeChecks = [
+    {
+      path: "/",
+      required: [
+        "Signature services with starting prices",
+        "from $65",
+        "from $115",
+        "Booksy client reviews",
+        "Visit RM Nail Salon in Midtown NYC"
+      ]
+    },
+    {
+      path: "/services",
+      required: [
+        "Full service menu with starting prices",
+        "Russian Manicure Clear",
+        "Russian Manicure Hard Gel",
+        "Spa Russian Smart Gel Pedicure"
+      ]
+    },
+    {
+      path: "/russian-manicure-nyc",
+      required: ["Russian Manicure in Midtown NYC", "from $65", "from $115", "Before your appointment"]
+    },
+    {
+      path: "/hard-gel-manicure-nyc",
+      required: ["Hard Gel Manicure in Midtown NYC", "from $115", "Before your appointment"]
+    },
+    {
+      path: "/smart-pedicure-nyc",
+      required: ["Smart Pedicure in Midtown NYC", "from $95", "from $150"]
+    }
+  ];
+
+  const bannedPatterns = [
+    /Continue exploring RM Nail Salon/i,
+    /Book confidently/i,
+    /Instagram-ready/i,
+    /with\/without reg polish/i,
+    /w\/without reg polish/i,
+    /from \$55\b/i,
+    /from \$85\b/i,
+    /from \$105\b/i,
+    /\bexpensive\b/i
+  ];
+
+  const failures = [];
+  for (const check of routeChecks) {
+    const html = await readFile(outputPathForRoute(check.path), "utf8");
+    for (const phrase of check.required) {
+      if (!html.includes(phrase)) {
+        failures.push(`${check.path} is missing "${phrase}"`);
+      }
+    }
+  }
+
+  for (const page of seoPages) {
+    const html = await readFile(outputPathForRoute(page.path), "utf8");
+    for (const pattern of bannedPatterns) {
+      if (pattern.test(html)) {
+        failures.push(`${page.path} contains banned copy or outdated pricing: ${pattern}`);
+      }
+    }
+  }
+
+  if (failures.length) {
+    throw new Error(`Static SEO audit failed:\n${failures.map((failure) => `- ${failure}`).join("\n")}`);
+  }
+
+  console.log("Static SEO audit passed.");
+}
+
+function outputPathForRoute(routePath) {
+  return routePath === "/" ? indexPath : path.join(distDir, routePath.slice(1), "index.html");
+}
 
 function injectSeo(html, page) {
   let output = html
