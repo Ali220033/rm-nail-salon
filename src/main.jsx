@@ -1305,6 +1305,34 @@ function EditorialJournal({ navigate }) {
 }
 
 function LocationSection({ navigate }) {
+  const visitCards = [
+    {
+      Icon: Clock,
+      eyebrow: "Open",
+      title: "Business Hours",
+      lines: [["Every day", "9:30 AM - 7:30 PM"]]
+    },
+    {
+      Icon: Phone,
+      eyebrow: "Call Us",
+      title: siteConfig.phone,
+      href: `tel:${siteConfig.phone.replace(/[^0-9]/g, "")}`
+    },
+    {
+      Icon: Mail,
+      eyebrow: "Email",
+      title: siteConfig.email,
+      href: `mailto:${siteConfig.email}`
+    },
+    {
+      Icon: AtSign,
+      eyebrow: "Instagram",
+      title: siteConfig.instagramHandle,
+      href: siteConfig.instagramUrl,
+      external: true
+    }
+  ];
+
   return (
     <section className="home-location-section">
       <div className="location-copy">
@@ -1324,41 +1352,71 @@ function LocationSection({ navigate }) {
             <span key={area}>{area}</span>
           ))}
         </div>
-        <RouteLink to="/contact" navigate={navigate} className="aqua-cta">
-          Contact & Map <MapPin size={16} />
-        </RouteLink>
       </div>
       <div className="home-location-visual">
-        <div className="home-map-frame luxe-map-frame">
-          <iframe
-            title="RM Nail Salon Midtown Manhattan map"
-            src={siteConfig.mapEmbedUrl}
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          />
-          <div className="map-glass-card">
-            <MapPin size={18} />
-            <div>
-              <span>RM Nail Salon</span>
-              <strong>875 3rd Ave</strong>
-              <em>Concourse Level / New York, NY 10022</em>
+        <div className="visit-contact-board">
+          <div className="home-map-frame luxe-map-frame">
+            <iframe
+              title="RM Nail Salon Midtown Manhattan map"
+              src={siteConfig.mapEmbedUrl}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+            <div className="map-glass-card">
+              <MapPin size={18} />
+              <div>
+                <span>RM Nail Salon</span>
+                <strong>875 3rd Ave</strong>
+                <em>Concourse Level / New York, NY 10022</em>
+              </div>
             </div>
+            <a className="map-directions-link" href={siteConfig.mapUrl} target="_blank" rel="noreferrer">
+              <Navigation size={15} />
+              Open in Maps
+            </a>
           </div>
-          <a className="map-directions-link" href={siteConfig.mapUrl} target="_blank" rel="noreferrer">
-            <Navigation size={15} />
-            Open in Maps
-          </a>
+          <div className="visit-card-stack">
+            {visitCards.map(({ Icon, eyebrow, title, href, external, lines }) => {
+              const body = lines ? (
+                <div className="hours-lines">
+                  {lines.map(([label, value]) => (
+                    <p key={label}>
+                      <span>{label}</span>
+                      <strong>{value}</strong>
+                    </p>
+                  ))}
+                </div>
+              ) : href ? (
+                <a href={href} target={external ? "_blank" : undefined} rel={external ? "noreferrer" : undefined}>
+                  {title}
+                </a>
+              ) : (
+                <strong>{title}</strong>
+              );
+
+              return (
+                <article className="visit-info-card" key={eyebrow}>
+                  <Icon size={18} />
+                  <div>
+                    <span>{eyebrow}</span>
+                    {lines ? <h3>{title}</h3> : body}
+                    {lines && body}
+                  </div>
+                </article>
+              );
+            })}
+          </div>
         </div>
         <article className="salon-preview-card">
           <img
-            src={referenceImage("ref-luxury-salon")}
-            alt="Luxury cyan-lit RM Nail Salon studio atmosphere"
+            src="/images/rm-salon-interior-green.webp"
+            alt="RM Nail Salon green and gold manicure studio interior"
             loading="lazy"
             decoding="async"
           />
           <div>
-            <span>Cyan studio mood</span>
-            <strong>Designed to feel calm before the first polish stroke.</strong>
+            <span>RM studio interior</span>
+            <strong>Green velvet chairs, gold details, and a calm station prepared for precise work.</strong>
           </div>
         </article>
       </div>
@@ -2543,54 +2601,30 @@ function Footer({ navigate }) {
   return (
     <footer className="footer-editorial">
       <div className="footer-lightline" />
-      <div className="footer-main">
-        <div className="footer-brand-panel">
-          <RouteLink to="/" navigate={navigate} className="footer-logo">
-            <span>RM</span>
-            <div>
-              <strong>{siteConfig.salonName}</strong>
-              <em>Midtown NYC / Russian Manicure</em>
-            </div>
-          </RouteLink>
-          <p>
-            A cyan-lit Midtown nail studio for precise Russian manicure, hard gel, smart pedicure, and polished client
-            experience.
-          </p>
-          <div className="footer-socials">
-            <a href={siteConfig.instagramUrl} target="_blank" rel="noreferrer" aria-label="Instagram">
-              <AtSign size={17} />
-            </a>
-            <a href={`tel:${siteConfig.phone.replace(/[^0-9]/g, "")}`} aria-label="Call RM Nail Salon">
-              <Phone size={17} />
-            </a>
-            <a href={`mailto:${siteConfig.email}`} aria-label="Email RM Nail Salon">
-              <Mail size={17} />
-            </a>
-            <a href={siteConfig.mapUrl} target="_blank" rel="noreferrer" aria-label="Open map">
-              <MapPin size={17} />
-            </a>
-          </div>
-        </div>
-
-        <div className="footer-review-proof">
-          <strong>{reviewSummary.ratingValue}</strong>
-          <span>{reviewSummary.source} rating from {reviewSummary.reviewCount} client reviews</span>
+      <div className="footer-topline">
+        <RouteLink to="/" navigate={navigate} className="footer-logo">
+          <span>RM</span>
           <div>
-            {reviewSummary.reviews.slice(0, 2).map((review) => (
-              <q key={review.author}>{review.reviewBody}</q>
-            ))}
+            <strong>{siteConfig.salonName}</strong>
+            <em>Midtown NYC / Russian Manicure</em>
           </div>
-          <MagneticLink href={siteConfig.bookingUrl} className="gold-cta">
-            Book Now <ArrowUpRight size={15} />
-          </MagneticLink>
-        </div>
-
-        <div className="footer-contact-panel">
-          <span>Visit</span>
-          <strong>{siteConfig.address}</strong>
-          <a href={`tel:${siteConfig.phone.replace(/[^0-9]/g, "")}`}>{siteConfig.phone}</a>
-          <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
-          <em>{siteConfig.hours}</em>
+        </RouteLink>
+        <p>
+          Precision Russian manicure, hard gel, smart pedicure, and polished client experience at 875 3rd Ave.
+        </p>
+        <div className="footer-socials">
+          <a href={siteConfig.instagramUrl} target="_blank" rel="noreferrer" aria-label="Instagram">
+            <AtSign size={17} />
+          </a>
+          <a href={`tel:${siteConfig.phone.replace(/[^0-9]/g, "")}`} aria-label="Call RM Nail Salon">
+            <Phone size={17} />
+          </a>
+          <a href={`mailto:${siteConfig.email}`} aria-label="Email RM Nail Salon">
+            <Mail size={17} />
+          </a>
+          <a href={siteConfig.mapUrl} target="_blank" rel="noreferrer" aria-label="Open map">
+            <MapPin size={17} />
+          </a>
         </div>
       </div>
 

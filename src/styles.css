@@ -5649,3 +5649,243 @@ img {
   transform: translate(-50%, 0);
   visibility: visible;
 }
+
+.home-location-section {
+  align-items: start;
+  gap: clamp(2rem, 4vw, 4.5rem);
+  max-width: 1500px;
+  grid-template-columns: minmax(280px, 0.55fr) minmax(0, 1.45fr);
+}
+
+.home-location-section .location-copy {
+  position: sticky;
+  top: calc(var(--nav-offset, 5rem) + 1.5rem);
+}
+
+.home-location-section .location-copy .aqua-cta {
+  display: none;
+}
+
+.home-location-visual {
+  gap: 1.25rem;
+}
+
+.visit-contact-board {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: minmax(520px, 1.45fr) minmax(260px, 0.55fr);
+}
+
+.luxe-map-frame {
+  aspect-ratio: auto;
+  border-color: rgba(100, 224, 218, 0.22);
+  border-radius: 34px 34px 12px 34px;
+  min-height: 560px;
+}
+
+.luxe-map-frame::before {
+  background:
+    radial-gradient(circle at 18% 14%, rgba(100, 224, 218, 0.18), transparent 18rem),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.16), transparent 34%),
+    linear-gradient(to top, rgba(8, 5, 7, 0.82), transparent 48%);
+}
+
+.luxe-map-frame iframe,
+.map-frame iframe {
+  filter: grayscale(1) invert(0.92) contrast(1.2) brightness(0.72) saturate(0.25);
+}
+
+.map-directions-link {
+  background: linear-gradient(135deg, rgba(16, 92, 96, 0.95), rgba(10, 49, 53, 0.95));
+  border-color: rgba(100, 224, 218, 0.46);
+  color: white;
+}
+
+.map-glass-card {
+  background:
+    radial-gradient(circle at 12% 14%, rgba(100, 224, 218, 0.24), transparent 9rem),
+    rgba(8, 5, 7, 0.86);
+  max-width: min(23rem, calc(100% - 2rem));
+}
+
+.visit-card-stack {
+  display: grid;
+  gap: 1rem;
+}
+
+.visit-info-card {
+  align-items: start;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(100, 224, 218, 0.1), transparent 12rem),
+    rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 30px 30px 10px 30px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: auto minmax(0, 1fr);
+  min-height: 8rem;
+  padding: 1.35rem;
+}
+
+.visit-info-card > svg {
+  background: rgba(100, 224, 218, 0.1);
+  border: 1px solid rgba(100, 224, 218, 0.26);
+  border-radius: 17px;
+  color: var(--aqua);
+  height: 3rem;
+  padding: 0.78rem;
+  width: 3rem;
+}
+
+.visit-info-card span {
+  color: var(--aqua);
+  display: block;
+  font-size: 0.64rem;
+  font-weight: 950;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.visit-info-card h3,
+.visit-info-card a,
+.visit-info-card > div > strong {
+  color: white;
+  display: block;
+  font-family: "Playfair Display", serif;
+  font-size: clamp(1.25rem, 2vw, 1.72rem);
+  font-weight: 400;
+  line-height: 1.08;
+  margin-top: 0.38rem;
+}
+
+.visit-info-card a {
+  font-family: inherit;
+  font-size: clamp(0.9rem, 1.25vw, 1.08rem);
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+.hours-lines {
+  display: grid;
+  gap: 0.65rem;
+  margin-top: 1.25rem;
+}
+
+.hours-lines p {
+  align-items: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  margin: 0;
+  padding-top: 0.72rem;
+}
+
+.hours-lines p span {
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 0.92rem;
+  font-weight: 650;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.hours-lines p strong {
+  color: var(--aqua);
+  font-size: 0.94rem;
+  white-space: nowrap;
+}
+
+.salon-preview-card {
+  background:
+    radial-gradient(circle at 80% 20%, rgba(100, 224, 218, 0.11), transparent 17rem),
+    rgba(255, 255, 255, 0.04);
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1fr);
+}
+
+.salon-preview-card img {
+  min-height: 250px;
+  object-position: center 58%;
+}
+
+.footer-editorial {
+  padding-top: 0;
+}
+
+.footer-topline {
+  align-items: center;
+  border: 1px solid rgba(100, 224, 218, 0.13);
+  border-radius: 30px 30px 10px 30px;
+  display: grid;
+  gap: 1rem;
+  margin: 0 auto 1.1rem;
+  max-width: 1360px;
+  padding: 1.15rem;
+}
+
+.footer-topline p {
+  color: rgba(255, 255, 255, 0.62);
+  line-height: 1.65;
+  margin: 0;
+  max-width: 620px;
+}
+
+.footer-topline .footer-socials {
+  margin-top: 0;
+}
+
+.footer-main,
+.footer-brand-panel,
+.footer-review-proof,
+.footer-contact-panel {
+  display: none;
+}
+
+@media (min-width: 860px) {
+  .footer-topline {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+  }
+}
+
+@media (max-width: 1180px) {
+  .home-location-section {
+    grid-template-columns: 1fr;
+  }
+
+  .home-location-section .location-copy {
+    position: static;
+  }
+
+  .visit-contact-board {
+    grid-template-columns: 1fr;
+  }
+
+  .luxe-map-frame {
+    min-height: 430px;
+  }
+}
+
+@media (max-width: 640px) {
+  .luxe-map-frame {
+    min-height: 360px;
+  }
+
+  .visit-info-card {
+    min-height: auto;
+    padding: 1rem;
+  }
+
+  .hours-lines p {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .salon-preview-card {
+    grid-template-columns: 1fr;
+  }
+
+  .salon-preview-card img {
+    min-height: 310px;
+  }
+}
