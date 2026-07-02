@@ -6158,3 +6158,51 @@ img {
     width: 2.55rem;
   }
 }
+
+.home-location-section {
+  gap: clamp(3rem, 5.6vw, 6.25rem);
+  grid-template-columns: minmax(390px, 0.58fr) minmax(0, 1.42fr);
+}
+
+.home-location-section .location-copy h2 {
+  font-size: clamp(3.85rem, 5.8vw, 6.45rem);
+  max-width: 7.05ch;
+}
+
+.visit-info-card {
+  overflow: hidden;
+}
+
+.visit-info-card > div {
+  min-width: 0;
+}
+
+.hours-lines {
+  width: 100%;
+}
+
+.hours-lines p {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) max-content;
+}
+
+.hours-lines p strong {
+  justify-self: end;
+}
+
+@media (max-width: 1180px) {
+  .home-location-section {
+    grid-template-columns: 1fr;
+  }
+
+  .home-location-section .location-copy h2 {
+    max-width: 8.6ch;
+  }
+}
+
+@media (max-width: 640px) {
+  .home-location-section .location-copy h2 {
+    font-size: clamp(3.1rem, 16.2vw, 5rem);
+    max-width: 7.1ch;
+  }
+}

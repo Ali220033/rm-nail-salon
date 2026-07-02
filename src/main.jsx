@@ -312,9 +312,7 @@ const locationAreas = [
   "Midtown East",
   "Grand Central",
   "Turtle Bay",
-  "Sutton Place",
-  "Rockefeller Center",
-  "Murray Hill"
+  "Sutton Place"
 ];
 
 const bookingTimeSlots = [
@@ -2638,6 +2636,9 @@ function ContactPage() {
 
 function Footer({ navigate }) {
   const primaryLinks = routes.slice(1).filter((item) => !item.to.startsWith("#"));
+  const footerGeoLinks = locationAreas
+    .map((area) => geoLandingPages.find((item) => item.label === area))
+    .filter(Boolean);
   const trustLinks = [
     { to: "/blog", label: "RM Journal" },
     { to: "/team", label: "Meet the Artists" },
@@ -2705,7 +2706,7 @@ function Footer({ navigate }) {
         </div>
         <div>
           <span>Nearby Areas</span>
-          {geoLandingPages.slice(0, 9).map((item) => (
+          {footerGeoLinks.map((item) => (
             <RouteLink key={item.path} to={item.path} navigate={navigate}>
               {item.navLabel}
             </RouteLink>
@@ -2798,4 +2799,7 @@ function slug(value) {
   return value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 }
 
-createRoot(document.getElementById("root")).render(<App />);
+const rootElement = document.getElementById("root");
+const appRoot = window.__rmNailSalonRoot || createRoot(rootElement);
+window.__rmNailSalonRoot = appRoot;
+appRoot.render(<App />);
