@@ -14,12 +14,16 @@ import {
   ArrowUpRight,
   AtSign,
   CalendarDays,
+  Check,
   ChevronDown,
+  ChevronLeft,
+  ChevronRight,
   Clock,
   Mail,
   MapPin,
   Menu,
   MessageCircle,
+  Navigation,
   Phone,
   ShieldCheck,
   Sparkles,
@@ -80,6 +84,8 @@ const prefersReducedScroll = () =>
   window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
 
 const scrollBehavior = () => (prefersReducedScroll() ? "auto" : "smooth");
+
+const referenceImage = (name) => `/images/reference/${name}.webp`;
 
 const luxuryServices = [
   {
@@ -235,6 +241,10 @@ function enrichService(service) {
   };
 }
 
+function bookingOptionLabel(service) {
+  return `${service.shortName || service.name} / ${service.price}`;
+}
+
 const processSteps = [
   ["01", "Consultation", "We study your nail goals, lifestyle, shape preference, and existing product before touching the file."],
   ["02", "Nail & cuticle preparation", "Dry prep refines the cuticle line and nail plate so the finish looks clean up close."],
@@ -278,6 +288,36 @@ const locationAreas = [
   "Rockefeller Center",
   "Murray Hill"
 ];
+
+const bookingTimeSlots = [
+  "10:00 AM",
+  "11:00 AM",
+  "12:00 PM",
+  "1:00 PM",
+  "2:00 PM",
+  "3:00 PM",
+  "4:00 PM",
+  "5:00 PM",
+  "6:00 PM",
+  "7:00 PM"
+];
+
+const calendarMonths = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December"
+];
+
+const calendarDays = ["S", "M", "T", "W", "T", "F", "S"];
 
 function SeoHead({ route }) {
   useEffect(() => {
@@ -354,7 +394,10 @@ function App() {
     const updateScrollState = () => {
       frame = 0;
       const compact = window.scrollY > 42;
-      const showMobileBook = window.scrollY > Math.min(760, window.innerHeight * 0.78);
+      const planner = document.querySelector(".appointment-planner");
+      const plannerRect = planner?.getBoundingClientRect();
+      const plannerInView = Boolean(plannerRect && plannerRect.top < window.innerHeight - 120 && plannerRect.bottom > 120);
+      const showMobileBook = window.scrollY > Math.min(760, window.innerHeight * 0.78) && !plannerInView;
       setNavCompact((value) => (value === compact ? value : compact));
       setMobileBookVisible((value) => (value === showMobileBook ? value : showMobileBook));
     };
@@ -698,6 +741,7 @@ function Hero({ navigate }) {
             Explore Services <Sparkles size={16} />
           </MagneticLink>
         </motion.div>
+        <QuickBookingCard />
       </motion.div>
 
       <div className="hero-index">
@@ -706,6 +750,62 @@ function Hero({ navigate }) {
         <span>Long-lasting beauty</span>
       </div>
     </section>
+  );
+}
+
+function QuickBookingCard() {
+  const quickServices = useMemo(() => featuredServices.map(enrichService).slice(0, 6), []);
+  const [serviceId, setServiceId] = useState(quickServices[0]?.id || "");
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
+  const selected = quickServices.find((service) => service.id === serviceId) || quickServices[0];
+  const minDate = isoDate(new Date());
+
+  return (
+    <motion.form
+      className="hero-booking-card"
+      variants={reveal}
+      onSubmit={(event) => {
+        event.preventDefault();
+        window.open(siteConfig.bookingUrl, "_blank", "noopener,noreferrer");
+      }}
+      aria-label="Quick appointment planner"
+    >
+      <label>
+        <span>Service</span>
+        <select value={serviceId} onChange={(event) => setServiceId(event.target.value)}>
+          {quickServices.map((service) => (
+            <option key={service.id} value={service.id}>
+              {bookingOptionLabel(service)}
+            </option>
+          ))}
+        </select>
+      </label>
+      <label>
+        <span>Date</span>
+        <input type="date" value={date} min={minDate} onChange={(event) => setDate(event.target.value)} />
+      </label>
+      <label>
+        <span>Time</span>
+        <select value={time} onChange={(event) => setTime(event.target.value)}>
+          <option value="">Choose time</option>
+          {bookingTimeSlots.map((slot) => (
+            <option key={slot} value={slot}>
+              {slot}
+            </option>
+          ))}
+        </select>
+      </label>
+      <button type="submit">
+        <CalendarDays size={16} />
+        Reserve
+      </button>
+      <p>
+        {selected?.name || "RM appointment"}
+        {date ? ` / ${displayDate(date)}` : ""}
+        {time ? ` / ${time}` : ""}
+      </p>
+    </motion.form>
   );
 }
 
@@ -1245,13 +1345,39 @@ function LocationSection({ navigate }) {
           Contact & Map <MapPin size={16} />
         </RouteLink>
       </div>
-      <div className="home-map-frame">
-        <iframe
-          title="RM Nail Salon Midtown Manhattan map"
-          src={siteConfig.mapEmbedUrl}
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-        />
+      <div className="home-location-visual">
+        <div className="home-map-frame luxe-map-frame">
+          <iframe
+            title="RM Nail Salon Midtown Manhattan map"
+            src={siteConfig.mapEmbedUrl}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
+          <div className="map-glass-card">
+            <MapPin size={18} />
+            <div>
+              <span>RM Nail Salon</span>
+              <strong>875 3rd Ave</strong>
+              <em>Concourse Level / New York, NY 10022</em>
+            </div>
+          </div>
+          <a className="map-directions-link" href={siteConfig.mapUrl} target="_blank" rel="noreferrer">
+            <Navigation size={15} />
+            Open in Maps
+          </a>
+        </div>
+        <article className="salon-preview-card">
+          <img
+            src={referenceImage("ref-luxury-salon")}
+            alt="Luxury cyan-lit RM Nail Salon studio atmosphere"
+            loading="lazy"
+            decoding="async"
+          />
+          <div>
+            <span>Cyan studio mood</span>
+            <strong>Designed to feel calm before the first polish stroke.</strong>
+          </div>
+        </article>
       </div>
     </section>
   );
@@ -1358,32 +1484,165 @@ function Offer() {
 }
 
 function Booking({ navigate }) {
+  const today = useMemo(() => startOfDay(new Date()), []);
+  const [viewYear, setViewYear] = useState(today.getFullYear());
+  const [viewMonth, setViewMonth] = useState(today.getMonth());
+  const [selectedDate, setSelectedDate] = useState(isoDate(today));
+  const [selectedTime, setSelectedTime] = useState("11:00 AM");
+  const services = useMemo(
+    () =>
+      serviceMenu
+        .flatMap((group) => group.services.map((service) => enrichService({ ...service, category: group.category })))
+        .filter((service) => ["Manicure", "Pedicure", "Add-Ons"].includes(service.category || "")),
+    []
+  );
+  const [selectedServiceId, setSelectedServiceId] = useState("russian-hard-gel");
+  const selectedService = services.find((service) => service.id === selectedServiceId) || services[0];
+  const days = useMemo(() => buildCalendar(viewYear, viewMonth), [viewYear, viewMonth]);
+
+  const shiftMonth = (delta) => {
+    const next = new Date(viewYear, viewMonth + delta, 1);
+    setViewYear(next.getFullYear());
+    setViewMonth(next.getMonth());
+    const firstSelectable = startOfDay(next) < today ? today : next;
+    setSelectedDate(isoDate(firstSelectable));
+  };
+
   return (
-    <section className="booking-editorial">
+    <section className="booking-editorial" id="booking">
       <div className="booking-gloss" />
-      <motion.div
-        initial="hidden"
-        whileInView="show"
-        variants={{ show: { transition: { staggerChildren: 0.1 } } }}
-        viewport={{ once: true, amount: 0.4 }}
-        className="booking-copy"
-      >
-        <motion.p variants={reveal} className="eyebrow">
-          Book RM
-        </motion.p>
-        <motion.h2 variants={reveal}>Ready for nails that look flawless for weeks?</motion.h2>
-        <motion.p variants={reveal}>
-          Book the appointment that makes your hands feel polished before you even reach for your phone camera.
-        </motion.p>
-        <motion.div variants={reveal} className="booking-actions">
-          <MagneticLink href={siteConfig.bookingUrl} className="gold-cta">
-            Book Appointment <CalendarDays size={16} />
-          </MagneticLink>
-          <MagneticLink href="/contact" onClick={navigate("/contact")} className="outline-cta">
-            Message Us <MessageCircle size={16} />
-          </MagneticLink>
+      <div className="booking-planner-shell">
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          variants={{ show: { transition: { staggerChildren: 0.1 } } }}
+          viewport={{ once: true, amount: 0.28 }}
+          className="booking-copy"
+        >
+          <motion.p variants={reveal} className="eyebrow">
+            Reserve Your Visit
+          </motion.p>
+          <motion.h2 variants={reveal}>Book your moment of precision.</motion.h2>
+          <motion.p variants={reveal}>
+            Choose a service, preview a date and time, then finish securely on Booksy with RM Nail Salon&apos;s real
+            availability.
+          </motion.p>
+          <motion.div variants={reveal} className="booking-actions">
+            <MagneticLink href={siteConfig.bookingUrl} className="gold-cta">
+              Continue to Booksy <CalendarDays size={16} />
+            </MagneticLink>
+            <MagneticLink href="/contact" onClick={navigate("/contact")} className="outline-cta">
+              Ask a Question <MessageCircle size={16} />
+            </MagneticLink>
+          </motion.div>
         </motion.div>
-      </motion.div>
+
+        <motion.div
+          className="appointment-planner"
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <div className="calendar-panel">
+            <div className="calendar-head">
+              <div>
+                <span>Select date</span>
+                <strong>
+                  {calendarMonths[viewMonth]} {viewYear}
+                </strong>
+              </div>
+              <div>
+                <button type="button" onClick={() => shiftMonth(-1)} aria-label="Previous month">
+                  <ChevronLeft size={17} />
+                </button>
+                <button type="button" onClick={() => shiftMonth(1)} aria-label="Next month">
+                  <ChevronRight size={17} />
+                </button>
+              </div>
+            </div>
+            <div className="calendar-weekdays">
+              {calendarDays.map((day, index) => (
+                <span key={`${day}-${index}`}>{day}</span>
+              ))}
+            </div>
+            <div className="calendar-grid">
+              {days.map((dateItem, index) => {
+                if (!dateItem) return <span key={`empty-${index}`} />;
+                const value = isoDate(dateItem);
+                const past = startOfDay(dateItem) < today;
+                const selected = selectedDate === value;
+                return (
+                  <button
+                    key={value}
+                    type="button"
+                    disabled={past}
+                    className={selected ? "selected" : ""}
+                    onClick={() => setSelectedDate(value)}
+                  >
+                    {dateItem.getDate()}
+                    {value === isoDate(today) && !selected && <i />}
+                  </button>
+                );
+              })}
+            </div>
+            <div className="chosen-date">
+              <CalendarDays size={19} />
+              <div>
+                <span>Chosen date</span>
+                <strong>{displayDate(selectedDate)}</strong>
+              </div>
+            </div>
+          </div>
+
+          <div className="planner-detail-panel">
+            <label>
+              <span>Service</span>
+              <select value={selectedServiceId} onChange={(event) => setSelectedServiceId(event.target.value)}>
+                {services.map((service) => (
+                  <option key={service.id} value={service.id}>
+                    {bookingOptionLabel(service)}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <div className="time-slot-group">
+              <span>Preferred time</span>
+              <div>
+                {bookingTimeSlots.map((slot) => (
+                  <button
+                    type="button"
+                    key={slot}
+                    className={selectedTime === slot ? "selected" : ""}
+                    onClick={() => setSelectedTime(slot)}
+                  >
+                    {slot}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <article className="planner-summary">
+              <img
+                src={selectedService?.image || referenceImage("ref-luxury-hero")}
+                alt={`${selectedService?.name || "RM service"} preview`}
+                loading="lazy"
+                decoding="async"
+              />
+              <div>
+                <span>Your preview</span>
+                <h3>{selectedService?.name}</h3>
+                <p>
+                  {selectedService?.price} / {selectedService?.time}. {displayDate(selectedDate)} at {selectedTime}.
+                </p>
+              </div>
+            </article>
+            <a className="planner-book-button" href={siteConfig.bookingUrl} target="_blank" rel="noreferrer">
+              <Check size={17} />
+              Finish Booking on Booksy
+            </a>
+          </div>
+        </motion.div>
+      </div>
     </section>
   );
 }
@@ -2290,45 +2549,87 @@ function ContactPage() {
 }
 
 function Footer({ navigate }) {
+  const primaryLinks = routes.slice(1).filter((item) => !item.to.startsWith("#"));
+  const trustLinks = [
+    { to: "/blog", label: "RM Journal" },
+    { to: "/team", label: "Meet the Artists" },
+    { to: "/sterilization-process", label: "Sterilization Process" },
+    ...blogArticlePages.slice(0, 3).map((item) => ({ to: item.path, label: item.navLabel }))
+  ];
+
   return (
     <footer className="footer-editorial">
-      <RouteLink to="/" navigate={navigate} className="footer-logo">
-        {siteConfig.salonName}
-      </RouteLink>
-      <div className="footer-review-proof">
-        <strong>{reviewSummary.ratingValue}</strong>
-        <span>{reviewSummary.source} rating from {reviewSummary.reviewCount} client reviews</span>
-        <div>
-          {reviewSummary.reviews.map((review) => (
-            <q key={review.author}>{review.reviewBody}</q>
-          ))}
+      <div className="footer-lightline" />
+      <div className="footer-main">
+        <div className="footer-brand-panel">
+          <RouteLink to="/" navigate={navigate} className="footer-logo">
+            <span>RM</span>
+            <div>
+              <strong>{siteConfig.salonName}</strong>
+              <em>Midtown NYC / Russian Manicure</em>
+            </div>
+          </RouteLink>
+          <p>
+            A cyan-lit Midtown nail studio for precise Russian manicure, hard gel, smart pedicure, and polished client
+            experience.
+          </p>
+          <div className="footer-socials">
+            <a href={siteConfig.instagramUrl} target="_blank" rel="noreferrer" aria-label="Instagram">
+              <AtSign size={17} />
+            </a>
+            <a href={`tel:${siteConfig.phone.replace(/[^0-9]/g, "")}`} aria-label="Call RM Nail Salon">
+              <Phone size={17} />
+            </a>
+            <a href={`mailto:${siteConfig.email}`} aria-label="Email RM Nail Salon">
+              <Mail size={17} />
+            </a>
+            <a href={siteConfig.mapUrl} target="_blank" rel="noreferrer" aria-label="Open map">
+              <MapPin size={17} />
+            </a>
+          </div>
+        </div>
+
+        <div className="footer-review-proof">
+          <strong>{reviewSummary.ratingValue}</strong>
+          <span>{reviewSummary.source} rating from {reviewSummary.reviewCount} client reviews</span>
+          <div>
+            {reviewSummary.reviews.slice(0, 2).map((review) => (
+              <q key={review.author}>{review.reviewBody}</q>
+            ))}
+          </div>
+          <MagneticLink href={siteConfig.bookingUrl} className="gold-cta">
+            Book Now <ArrowUpRight size={15} />
+          </MagneticLink>
+        </div>
+
+        <div className="footer-contact-panel">
+          <span>Visit</span>
+          <strong>{siteConfig.address}</strong>
+          <a href={`tel:${siteConfig.phone.replace(/[^0-9]/g, "")}`}>{siteConfig.phone}</a>
+          <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+          <em>{siteConfig.hours}</em>
         </div>
       </div>
-      <nav>
-        {routes.slice(1).map((item) =>
-          item.to.startsWith("#") ? (
-            <a
-              key={item.to}
-              href={`/${item.to}`}
-              onClick={(event) => {
-                event.preventDefault();
-                window.history.pushState({}, "", `/${item.to}`);
-                window.dispatchEvent(new PopStateEvent("popstate"));
-                window.setTimeout(
-                  () => document.querySelector(item.to)?.scrollIntoView({ behavior: scrollBehavior() }),
-                  90
-                );
-              }}
-            >
-              {item.label}
-            </a>
-          ) : (
-            <RouteLink key={item.to} to={item.to} navigate={navigate}>
-              {item.label}
-            </RouteLink>
-          )
-        )}
+
+      <nav className="footer-primary-nav" aria-label="Footer primary navigation">
+        {primaryLinks.map((item) => (
+          <RouteLink key={item.to} to={item.to} navigate={navigate}>
+            {item.label}
+          </RouteLink>
+        ))}
+        <a
+          href="/#reviews"
+          onClick={(event) => {
+            event.preventDefault();
+            window.history.pushState({}, "", "/#reviews");
+            window.dispatchEvent(new PopStateEvent("popstate"));
+            window.setTimeout(() => document.querySelector("#reviews")?.scrollIntoView({ behavior: scrollBehavior() }), 90);
+          }}
+        >
+          Reviews
+        </a>
       </nav>
+
       <div className="footer-seo-nav">
         <div>
           <span>Signature Services</span>
@@ -2340,7 +2641,7 @@ function Footer({ navigate }) {
         </div>
         <div>
           <span>Nearby Areas</span>
-          {geoLandingPages.slice(0, 7).map((item) => (
+          {geoLandingPages.slice(0, 9).map((item) => (
             <RouteLink key={item.path} to={item.path} navigate={navigate}>
               {item.navLabel}
             </RouteLink>
@@ -2348,30 +2649,36 @@ function Footer({ navigate }) {
         </div>
         <div>
           <span>Trust & Education</span>
-          <RouteLink to="/blog" navigate={navigate}>
-            RM Journal
-          </RouteLink>
-          <RouteLink to="/team" navigate={navigate}>
-            Meet the Artists
-          </RouteLink>
-          <RouteLink to="/sterilization-process" navigate={navigate}>
-            Sterilization Process
-          </RouteLink>
-          {blogArticlePages.slice(0, 3).map((item) => (
-            <RouteLink key={item.path} to={item.path} navigate={navigate}>
-              {item.navLabel}
+          {trustLinks.map((item) => (
+            <RouteLink key={item.to} to={item.to} navigate={navigate}>
+              {item.label}
             </RouteLink>
           ))}
         </div>
       </div>
-      <span>Copyright 2026 RM Nail Salon</span>
+      <div className="footer-watermark" aria-hidden="true">
+        RM Nail Salon
+      </div>
+      <div className="footer-bottom">
+        <span>Copyright 2026 RM Nail Salon</span>
+        <RouteLink to="/" navigate={navigate}>
+          Back to top
+        </RouteLink>
+      </div>
     </footer>
   );
 }
 
 function MobileBook({ visible }) {
   return (
-    <a href={siteConfig.bookingUrl} className={visible ? "mobile-book visible" : "mobile-book"} target="_blank" rel="noreferrer">
+    <a
+      href={siteConfig.bookingUrl}
+      className={visible ? "mobile-book visible" : "mobile-book"}
+      target="_blank"
+      rel="noreferrer"
+      aria-hidden={!visible}
+      tabIndex={visible ? 0 : -1}
+    >
       <span>Book Appointment</span>
       <em>View availability on Booksy</em>
     </a>
@@ -2385,6 +2692,42 @@ function FloatingOffer() {
       <em>First Visit</em>
     </a>
   );
+}
+
+function buildCalendar(year, month) {
+  const first = new Date(year, month, 1);
+  const cells = Array.from({ length: first.getDay() }, () => null);
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  for (let day = 1; day <= daysInMonth; day += 1) {
+    cells.push(new Date(year, month, day));
+  }
+  while (cells.length % 7 !== 0) {
+    cells.push(null);
+  }
+  return cells;
+}
+
+function startOfDay(value) {
+  const date = new Date(value);
+  date.setHours(0, 0, 0, 0);
+  return date;
+}
+
+function isoDate(value) {
+  const date = new Date(value);
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(
+    2,
+    "0"
+  )}`;
+}
+
+function displayDate(value) {
+  if (!value) return "No date selected";
+  return new Date(`${value}T00:00:00`).toLocaleDateString("en-US", {
+    weekday: "short",
+    month: "short",
+    day: "numeric"
+  });
 }
 
 function slug(value) {
