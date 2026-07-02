@@ -50,7 +50,6 @@ import {
   getRelatedSeoPages,
   getSeoPage,
   getServiceById,
-  reviewSummary,
   seoPages,
   serviceLandingPages
 } from "./seoData";
@@ -77,6 +76,35 @@ const routes = [
   { to: "#reviews", label: "Reviews" },
   { to: "/faq", label: "FAQ" },
   { to: "/contact", label: "Contact" }
+];
+
+const googleReviewUrl = siteConfig.mapUrl;
+
+const googleReviews = [
+  {
+    name: "Monelle Hylaris",
+    meta: "4 reviews / 4 photos",
+    time: "a month ago",
+    avatar: "/images/reviews/monelle-hylaris.webp",
+    quote:
+      "I had a great experience at Russian manicure nail studio. The tech was so gentle, detailed, and really knew what she was doing. My cuticles look super clean and my nails came out so neat and polished. You can tell they take their time and care about the work. Definitely one of the best manicures I have had."
+  },
+  {
+    name: "Giuliana F.",
+    meta: "11 reviews / 4 photos",
+    time: "3 months ago",
+    avatar: "/images/reviews/giuliana-f.webp",
+    quote:
+      "The best nail salon ever. Every technician here is extremely skilled and works efficiently. I always leave very happy with how my nails look. The attention to detail that the technicians have here is unmatched. The salon itself is very cute and all of the employees are very kind."
+  },
+  {
+    name: "Rina Pineda",
+    meta: "2 reviews / 2 photos",
+    time: "a month ago",
+    avatar: "/images/reviews/rina-pineda.webp",
+    quote:
+      "I am so happy I found this place. They did an amazing job with my nails, beautiful job, and they took their time in every single detail. I recommend this place if you are looking for a professional Russian manicure."
+  }
 ];
 
 const prefersReducedScroll = () =>
@@ -1025,9 +1053,8 @@ function WorkReel() {
       >
         <div className="process-stage" aria-label="RM Nail Salon Russian manicure work process">
           <img className="process-shot process-shot-one" src={fastImage("work-reel-process")} alt="Russian manicure cuticle prep at RM Nail Salon" loading="lazy" decoding="async" />
-          <img className="process-shot process-shot-two" src={fastImage("service-hard-gel")} alt="Hard gel manicure work in progress at RM Nail Salon" loading="lazy" decoding="async" />
-          <img className="process-shot process-shot-three" src={fastImage("brand-face-red-nails-framed")} alt="RM Nail Salon editorial red manicure campaign image" loading="lazy" decoding="async" />
-          <div className="process-light light-one" />
+          <img className="process-shot process-shot-two" src={fastImage("service-russian-clear")} alt="Clean natural Russian manicure result at RM Nail Salon" loading="lazy" decoding="async" />
+          <img className="process-shot process-shot-three" src={fastImage("gallery-aqua-french")} alt="Glossy cyan French manicure finish at RM Nail Salon" loading="lazy" decoding="async" />
           <div className="process-light light-two" />
           <div className="animated-nails">
             <i />
@@ -1225,42 +1252,59 @@ function ReviewsSection() {
   return (
     <section className="reviews-section" id="reviews">
       <div className="reviews-lead">
-        <p className="eyebrow">Client Proof</p>
-        <h2>Booksy client reviews.</h2>
+        <p className="eyebrow">Google Client Proof</p>
+        <h2>Real reviews, real appointments.</h2>
         <p>
-          Real appointment feedback: RM currently shows a 5.0 rating on Booksy from 7 listed client reviews. Read the
-          full listing before choosing your appointment time.
+          Clients come to RM for the detail work: clean cuticles, careful timing, and a polished result that still feels
+          fresh weeks later.
         </p>
-        <div className="rating-lockup" aria-label={`${reviewSummary.ratingValue} rating from ${reviewSummary.reviewCount} client reviews`}>
-          <strong>{reviewSummary.ratingValue}</strong>
+        <div className="rating-lockup" aria-label="5.0 Google rating from client reviews">
+          <strong>5.0</strong>
           <span>
             <Star size={16} fill="currentColor" />
-            {reviewSummary.source} rating
+            Google rating
           </span>
-          <em>{reviewSummary.reviewCount} client reviews</em>
+          <em>Midtown NYC clients</em>
         </div>
-        <MagneticLink href={reviewSummary.sourceUrl} className="outline-cta review-booksy-link">
-          Read Reviews on Booksy <ArrowUpRight size={16} />
+        <MagneticLink href={googleReviewUrl} className="outline-cta review-booksy-link">
+          See Reviews on Google <ArrowUpRight size={16} />
         </MagneticLink>
       </div>
-      <div className="review-cards">
-        {reviewSummary.reviews.map((review, index) => (
-          <motion.article
-            key={review.author}
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.05 }}
-            viewport={{ once: true, amount: 0.25 }}
-          >
-            <div>
-              {[0, 1, 2, 3, 4].map((item) => (
-                <Star key={item} size={14} fill="currentColor" />
-              ))}
-            </div>
-            <q>{review.reviewBody}</q>
-            <span>{review.author} / Booksy client review</span>
-          </motion.article>
-        ))}
+      <div className="google-review-shell">
+        <div className="google-review-rail" aria-label="Scrollable Google reviews">
+          {googleReviews.map((review, index) => (
+            <motion.a
+              key={review.name}
+              href={googleReviewUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="google-review-card"
+              aria-label={`Read ${review.name}'s Google review`}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.05 }}
+              viewport={{ once: true, amount: 0.25 }}
+            >
+              <div className="google-review-head">
+                <img src={review.avatar} alt={`${review.name} Google profile`} loading="lazy" decoding="async" />
+                <div>
+                  <strong>{review.name}</strong>
+                  <span>{review.meta}</span>
+                </div>
+              </div>
+              <div className="google-stars" aria-label="5 star review">
+                {[0, 1, 2, 3, 4].map((item) => (
+                  <Star key={item} size={15} fill="currentColor" />
+                ))}
+                <span>{review.time}</span>
+              </div>
+              <p>{review.quote}</p>
+              <em>
+                See Review <ArrowUpRight size={14} />
+              </em>
+            </motion.a>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -1310,7 +1354,7 @@ function LocationSection({ navigate }) {
       Icon: Clock,
       eyebrow: "Open",
       title: "Business Hours",
-      lines: [["Every day", "9:30 AM - 7:30 PM"]]
+      lines: [["Daily", "9:30 AM - 7:30 PM"]]
     },
     {
       Icon: Phone,
@@ -1362,6 +1406,9 @@ function LocationSection({ navigate }) {
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             />
+            <div className="cyan-map-pin" aria-hidden="true">
+              <MapPin size={22} fill="currentColor" />
+            </div>
             <div className="map-glass-card">
               <MapPin size={18} />
               <div>

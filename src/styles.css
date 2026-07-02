@@ -1268,7 +1268,7 @@ img {
 .reel-controls {
   align-items: center;
   bottom: 1.3rem;
-  display: flex;
+  display: none;
   left: 1.3rem;
   position: absolute;
   right: 1.3rem;
@@ -5887,5 +5887,274 @@ img {
 
   .salon-preview-card img {
     min-height: 310px;
+  }
+}
+
+.reel-phone .process-shot-one {
+  height: 43%;
+  left: 8%;
+  object-position: center 52%;
+  top: 24%;
+  width: 84%;
+}
+
+.reel-phone .process-shot-two {
+  bottom: 7.8%;
+  height: 23%;
+  left: 8%;
+  object-position: center 48%;
+  width: 39%;
+}
+
+.reel-phone .process-shot-three {
+  bottom: 7.8%;
+  height: 23%;
+  object-position: center 56%;
+  right: 8%;
+  width: 39%;
+}
+
+.home-location-section {
+  grid-template-columns: minmax(430px, 0.62fr) minmax(0, 1.38fr);
+}
+
+.home-location-section .location-copy {
+  min-width: 0;
+  z-index: 2;
+}
+
+.home-location-section .location-copy h2 {
+  font-size: clamp(4.1rem, 6.4vw, 7rem);
+  max-width: 7.8ch;
+}
+
+.home-location-visual {
+  min-width: 0;
+}
+
+.home-map-frame {
+  overflow: hidden;
+}
+
+.cyan-map-pin {
+  align-items: center;
+  background: linear-gradient(135deg, var(--aqua), #d8fff8);
+  border: 2px solid rgba(255, 255, 255, 0.92);
+  border-radius: 999px 999px 999px 0;
+  box-shadow: 0 0 0 10px rgba(100, 224, 218, 0.14), 0 0 36px rgba(100, 224, 218, 0.58);
+  color: #08292b;
+  display: grid;
+  height: 3.1rem;
+  left: 53%;
+  place-items: center;
+  pointer-events: none;
+  position: absolute;
+  top: 49%;
+  transform: translate(-50%, -100%) rotate(-45deg);
+  width: 3.1rem;
+  z-index: 5;
+}
+
+.cyan-map-pin svg {
+  transform: rotate(45deg);
+}
+
+.cyan-map-pin::after {
+  animation: mapPinPulse 2.8s infinite ease-out;
+  border: 1px solid rgba(100, 224, 218, 0.7);
+  border-radius: 999px;
+  content: "";
+  height: 4.6rem;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 4.6rem;
+  z-index: -1;
+}
+
+@keyframes mapPinPulse {
+  0% {
+    opacity: 0.58;
+    transform: translate(-50%, -50%) scale(0.74);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.42);
+  }
+}
+
+.hours-lines p span {
+  white-space: nowrap;
+}
+
+.google-review-shell {
+  min-width: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.google-review-shell::before,
+.google-review-shell::after {
+  content: "";
+  inset-block: 0;
+  pointer-events: none;
+  position: absolute;
+  width: 4.5rem;
+  z-index: 2;
+}
+
+.google-review-shell::before {
+  background: linear-gradient(90deg, #091a1b, transparent);
+  left: 0;
+}
+
+.google-review-shell::after {
+  background: linear-gradient(270deg, #091a1b, transparent);
+  right: 0;
+}
+
+.google-review-rail {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding: 0.35rem clamp(1rem, 3vw, 2.25rem) 1.1rem;
+  scroll-padding-inline: clamp(1rem, 3vw, 2.25rem);
+  scroll-snap-type: x mandatory;
+  scrollbar-color: rgba(100, 224, 218, 0.55) rgba(255, 255, 255, 0.06);
+}
+
+.google-review-card {
+  background:
+    radial-gradient(circle at 8% 0%, rgba(100, 224, 218, 0.16), transparent 12rem),
+    linear-gradient(150deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.035));
+  border: 1px solid rgba(100, 224, 218, 0.2);
+  border-radius: 34px 34px 12px 34px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.26);
+  color: white;
+  display: flex;
+  flex: 0 0 min(88vw, 390px);
+  flex-direction: column;
+  min-height: 27rem;
+  padding: clamp(1.1rem, 2vw, 1.45rem);
+  scroll-snap-align: center;
+  text-decoration: none;
+  transition: border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
+}
+
+.google-review-card:hover {
+  border-color: rgba(100, 224, 218, 0.46);
+  box-shadow: 0 34px 90px rgba(100, 224, 218, 0.13), 0 32px 100px rgba(0, 0, 0, 0.34);
+  transform: translateY(-4px);
+}
+
+.google-review-head {
+  align-items: center;
+  display: grid;
+  gap: 0.85rem;
+  grid-template-columns: auto minmax(0, 1fr);
+}
+
+.google-review-head img {
+  aspect-ratio: 1;
+  border: 1px solid rgba(241, 237, 155, 0.42);
+  border-radius: 999px;
+  height: 3.35rem;
+  object-fit: cover;
+  width: 3.35rem;
+}
+
+.google-review-head strong {
+  color: white;
+  display: block;
+  font-family: "Neue Haas Grotesk Display Pro", "Inter", sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0;
+}
+
+.google-review-head span,
+.google-stars span {
+  color: rgba(255, 255, 255, 0.58);
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  margin-top: 0.2rem;
+  text-transform: none;
+}
+
+.google-stars {
+  align-items: center;
+  color: var(--cream);
+  display: flex;
+  gap: 0.16rem;
+  margin-top: 1.1rem;
+}
+
+.google-stars span {
+  margin-left: 0.55rem;
+  margin-top: 0;
+}
+
+.google-review-card p {
+  color: rgba(255, 255, 255, 0.76);
+  font-size: clamp(1rem, 1.7vw, 1.12rem);
+  line-height: 1.68;
+  margin: 1.05rem 0 1.4rem;
+}
+
+.google-review-card em {
+  align-items: center;
+  border-top: 1px solid rgba(100, 224, 218, 0.16);
+  color: var(--aqua);
+  display: flex;
+  font-size: 0.72rem;
+  font-style: normal;
+  font-weight: 950;
+  gap: 0.4rem;
+  letter-spacing: 0.16em;
+  margin-top: auto;
+  padding-top: 1rem;
+  text-transform: uppercase;
+}
+
+@media (max-width: 1180px) {
+  .home-location-section {
+    grid-template-columns: 1fr;
+  }
+
+  .home-location-section .location-copy h2 {
+    max-width: 9ch;
+  }
+}
+
+@media (max-width: 760px) {
+  .google-review-shell::before,
+  .google-review-shell::after {
+    width: 1.2rem;
+  }
+
+  .google-review-card {
+    flex-basis: min(84vw, 360px);
+    min-height: 25rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .home-location-section .location-copy h2 {
+    font-size: clamp(3.25rem, 17vw, 5.2rem);
+    max-width: 7.2ch;
+  }
+
+  .hours-lines p {
+    align-items: center;
+    flex-direction: row;
+  }
+
+  .cyan-map-pin {
+    height: 2.55rem;
+    left: 54%;
+    top: 50%;
+    width: 2.55rem;
   }
 }
