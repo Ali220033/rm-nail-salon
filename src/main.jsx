@@ -396,8 +396,11 @@ function App() {
       const compact = window.scrollY > 42;
       const planner = document.querySelector(".appointment-planner");
       const plannerRect = planner?.getBoundingClientRect();
+      const reviews = document.getElementById("reviews");
+      const reviewsRect = reviews?.getBoundingClientRect();
       const plannerInView = Boolean(plannerRect && plannerRect.top < window.innerHeight - 120 && plannerRect.bottom > 120);
-      const showMobileBook = window.scrollY > Math.min(760, window.innerHeight * 0.78) && !plannerInView;
+      const reviewsInView = Boolean(reviewsRect && reviewsRect.top < window.innerHeight - 120 && reviewsRect.bottom > 120);
+      const showMobileBook = window.scrollY > Math.min(760, window.innerHeight * 0.78) && !plannerInView && !reviewsInView;
       setNavCompact((value) => (value === compact ? value : compact));
       setMobileBookVisible((value) => (value === showMobileBook ? value : showMobileBook));
     };
@@ -679,7 +682,6 @@ function HomePage({ navigate, setSelectedGallery }) {
   return (
     <>
       <Hero navigate={navigate} />
-      <SocialProofStrip />
       <LuxuryServicesOverview navigate={navigate} />
       <GalleryPreview setSelectedGallery={setSelectedGallery} navigate={navigate} />
       <Proof />
@@ -695,28 +697,16 @@ function Hero({ navigate }) {
   return (
     <section className="hero-editorial">
       <picture>
-        <source media="(min-width: 820px)" srcSet={fastImage("rm-hero")} />
+        <source media="(min-width: 820px)" srcSet="/images/hero-rm-hq.webp" />
         <img
           className="hero-backdrop"
-          src={fastImage("rm-hero-editorial")}
+          src="/images/hero-rm-mobile-hq.webp"
           alt="RM Nail Salon luxury Russian manicure hero"
           decoding="async"
           fetchPriority="high"
           loading="eager"
         />
       </picture>
-      <video
-        className="hero-motion"
-        src={siteConfig.processVideo}
-        poster={fastImage("rm-hero-editorial")}
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="metadata"
-        aria-hidden="true"
-      />
-      <div className="hero-progress" />
 
       <motion.div
         className="hero-type"
@@ -741,14 +731,7 @@ function Hero({ navigate }) {
             Explore Services <Sparkles size={16} />
           </MagneticLink>
         </motion.div>
-        <QuickBookingCard />
       </motion.div>
-
-      <div className="hero-index">
-        <span>Precision</span>
-        <span>Hygiene</span>
-        <span>Long-lasting beauty</span>
-      </div>
     </section>
   );
 }
@@ -840,7 +823,7 @@ function LuxuryServicesOverview({ navigate }) {
             key={service.title}
             to={service.link}
             navigate={navigate}
-            className={index === 0 ? "service-line feature" : "service-line"}
+            className={`${index === 0 ? "service-line feature" : "service-line"} service-${slug(service.title)}`}
           >
             <span>{String(index + 1).padStart(2, "0")}</span>
             <img src={service.image} alt={`${service.title} at RM Nail Salon in Midtown Manhattan`} loading="lazy" decoding="async" />
@@ -1243,10 +1226,10 @@ function ReviewsSection() {
     <section className="reviews-section" id="reviews">
       <div className="reviews-lead">
         <p className="eyebrow">Client Proof</p>
-        <h2>Booksy client reviews from real appointments.</h2>
+        <h2>Booksy client reviews.</h2>
         <p>
-          RM currently shows a 5.0 rating on Booksy from 7 listed client reviews. Read the full listing before choosing
-          your appointment time.
+          Real appointment feedback: RM currently shows a 5.0 rating on Booksy from 7 listed client reviews. Read the
+          full listing before choosing your appointment time.
         </p>
         <div className="rating-lockup" aria-label={`${reviewSummary.ratingValue} rating from ${reviewSummary.reviewCount} client reviews`}>
           <strong>{reviewSummary.ratingValue}</strong>
@@ -1691,7 +1674,7 @@ function ServicesPage({ navigate }) {
         <div className="service-lookbook">
           <motion.div
             key={spotlight.id}
-            className="lookbook-image organic-mask"
+            className={`lookbook-image organic-mask service-${spotlight.id}`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.45 }}
@@ -1709,7 +1692,7 @@ function ServicesPage({ navigate }) {
               <button
                 key={service.id}
                 aria-label={`Preview ${service.shortName} service`}
-                className={spotlight.id === service.id ? "active" : ""}
+                className={`${spotlight.id === service.id ? "active" : ""} service-${service.id}`}
                 onMouseEnter={() => setSpotlight(service)}
                 onFocus={() => setSpotlight(service)}
                 onClick={() => {
@@ -1747,7 +1730,7 @@ function ServicesPage({ navigate }) {
             <div className="catalog-list">
               {group.services.map((service) => (
                 <article
-                  className="catalog-service"
+                  className={`catalog-service service-${service.id}`}
                   key={service.id}
                   id={service.id}
                   onMouseEnter={() => setSpotlight({ ...service, category: group.category })}
@@ -2375,7 +2358,7 @@ function GalleryGrid({ items, setSelectedGallery }) {
       {items.map((item, index) => (
         <motion.button
           key={`${item.title}-${index}`}
-          className={`masonry-item ${item.size} tone-${item.tone}`}
+          className={`masonry-item ${item.size} tone-${item.tone} gallery-${slug(item.title)}`}
           aria-label={`Open ${item.title} gallery photo`}
           onClick={() => setSelectedGallery({ ...item, index })}
           initial={{ opacity: 0, y: 32 }}
