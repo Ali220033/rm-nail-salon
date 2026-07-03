@@ -498,9 +498,9 @@ export const galleryItems = [
     category: "Russian Manicure",
     tone: "cream",
     size: "tall",
-    image: newJapaneseClearImage,
+    image: newRussianNaturalImage,
     alt: "Full hands with clean natural Russian manicure finish",
-    focal: "50% 42%"
+    focal: "50% 34%"
   },
   {
     title: "Hard Gel Structure",

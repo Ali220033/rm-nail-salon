@@ -412,7 +412,6 @@ function App() {
   const [selectedGallery, setSelectedGallery] = useState(null);
   const [route, setRoute] = useState(normalizePath);
   const [navCompact, setNavCompact] = useState(false);
-  const [mobileBookVisible, setMobileBookVisible] = useState(false);
 
   useEffect(() => {
     const timer = window.setTimeout(() => setLoading(false), 420);
@@ -420,15 +419,7 @@ function App() {
     const updateScrollState = () => {
       frame = 0;
       const compact = window.scrollY > 42;
-      const planner = document.querySelector(".appointment-planner");
-      const plannerRect = planner?.getBoundingClientRect();
-      const reviews = document.getElementById("reviews");
-      const reviewsRect = reviews?.getBoundingClientRect();
-      const plannerInView = Boolean(plannerRect && plannerRect.top < window.innerHeight - 120 && plannerRect.bottom > 120);
-      const reviewsInView = Boolean(reviewsRect && reviewsRect.top < window.innerHeight - 120 && reviewsRect.bottom > 120);
-      const showMobileBook = window.scrollY > Math.min(760, window.innerHeight * 0.78) && !plannerInView && !reviewsInView;
       setNavCompact((value) => (value === compact ? value : compact));
-      setMobileBookVisible((value) => (value === showMobileBook ? value : showMobileBook));
     };
     const onScroll = () => {
       if (!frame) {
@@ -513,7 +504,7 @@ function App() {
             </AnimatePresence>
           </main>
           <Footer navigate={navigate} />
-          <MobileBook visible={mobileBookVisible} />
+          <FloatingBookNow />
           <GalleryModal item={selectedGallery} onClose={() => setSelectedGallery(null)} />
         </div>
       </LazyMotion>
@@ -1050,9 +1041,17 @@ function WorkReel() {
         viewport={{ once: true, amount: 0.35 }}
       >
         <div className="process-stage" aria-label="RM Nail Salon Russian manicure work process">
-          <img className="process-shot process-shot-one" src={fastImage("work-reel-process")} alt="Russian manicure cuticle prep at RM Nail Salon" loading="lazy" decoding="async" />
-          <img className="process-shot process-shot-two" src={fastImage("service-russian-clear")} alt="Clean natural Russian manicure result at RM Nail Salon" loading="lazy" decoding="async" />
-          <img className="process-shot process-shot-three" src={fastImage("gallery-aqua-french")} alt="Glossy cyan French manicure finish at RM Nail Salon" loading="lazy" decoding="async" />
+          <video
+            className="process-video"
+            src={siteConfig.processVideo}
+            poster={fastImage("work-reel-process")}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            aria-label="Looping Russian manicure session video at RM Nail Salon"
+          />
           <div className="process-light light-two" />
           <div className="animated-nails">
             <i />
@@ -1575,16 +1574,28 @@ function Booking({ navigate }) {
   const [viewMonth, setViewMonth] = useState(today.getMonth());
   const [selectedDate, setSelectedDate] = useState(isoDate(today));
   const [selectedTime, setSelectedTime] = useState("11:00 AM");
-  const services = useMemo(
+  const serviceGroups = useMemo(
     () =>
       serviceMenu
-        .flatMap((group) => group.services.map((service) => enrichService({ ...service, category: group.category })))
-        .filter((service) => ["Manicure", "Pedicure", "Add-Ons"].includes(service.category || "")),
+        .filter((group) => group.services?.length)
+        .map((group) => ({
+          category: group.category,
+          services: group.services.map((service) => enrichService({ ...service, category: group.category }))
+        })),
     []
   );
+  const [selectedCategory, setSelectedCategory] = useState(serviceGroups[0]?.category || "");
+  const selectedGroup = serviceGroups.find((group) => group.category === selectedCategory) || serviceGroups[0];
+  const services = selectedGroup?.services || [];
   const [selectedServiceId, setSelectedServiceId] = useState("russian-hard-gel");
   const selectedService = services.find((service) => service.id === selectedServiceId) || services[0];
   const days = useMemo(() => buildCalendar(viewYear, viewMonth), [viewYear, viewMonth]);
+
+  useEffect(() => {
+    if (!services.some((service) => service.id === selectedServiceId) && services[0]) {
+      setSelectedServiceId(services[0].id);
+    }
+  }, [services, selectedServiceId]);
 
   const shiftMonth = (delta) => {
     const next = new Date(viewYear, viewMonth + delta, 1);
@@ -1682,6 +1693,21 @@ function Booking({ navigate }) {
           </div>
 
           <div className="planner-detail-panel">
+            <div className="service-group-tabs" aria-label="Service categories">
+              {serviceGroups.map((group) => (
+                <button
+                  key={group.category}
+                  type="button"
+                  className={selectedCategory === group.category ? "selected" : ""}
+                  onClick={() => {
+                    setSelectedCategory(group.category);
+                    setSelectedServiceId(group.services[0]?.id || selectedServiceId);
+                  }}
+                >
+                  {group.category}
+                </button>
+              ))}
+            </div>
             <label>
               <span>Service</span>
               <select value={selectedServiceId} onChange={(event) => setSelectedServiceId(event.target.value)}>
@@ -2747,6 +2773,15 @@ function MobileBook({ visible }) {
       <span>Book Appointment</span>
       <em>View availability on Booksy</em>
     </a>
+  );
+}
+
+function FloatingBookNow() {
+  return (
+    <MagneticLink href={siteConfig.bookingUrl} className="floating-book-circle">
+      <span>Book</span>
+      <strong>Now</strong>
+    </MagneticLink>
   );
 }
 

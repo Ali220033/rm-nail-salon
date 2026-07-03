@@ -5574,6 +5574,112 @@ img {
     linear-gradient(to top, rgba(13, 9, 12, 0.26), transparent 64%);
 }
 
+.service-line.service-russian-manicure img {
+  object-fit: cover;
+  object-position: 50% 34%;
+  padding: 0;
+}
+
+.masonry-item {
+  content-visibility: visible;
+  contain-intrinsic-size: auto;
+}
+
+.masonry-item.gallery-clean-russian-manicure img {
+  object-fit: cover;
+  object-position: 50% 34%;
+}
+
+.reel-phone .process-video {
+  background: #080507;
+  border: 1px solid rgba(100, 224, 218, 0.2);
+  border-radius: 34px 34px 12px 34px;
+  bottom: 5.2rem;
+  box-shadow: 0 26px 90px rgba(0, 0, 0, 0.42);
+  height: auto;
+  left: 7%;
+  object-fit: cover;
+  object-position: center;
+  position: absolute;
+  right: 7%;
+  top: 8.2rem;
+  width: 86%;
+}
+
+.reel-phone .process-stage {
+  background:
+    radial-gradient(circle at 70% 16%, rgba(100, 224, 218, 0.34), transparent 15rem),
+    radial-gradient(circle at 32% 78%, rgba(241, 237, 155, 0.12), transparent 14rem),
+    linear-gradient(180deg, #1c1317, #080507);
+}
+
+.reel-phone .animated-nails {
+  bottom: 7.2%;
+}
+
+.reel-phone .reel-controls {
+  display: none !important;
+}
+
+.cyan-map-pin {
+  animation: none;
+  box-shadow: 0 0 0 8px rgba(100, 224, 218, 0.16), 0 0 34px rgba(100, 224, 218, 0.64);
+  left: 52.9%;
+  top: 49.8%;
+}
+
+.cyan-map-pin::after {
+  display: none;
+}
+
+.service-group-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.service-group-tabs button {
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(100, 224, 218, 0.18);
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 0.62rem;
+  font-weight: 950;
+  letter-spacing: 0.12em;
+  min-height: 2.35rem;
+  padding: 0 0.82rem;
+  text-transform: uppercase;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.service-group-tabs button.selected,
+.service-group-tabs button:hover {
+  background: rgba(100, 224, 218, 0.13);
+  border-color: rgba(100, 224, 218, 0.62);
+  color: var(--aqua);
+}
+
+.planner-summary {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.planner-summary img {
+  aspect-ratio: 4 / 3;
+  background: radial-gradient(circle at 50% 50%, rgba(100, 224, 218, 0.08), transparent 60%), #080507;
+  object-fit: contain;
+  object-position: center;
+  padding: 0.35rem;
+}
+
+.planner-summary h3 {
+  font-size: clamp(1.12rem, 2.7vw, 1.75rem);
+  letter-spacing: -0.025em;
+}
+
+.planner-summary p {
+  font-size: 0.82rem;
+}
+
 .reviews-section {
   gap: clamp(2.5rem, 6vw, 6.5rem);
 }
@@ -5648,6 +5754,48 @@ img {
   pointer-events: auto;
   transform: translate(-50%, 0);
   visibility: visible;
+}
+
+.floating-book-circle {
+  align-items: center;
+  aspect-ratio: 1;
+  background:
+    radial-gradient(circle at 32% 24%, rgba(255, 255, 255, 0.56), transparent 24%),
+    linear-gradient(135deg, #f8eb7f, #b09013 58%, #6d5307);
+  border: 1px solid rgba(241, 237, 155, 0.92);
+  border-radius: 999px;
+  bottom: max(1.1rem, env(safe-area-inset-bottom));
+  box-shadow:
+    0 20px 70px rgba(176, 144, 19, 0.34),
+    0 0 0 9px rgba(176, 144, 19, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.58);
+  color: #17100b;
+  display: grid;
+  height: clamp(5.25rem, 10vw, 6.85rem);
+  justify-items: center;
+  letter-spacing: 0.05em;
+  padding: 0.72rem;
+  position: fixed;
+  right: clamp(0.9rem, 2.2vw, 1.5rem);
+  text-align: center;
+  text-transform: uppercase;
+  width: clamp(5.25rem, 10vw, 6.85rem);
+  z-index: 80;
+}
+
+.floating-book-circle span {
+  align-self: end;
+  font-size: 0.6rem;
+  font-weight: 950;
+  letter-spacing: 0.18em;
+}
+
+.floating-book-circle strong {
+  align-self: start;
+  font-family: "Playfair Display", serif;
+  font-size: clamp(1.15rem, 2.6vw, 1.55rem);
+  font-weight: 700;
+  line-height: 0.9;
 }
 
 .home-location-section {
