@@ -65,6 +65,18 @@ const catEyeServiceImage = fastImage("ref-gallery-blue-glitter");
 const bestFriendsImage = cleanComboImage;
 const extraLongImage = extensionImage;
 const acrylicRemovalImage = fastImage("ref-gallery-white-macro");
+const newRussianHardGelImage = fastImage("service-russian-hard-gel-new");
+const newRussianNaturalImage = fastImage("service-russian-natural-new");
+const newJapaneseClearImage = fastImage("service-japanese-clear-new");
+const newMensNoPolishImage = fastImage("service-mens-no-polish-new");
+const newRussianExtensionsImage = fastImage("service-russian-extensions-new");
+const newSmartGelPedicureImage = fastImage("service-smart-gel-pedicure-new");
+const newSmartPedicureNaturalImage = fastImage("service-smart-pedicure-natural-new");
+const newCatEyeImage = fastImage("service-cat-eye-new");
+const newClassicFrenchImage = fastImage("service-classic-french-new");
+const newChromeDesignImage = fastImage("service-chrome-design-new");
+const newOmbreDesignImage = fastImage("service-ombre-design-new");
+const newNailDesignsImage = fastImage("service-nail-designs-new");
 
 export const serviceMenu = [
   {
@@ -73,47 +85,47 @@ export const serviceMenu = [
     services: [
       {
         id: "russian-clear",
-        name: "Russian Manicure Clear",
+        name: "Russian Manicure (no polish/regular polish)",
         shortName: "Russian Manicure",
         time: "45 min",
-        price: "from $65",
+        price: "$65",
         topTech: null,
-        image: russianClearImage,
+        image: newRussianNaturalImage,
         description:
-          "A precise waterless manicure for clean cuticles, natural nail shaping, and a healthy polished look without color."
+          "A highly precise dry manicure using professional e-file techniques to deeply clean cuticles and shape nails perfectly. Available with no polish for a natural, healthy look or finished with regular nail polish for a classic touch of color. Best for clients who prefer beautifully groomed nails without gel."
       },
       {
         id: "mens-manicure",
         name: "Men's Manicure (no polish)",
         shortName: "Men's Manicure",
         time: "40 min",
-        price: "$65",
-        topTech: "$75",
-        image: mensManicureImage,
+        price: "$75",
+        topTech: null,
+        image: newMensNoPolishImage,
         description:
-          "Clean grooming, precise cuticle care, nail shaping, and a refined natural finish for a polished appearance."
+          "A professional manicure designed for men, combining expert cuticle cleaning, shaping, and buffing for a clean, healthy appearance. Includes a relaxing hand massage for overall care. Best for men who want neat, strong, and well-maintained nails."
       },
       {
         id: "japanese-manicure",
         name: "Japanese Manicure (clear)",
         shortName: "Japanese Care",
-        time: "1 hr",
-        price: "$85",
-        topTech: "$90",
-        image: japaneseManicureImage,
+        time: "1 h",
+        price: "$90",
+        topTech: null,
+        image: newJapaneseClearImage,
         description:
-          "A restorative natural nail care ritual focused on shine, strength, and a soft healthy finish."
+          "A restorative nail treatment using mineral-rich paste and powder to strengthen nails, smooth the nail plate, and create a natural glossy shine. Performed only on natural nails without polish or gel. Best for weak, brittle, or damaged nails that need strength and natural shine."
       },
       {
         id: "russian-hard-gel",
-        name: "Russian Manicure Hard Gel",
+        name: "Russian Manicure (Hard gel)",
         shortName: "Hard Gel Russian",
-        time: "1 hr 30 min",
-        price: "from $115",
+        time: "1 h 30 min",
+        price: "$115",
         topTech: null,
-        image: hardGelImage,
+        image: newRussianHardGelImage,
         description:
-          "The signature long-wear service: dry cuticle work, balanced hard gel overlay, color, and a glossy premium finish."
+          "A luxury service that combines precise Russian cuticle work with structured hard gel to create strong, perfectly balanced nail architecture. Ideal for weak, thin, or brittle nails, this technique reinforces the natural nail, corrects shape, and provides exceptional durability while maintaining an elegant, glossy, natural-looking finish."
       },
       {
         id: "spa-russian-hard-gel",
@@ -128,14 +140,14 @@ export const serviceMenu = [
       },
       {
         id: "nail-extensions",
-        name: "Nail Extensions",
+        name: "Russian Nail Extensions",
         shortName: "Extensions",
-        time: "2 hr 30 min",
-        price: "$175+",
-        topTech: "$195+",
-        image: extensionImage,
+        time: "2 h 30 min",
+        price: "$195-$215",
+        topTech: null,
+        image: newRussianExtensionsImage,
         description:
-          "Sculpted length and architecture with a slim, elegant profile, finished with color or a refined clean look."
+          "An advanced extension service designed to create customized length and shape in a single visit. Meticulous Russian manicure techniques are combined with a safe, flexible, long-lasting gel system to sculpt balanced, elegant nail architecture tailored to each client."
       },
       {
         id: "fill-in",
@@ -156,14 +168,14 @@ export const serviceMenu = [
     services: [
       {
         id: "smart-pedicure",
-        name: "Russian Smart Pedicure",
+        name: "Russian Smart Pedicure w/no regular polish",
         shortName: "Smart Pedicure",
-        time: "1 hr",
-        price: "from $95",
+        time: "1 h 15 min",
+        price: "$95",
         topTech: null,
-        image: smartPedicureImage,
+        image: newSmartPedicureNaturalImage,
         description:
-          "Detailed foot and nail care with optional regular polish or a clean natural finish."
+          "A luxurious dry pedicure performed with professional e-file techniques to refine the nails, perfect the cuticles, and gently smooth the entire foot. Calluses and dry skin are carefully polished away with precision for a hygienic, controlled treatment. Available with regular polish or without polish for a clean, natural finish."
       },
       {
         id: "spa-smart-pedicure",
@@ -180,12 +192,12 @@ export const serviceMenu = [
         id: "smart-gel-pedicure",
         name: "Russian Smart Gel Pedicure",
         shortName: "Smart Gel Pedicure",
-        time: "1 hr 15 min",
-        price: "from $120",
+        time: "1 h 15 min",
+        price: "$120",
         topTech: null,
-        image: gelPedicureImage,
+        image: newSmartGelPedicureImage,
         description:
-          "Smart pedicure care finished with gel color for a clean, glossy, longer-wearing result."
+          "An elevated pedicure designed for precision and comfort. Includes meticulous dry cuticle detailing, precise nail shaping, gentle controlled callus refinement, and a high-gloss long-lasting gel application for a clean, flawlessly smooth look."
       },
       {
         id: "spa-smart-gel-pedicure",
@@ -311,47 +323,58 @@ export const serviceMenu = [
     services: [
       {
         id: "french",
-        name: "French",
+        name: "Classic French",
         shortName: "French",
         time: "15 min",
-        price: "$25+",
+        price: "$25",
         topTech: null,
-        image: frenchImage,
+        image: newClassicFrenchImage,
         description:
-          "A clean French finish, from classic white to fine aqua or tonal tip details."
+          "A timeless choice that highlights elegance and natural beauty. Performed with exceptional precision: ultra-thin smile lines, seamless blending, and perfectly balanced shaping that enhances the natural nail structure."
       },
       {
         id: "cat-eye",
-        name: "Cat Eye",
+        name: "Cat eye",
         shortName: "Cat Eye",
         time: "15 min",
-        price: "$20+",
+        price: "$20",
         topTech: null,
-        image: catEyeServiceImage,
+        image: newCatEyeImage,
         description:
-          "Dimensional magnetic gel with a luminous line that moves beautifully in the light."
+          "A magnet-activated technique that creates a deep, dimensional glow reminiscent of gemstone reflections. Premium magnetic gels create sharp luminous lines or soft diffused galaxy effects tailored to your preference."
       },
       {
         id: "chrome",
-        name: "Chrome",
+        name: "Chrome design",
         shortName: "Chrome",
         time: "15 min",
-        price: "$20+",
+        price: "$20",
         topTech: null,
-        image: chromeImage,
+        image: newChromeDesignImage,
         description:
-          "A high-shine reflective finish for clients who want a modern editorial detail."
+          "Chrome designs create a flawless mirror-like shine or delicate pearlescent glow using high-grade rubbed pigments. The effect can range from soft opalescent shimmer to bold ultra-metallic reflection."
       },
       {
         id: "ombre",
-        name: "Ombre",
+        name: "Ombre design",
         shortName: "Ombre",
         time: "20 min",
-        price: "$30+",
+        price: "$30",
         topTech: null,
-        image: ombreImage,
+        image: newOmbreDesignImage,
         description:
-          "Soft gradient color work with a clean, blended luxury effect."
+          "A flawlessly blended gradient created using soft-brush techniques for a smooth, seamless color transition. The Russian approach keeps the fade clean at the cuticle with no harsh lines, streaks, or uneven texture."
+      },
+      {
+        id: "nail-design",
+        name: "Nail Designs",
+        shortName: "Nail Designs",
+        time: "Varies",
+        price: "Individual",
+        topTech: null,
+        image: newNailDesignsImage,
+        description:
+          "Fully customized nail art inspired by your ideas, from intricate hand-painted designs to multi-layer textures, 3D elements, abstract concepts, or themed sets. Pricing is individual and based on design complexity."
       },
       {
         id: "regular-polish",
@@ -426,17 +449,6 @@ export const serviceMenu = [
           "Safe removal for acrylic or dip product before repair, care, or a new service."
       },
       {
-        id: "nail-design",
-        name: "Nail Design",
-        shortName: "Nail Design",
-        time: "20 min",
-        price: "$25+",
-        topTech: null,
-        image: nailDesignImage,
-        description:
-          "Custom detail work priced by complexity, from fine accents to more involved design."
-      },
-      {
         id: "one-nail-repair",
         name: "One Nail Repair",
         shortName: "Nail Repair",
@@ -463,18 +475,21 @@ export const serviceMenu = [
 ];
 
 export const featuredServiceIds = [
-  "russian-clear",
   "russian-hard-gel",
-  "spa-russian-hard-gel",
-  "smart-gel-pedicure",
+  "russian-clear",
   "nail-extensions",
-  "chrome",
-  "cat-eye"
+  "smart-gel-pedicure",
+  "smart-pedicure",
+  "nail-design"
 ];
 
-export const featuredServices = serviceMenu
-  .flatMap((group) => group.services.map((service) => ({ ...service, category: group.category })))
-  .filter((service) => featuredServiceIds.includes(service.id));
+const allServicesWithCategory = serviceMenu.flatMap((group) =>
+  group.services.map((service) => ({ ...service, category: group.category }))
+);
+
+export const featuredServices = featuredServiceIds
+  .map((id) => allServicesWithCategory.find((service) => service.id === id))
+  .filter(Boolean);
 
 export const galleryItems = [
   {
@@ -483,7 +498,7 @@ export const galleryItems = [
     category: "Russian Manicure",
     tone: "cream",
     size: "tall",
-    image: russianClearImage,
+    image: newJapaneseClearImage,
     alt: "Full hands with clean natural Russian manicure finish",
     focal: "50% 42%"
   },
@@ -493,7 +508,7 @@ export const galleryItems = [
     category: "Hard Gel",
     tone: "cream",
     size: "wide",
-    image: hardGelImage,
+    image: newRussianHardGelImage,
     alt: "Finished hard gel manicure with glossy structured surface",
     focal: "48% 38%"
   },
@@ -513,7 +528,7 @@ export const galleryItems = [
     category: "Pedicure",
     tone: "plum",
     size: "tall",
-    image: spaPedicureImage,
+    image: newSmartPedicureNaturalImage,
     alt: "Smart pedicure service with clean toe nail shaping",
     focal: "50% 42%"
   },
@@ -523,7 +538,7 @@ export const galleryItems = [
     category: "Pedicure",
     tone: "line",
     size: "small",
-    image: gelPedicureImage,
+    image: newSmartGelPedicureImage,
     alt: "Glossy gel pedicure result with clean toe polish",
     focal: "50% 50%"
   },
@@ -533,7 +548,7 @@ export const galleryItems = [
     category: "Extensions",
     tone: "structure",
     size: "small",
-    image: extensionImage,
+    image: newRussianExtensionsImage,
     alt: "Long nail extensions with refined shape and glossy finish",
     focal: "50% 44%"
   },
@@ -543,7 +558,7 @@ export const galleryItems = [
     category: "Nail Art",
     tone: "gold",
     size: "wide",
-    image: chromeImage,
+    image: newChromeDesignImage,
     alt: "Chrome manicure with reflective polished finish",
     focal: "50% 46%"
   },
@@ -553,7 +568,7 @@ export const galleryItems = [
     category: "Nail Art",
     tone: "mist",
     size: "small",
-    image: ombreImage,
+    image: newOmbreDesignImage,
     alt: "Ombre manicure with soft gradient polish",
     focal: "50% 45%"
   },
@@ -563,7 +578,7 @@ export const galleryItems = [
     category: "Natural Care",
     tone: "mist",
     size: "small",
-    image: mensManicureImage,
+    image: newMensNoPolishImage,
     alt: "Men's manicure with clean natural nail grooming",
     focal: "50% 44%"
   },
@@ -573,7 +588,7 @@ export const galleryItems = [
     category: "French",
     tone: "aquaGold",
     size: "small",
-    image: fastImage("ref-gallery-french-square"),
+    image: newClassicFrenchImage,
     alt: "Square French manicure inspiration with clean white tips",
     focal: "50% 48%"
   },
@@ -613,7 +628,7 @@ export const galleryItems = [
     category: "Cat Eye",
     tone: "structure",
     size: "wide",
-    image: fastImage("ref-gallery-glitter-multi"),
+    image: newCatEyeImage,
     alt: "Glitter cat eye manicure inspiration with reflective polish",
     focal: "50% 50%"
   },

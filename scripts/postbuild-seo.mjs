@@ -37,8 +37,8 @@ async function auditStaticOutput() {
       path: "/",
       required: [
         "Signature services with starting prices",
-        "from $65",
-        "from $115",
+        "$65",
+        "$115",
         "Booksy client reviews",
         "Visit RM Nail Salon in Midtown NYC"
       ]
@@ -47,22 +47,22 @@ async function auditStaticOutput() {
       path: "/services",
       required: [
         "Full service menu with starting prices",
-        "Russian Manicure Clear",
-        "Russian Manicure Hard Gel",
-        "Spa Russian Smart Gel Pedicure"
+        "Russian Manicure (no polish/regular polish)",
+        "Russian Manicure (Hard gel)",
+        "Russian Smart Gel Pedicure"
       ]
     },
     {
       path: "/russian-manicure-nyc",
-      required: ["Russian Manicure in Midtown NYC", "from $65", "from $115", "Before your appointment"]
+      required: ["Russian Manicure in Midtown NYC", "$65", "$115", "Before your appointment"]
     },
     {
       path: "/hard-gel-manicure-nyc",
-      required: ["Hard Gel Manicure in Midtown NYC", "from $115", "Before your appointment"]
+      required: ["Hard Gel Manicure in Midtown NYC", "$115", "Before your appointment"]
     },
     {
       path: "/smart-pedicure-nyc",
-      required: ["Smart Pedicure in Midtown NYC", "from $95", "from $150"]
+      required: ["Smart Pedicure in Midtown NYC", "$95", "$120"]
     }
   ];
 

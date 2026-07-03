@@ -117,57 +117,57 @@ const referenceImage = (name) => `/images/reference/${name}.webp`;
 
 const luxuryServices = [
   {
-    title: "Russian Manicure",
-    copy: "Dry cuticle refinement, natural nail shaping, and a clean finish that photographs beautifully up close.",
-    price: "from $65",
-    time: "45 min",
-    bestFor: "Clean cuticles",
-    image: fastImage("service-russian-clear"),
-    link: "/russian-manicure-nyc"
-  },
-  {
-    title: "Hard Gel Overlay",
-    copy: "Structured strength with a slim profile, glossy surface, and balanced grow-out.",
-    price: "from $115",
-    time: "90 min",
+    title: "Russian Manicure (Hard gel)",
+    copy: "Precise Russian cuticle work with structured hard gel for stronger, balanced nail architecture and a glossy natural-looking finish.",
+    price: "$115",
+    time: "1 h 30 min",
     bestFor: "Long-wear structure",
-    image: fastImage("gallery-aqua-french"),
+    image: fastImage("service-russian-hard-gel-new"),
     link: "/hard-gel-manicure-nyc"
   },
   {
-    title: "Gel Manicure",
-    copy: "Glossy color over precise RM prep for clients who want polish to look cleaner for longer.",
-    price: "from $115",
-    time: "90 min",
-    bestFor: "Glossy color",
-    image: fastImage("service-ombre"),
-    link: "/gel-manicure-midtown-nyc"
+    title: "Russian Manicure",
+    copy: "A highly precise dry manicure for deeply cleaned cuticles, perfect shaping, and a natural or regular-polish finish.",
+    price: "$65",
+    time: "45 min",
+    bestFor: "No polish / regular polish",
+    image: fastImage("service-russian-natural-new"),
+    link: "/russian-manicure-nyc"
   },
   {
-    title: "Nail Extensions",
-    copy: "Sculpted length, refined sidewalls, and shape architecture that reads elegant, not heavy.",
-    price: "from $175",
-    time: "150 min",
+    title: "Russian Nail Extensions",
+    copy: "Customized length and shape sculpted with a flexible long-lasting gel system for smooth, lightweight durability.",
+    price: "$195-$215",
+    time: "2 h 30 min",
     bestFor: "Full transformation",
-    image: fastImage("gallery-extensions"),
+    image: fastImage("service-russian-extensions-new"),
     link: "/gel-extensions-nyc"
   },
   {
-    title: "Smart Pedicure",
-    copy: "Hygienic foot care, precise shaping, and optional gel polish in a calm studio setting.",
-    price: "from $95",
-    time: "60 min",
-    bestFor: "Clean foot care",
-    image: fastImage("gallery-pedicure"),
+    title: "Russian Smart Gel Pedicure",
+    copy: "Dry cuticle detailing, controlled callus refinement, precise shaping, and high-gloss gel for long-lasting toes.",
+    price: "$120",
+    time: "1 h 15 min",
+    bestFor: "Gel pedicure durability",
+    image: fastImage("service-smart-gel-pedicure-new"),
     link: "/smart-pedicure-nyc"
   },
   {
-    title: "Nail Art",
-    copy: "French, chrome, cat eye, ombre, and custom accents designed with restraint.",
-    price: "from $20+",
-    time: "15+ min",
-    bestFor: "Editorial detail",
-    image: fastImage("gallery-plum-gold"),
+    title: "Russian Smart Pedicure",
+    copy: "A luxurious dry pedicure that refines nails, cuticles, calluses, and dry skin for exceptionally soft, clean feet.",
+    price: "$95",
+    time: "1 h 15 min",
+    bestFor: "Natural or regular polish",
+    image: fastImage("service-smart-pedicure-natural-new"),
+    link: "/smart-pedicure-nyc"
+  },
+  {
+    title: "Nail Designs",
+    copy: "Fully customized nail art, from hand-painted details to textures, abstract concepts, 3D elements, and themed sets.",
+    price: "Individual",
+    time: "Varies",
+    bestFor: "Custom creativity",
+    image: fastImage("service-nail-designs-new"),
     link: "/nail-art-nyc"
   }
 ];
@@ -183,17 +183,17 @@ const proofStripItems = [
 const serviceDetails = {
   "russian-clear": {
     bestFor: "Clean cuticles and natural nails",
-    includes: "Dry cuticle work, shaping, and a clean no-polish finish.",
+    includes: "Dry cuticle work, shaping, and no-polish or regular-polish finish.",
     learnMorePath: "/russian-manicure-nyc",
     bookLabel: "Book Russian Manicure",
-    imageAlt: "Full hands with clean natural Russian manicure result"
+    imageAlt: "Russian manicure with clean glossy natural nails"
   },
   "russian-hard-gel": {
     bestFor: "Strength without a bulky look",
-    includes: "Russian prep, hard gel overlay, color, and glossy finish.",
+    includes: "Russian prep, hard gel structure, color, and glossy finish.",
     learnMorePath: "/hard-gel-manicure-nyc",
     bookLabel: "Book Hard Gel",
-    imageAlt: "Finished hard gel manicure result after Russian manicure prep"
+    imageAlt: "Russian manicure hard gel with glossy black and white nail art"
   },
   "spa-russian-hard-gel": {
     bestFor: "Extra care with structured gel",
@@ -204,28 +204,28 @@ const serviceDetails = {
   },
   "nail-extensions": {
     bestFor: "Length and shape transformation",
-    includes: "Sculpted structure, refined sidewalls, shaping, and color.",
+    includes: "Customized length, sculpted structure, refined sidewalls, shaping, and color.",
     learnMorePath: "/gel-extensions-nyc",
     bookLabel: "Book Extensions",
     imageAlt: "Finished long nail extensions with refined shape and glossy finish"
   },
   "smart-pedicure": {
-    bestFor: "Clean foot care",
-    includes: "Detailed shaping, hygienic prep, and regular or no-polish finish.",
+    bestFor: "Natural or regular-polish foot care",
+    includes: "Dry pedicure, callus refinement, hygienic prep, and regular or no-polish finish.",
     learnMorePath: "/smart-pedicure-nyc",
     bookLabel: "Book Smart Pedicure",
     imageAlt: "Smart pedicure care with clean toe nail shaping"
   },
   "smart-gel-pedicure": {
     bestFor: "Glossy long-wear toes",
-    includes: "Smart pedicure care finished with gel color.",
+    includes: "Smart pedicure care finished with long-wear gel color.",
     learnMorePath: "/smart-pedicure-nyc",
     bookLabel: "Book Gel Pedicure",
     imageAlt: "Gel pedicure result with glossy toe polish"
   },
   "nail-design": {
     bestFor: "Custom detail or statement accents",
-    includes: "Custom detail work priced by complexity.",
+    includes: "Custom detail work priced individually by complexity.",
     learnMorePath: "/nail-art-nyc",
     bookLabel: "Book Nail Art",
     imageAlt: "Custom nail design detail with glossy finish"
