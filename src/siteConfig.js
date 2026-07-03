@@ -128,17 +128,6 @@ export const serviceMenu = [
           "A luxury service that combines precise Russian cuticle work with structured hard gel to create strong, perfectly balanced nail architecture. Ideal for weak, thin, or brittle nails, this technique reinforces the natural nail, corrects shape, and provides exceptional durability while maintaining an elegant, glossy, natural-looking finish."
       },
       {
-        id: "spa-russian-hard-gel",
-        name: "Spa Russian Manicure Hard Gel",
-        shortName: "Spa Hard Gel",
-        time: "2 hr",
-        price: "from $130",
-        topTech: null,
-        image: spaHardGelImage,
-        description:
-          "The signature hard gel manicure with elevated spa care for clients who want extra softness and detail."
-      },
-      {
         id: "nail-extensions",
         name: "Russian Nail Extensions",
         shortName: "Extensions",
@@ -178,17 +167,6 @@ export const serviceMenu = [
           "A luxurious dry pedicure performed with professional e-file techniques to refine the nails, perfect the cuticles, and gently smooth the entire foot. Calluses and dry skin are carefully polished away with precision for a hygienic, controlled treatment. Available with regular polish or without polish for a clean, natural finish."
       },
       {
-        id: "spa-smart-pedicure",
-        name: "Spa Russian Smart Pedicure",
-        shortName: "Spa Pedicure",
-        time: "1 hr 30 min",
-        price: "from $125",
-        topTech: null,
-        image: spaPedicureImage,
-        description:
-          "A deeper spa pedicure experience with smoothing, grooming, and a calm luxury close."
-      },
-      {
         id: "smart-gel-pedicure",
         name: "Russian Smart Gel Pedicure",
         shortName: "Smart Gel Pedicure",
@@ -198,17 +176,6 @@ export const serviceMenu = [
         image: newSmartGelPedicureImage,
         description:
           "An elevated pedicure designed for precision and comfort. Includes meticulous dry cuticle detailing, precise nail shaping, gentle controlled callus refinement, and a high-gloss long-lasting gel application for a clean, flawlessly smooth look."
-      },
-      {
-        id: "spa-smart-gel-pedicure",
-        name: "Spa Russian Smart Gel Pedicure",
-        shortName: "Spa Gel Pedicure",
-        time: "1 hr 30 min",
-        price: "from $150",
-        topTech: null,
-        image: spaGelPedicureImage,
-        description:
-          "The complete spa pedicure experience with gel polish, skin smoothing, and a premium finish."
       }
     ]
   },
@@ -223,7 +190,7 @@ export const serviceMenu = [
         time: "2 hr",
         price: "$135",
         topTech: "$150",
-        image: cleanComboImage,
+        image: newRussianNaturalImage,
         description:
           "Natural nail grooming for hands and feet with precise shaping, cuticle care, and a clean finish."
       },
@@ -234,7 +201,7 @@ export const serviceMenu = [
         time: "2 hr 45 min",
         price: "$185",
         topTech: "$200",
-        image: gelNoPolishComboImage,
+        image: newRussianHardGelImage,
         description:
           "A polished hard gel manicure paired with smart pedicure care for a complete elevated look."
       },
@@ -245,7 +212,7 @@ export const serviceMenu = [
         time: "2 hr 45 min",
         price: "$210",
         topTech: "$220",
-        image: gelPedicureImage,
+        image: newSmartGelPedicureImage,
         description:
           "Long-wear gel finish for hands and feet with meticulous shaping and glossy color."
       },
@@ -256,7 +223,7 @@ export const serviceMenu = [
         time: "2 hr 30 min",
         price: "$185",
         topTech: "$200",
-        image: japaneseManicureImage,
+        image: newJapaneseClearImage,
         description:
           "Japanese manicure care paired with spa pedicure details for natural nails that look quietly refined."
       },
@@ -267,7 +234,7 @@ export const serviceMenu = [
         time: "1 hr 55 min",
         price: "$140",
         topTech: "$160",
-        image: mensComboImage,
+        image: newMensNoPolishImage,
         description:
           "Hands and feet groomed with clean cuticle work, shaping, and a polished natural finish."
       },
@@ -289,7 +256,7 @@ export const serviceMenu = [
         time: "1 hr 30 min",
         price: "$200",
         topTech: "$220",
-        image: bestFriendsImage,
+        image: newClassicFrenchImage,
         description:
           "A shared appointment experience for two guests who want a polished manicure and pedicure moment together."
       },
@@ -300,7 +267,7 @@ export const serviceMenu = [
         time: "1 hr 30 min",
         price: "$250",
         topTech: "$275",
-        image: mensComboImage,
+        image: newOmbreDesignImage,
         description:
           "A couples service with refined grooming and polished care designed for two."
       },
@@ -311,7 +278,7 @@ export const serviceMenu = [
         time: "1 hr 30 min",
         price: "$275",
         topTech: "$290",
-        image: processImage,
+        image: newNailDesignsImage,
         description:
           "A time-saving luxury appointment where two technicians work simultaneously for a complete finish."
       }

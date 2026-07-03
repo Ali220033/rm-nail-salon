@@ -5664,11 +5664,15 @@ img {
 }
 
 .planner-summary img {
-  aspect-ratio: 4 / 3;
-  background: radial-gradient(circle at 50% 50%, rgba(100, 224, 218, 0.08), transparent 60%), #080507;
+  aspect-ratio: auto;
+  background: #080507;
+  display: block;
+  height: auto;
+  max-height: 520px;
   object-fit: contain;
   object-position: center;
-  padding: 0.35rem;
+  padding: 0;
+  width: 100%;
 }
 
 .planner-summary h3 {
@@ -5678,6 +5682,42 @@ img {
 
 .planner-summary p {
   font-size: 0.82rem;
+}
+
+.catalog-service img,
+.seo-service-card img,
+.geo-path-card img {
+  aspect-ratio: 4 / 5;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(100, 224, 218, 0.08), transparent 62%),
+    rgba(8, 5, 7, 0.9);
+  border: 1px solid rgba(100, 224, 218, 0.12);
+  filter: brightness(0.96) saturate(1.04);
+  object-fit: contain;
+  object-position: center;
+  padding: 0;
+}
+
+.catalog-service {
+  align-items: center;
+}
+
+@media (min-width: 1020px) {
+  .catalog-service {
+    grid-template-columns: minmax(210px, 250px) minmax(0, 1fr) auto;
+  }
+
+  .catalog-service img {
+    width: 100%;
+  }
+}
+
+@media (max-width: 759px) {
+  .catalog-service img {
+    aspect-ratio: 4 / 5;
+    max-height: none;
+    width: 100%;
+  }
 }
 
 .reviews-section {
@@ -5757,6 +5797,7 @@ img {
 }
 
 .floating-book-circle {
+  animation: bookCircleFloat 3.8s ease-in-out infinite;
   align-items: center;
   aspect-ratio: 1;
   background:
@@ -5783,6 +5824,16 @@ img {
   z-index: 80;
 }
 
+@keyframes bookCircleFloat {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -9px, 0);
+  }
+}
+
 .floating-book-circle span {
   align-self: end;
   font-size: 0.6rem;
@@ -5796,6 +5847,19 @@ img {
   font-size: clamp(1.15rem, 2.6vw, 1.55rem);
   font-weight: 700;
   line-height: 0.9;
+}
+
+@media (min-width: 760px) {
+  .floating-book-circle {
+    bottom: 1.35rem;
+    height: 4.75rem;
+    right: 1.35rem;
+    width: 4.75rem;
+  }
+
+  .floating-book-circle strong {
+    font-size: 1.12rem;
+  }
 }
 
 .home-location-section {

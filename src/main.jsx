@@ -195,13 +195,6 @@ const serviceDetails = {
     bookLabel: "Book Hard Gel",
     imageAlt: "Russian manicure hard gel with glossy black and white nail art"
   },
-  "spa-russian-hard-gel": {
-    bestFor: "Extra care with structured gel",
-    includes: "Hard gel manicure plus elevated spa-style detail.",
-    learnMorePath: "/gel-manicure-midtown-nyc",
-    bookLabel: "Book Spa Hard Gel",
-    imageAlt: "Gel manicure service with precise polish application"
-  },
   "nail-extensions": {
     bestFor: "Length and shape transformation",
     includes: "Customized length, sculpted structure, refined sidewalls, shaping, and color.",

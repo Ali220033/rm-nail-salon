@@ -149,7 +149,7 @@ export const serviceLandingPages = [
     intro:
       "Russian manicure is a dry, detail-focused technique. At RM, the appointment is built around careful nail prep, precise cuticle refinement, balanced shaping, and a polished finish that stays clean as the nail grows.",
     serviceType: "Russian Manicure",
-    serviceIds: ["russian-clear", "russian-hard-gel", "spa-russian-hard-gel"],
+    serviceIds: ["russian-clear", "russian-hard-gel", "nail-extensions"],
     highlights: [
       ["Dry precision", "Detailed e-file cuticle care creates the crisp, photo-clean line Russian manicures are known for."],
       ["Long-wear finish", "Hard gel and polish options are structured for shine, balance, and a refined grow-out."],
@@ -179,7 +179,7 @@ export const serviceLandingPages = [
     intro:
       "Hard gel is ideal when natural nails need extra support, shape correction, or a longer-wearing finish. The RM approach keeps the profile refined while protecting the clean luxury look clients expect from a Russian manicure studio.",
     serviceType: "Hard Gel Manicure",
-    serviceIds: ["russian-hard-gel", "spa-russian-hard-gel", "fill-in"],
+    serviceIds: ["russian-hard-gel", "nail-extensions", "fill-in"],
     processImage: fastImage("service-hard-gel"),
     processAlt: "Hard gel manicure application process at RM Nail Salon",
     processTitle: "How Hard Gel Is Applied",
@@ -223,7 +223,7 @@ export const serviceLandingPages = [
     intro:
       "RM pairs gel color with detailed cuticle care, clean nail shaping, and optional structured support so the manicure looks polished up close and wears beautifully.",
     serviceType: "Gel Manicure",
-    serviceIds: ["russian-hard-gel", "spa-russian-hard-gel", "regular-polish"],
+    serviceIds: ["russian-hard-gel", "russian-clear", "regular-polish"],
     highlights: [
       ["Cleaner prep", "Dry manicure standards help the gel finish look neat around the cuticle line."],
       ["Glossy wear", "Color is applied with attention to reflection, edges, and a smooth surface."],
@@ -253,7 +253,7 @@ export const serviceLandingPages = [
     intro:
       "A smart pedicure is built for clients who want careful foot and nail care without a rushed salon feel. RM pairs clean technique with a premium Midtown studio setting and optional regular or gel polish.",
     serviceType: "Russian Smart Pedicure",
-    serviceIds: ["smart-pedicure", "spa-smart-pedicure", "smart-gel-pedicure", "spa-smart-gel-pedicure"],
+    serviceIds: ["smart-pedicure", "smart-gel-pedicure", "combo-clear", "hard-gel-smart-gel"],
     processImage: fastImage("service-smart-pedicure"),
     processAlt: "Smart pedicure preparation process at RM Nail Salon",
     processTitle: "Pedicure Detail",
@@ -289,7 +289,7 @@ export const serviceLandingPages = [
     intro:
       "From natural grooming to gel pedicure finishes, RM focuses on clean tools, careful shaping, and a polished result that feels professional from start to finish.",
     serviceType: "Pedicure",
-    serviceIds: ["smart-pedicure", "spa-smart-pedicure", "smart-gel-pedicure", "spa-smart-gel-pedicure"],
+    serviceIds: ["smart-pedicure", "smart-gel-pedicure", "combo-clear", "hard-gel-smart-gel"],
     highlights: [
       ["Smart pedicure detail", "Nail and foot care are paced carefully instead of feeling rushed."],
       ["Gel or no polish", "Choose a glossy gel finish or a clean natural result."],
@@ -360,7 +360,7 @@ export const serviceLandingPages = [
     intro:
       "Builder gel is used when a client wants strength, smoother shape, or a more durable manicure on natural nails. RM pairs the overlay with Russian cuticle preparation so the finish stays crisp around the nail fold.",
     serviceType: "Builder Gel Manicure",
-    serviceIds: ["russian-hard-gel", "spa-russian-hard-gel", "fill-in"],
+    serviceIds: ["russian-hard-gel", "nail-extensions", "fill-in"],
     comparisonLabel: "Builder, Hard Gel, Extensions",
     comparisonTitle: "Choose by what your natural nails need.",
     comparisonRows: [
@@ -923,7 +923,7 @@ const serviceFaqsByPath = {
     ["Can I pair it with manicure?", "Yes. Many clients book manicure and pedicure together or choose one of the combo services on the service menu."]
   ],
   "/pedicure-midtown-nyc": [
-    ["Do you offer gel pedicure?", "Yes. RM offers Russian Smart Gel Pedicure and Spa Russian Smart Gel Pedicure options."],
+    ["Do you offer gel pedicure?", "Yes. RM offers Russian Smart Gel Pedicure plus combo options that pair manicure and gel pedicure services."],
     ["Is pedicure available every day?", "RM lists daily hours from 9:30 AM to 7:30 PM. Current availability is shown on Booksy."],
     ["Can I book no-polish pedicure?", "Yes. The smart pedicure menu includes with or without regular polish options."]
   ],
