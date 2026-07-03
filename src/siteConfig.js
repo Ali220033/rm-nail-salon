@@ -12,7 +12,7 @@ export const siteConfig = {
   hours: "Every day: 9:30 AM - 7:30 PM",
   instagramHandle: "@rmnailsalon.nyc",
   firstVisitOffer: "10% OFF First Visit",
-  processVideo: "/videos/rm-manicure-session.webm",
+  processVideo: "/videos/rm-master-work.mp4",
   mapUrl:
     "https://www.google.com/maps/search/?api=1&query=875%203rd%20Ave%20Concourse%20Level%20New%20York%20NY%2010022",
   mapEmbedUrl:

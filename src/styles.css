@@ -644,6 +644,7 @@ img {
 .composition-photo,
 .featured-service-visual,
 .reel-phone,
+.reel-video-frame,
 .masonry-item,
 .modal-card {
   box-shadow: 0 38px 110px rgba(0, 0, 0, 0.38);
@@ -661,6 +662,7 @@ img {
 .featured-service-visual img,
 .reel-phone img,
 .reel-phone video,
+.reel-video-frame video,
 .masonry-item img,
 .modal-card img,
 .page-hero img,
@@ -1073,6 +1075,34 @@ img {
   border-radius: 44px;
   max-height: 760px;
   min-height: 560px;
+}
+
+.reel-video-frame {
+  aspect-ratio: 9 / 16;
+  background: #080507;
+  border: 1px solid rgba(100, 224, 218, 0.28);
+  border-radius: 32px;
+  box-shadow:
+    0 38px 120px rgba(0, 0, 0, 0.42),
+    0 0 0 1px rgba(255, 255, 255, 0.045),
+    0 0 70px rgba(100, 224, 218, 0.12);
+  justify-self: center;
+  max-height: min(82vh, 820px);
+  min-height: auto;
+  width: min(100%, 470px);
+}
+
+.reel-video-frame::after {
+  display: none;
+}
+
+.reel-video-frame .process-video {
+  display: block;
+  filter: brightness(1.06) saturate(1.05) contrast(1.02);
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
 }
 
 .reel-phone::before {
@@ -3780,6 +3810,7 @@ img {
 
   .featured-service-visual,
   .reel-phone,
+  .reel-video-frame,
   .masonry-item,
   .modal-card,
   .lookbook-image,
@@ -4420,9 +4451,14 @@ img {
     transform: none;
   }
 
-  .reel-phone {
+  .reel-phone,
+  .reel-video-frame {
     justify-self: center;
-    width: min(100%, 430px);
+    width: min(100%, 470px);
+  }
+
+  .reel-video-frame {
+    min-height: auto;
   }
 
   .masonry-gallery {

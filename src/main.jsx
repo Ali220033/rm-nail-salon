@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
 import {
   AnimatePresence,
@@ -1018,6 +1018,28 @@ function FeaturedServicesHome({ navigate }) {
 }
 
 function WorkReel() {
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return undefined;
+
+    const playVideo = () => {
+      if (document.hidden) return;
+      const playback = video.play();
+      if (playback?.catch) playback.catch(() => {});
+    };
+
+    playVideo();
+    document.addEventListener("visibilitychange", playVideo);
+    window.addEventListener("focus", playVideo);
+
+    return () => {
+      document.removeEventListener("visibilitychange", playVideo);
+      window.removeEventListener("focus", playVideo);
+    };
+  }, []);
+
   return (
     <section className="work-reel-section">
       <div className="work-reel-copy">
@@ -1028,42 +1050,24 @@ function WorkReel() {
         </p>
       </div>
       <motion.div
-        className="reel-phone"
+        className="reel-video-frame"
         initial={{ opacity: 0, y: 36 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.35 }}
+        aria-label="RM Nail Salon manicure work video"
       >
-        <div className="process-stage" aria-label="RM Nail Salon Russian manicure work process">
-          <video
-            className="process-video"
-            src={siteConfig.processVideo}
-            poster={fastImage("work-reel-process")}
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            aria-label="Looping Russian manicure session video at RM Nail Salon"
-          />
-          <div className="process-light light-two" />
-          <div className="animated-nails">
-            <i />
-            <i />
-            <i />
-            <i />
-            <i />
-          </div>
-        </div>
-        <div className="reel-sheen" />
-        <div className="reel-controls">
-          <div>
-            <i />
-          </div>
-        </div>
-        <div className="reel-caption">
-          <span>Precision in motion</span>
-          <strong>Cuticle prep, clean structure, glossy finish.</strong>
-        </div>
+        <video
+          ref={videoRef}
+          className="process-video"
+          src={siteConfig.processVideo}
+          poster={fastImage("work-reel-process")}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          aria-label="Looping RM Nail Salon manicure work video"
+        />
       </motion.div>
     </section>
   );
