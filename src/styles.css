@@ -6454,3 +6454,102 @@ img {
     max-width: 7.1ch;
   }
 }
+
+/* Final contact-map correction: one fixed salon marker and clean hours layout. */
+.luxe-map-frame .cyan-map-pin {
+  animation: none !important;
+  background: linear-gradient(135deg, #64e0da 0%, #c9fff7 100%);
+  border: 2px solid rgba(255, 255, 255, 0.94);
+  border-radius: 999px 999px 999px 0;
+  box-shadow:
+    0 0 0 8px rgba(100, 224, 218, 0.14),
+    0 0 32px rgba(100, 224, 218, 0.64),
+    0 16px 28px rgba(0, 0, 0, 0.34);
+  color: #062326;
+  height: 3.05rem;
+  left: 49.4%;
+  top: 47.6%;
+  transform: translate(-50%, -100%) rotate(-45deg);
+  transition: none !important;
+  width: 3.05rem;
+  z-index: 7;
+}
+
+.luxe-map-frame .cyan-map-pin::after,
+.luxe-map-frame .cyan-map-pin::before {
+  animation: none !important;
+  content: none !important;
+  display: none !important;
+}
+
+.luxe-map-frame .cyan-map-pin svg {
+  height: 1.35rem;
+  transform: rotate(45deg);
+  width: 1.35rem;
+}
+
+.visit-info-card {
+  align-items: center;
+  min-height: 7.2rem;
+}
+
+.visit-info-card:has(.hours-lines) {
+  align-items: start;
+  padding-bottom: 1.18rem;
+}
+
+.hours-lines {
+  margin-top: 1rem;
+}
+
+.hours-lines p {
+  align-items: start;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.075);
+  border-radius: 18px;
+  display: grid;
+  gap: 0.42rem;
+  grid-template-columns: 1fr;
+  min-height: 3.15rem;
+  padding: 0.72rem 0.82rem;
+}
+
+.hours-lines p span {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.75rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
+.hours-lines p strong {
+  color: var(--aqua);
+  font-family: "Neue Haas Grotesk", Inter, system-ui, sans-serif;
+  font-size: clamp(0.88rem, 1.12vw, 1rem);
+  font-weight: 950;
+  justify-self: start;
+  letter-spacing: 0.01em;
+  line-height: 1.1;
+  text-align: left;
+  white-space: nowrap;
+}
+
+@media (max-width: 1180px) {
+  .luxe-map-frame .cyan-map-pin {
+    left: 50.3%;
+    top: 47.8%;
+  }
+}
+
+@media (max-width: 640px) {
+  .luxe-map-frame .cyan-map-pin {
+    height: 2.55rem;
+    left: 50.8%;
+    top: 48%;
+    width: 2.55rem;
+  }
+
+  .hours-lines p {
+    row-gap: 0.34rem;
+  }
+}
