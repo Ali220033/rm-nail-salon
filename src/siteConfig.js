@@ -40,6 +40,12 @@ const extensionProcessImage = fastImage("service-extensions");
 const extensionImage = fastImage("gallery-extensions");
 const cleanComboImage = fastImage("service-combo-clean-real");
 const gelNoPolishComboImage = fastImage("service-combo-gel-no-polish");
+const comboNoPolishRegularPediImage = fastImage("service-combo-no-polish-regular-pedi-new");
+const comboGelNoPolishImage = fastImage("service-combo-gel-no-polish-new");
+const comboRussianGelSmartGelImage = fastImage("service-combo-russian-gel-smart-gel-new");
+const comboNaturalCareImage = fastImage("service-combo-natural-care-new");
+const comboBestFriendsImage = fastImage("service-combo-best-friends-new");
+const comboMrMrsImage = fastImage("service-combo-mr-mrs-new");
 const russianClearImage = fastImage("service-russian-clear");
 const mensManicureImage = fastImage("service-mens-manicure");
 const japaneseManicureImage = fastImage("service-japanese-manicure");
@@ -68,7 +74,7 @@ const frenchImage = fastImage("ref-gallery-french-square");
 const catEyeServiceImage = fastImage("ref-gallery-blue-glitter");
 const bestFriendsImage = cleanComboImage;
 const extraLongImage = extensionImage;
-const acrylicRemovalImage = fastImage("ref-gallery-white-macro");
+const acrylicRemovalImage = fastImage("service-acrylic-dip-removal-new");
 const newRussianHardGelImage = fastImage("service-russian-hard-gel-new");
 const newRussianNaturalImage = fastImage("service-russian-natural-new");
 const newJapaneseClearImage = fastImage("service-japanese-clear-new");
@@ -151,7 +157,7 @@ export const serviceMenu = [
         topTech: "$140",
         image: fillInImage,
         description:
-          "Structure balancing, regrowth correction, shaping, and a refreshed finish for existing extensions."
+          "A detailed correction service for grown-out extended nails. The existing structure is carefully refined, lifted areas are addressed when possible, the apex is rebalanced, and the shape is restored before a fresh glossy finish is applied. Best for clients who want to maintain length while keeping the nails strong, elegant, and properly balanced."
       }
     ]
   },
@@ -194,9 +200,9 @@ export const serviceMenu = [
         time: "2 hr",
         price: "$135",
         topTech: "$150",
-        image: newRussianNaturalImage,
+        image: comboNoPolishRegularPediImage,
         description:
-          "Natural nail grooming for hands and feet with precise shaping, cuticle care, and a clean finish."
+          "A clean natural-care appointment for hands and feet in one visit. This combo pairs precise dry manicure work with a regular or no-polish pedicure, including careful shaping, cuticle refinement, and a smooth natural finish. Best for clients who want polished, healthy-looking nails without gel."
       },
       {
         id: "hard-gel-smart",
@@ -205,9 +211,9 @@ export const serviceMenu = [
         time: "2 hr 45 min",
         price: "$185",
         topTech: "$200",
-        image: newRussianHardGelImage,
+        image: comboGelNoPolishImage,
         description:
-          "A polished hard gel manicure paired with smart pedicure care for a complete elevated look."
+          "A complete elevated appointment pairing structured gel manicure work with smart pedicure care finished without polish on the toes. The manicure focuses on strength, balance, and a glossy refined surface, while the pedicure keeps the feet clean, smooth, and naturally groomed."
       },
       {
         id: "hard-gel-smart-gel",
@@ -216,9 +222,9 @@ export const serviceMenu = [
         time: "2 hr 45 min",
         price: "$210",
         topTech: "$220",
-        image: newSmartGelPedicureImage,
+        image: comboRussianGelSmartGelImage,
         description:
-          "Long-wear gel finish for hands and feet with meticulous shaping and glossy color."
+          "A high-gloss long-wear combo for clients who want a finished gel look on both hands and feet. Russian gel manicure precision is paired with Russian Smart Gel Pedicure detailing for clean cuticles, balanced shaping, smooth skin refinement, and durable color designed to stay polished for weeks."
       },
       {
         id: "natural-care-combo",
@@ -227,9 +233,9 @@ export const serviceMenu = [
         time: "2 hr 30 min",
         price: "$185",
         topTech: "$200",
-        image: newJapaneseClearImage,
+        image: comboNaturalCareImage,
         description:
-          "Japanese manicure care paired with spa pedicure details for natural nails that look quietly refined."
+          "A restorative natural-nail appointment for clients who want strength, shine, and healthy-looking hands and feet without heavy product. Japanese manicure care is paired with precise foot grooming to smooth, refine, and refresh the natural nail plate while keeping the finish soft and elegant."
       },
       {
         id: "mens-grooming-combo",
@@ -240,7 +246,7 @@ export const serviceMenu = [
         topTech: "$160",
         image: newMensNoPolishImage,
         description:
-          "Hands and feet groomed with clean cuticle work, shaping, and a polished natural finish."
+          "A complete grooming appointment for men who want clean, healthy-looking hands and feet. Nails are shaped, cuticles are refined, rough edges are smoothed, and the final buffed finish looks neat, strong, and natural without polish."
       },
       {
         id: "vip-room",
@@ -251,7 +257,7 @@ export const serviceMenu = [
         topTech: "$300",
         image: vipRoomImage,
         description:
-          "A more private and elevated booking experience for clients who want extra quiet and attention."
+          "A private elevated appointment experience for clients who want extra calm, focus, and personal attention during their service. Ideal for special occasions, quiet self-care time, or anyone who prefers a more discreet RM studio moment with the same precise manicure and pedicure standards."
       },
       {
         id: "best-friends-combo",
@@ -260,9 +266,9 @@ export const serviceMenu = [
         time: "1 hr 30 min",
         price: "$200",
         topTech: "$220",
-        image: newClassicFrenchImage,
+        image: comboBestFriendsImage,
         description:
-          "A shared appointment experience for two guests who want a polished manicure and pedicure moment together."
+          "A shared beauty appointment for two guests who want to enjoy the RM experience together. Each client receives polished nail care with clean shaping, refined detail, and a finished look designed for photos, plans, and a relaxed moment with someone close."
       },
       {
         id: "mr-mrs-combo",
@@ -271,9 +277,9 @@ export const serviceMenu = [
         time: "1 hr 30 min",
         price: "$250",
         topTech: "$275",
-        image: newOmbreDesignImage,
+        image: comboMrMrsImage,
         description:
-          "A couples service with refined grooming and polished care designed for two."
+          "A couples appointment designed for two people who want clean, refined grooming in one calm booking. The service balances feminine polish and masculine grooming with precise shaping, cuticle care, and a naturally elevated finish for both clients."
       },
       {
         id: "four-hands-combo",
@@ -284,7 +290,7 @@ export const serviceMenu = [
         topTech: "$290",
         image: newNailDesignsImage,
         description:
-          "A time-saving luxury appointment where two technicians work simultaneously for a complete finish."
+          "A time-saving luxury appointment where two technicians work simultaneously so your manicure and pedicure can be completed with less waiting. Best for busy clients who still want the full RM standard: clean cuticles, balanced shaping, smooth detail, and a polished finish."
       }
     ]
   },
@@ -356,7 +362,7 @@ export const serviceMenu = [
         topTech: null,
         image: regularPolishImage,
         description:
-          "A classic polish finish added to clean manicure or pedicure work."
+          "A classic polish finish added after clean manicure or pedicure work. Nails are prepared with careful shaping and surface refinement before regular color is applied for a fresh, elegant look that feels light and easy to change."
       },
       {
         id: "extra-long-nails",
@@ -367,7 +373,7 @@ export const serviceMenu = [
         topTech: null,
         image: extraLongImage,
         description:
-          "Added time and structure for extra-long length, shaping, and refinement."
+          "Additional time and structure for clients choosing extra-long nail length. This add-on allows the artist to refine the architecture, balance the apex, protect the natural nail, and shape the length with the precision needed for a sleek, durable finish."
       }
     ]
   },
@@ -384,7 +390,7 @@ export const serviceMenu = [
         topTech: null,
         image: removalToesImage,
         description:
-          "Standalone gel removal for toes with careful product removal and nail-surface protection."
+          "A standalone toe gel removal performed with controlled technique to protect the natural nail plate. Product is removed carefully, edges are refined, and the nails are left clean and ready for natural wear, repair, or a fresh pedicure service."
       },
       {
         id: "gel-removal-hands",
@@ -395,7 +401,7 @@ export const serviceMenu = [
         topTech: null,
         image: removalHandsImage,
         description:
-          "Standalone hand gel removal handled gently to protect the natural nail."
+          "A gentle standalone gel removal for hands, designed to protect the natural nail while removing old product. The service focuses on clean product breakdown, careful surface work, and a neat finish before your next manicure or natural nail break."
       },
       {
         id: "gel-removal",
@@ -406,7 +412,7 @@ export const serviceMenu = [
         topTech: null,
         image: gelRemovalNewImage,
         description:
-          "Gel removal service for clients preparing for care, repair, or a fresh set."
+          "A careful gel removal service for clients preparing for repair, natural nail care, or a fresh set. Product is removed with attention to nail health, helping prevent unnecessary thinning while leaving the nail plate clean and ready for the next step."
       },
       {
         id: "acrylic-removal",
@@ -417,7 +423,7 @@ export const serviceMenu = [
         topTech: null,
         image: acrylicRemovalImage,
         description:
-          "Safe removal for acrylic or dip product before repair, care, or a new service."
+          "A protective removal service for acrylic or dip product. The material is reduced and removed with controlled technique to minimize stress on the natural nail, then the surface is refined so the nails are ready for recovery care, repair, or a new RM service."
       },
       {
         id: "one-nail-repair",
@@ -428,7 +434,7 @@ export const serviceMenu = [
         topTech: null,
         image: oneNailRepairImage,
         description:
-          "A focused repair for a chipped, cracked, or broken nail."
+          "A focused correction for one chipped, cracked, lifted, or broken nail. The damaged area is cleaned, stabilized, reshaped, and blended into the existing set so the repair looks neat and comfortable until your next full appointment."
       },
       {
         id: "hooked-nail-fix",
@@ -439,7 +445,7 @@ export const serviceMenu = [
         topTech: null,
         image: hookedNailFixImage,
         description:
-          "A quick correction for a hooked or downward-growing nail shape."
+          "A precise shape correction for a hooked or downward-growing nail. The artist refines the structure and edge direction to create a cleaner visual line, helping the nail look more balanced while keeping the correction gentle and controlled."
       }
     ]
   }

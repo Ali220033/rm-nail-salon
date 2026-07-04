@@ -223,6 +223,132 @@ const serviceDetails = {
     bookLabel: "Book Nail Art",
     imageAlt: "Custom nail design detail with glossy finish"
   },
+  "fill-in": {
+    bestFor: "Correcting grown-out extensions",
+    includes: "Regrowth correction, structure rebalance, shaping, and refreshed finish.",
+    learnMorePath: "/gel-extensions-nyc",
+    bookLabel: "Book Fill-In",
+    imageAlt: "Fill-in correction for extended nails with clean shape"
+  },
+  "combo-clear": {
+    bestFor: "Natural hand and foot grooming",
+    includes: "Dry manicure, regular or no-polish pedicure, shaping, and cuticle refinement.",
+    learnMorePath: "/services",
+    bookLabel: "Book Clean Combo",
+    imageAlt: "Natural no polish manicure and pedicure combo service"
+  },
+  "hard-gel-smart": {
+    bestFor: "Hard gel hands with natural pedicure care",
+    includes: "Structured gel manicure with smart pedicure care finished without toe polish.",
+    learnMorePath: "/services",
+    bookLabel: "Book Hard Gel Combo",
+    imageAlt: "Gel manicure and no polish pedicure combo service"
+  },
+  "hard-gel-smart-gel": {
+    bestFor: "Long-wear gel on hands and feet",
+    includes: "Russian gel manicure, Smart Gel Pedicure, cuticle detail, and glossy finish.",
+    learnMorePath: "/services",
+    bookLabel: "Book Gel Combo",
+    imageAlt: "Russian gel manicure and Smart Gel Pedicure combo result"
+  },
+  "natural-care-combo": {
+    bestFor: "Restorative natural nail care",
+    includes: "Japanese manicure care paired with natural foot grooming and refinement.",
+    learnMorePath: "/services",
+    bookLabel: "Book Natural Care",
+    imageAlt: "Natural nail care manicure and pedicure combo"
+  },
+  "mens-grooming-combo": {
+    bestFor: "Clean masculine grooming",
+    includes: "Hand and foot grooming, shaping, buffing, and natural clean finish.",
+    learnMorePath: "/services",
+    bookLabel: "Book Men's Combo",
+    imageAlt: "Men's grooming manicure and pedicure combo"
+  },
+  "vip-room": {
+    bestFor: "Private elevated appointments",
+    includes: "Private room service with focused attention and RM finishing standards.",
+    learnMorePath: "/services",
+    bookLabel: "Book VIP Room",
+    imageAlt: "Private VIP room nail salon service"
+  },
+  "best-friends-combo": {
+    bestFor: "Two-guest beauty appointments",
+    includes: "Shared appointment experience with polished nail care for two guests.",
+    learnMorePath: "/services",
+    bookLabel: "Book Best Friends",
+    imageAlt: "Best Friends manicure combo with two polished hands"
+  },
+  "mr-mrs-combo": {
+    bestFor: "Couples grooming and polish",
+    includes: "Couples nail care with refined grooming, shaping, and natural polish detail.",
+    learnMorePath: "/services",
+    bookLabel: "Book Mr & Mrs",
+    imageAlt: "Mr and Mrs combo manicure service with two clients"
+  },
+  "four-hands-combo": {
+    bestFor: "Fast full-service appointments",
+    includes: "Two technicians working together for manicure and pedicure timing efficiency.",
+    learnMorePath: "/services",
+    bookLabel: "Book 4 Hands",
+    imageAlt: "Four hands manicure and pedicure combo service"
+  },
+  "regular-polish": {
+    bestFor: "Classic color finish",
+    includes: "Regular polish applied after clean shaping and nail-surface preparation.",
+    learnMorePath: "/nail-art-nyc",
+    bookLabel: "Book Polish",
+    imageAlt: "Regular polish manicure finish"
+  },
+  "extra-long-nails": {
+    bestFor: "Extra length and structure",
+    includes: "Additional shaping time, structure balance, and long-length refinement.",
+    learnMorePath: "/gel-extensions-nyc",
+    bookLabel: "Book Extra Long",
+    imageAlt: "Extra long nail extension service"
+  },
+  "gel-removal-toes": {
+    bestFor: "Toe gel removal",
+    includes: "Controlled toe gel removal with nail-surface protection and edge refinement.",
+    learnMorePath: "/services",
+    bookLabel: "Book Toe Removal",
+    imageAlt: "Gel removal only for toes"
+  },
+  "gel-removal-hands": {
+    bestFor: "Hand gel removal",
+    includes: "Gentle hand gel removal with natural nail protection and clean finish.",
+    learnMorePath: "/services",
+    bookLabel: "Book Hand Removal",
+    imageAlt: "Gel removal only for hands"
+  },
+  "gel-removal": {
+    bestFor: "Preparing for repair or a fresh set",
+    includes: "Careful gel removal before repair, natural care, or a new manicure service.",
+    learnMorePath: "/services",
+    bookLabel: "Book Gel Removal",
+    imageAlt: "Gel removal service for manicure preparation"
+  },
+  "acrylic-removal": {
+    bestFor: "Acrylic or dip removal",
+    includes: "Protective product reduction and removal before recovery care or a new service.",
+    learnMorePath: "/services",
+    bookLabel: "Book Acrylic Removal",
+    imageAlt: "Acrylic and dip removal with professional nail drill"
+  },
+  "one-nail-repair": {
+    bestFor: "Single nail correction",
+    includes: "One chipped, cracked, lifted, or broken nail cleaned, stabilized, and reshaped.",
+    learnMorePath: "/services",
+    bookLabel: "Book Nail Repair",
+    imageAlt: "One nail repair service"
+  },
+  "hooked-nail-fix": {
+    bestFor: "Hooked nail correction",
+    includes: "Shape correction for a hooked or downward-growing nail edge.",
+    learnMorePath: "/services",
+    bookLabel: "Book Hooked Nail Fix",
+    imageAlt: "Hooked nail correction service"
+  },
   french: {
     bestFor: "Classic clean tips",
     includes: "French finish added to manicure or pedicure service.",
@@ -249,7 +375,7 @@ const serviceDetails = {
 function enrichService(service) {
   const defaults = {
     bestFor: service.category ? `${service.category.toLowerCase()} detail` : "A polished RM finish",
-    includes: service.description,
+    includes: "Detailed preparation, clean shaping, and RM finishing standards.",
     learnMorePath: "/services",
     bookLabel: `Book ${service.shortName || service.name}`,
     imageAlt: `${service.name} service example`

@@ -6660,3 +6660,26 @@ img {
   justify-self: center;
   text-align: center;
 }
+
+/* Service-specific image framing for the new supplied assets. */
+.catalog-service.service-acrylic-removal img {
+  aspect-ratio: 1 / 1 !important;
+}
+
+.catalog-service.service-combo-clear img {
+  aspect-ratio: 3 / 4 !important;
+}
+
+.catalog-service.service-hard-gel-smart img {
+  aspect-ratio: 9 / 16 !important;
+}
+
+.catalog-service.service-best-friends-combo img {
+  aspect-ratio: 4 / 5 !important;
+}
+
+.catalog-service.service-hard-gel-smart-gel img,
+.catalog-service.service-natural-care-combo img,
+.catalog-service.service-mr-mrs-combo img {
+  aspect-ratio: 3 / 2 !important;
+}
