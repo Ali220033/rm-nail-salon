@@ -6683,3 +6683,11 @@ img {
 .catalog-service.service-mr-mrs-combo img {
   aspect-ratio: 3 / 2 !important;
 }
+
+.catalog-service.service-four-hands-combo img {
+  aspect-ratio: 4 / 3 !important;
+}
+
+.catalog-service.service-mens-grooming-combo img {
+  aspect-ratio: 5 / 4 !important;
+}

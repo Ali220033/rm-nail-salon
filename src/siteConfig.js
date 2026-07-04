@@ -46,6 +46,8 @@ const comboRussianGelSmartGelImage = fastImage("service-combo-russian-gel-smart-
 const comboNaturalCareImage = fastImage("service-combo-natural-care-new");
 const comboBestFriendsImage = fastImage("service-combo-best-friends-new");
 const comboMrMrsImage = fastImage("service-combo-mr-mrs-new");
+const comboFourHandsImage = fastImage("service-combo-four-hands-new");
+const comboMensGroomingImage = fastImage("service-combo-mens-grooming-new");
 const russianClearImage = fastImage("service-russian-clear");
 const mensManicureImage = fastImage("service-mens-manicure");
 const japaneseManicureImage = fastImage("service-japanese-manicure");
@@ -244,7 +246,7 @@ export const serviceMenu = [
         time: "1 hr 55 min",
         price: "$140",
         topTech: "$160",
-        image: newMensNoPolishImage,
+        image: comboMensGroomingImage,
         description:
           "A complete grooming appointment for men who want clean, healthy-looking hands and feet. Nails are shaped, cuticles are refined, rough edges are smoothed, and the final buffed finish looks neat, strong, and natural without polish."
       },
@@ -288,7 +290,7 @@ export const serviceMenu = [
         time: "1 hr 30 min",
         price: "$275",
         topTech: "$290",
-        image: newNailDesignsImage,
+        image: comboFourHandsImage,
         description:
           "A time-saving luxury appointment where two technicians work simultaneously so your manicure and pedicure can be completed with less waiting. Best for busy clients who still want the full RM standard: clean cuticles, balanced shaping, smooth detail, and a polished finish."
       }
