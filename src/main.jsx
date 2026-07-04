@@ -2463,8 +2463,8 @@ function GalleryPage({ setSelectedGallery }) {
         label="Gallery"
         title="Russian manicure gallery with clean shape, shine, and detail."
         copy="Browse RM manicure, pedicure, chrome, French, extension, and nail art inspiration before choosing your next appointment."
-        image={fastImage("gallery-aqua-french")}
-        alt="Aqua French manicure gallery photo at RM Nail Salon"
+        image={galleryItems[0]?.image || fastImage("gallery-aqua-french")}
+        alt="RM Nail Salon gallery photo from the 1346 portfolio set"
       />
       <section className="gallery-editorial full">
         <SectionIntro

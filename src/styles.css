@@ -6599,6 +6599,10 @@ img {
   z-index: 6;
 }
 
+.masonry-caption strong {
+  display: none;
+}
+
 @media (min-width: 1020px) {
   .service-lookbook {
     grid-template-columns: minmax(0, 1fr) minmax(360px, 0.82fr);
@@ -6607,4 +6611,52 @@ img {
   .lookbook-image {
     max-width: 100%;
   }
+}
+
+/* Final contact card alignment: keep the business-hours pill centered. */
+.visit-info-card:has(.hours-lines) {
+  align-items: center !important;
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  padding-bottom: 1.18rem;
+  position: relative;
+  text-align: center;
+}
+
+.visit-info-card:has(.hours-lines) > svg {
+  left: 1.18rem;
+  position: absolute;
+  top: 1.28rem;
+}
+
+.visit-info-card:has(.hours-lines) > div {
+  display: grid;
+  justify-items: center;
+  min-width: 0;
+  text-align: center;
+  width: 100%;
+}
+
+.visit-info-card:has(.hours-lines) .hours-lines {
+  display: grid;
+  justify-items: center;
+  margin-inline: auto;
+  width: 100%;
+}
+
+.visit-info-card:has(.hours-lines) .hours-lines p {
+  align-items: center;
+  justify-items: center;
+  margin-inline: auto;
+  max-width: 100%;
+  min-width: min(100%, 10.4rem);
+  text-align: center;
+  width: fit-content;
+}
+
+.visit-info-card:has(.hours-lines) .hours-lines p span,
+.visit-info-card:has(.hours-lines) .hours-lines p strong {
+  justify-self: center;
+  text-align: center;
 }

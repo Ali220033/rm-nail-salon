@@ -20,6 +20,7 @@ export const siteConfig = {
 };
 
 export const fastImage = (name) => `/images/fast/${name}.webp`;
+const gallery1346Image = (name) => `/images/gallery-1346/${name}.webp`;
 
 const processImage = fastImage("work-reel-process");
 const driveAsian1Image = fastImage("drive-asian-1");
@@ -463,183 +464,333 @@ export const featuredServices = featuredServiceIds
 
 export const galleryItems = [
   {
-    title: "Clean Russian Manicure",
-    caption: "Full-hand natural finish with clean cuticle detail.",
-    category: "Russian Manicure",
+    title: "Pearl Line Detail",
+    caption: "Soft pearl structure with a clean RM finish.",
+    category: "RM Gallery",
     tone: "cream",
     size: "tall",
-    image: newRussianNaturalImage,
-    alt: "Full hands with clean natural Russian manicure finish",
-    focal: "50% 34%"
-  },
-  {
-    title: "Hard Gel Structure",
-    caption: "Balanced hard gel result with a glossy surface.",
-    category: "Hard Gel",
-    tone: "cream",
-    size: "wide",
-    image: newRussianHardGelImage,
-    alt: "Finished hard gel manicure with glossy structured surface",
-    focal: "48% 38%"
-  },
-  {
-    title: "Master at Work",
-    caption: "A controlled process moment with professional manicure tools.",
-    category: "Process",
-    tone: "mist",
-    size: "small",
-    image: processImage,
-    alt: "Technician performing detailed cuticle work with professional tools",
-    focal: "52% 42%"
-  },
-  {
-    title: "Smart Pedicure",
-    caption: "Clean foot care with precise shaping and polish detail.",
-    category: "Pedicure",
-    tone: "plum",
-    size: "tall",
-    image: newSmartPedicureNaturalImage,
-    alt: "Smart pedicure service with clean toe nail shaping",
-    focal: "50% 42%"
-  },
-  {
-    title: "Gel Pedicure",
-    caption: "Glossy gel pedicure result for a clean long-wear finish.",
-    category: "Pedicure",
-    tone: "line",
-    size: "small",
-    image: newSmartGelPedicureImage,
-    alt: "Glossy gel pedicure result with clean toe polish",
+    image: gallery1346Image("rm-gallery-01"),
+    alt: "RM Nail Salon pearl line detail gallery image",
     focal: "50% 50%"
   },
   {
-    title: "Nail Extensions",
-    caption: "Sculpted length with refined shape and slim structure.",
-    category: "Extensions",
+    title: "Precision Cuticle Work",
+    caption: "Close-up studio detail from a precise manicure session.",
+    category: "RM Gallery",
+    tone: "cream",
+    size: "small",
+    image: gallery1346Image("rm-gallery-02"),
+    alt: "RM Nail Salon precision cuticle work gallery image",
+    focal: "50% 50%"
+  },
+  {
+    title: "Soft Nude Gloss",
+    caption: "Natural glossy nails with a quiet luxury finish.",
+    category: "RM Gallery",
+    tone: "mist",
+    size: "small",
+    image: gallery1346Image("rm-gallery-03"),
+    alt: "RM Nail Salon soft nude gloss gallery image",
+    focal: "50% 50%"
+  },
+  {
+    title: "Minimal Almond Shape",
+    caption: "Elegant almond length with clean balanced structure.",
+    category: "RM Gallery",
+    tone: "plum",
+    size: "tall",
+    image: gallery1346Image("rm-gallery-04"),
+    alt: "RM Nail Salon minimal almond shape gallery image",
+    focal: "50% 50%"
+  },
+  {
+    title: "Cyan Studio Shine",
+    caption: "Fresh nails photographed in the RM cyan studio mood.",
+    category: "RM Gallery",
+    tone: "line",
+    size: "small",
+    image: gallery1346Image("rm-gallery-05"),
+    alt: "RM Nail Salon cyan studio shine gallery image",
+    focal: "50% 50%"
+  },
+  {
+    title: "Clean French Pedicure",
+    caption: "Refined toe detail with a crisp polished edge.",
+    category: "RM Gallery",
     tone: "structure",
     size: "small",
-    image: newRussianExtensionsImage,
-    alt: "Long nail extensions with refined shape and glossy finish",
-    focal: "50% 44%"
+    image: gallery1346Image("rm-gallery-06"),
+    alt: "RM Nail Salon clean french pedicure gallery image",
+    focal: "50% 50%"
   },
   {
-    title: "Chrome Finish",
-    caption: "Reflective chrome shine with a polished editorial edge.",
-    category: "Nail Art",
+    title: "Natural Pedicure Finish",
+    caption: "Soft pedicure detail with a clean natural finish.",
+    category: "RM Gallery",
     tone: "gold",
-    size: "wide",
-    image: newChromeDesignImage,
-    alt: "Chrome manicure with reflective polished finish",
-    focal: "50% 46%"
+    size: "tall",
+    image: gallery1346Image("rm-gallery-07"),
+    alt: "RM Nail Salon natural pedicure finish gallery image",
+    focal: "50% 50%"
   },
   {
-    title: "Ombre Detail",
-    caption: "Soft gradient color work with a clean blended finish.",
-    category: "Nail Art",
+    title: "Cat Eye Glow",
+    caption: "Dimensional magnetic shine with a polished reflective finish.",
+    category: "RM Gallery",
     tone: "mist",
     size: "small",
-    image: newOmbreDesignImage,
-    alt: "Ombre manicure with soft gradient polish",
-    focal: "50% 45%"
+    image: gallery1346Image("rm-gallery-08"),
+    alt: "RM Nail Salon cat eye glow gallery image",
+    focal: "50% 50%"
   },
   {
-    title: "Men's Grooming",
-    caption: "Natural grooming with the same clean RM precision.",
-    category: "Natural Care",
+    title: "Classic French Shape",
+    caption: "Crisp French lines with balanced nail architecture.",
+    category: "RM Gallery",
     tone: "mist",
     size: "small",
-    image: newMensNoPolishImage,
-    alt: "Men's manicure with clean natural nail grooming",
-    focal: "50% 44%"
+    image: gallery1346Image("rm-gallery-09"),
+    alt: "RM Nail Salon classic french shape gallery image",
+    focal: "50% 50%"
   },
   {
-    title: "French Square",
-    caption: "Clean French finish on a squared shape.",
-    category: "French",
+    title: "Milky Ombre Finish",
+    caption: "Soft blended ombre with a luminous high-gloss surface.",
+    category: "RM Gallery",
     tone: "aquaGold",
     size: "small",
-    image: newClassicFrenchImage,
-    alt: "Square French manicure inspiration with clean white tips",
-    focal: "50% 48%"
+    image: gallery1346Image("rm-gallery-10"),
+    alt: "RM Nail Salon milky ombre finish gallery image",
+    focal: "50% 50%"
   },
   {
-    title: "Burgundy Gloss",
-    caption: "Deep glossy color with a refined shape.",
-    category: "Color",
+    title: "Soft Pink Structure",
+    caption: "Light pink gel structure with a polished natural look.",
+    category: "RM Gallery",
     tone: "plum",
     size: "small",
-    image: fastImage("ref-gallery-burgundy"),
-    alt: "Burgundy glossy manicure inspiration on shaped nails",
-    focal: "50% 46%"
+    image: gallery1346Image("rm-gallery-11"),
+    alt: "RM Nail Salon soft pink structure gallery image",
+    focal: "50% 50%"
   },
   {
-    title: "Red Almond",
-    caption: "Classic red manicure inspiration with a luxury shape.",
-    category: "Color",
+    title: "Cherry Nail Art",
+    caption: "Delicate cherry detail on a soft glossy base.",
+    category: "RM Gallery",
     tone: "line",
     size: "small",
-    image: fastImage("ref-gallery-red"),
-    alt: "Classic red almond manicure inspiration",
-    focal: "50% 48%"
-  },
-  {
-    title: "Ocean Art",
-    caption: "Detailed hand-painted nail art for a statement set.",
-    category: "Nail Art",
-    tone: "aqua",
-    size: "wide",
-    image: fastImage("ref-gallery-ocean-art"),
-    alt: "Detailed ocean-inspired nail art inspiration",
+    image: gallery1346Image("rm-gallery-12"),
+    alt: "RM Nail Salon cherry nail art gallery image",
     focal: "50% 50%"
   },
   {
-    title: "Glitter Cat Eye",
-    caption: "Dimensional reflective color movement.",
-    category: "Cat Eye",
+    title: "Editorial Hand Detail",
+    caption: "A refined hand close-up with polished RM styling.",
+    category: "RM Gallery",
+    tone: "aqua",
+    size: "tall",
+    image: gallery1346Image("rm-gallery-13"),
+    alt: "RM Nail Salon editorial hand detail gallery image",
+    focal: "50% 50%"
+  },
+  {
+    title: "Mirror Detail",
+    caption: "Reflective manicure detail with editorial shine.",
+    category: "RM Gallery",
     tone: "structure",
-    size: "wide",
-    image: newCatEyeImage,
-    alt: "Glitter cat eye manicure inspiration with reflective polish",
+    size: "small",
+    image: gallery1346Image("rm-gallery-14"),
+    alt: "RM Nail Salon mirror detail gallery image",
     focal: "50% 50%"
   },
   {
-    title: "Studio Detail",
-    caption: "Cyan-lit RM studio atmosphere in Midtown.",
-    category: "Studio",
+    title: "Clean Nude Set",
+    caption: "Nude manicure detail with smooth structure and cuticle clarity.",
+    category: "RM Gallery",
     tone: "plum",
+    size: "small",
+    image: gallery1346Image("rm-gallery-15"),
+    alt: "RM Nail Salon clean nude set gallery image",
+    focal: "50% 50%"
+  },
+  {
+    title: "Glossy Short Nails",
+    caption: "Short polished nails with a clean natural finish.",
+    category: "RM Gallery",
+    tone: "aqua",
+    size: "small",
+    image: gallery1346Image("rm-gallery-16"),
+    alt: "RM Nail Salon glossy short nails gallery image",
+    focal: "50% 50%"
+  },
+  {
+    title: "French Square Detail",
+    caption: "Structured square French design with a refined edge.",
+    category: "RM Gallery",
+    tone: "aqua",
+    size: "small",
+    image: gallery1346Image("rm-gallery-17"),
+    alt: "RM Nail Salon french square detail gallery image",
+    focal: "50% 50%"
+  },
+  {
+    title: "Pearl Almond Set",
+    caption: "Soft pearl almond nails with a luxury finish.",
+    category: "RM Gallery",
+    tone: "plum",
+    size: "small",
+    image: gallery1346Image("rm-gallery-18"),
+    alt: "RM Nail Salon pearl almond set gallery image",
+    focal: "50% 50%"
+  },
+  {
+    title: "Studio Manicure Detail",
+    caption: "A calm RM studio manicure moment with glossy nails.",
+    category: "RM Gallery",
+    tone: "cream",
+    size: "tall",
+    image: gallery1346Image("rm-gallery-19"),
+    alt: "RM Nail Salon studio manicure detail gallery image",
+    focal: "50% 50%"
+  },
+  {
+    title: "Warm Nude Finish",
+    caption: "Warm nude polish captured with a soft beauty finish.",
+    category: "RM Gallery",
+    tone: "mist",
+    size: "small",
+    image: gallery1346Image("rm-gallery-20"),
+    alt: "RM Nail Salon warm nude finish gallery image",
+    focal: "50% 50%"
+  },
+  {
+    title: "Pink Gloss Close-Up",
+    caption: "Close-up pink gloss manicure with polished light reflection.",
+    category: "RM Gallery",
+    tone: "line",
+    size: "small",
+    image: gallery1346Image("rm-gallery-21"),
+    alt: "RM Nail Salon pink gloss close-up gallery image",
+    focal: "50% 50%"
+  },
+  {
+    title: "Salon Campaign Mood",
+    caption: "Editorial RM campaign mood with nails and studio detail.",
+    category: "RM Gallery",
+    tone: "aquaGold",
+    size: "small",
+    image: gallery1346Image("rm-gallery-22"),
+    alt: "RM Nail Salon salon campaign mood gallery image",
+    focal: "50% 50%"
+  },
+  {
+    title: "Cyan Manicure Moment",
+    caption: "Bright cyan-lit manicure detail from the RM portfolio.",
+    category: "RM Gallery",
+    tone: "plum",
+    size: "tall",
+    image: gallery1346Image("rm-gallery-23"),
+    alt: "RM Nail Salon cyan manicure moment gallery image",
+    focal: "50% 50%"
+  },
+  {
+    title: "Clean Shape Study",
+    caption: "Balanced nail shape with a fresh polished finish.",
+    category: "RM Gallery",
+    tone: "structure",
+    size: "small",
+    image: gallery1346Image("rm-gallery-24"),
+    alt: "RM Nail Salon clean shape study gallery image",
+    focal: "50% 50%"
+  },
+  {
+    title: "Soft French Detail",
+    caption: "Natural French-inspired detail with clean structure.",
+    category: "RM Gallery",
+    tone: "cream",
+    size: "small",
+    image: gallery1346Image("rm-gallery-25"),
+    alt: "RM Nail Salon soft french detail gallery image",
+    focal: "50% 50%"
+  },
+  {
+    title: "Milky White Extension",
+    caption: "Milky extension shape with a smooth luxury surface.",
+    category: "RM Gallery",
+    tone: "mist",
+    size: "small",
+    image: gallery1346Image("rm-gallery-26"),
+    alt: "RM Nail Salon milky white extension gallery image",
+    focal: "50% 50%"
+  },
+  {
+    title: "Aqua Studio Texture",
+    caption: "RM aqua studio mood with polished nail detail.",
+    category: "RM Gallery",
+    tone: "gold",
+    size: "small",
+    image: gallery1346Image("rm-gallery-27"),
+    alt: "RM Nail Salon aqua studio texture gallery image",
+    focal: "50% 50%"
+  },
+  {
+    title: "Polished Client Result",
+    caption: "Fresh client result photographed in the RM style.",
+    category: "RM Gallery",
+    tone: "aqua",
+    size: "tall",
+    image: gallery1346Image("rm-gallery-28"),
+    alt: "RM Nail Salon polished client result gallery image",
+    focal: "50% 50%"
+  },
+  {
+    title: "Full Portfolio Look",
+    caption: "A complete RM gallery look with editorial detail.",
+    category: "RM Gallery",
+    tone: "line",
     size: "wide",
-    image: vipRoomImage,
-    alt: "Cyan-lit manicure station with tools inside a premium nail studio",
-    focal: "50% 48%"
+    image: gallery1346Image("rm-gallery-29"),
+    alt: "RM Nail Salon full portfolio look gallery image",
+    focal: "50% 50%"
   },
   {
-    title: "Midtown Studio Front",
-    caption: "RM Nail Salon at 875 3rd Ave, Concourse Level.",
-    category: "Location",
-    tone: "aqua",
+    title: "Gloss and Shape",
+    caption: "Balanced shine and nail architecture in a close-up view.",
+    category: "RM Gallery",
+    tone: "cream",
     size: "small",
-    image: fastImage("brand-salon-front-full"),
-    alt: "RM Nail Salon storefront at 875 3rd Ave in Midtown Manhattan",
-    focal: "50% 45%"
+    image: gallery1346Image("rm-gallery-30"),
+    alt: "RM Nail Salon gloss and shape gallery image",
+    focal: "50% 50%"
   },
   {
-    title: "RM Campaign",
-    caption: "Brand campaign mood with red manicure detail.",
-    category: "Campaign",
-    tone: "aqua",
-    size: "small",
-    image: driveAsian4Image,
-    alt: "RM Nail Salon campaign image with red manicure detail",
-    focal: "50% 38%"
-  },
-  {
-    title: "Midtown Glow",
-    caption: "NYC skyline campaign frame with the RM cyan signature.",
-    category: "Campaign",
+    title: "Natural Luxury Finish",
+    caption: "Natural-looking manicure detail with soft luxury polish.",
+    category: "RM Gallery",
     tone: "plum",
     size: "small",
-    image: driveMidtownImage,
-    alt: "Midtown Manhattan skyline campaign image for RM Nail Salon",
+    image: gallery1346Image("rm-gallery-31"),
+    alt: "RM Nail Salon natural luxury finish gallery image",
+    focal: "50% 50%"
+  },
+  {
+    title: "Clean Nail Art",
+    caption: "Minimal nail art with a polished feminine finish.",
+    category: "RM Gallery",
+    tone: "structure",
+    size: "small",
+    image: gallery1346Image("rm-gallery-32"),
+    alt: "RM Nail Salon clean nail art gallery image",
+    focal: "50% 50%"
+  },
+  {
+    title: "RM Studio Detail",
+    caption: "A refined RM studio image from the 1346 portfolio set.",
+    category: "RM Gallery",
+    tone: "aquaGold",
+    size: "small",
+    image: gallery1346Image("rm-gallery-33"),
+    alt: "RM Nail Salon rm studio detail gallery image",
     focal: "50% 50%"
   }
 ];
