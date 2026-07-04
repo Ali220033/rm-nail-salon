@@ -1,5 +1,8 @@
 import { faqs, fastImage, serviceMenu, siteConfig } from "./siteConfig.js";
 
+const serviceImageById = (id, fallback) =>
+  serviceMenu.flatMap((group) => group.services).find((service) => service.id === id)?.image || fastImage(fallback);
+
 export const reviewSummary = {
   source: "Booksy",
   sourceUrl: siteConfig.bookingUrl,
@@ -143,7 +146,7 @@ export const serviceLandingPages = [
     h1: "Russian Manicure in Midtown NYC",
     heroCopy:
       "RM Nail Salon specializes in clean waterless manicure work for clients who want a polished finish that looks refined up close.",
-    image: fastImage("service-russian-clear"),
+    image: serviceImageById("russian-clear", "service-russian-natural-new"),
     imageAlt: "Russian manicure with clean natural nails at RM Nail Salon",
     introTitle: "Precision prep before the polish.",
     intro:
@@ -173,7 +176,7 @@ export const serviceLandingPages = [
     h1: "Hard Gel Manicure in Midtown NYC",
     heroCopy:
       "A hard gel appointment at RM combines Russian manicure prep with structure that feels slim, glossy, and durable.",
-    image: fastImage("gallery-aqua-french"),
+    image: serviceImageById("russian-hard-gel", "service-russian-hard-gel-new"),
     imageAlt: "Finished hard gel manicure result at RM Nail Salon in Midtown NYC",
     introTitle: "For clients who want strength without a bulky look.",
     intro:
@@ -217,7 +220,7 @@ export const serviceLandingPages = [
     h1: "Gel Manicure in Midtown NYC",
     heroCopy:
       "For clients who want glossy color, careful prep, and a manicure that feels more refined than a rushed gel appointment.",
-    image: fastImage("service-ombre"),
+    image: serviceImageById("russian-hard-gel", "service-russian-hard-gel-new"),
     imageAlt: "Glossy gel manicure finish at RM Nail Salon in Midtown NYC",
     introTitle: "Gel looks better when the prep work is precise.",
     intro:
@@ -247,7 +250,7 @@ export const serviceLandingPages = [
     h1: "Smart Pedicure in Midtown NYC",
     heroCopy:
       "RM pedicure services focus on hygienic tools, precise shaping, and a calm salon experience for hands-and-feet clients.",
-    image: fastImage("gallery-pedicure"),
+    image: serviceImageById("smart-pedicure", "service-smart-pedicure-natural-new"),
     imageAlt: "Finished smart pedicure result at RM Nail Salon",
     introTitle: "Detailed smart pedicure care for clean, polished, comfortable feet.",
     intro:
@@ -283,7 +286,7 @@ export const serviceLandingPages = [
     h1: "Pedicure in Midtown NYC",
     heroCopy:
       "RM pedicure appointments are designed for clients who want careful foot care, polished shaping, and a calm Midtown studio experience.",
-    image: fastImage("gallery-pedicure"),
+    image: serviceImageById("smart-pedicure", "service-smart-pedicure-natural-new"),
     imageAlt: "Finished pedicure result at RM Nail Salon in Midtown Manhattan",
     introTitle: "Pedicure care should feel hygienic, detailed, and calm.",
     intro:
@@ -313,7 +316,7 @@ export const serviceLandingPages = [
     h1: "Gel Extensions in Midtown NYC",
     heroCopy:
       "For clients who want more length, RM builds extensions with balanced architecture and a refined high-end profile.",
-    image: fastImage("gallery-extensions"),
+    image: serviceImageById("nail-extensions", "service-russian-extensions-new"),
     imageAlt: "Finished gel nail extensions at RM Nail Salon",
     introTitle: "Elegant gel extensions with balanced shape, clean cuticle work, and refined structure.",
     intro:
@@ -354,7 +357,7 @@ export const serviceLandingPages = [
     h1: "Builder Gel in Midtown NYC",
     heroCopy:
       "When nails need reinforcement but not full extensions, RM uses structured gel services to keep the look slim and polished.",
-    image: fastImage("gallery-aqua-french"),
+    image: serviceImageById("russian-hard-gel", "service-russian-hard-gel-new"),
     imageAlt: "Structured builder gel style manicure result at RM Nail Salon",
     introTitle: "Support, shape, and shine without visual weight.",
     intro:
@@ -391,7 +394,7 @@ export const serviceLandingPages = [
     h1: "Nail Art in Midtown NYC",
     heroCopy:
       "RM uses nail art as a luxury detail: clean, glossy, balanced, and designed around the shape of the hand.",
-    image: fastImage("gallery-plum-gold"),
+    image: serviceImageById("nail-design", "service-nail-designs-new"),
     imageAlt: "Finished nail art manicure at RM Nail Salon",
     introTitle: "Detailed nail art designed to look refined, not heavy.",
     intro:
@@ -687,7 +690,7 @@ export const blogArticlePages = [
     h1: "Russian manicure vs regular manicure: what changes?",
     heroCopy:
       "The difference is not just polish. It is prep, precision, structure, and how clean the manicure looks as it grows.",
-    image: fastImage("service-russian-clear"),
+    image: serviceImageById("russian-clear", "service-russian-natural-new"),
     imageAlt: "Clean Russian manicure natural nail result at RM Nail Salon",
     category: "Russian Manicure",
     author: "RM Nail Salon Editorial Team",
@@ -715,7 +718,7 @@ export const blogArticlePages = [
     h1: "How long does hard gel last?",
     heroCopy:
       "Hard gel can keep nails stronger and glossier, but longevity depends on prep, structure, nail habits, and timing your maintenance.",
-    image: fastImage("service-hard-gel"),
+    image: serviceImageById("russian-hard-gel", "service-russian-hard-gel-new"),
     imageAlt: "Hard gel manicure structure at RM Nail Salon in Midtown NYC",
     category: "Hard Gel",
     author: "RM Nail Salon Editorial Team",
@@ -771,7 +774,7 @@ export const blogArticlePages = [
     h1: "Dry manicure explained for first-time Russian manicure clients",
     heroCopy:
       "Dry prep helps the technician see the nail clearly, refine the cuticle line carefully, and create a more controlled polish finish.",
-    image: fastImage("rm-hero-editorial"),
+    image: serviceImageById("russian-clear", "service-russian-natural-new"),
     imageAlt: "Dry manicure preparation with professional nail tool",
     category: "Technique",
     author: "RM Nail Salon Editorial Team",
@@ -799,7 +802,7 @@ export const blogArticlePages = [
     h1: "Hard gel vs BIAB: how to choose your structure",
     heroCopy:
       "Both services can strengthen the natural nail. The right choice depends on your nail goals, length, flexibility, and maintenance routine.",
-    image: fastImage("service-spa-hard-gel-v2"),
+    image: serviceImageById("russian-hard-gel", "service-russian-hard-gel-new"),
     imageAlt: "Structured gel manicure result at RM Nail Salon",
     category: "Builder Gel",
     author: "RM Nail Salon Editorial Team",
@@ -1062,7 +1065,7 @@ function localBusinessSchema() {
     image: [
       absoluteImage(fastImage("rm-hero")),
       absoluteImage(fastImage("brand-salon-front-full")),
-      absoluteImage(fastImage("service-hard-gel"))
+      absoluteImage(serviceImageById("russian-hard-gel", "service-russian-hard-gel-new"))
     ],
     telephone: siteConfig.phone,
     email: siteConfig.email,

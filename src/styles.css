@@ -6554,21 +6554,25 @@ img {
   }
 }
 
-/* Final service image polish: fill service frames and keep the lookbook rail separate. */
+/* Final service image polish: unified service framing, with gallery masonry kept separate. */
 .catalog-service img,
 .seo-service-card img,
 .geo-path-card img,
 .related-service-card img,
 .planner-summary img {
+  aspect-ratio: 4 / 5 !important;
   background: #080507;
+  display: block;
+  height: auto;
   object-fit: cover !important;
   object-position: center !important;
   padding: 0 !important;
+  width: 100%;
 }
 
 .planner-summary img {
-  aspect-ratio: 4 / 3;
-  height: 100%;
+  aspect-ratio: 4 / 5 !important;
+  height: auto;
   max-height: none;
 }
 
@@ -6582,9 +6586,12 @@ img {
 
 .lookbook-image img,
 .lookbook-rail .rail-thumb {
+  aspect-ratio: 4 / 5 !important;
+  display: block;
   object-fit: cover !important;
   object-position: center !important;
   padding: 0 !important;
+  width: 100%;
 }
 
 .lookbook-rail {
@@ -6661,33 +6668,36 @@ img {
   text-align: center;
 }
 
-/* Service-specific image framing for the new supplied assets. */
-.catalog-service.service-acrylic-removal img {
-  aspect-ratio: 1 / 1 !important;
-}
-
-.catalog-service.service-combo-clear img {
-  aspect-ratio: 3 / 4 !important;
-}
-
-.catalog-service.service-hard-gel-smart img {
-  aspect-ratio: 9 / 16 !important;
-}
-
-.catalog-service.service-best-friends-combo img {
+/* Service surfaces stay visually consistent across pages and devices. */
+.featured-service-visual img,
+.service-line img,
+.catalog-service img,
+.seo-service-card img,
+.geo-path-card img,
+.related-service-card img,
+.planner-summary img,
+.lookbook-rail .rail-thumb {
   aspect-ratio: 4 / 5 !important;
+  object-fit: cover !important;
+  object-position: center !important;
 }
 
-.catalog-service.service-hard-gel-smart-gel img,
-.catalog-service.service-natural-care-combo img,
-.catalog-service.service-mr-mrs-combo img {
-  aspect-ratio: 3 / 2 !important;
-}
+@media (max-width: 640px) {
+  .catalog-service {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
 
-.catalog-service.service-four-hands-combo img {
-  aspect-ratio: 4 / 3 !important;
-}
-
-.catalog-service.service-mens-grooming-combo img {
-  aspect-ratio: 5 / 4 !important;
+  .featured-service-visual img,
+  .service-line img,
+  .catalog-service img,
+  .seo-service-card img,
+  .geo-path-card img,
+  .related-service-card img,
+  .planner-summary img,
+  .lookbook-rail .rail-thumb {
+    aspect-ratio: 4 / 5 !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    width: 100% !important;
+  }
 }
