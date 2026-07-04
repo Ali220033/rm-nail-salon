@@ -55,8 +55,11 @@ const mensComboImage = fastImage("service-mens-combo");
 const vipRoomImage = fastImage("service-vip-room");
 const chromeImage = fastImage("service-chrome");
 const ombreImage = fastImage("service-ombre");
-const removalImage = fastImage("service-removal");
-const repairImage = fastImage("service-repair");
+const removalToesImage = fastImage("service-removal-toes-new");
+const removalHandsImage = fastImage("service-removal-hands-new");
+const gelRemovalNewImage = fastImage("service-gel-removal-new");
+const oneNailRepairImage = fastImage("service-one-nail-repair-new");
+const hookedNailFixImage = fastImage("service-hooked-nail-fix-new");
 const nailDesignProcessImage = fastImage("service-nail-design");
 const nailDesignImage = fastImage("gallery-plum-gold");
 const regularPolishImage = fastImage("service-regular-polish");
@@ -378,7 +381,7 @@ export const serviceMenu = [
         time: "15 min",
         price: "$15",
         topTech: null,
-        image: removalImage,
+        image: removalToesImage,
         description:
           "Standalone gel removal for toes with careful product removal and nail-surface protection."
       },
@@ -389,7 +392,7 @@ export const serviceMenu = [
         time: "20 min",
         price: "$20",
         topTech: null,
-        image: removalImage,
+        image: removalHandsImage,
         description:
           "Standalone hand gel removal handled gently to protect the natural nail."
       },
@@ -400,7 +403,7 @@ export const serviceMenu = [
         time: "15 min",
         price: "$25",
         topTech: null,
-        image: removalImage,
+        image: gelRemovalNewImage,
         description:
           "Gel removal service for clients preparing for care, repair, or a fresh set."
       },
@@ -422,7 +425,7 @@ export const serviceMenu = [
         time: "10 min",
         price: "$5+",
         topTech: null,
-        image: repairImage,
+        image: oneNailRepairImage,
         description:
           "A focused repair for a chipped, cracked, or broken nail."
       },
@@ -433,7 +436,7 @@ export const serviceMenu = [
         time: "5 min",
         price: "$3",
         topTech: null,
-        image: repairImage,
+        image: hookedNailFixImage,
         description:
           "A quick correction for a hooked or downward-growing nail shape."
       }

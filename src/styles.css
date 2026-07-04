@@ -6553,3 +6553,58 @@ img {
     row-gap: 0.34rem;
   }
 }
+
+/* Final service image polish: fill service frames and keep the lookbook rail separate. */
+.catalog-service img,
+.seo-service-card img,
+.geo-path-card img,
+.related-service-card img,
+.planner-summary img {
+  background: #080507;
+  object-fit: cover !important;
+  object-position: center !important;
+  padding: 0 !important;
+}
+
+.planner-summary img {
+  aspect-ratio: 4 / 3;
+  height: 100%;
+  max-height: none;
+}
+
+.service-lookbook {
+  overflow: hidden !important;
+}
+
+.lookbook-image {
+  min-width: 0;
+}
+
+.lookbook-image img,
+.lookbook-rail .rail-thumb {
+  object-fit: cover !important;
+  object-position: center !important;
+  padding: 0 !important;
+}
+
+.lookbook-rail {
+  background:
+    radial-gradient(circle at 85% 12%, rgba(100, 224, 218, 0.12), transparent 15rem),
+    #080507 !important;
+  box-shadow:
+    -18px 0 42px rgba(0, 0, 0, 0.38),
+    inset 0 0 0 1px rgba(100, 224, 218, 0.08);
+  min-width: 0;
+  position: relative;
+  z-index: 6;
+}
+
+@media (min-width: 1020px) {
+  .service-lookbook {
+    grid-template-columns: minmax(0, 1fr) minmax(360px, 0.82fr);
+  }
+
+  .lookbook-image {
+    max-width: 100%;
+  }
+}
