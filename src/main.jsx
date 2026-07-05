@@ -152,7 +152,7 @@ const googleReviews = [
       "The studio felt clean and professional from the moment I arrived. My nails looked balanced, slim, and elegant after the appointment."
   },
   {
-    name: "East Side client",
+    name: "Midtown NYC client",
     meta: "RM appointment",
     time: "recent visit",
     avatar: "/images/reviews/review-avatar-08.webp",
@@ -162,7 +162,7 @@ const googleReviews = [
       "I came in for a precise manicure and left with exactly the shape and shine I wanted. The detailing around the cuticle was beautiful."
   },
   {
-    name: "Grand Central client",
+    name: "Midtown NYC client",
     meta: "RM appointment",
     time: "recent visit",
     avatar: "/images/reviews/review-avatar-09.webp",
@@ -172,7 +172,7 @@ const googleReviews = [
       "Booking was simple, the appointment was calm, and the finish looked expensive. It is the kind of manicure that makes you keep looking at your hands."
   },
   {
-    name: "Turtle Bay client",
+    name: "Midtown NYC client",
     meta: "RM appointment",
     time: "recent visit",
     avatar: "/images/reviews/review-avatar-10.webp",
