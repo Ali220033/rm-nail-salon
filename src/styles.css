@@ -6864,14 +6864,16 @@ img {
 
 .review-orbit-card > img,
 .review-proof-card > img {
-  aspect-ratio: 16 / 10;
+  aspect-ratio: auto;
   border-radius: 26px 26px 8px 26px;
-  object-fit: cover;
+  display: block;
+  height: auto;
+  object-fit: contain;
   width: 100%;
 }
 
 .review-proof-grid {
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 430px), 1fr));
   margin: 0 auto;
   max-width: 1360px;
   width: 100%;
@@ -7115,7 +7117,7 @@ img {
 }
 
 .contact-layout {
-  grid-template-columns: minmax(0, 0.95fr) minmax(280px, 0.55fr);
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.42fr);
 }
 
 .contact-concierge-card {
@@ -7128,10 +7130,11 @@ img {
   gap: 1rem;
   overflow: hidden;
   padding: 0.85rem;
+  grid-column: 1 / -1;
 }
 
 .contact-concierge-card img {
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 4 / 3;
   border-radius: 34px 34px 10px 34px;
   object-fit: cover;
   width: 100%;
@@ -7156,11 +7159,22 @@ img {
 
 @media (min-width: 760px) {
   .review-lounge-hero {
-    grid-template-columns: minmax(300px, 0.76fr) minmax(0, 1.24fr);
+    grid-template-columns: minmax(300px, 0.58fr) minmax(0, 1.42fr);
   }
 
   .review-feature-stack {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 430px), 1fr));
+  }
+
+  .contact-concierge-card {
+    align-items: stretch;
+    grid-template-columns: minmax(520px, 1.08fr) minmax(340px, 0.92fr);
+  }
+
+  .contact-concierge-card img {
+    aspect-ratio: auto;
+    height: 100%;
+    min-height: 360px;
   }
 
   .review-orbit-card.orbit-2 {
@@ -7253,9 +7267,17 @@ img {
   background:
     radial-gradient(circle at 62% 42%, rgba(100, 224, 218, 0.12), transparent 18rem),
     linear-gradient(135deg, #080507, #0b2325 64%, #080507);
-  object-fit: contain;
+  filter: brightness(0.6) saturate(1.06);
+  object-fit: cover;
   object-position: center;
-  padding: clamp(0.4rem, 2vw, 1rem);
+  padding: 0;
+}
+
+.contact-page-hero img {
+  filter: brightness(0.6) saturate(1.08);
+  object-fit: cover;
+  object-position: center;
+  padding: 0;
 }
 
 .review-orbit-card,
@@ -7268,8 +7290,12 @@ img {
   background:
     radial-gradient(circle at 70% 18%, rgba(100, 224, 218, 0.14), transparent 12rem),
     linear-gradient(145deg, rgba(255, 255, 255, 0.045), rgba(8, 5, 7, 0.92));
+  aspect-ratio: auto;
+  display: block;
+  height: auto;
   object-fit: contain;
   object-position: center;
+  width: 100%;
 }
 
 .google-review-head img {
@@ -7341,7 +7367,7 @@ img {
 
   .reviews-page-hero img {
     opacity: 0.64;
-    padding: 1rem;
+    padding: 0;
   }
 
   .reviews-page-hero div {
@@ -7393,9 +7419,11 @@ img {
 
   .review-orbit-card > img,
   .review-proof-card > img {
-    aspect-ratio: 1 / 1;
+    aspect-ratio: auto;
     border-radius: 22px 22px 8px 22px;
-    max-height: min(58svh, 420px);
+    height: auto;
+    max-height: none;
+    object-fit: contain;
   }
 
   .review-proof-grid {

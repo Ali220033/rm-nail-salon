@@ -1533,8 +1533,8 @@ function ReviewsPage({ navigate }) {
         label="Client Reviews"
         title="Proof that precision feels different."
         copy="A dedicated review lounge for RM clients comparing Russian manicure, hard gel, pedicure, and clean luxury service in Midtown NYC."
-        image="/images/reviews/review-work-03.webp"
-        alt="RM Nail Salon client review manicure result"
+        image="/images/reviews/review-work-06.webp"
+        alt="RM Nail Salon client review nail art result"
         className="reviews-page-hero"
       />
       <section className="review-lounge-section">
@@ -2982,8 +2982,9 @@ function ContactPage() {
         label="Contact"
         title="Book or contact RM Nail Salon in Midtown NYC."
         copy="Find our address, phone number, Instagram, booking link, daily hours, and map for your next appointment."
-        image={fastImage("rm-hero-editorial")}
-        alt="RM Nail Salon contact page manicure detail"
+        image={fastImage("brand-door-review")}
+        alt="RM Nail Salon Midtown NYC studio entrance"
+        className="contact-page-hero"
       />
       <section id="contact" className="contact-editorial">
         <SectionIntro
