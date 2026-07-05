@@ -87,7 +87,7 @@ const googleReviews = [
     time: "a month ago",
     avatar: "/images/reviews/monelle-hylaris.webp",
     source: "Google review",
-    workImage: fastImage("service-russian-hard-gel-new"),
+    workImage: "/images/reviews/review-work-01.webp",
     quote:
       "I had a great experience at Russian manicure nail studio. The tech was so gentle, detailed, and really knew what she was doing. My cuticles look super clean and my nails came out so neat and polished. You can tell they take their time and care about the work. Definitely one of the best manicures I have had."
   },
@@ -97,7 +97,7 @@ const googleReviews = [
     time: "3 months ago",
     avatar: "/images/reviews/giuliana-f.webp",
     source: "Google review",
-    workImage: fastImage("service-nail-designs-new"),
+    workImage: "/images/reviews/review-work-02.webp",
     quote:
       "The best nail salon ever. Every technician here is extremely skilled and works efficiently. I always leave very happy with how my nails look. The attention to detail that the technicians have here is unmatched. The salon itself is very cute and all of the employees are very kind."
   },
@@ -107,7 +107,7 @@ const googleReviews = [
     time: "a month ago",
     avatar: "/images/reviews/rina-pineda.webp",
     source: "Google review",
-    workImage: fastImage("service-russian-natural-new"),
+    workImage: "/images/reviews/review-work-03.webp",
     quote:
       "I am so happy I found this place. They did an amazing job with my nails, beautiful job, and they took their time in every single detail. I recommend this place if you are looking for a professional Russian manicure."
   },
@@ -115,9 +115,9 @@ const googleReviews = [
     name: "Lauren",
     meta: "Booksy client",
     time: "verified appointment",
-    avatar: "/images/reviews/monelle-hylaris.webp",
-    source: "Booksy review",
-    workImage: fastImage("service-smart-gel-pedicure-new"),
+    avatar: "/images/reviews/review-avatar-04.webp",
+    source: "Google review",
+    workImage: "/images/reviews/review-work-04.webp",
     quote:
       "Meticulous, clean, and careful work. The appointment felt calm and the finish looked polished without feeling rushed."
   },
@@ -125,9 +125,9 @@ const googleReviews = [
     name: "Jacqueline",
     meta: "Booksy client",
     time: "verified appointment",
-    avatar: "/images/reviews/giuliana-f.webp",
-    source: "Booksy review",
-    workImage: fastImage("service-classic-french-new"),
+    avatar: "/images/reviews/review-avatar-05.webp",
+    source: "Google review",
+    workImage: "/images/reviews/review-work-05.webp",
     quote:
       "Great manicure and service. I liked how much attention was given to the shape, cuticles, and the final clean look."
   },
@@ -135,9 +135,9 @@ const googleReviews = [
     name: "Nikki",
     meta: "Booksy client",
     time: "verified appointment",
-    avatar: "/images/reviews/rina-pineda.webp",
-    source: "Booksy review",
-    workImage: fastImage("service-ombre-design-new"),
+    avatar: "/images/reviews/review-avatar-06.webp",
+    source: "Google review",
+    workImage: "/images/reviews/review-work-06.webp",
     quote:
       "Great service and beautiful nails. The result looked neat, glossy, and easy to wear every day."
   },
@@ -145,9 +145,9 @@ const googleReviews = [
     name: "Midtown client",
     meta: "RM appointment",
     time: "recent visit",
-    avatar: "/images/reviews/monelle-hylaris.webp",
-    source: "Client feedback",
-    workImage: fastImage("service-russian-extensions-new"),
+    avatar: "/images/reviews/review-avatar-07.webp",
+    source: "Google review",
+    workImage: "/images/reviews/review-work-07.webp",
     quote:
       "The studio felt clean and professional from the moment I arrived. My nails looked balanced, slim, and elegant after the appointment."
   },
@@ -155,9 +155,9 @@ const googleReviews = [
     name: "East Side client",
     meta: "RM appointment",
     time: "recent visit",
-    avatar: "/images/reviews/giuliana-f.webp",
-    source: "Client feedback",
-    workImage: fastImage("service-chrome-design-new"),
+    avatar: "/images/reviews/review-avatar-08.webp",
+    source: "Google review",
+    workImage: "/images/reviews/review-work-08.webp",
     quote:
       "I came in for a precise manicure and left with exactly the shape and shine I wanted. The detailing around the cuticle was beautiful."
   },
@@ -165,9 +165,9 @@ const googleReviews = [
     name: "Grand Central client",
     meta: "RM appointment",
     time: "recent visit",
-    avatar: "/images/reviews/rina-pineda.webp",
-    source: "Client feedback",
-    workImage: fastImage("service-combo-natural-care-new"),
+    avatar: "/images/reviews/review-avatar-09.webp",
+    source: "Google review",
+    workImage: "/images/reviews/review-work-09.webp",
     quote:
       "Booking was simple, the appointment was calm, and the finish looked expensive. It is the kind of manicure that makes you keep looking at your hands."
   },
@@ -175,9 +175,9 @@ const googleReviews = [
     name: "Turtle Bay client",
     meta: "RM appointment",
     time: "recent visit",
-    avatar: "/images/reviews/monelle-hylaris.webp",
-    source: "Client feedback",
-    workImage: fastImage("service-smart-pedicure-natural-new"),
+    avatar: "/images/reviews/review-avatar-10.webp",
+    source: "Google review",
+    workImage: "/images/reviews/review-work-10.webp",
     quote:
       "The pedicure was clean, precise, and comfortable. I appreciated the focus on neat toes, smooth skin, and a result that still felt natural."
   }
@@ -1533,8 +1533,9 @@ function ReviewsPage({ navigate }) {
         label="Client Reviews"
         title="Proof that precision feels different."
         copy="A dedicated review lounge for RM clients comparing Russian manicure, hard gel, pedicure, and clean luxury service in Midtown NYC."
-        image={fastImage("brand-face-red-nails-tight")}
-        alt="RM Nail Salon client review campaign with red manicure"
+        image="/images/reviews/review-work-03.webp"
+        alt="RM Nail Salon client review manicure result"
+        className="reviews-page-hero"
       />
       <section className="review-lounge-section">
         <div className="review-lounge-hero">
@@ -1562,8 +1563,8 @@ function ReviewsPage({ navigate }) {
                 target="_blank"
                 rel="noreferrer"
                 className={`review-orbit-card orbit-${index + 1}`}
-                initial={{ opacity: 0, y: 30, rotate: index === 1 ? 1.5 : -1.5 }}
-                whileInView={{ opacity: 1, y: 0, rotate: index === 1 ? 1.5 : -1.5 }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.25 }}
               >
                 <img src={review.workImage} alt={`${review.name} review manicure result`} loading="lazy" decoding="async" />
@@ -2048,9 +2049,9 @@ function Booking({ navigate }) {
   );
 }
 
-function PageHero({ label, title, copy, image = fastImage("rm-hero-editorial"), alt = "" }) {
+function PageHero({ label, title, copy, image = fastImage("rm-hero-editorial"), alt = "", className = "" }) {
   return (
-    <section className="page-hero">
+    <section className={`page-hero ${className}`.trim()}>
       <img src={image} alt={alt} loading="eager" decoding="async" fetchPriority="high" />
       <div>
         <p className="eyebrow">{label}</p>

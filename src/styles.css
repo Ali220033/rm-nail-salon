@@ -5898,6 +5898,24 @@ img {
   }
 }
 
+@media (max-width: 759px) {
+  .floating-book-circle {
+    bottom: max(0.85rem, env(safe-area-inset-bottom));
+    height: clamp(3.9rem, 17.5vw, 4.45rem);
+    right: 0.55rem;
+    width: clamp(3.9rem, 17.5vw, 4.45rem);
+  }
+
+  .floating-book-circle span {
+    font-size: 0.42rem;
+    letter-spacing: 0.12em;
+  }
+
+  .floating-book-circle strong {
+    font-size: clamp(0.84rem, 4.4vw, 1.02rem);
+  }
+}
+
 .home-location-section {
   align-items: start;
   gap: clamp(2rem, 4vw, 4.5rem);
@@ -7227,5 +7245,164 @@ img {
     animation: none;
     overflow-x: auto;
     width: auto;
+  }
+}
+
+/* Mobile review/menu polish: centered dimensional menu labels and full-frame review proof photos. */
+.reviews-page-hero img {
+  background:
+    radial-gradient(circle at 62% 42%, rgba(100, 224, 218, 0.12), transparent 18rem),
+    linear-gradient(135deg, #080507, #0b2325 64%, #080507);
+  object-fit: contain;
+  object-position: center;
+  padding: clamp(0.4rem, 2vw, 1rem);
+}
+
+.review-orbit-card,
+.review-proof-card {
+  transform: none !important;
+}
+
+.review-orbit-card > img,
+.review-proof-card > img {
+  background:
+    radial-gradient(circle at 70% 18%, rgba(100, 224, 218, 0.14), transparent 12rem),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.045), rgba(8, 5, 7, 0.92));
+  object-fit: contain;
+  object-position: center;
+}
+
+.google-review-head img {
+  background: rgba(100, 224, 218, 0.08);
+  object-fit: cover;
+  object-position: center;
+}
+
+@media (max-width: 819px) {
+  body:has(.nav-links.open) .floating-book-circle {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(20px) scale(0.9);
+  }
+
+  .nav-links.open {
+    gap: 0.95rem;
+    padding: 1.2rem 1rem 2.2rem;
+  }
+
+  .nav-links.open a {
+    align-items: center;
+    background:
+      radial-gradient(circle at 50% 0%, rgba(100, 224, 218, 0.22), transparent 74%),
+      linear-gradient(180deg, rgba(33, 84, 86, 0.88), rgba(12, 42, 43, 0.92));
+    border: 1px solid rgba(100, 224, 218, 0.28);
+    border-radius: 999px;
+    box-shadow:
+      0 18px 42px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.13),
+      inset 0 -12px 30px rgba(0, 0, 0, 0.18);
+    color: rgba(255, 255, 255, 0.86);
+    display: flex;
+    font-size: clamp(0.78rem, 3.35vw, 1rem);
+    justify-content: center;
+    letter-spacing: 0.17em;
+    min-height: 4.05rem;
+    padding: 0.9rem 1.2rem;
+    text-align: center;
+    text-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.16),
+      0 10px 22px rgba(0, 0, 0, 0.46),
+      0 0 18px rgba(100, 224, 218, 0.16);
+  }
+
+  .nav-links.open a.active,
+  .nav-links.open a:hover {
+    background:
+      radial-gradient(circle at 50% 0%, rgba(100, 224, 218, 0.34), transparent 72%),
+      linear-gradient(180deg, rgba(38, 100, 101, 0.96), rgba(15, 54, 55, 0.94));
+    border-color: rgba(100, 224, 218, 0.5);
+    color: var(--aqua);
+  }
+
+  .nav-links.open .menu-book {
+    background:
+      radial-gradient(circle at 52% 18%, rgba(255, 255, 255, 0.34), transparent 58%),
+      linear-gradient(135deg, #b09013, #f4dd67);
+    color: #160f11 !important;
+    font-size: clamp(0.82rem, 3.55vw, 1rem);
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.28);
+  }
+
+  .reviews-page-hero {
+    align-items: center;
+    min-height: 58svh;
+    padding: 6.8rem 1rem 1.8rem;
+  }
+
+  .reviews-page-hero img {
+    opacity: 0.64;
+    padding: 1rem;
+  }
+
+  .reviews-page-hero div {
+    max-width: 100%;
+  }
+
+  .reviews-page-hero h1 {
+    font-size: clamp(3.2rem, 15vw, 4.65rem);
+    line-height: 0.86;
+    max-width: 9.5ch;
+  }
+
+  .reviews-page-hero div > p:last-child {
+    font-size: clamp(1rem, 4.2vw, 1.16rem);
+    line-height: 1.55;
+    max-width: 30ch;
+  }
+
+  .review-lounge-section {
+    gap: 1.05rem;
+    padding: 1.45rem 0.75rem 4.5rem;
+  }
+
+  .review-score-panel {
+    border-radius: 30px 30px 10px 30px;
+    gap: 0.85rem;
+  }
+
+  .review-score-panel strong {
+    font-size: clamp(4.1rem, 20vw, 5.6rem);
+  }
+
+  .review-score-panel p {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .review-feature-stack,
+  .review-proof-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .review-orbit-card,
+  .review-proof-card {
+    border-radius: 28px 28px 10px 28px;
+    gap: 0.8rem;
+    padding: 0.6rem;
+  }
+
+  .review-orbit-card > img,
+  .review-proof-card > img {
+    aspect-ratio: 1 / 1;
+    border-radius: 22px 22px 8px 22px;
+    max-height: min(58svh, 420px);
+  }
+
+  .review-proof-grid {
+    max-width: 100%;
+  }
+
+  .review-conversion-panel {
+    align-items: stretch;
   }
 }
