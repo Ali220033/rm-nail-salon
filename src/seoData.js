@@ -84,6 +84,17 @@ export const coreSeoPages = [
     priority: "0.6"
   },
   {
+    path: "/reviews",
+    navLabel: "Reviews",
+    title: "RM Nail Salon Reviews | Russian Manicure Midtown NYC",
+    description:
+      "Read client reviews for RM Nail Salon in Midtown NYC, including Russian manicure, hard gel, smart pedicure, nail art, and clean luxury appointment feedback.",
+    h1: "RM Nail Salon reviews",
+    image: fastImage("brand-face-red-nails-tight"),
+    imageAlt: "RM Nail Salon client review campaign with red manicure",
+    priority: "0.62"
+  },
+  {
     path: "/contact",
     navLabel: "Contact",
     title: "Contact RM Nail Salon | Midtown NYC",
@@ -128,8 +139,8 @@ export const coreSeoPages = [
       "Read RM Nail Salon guides on Russian manicures, hard gel, dry manicure safety, BIAB comparisons, nail lifting, and Midtown NYC nail care.",
     h1: "The RM Journal for better manicure decisions",
     label: "Education",
-    image: fastImage("brand-phone-red-nails"),
-    imageAlt: "RM Nail Salon editorial red manicure campaign image",
+    image: fastImage("brand-salon-front-full"),
+    imageAlt: "RM Nail Salon Midtown NYC studio entrance for manicure education journal",
     priority: "0.65",
     related: ["/russian-manicure-nyc", "/hard-gel-manicure-nyc", "/faq"]
   }

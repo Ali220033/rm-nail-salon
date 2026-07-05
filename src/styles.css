@@ -6701,3 +6701,531 @@ img {
     width: 100% !important;
   }
 }
+
+/* Luxury route polish: review lounge, richer accordions, page depth, and mobile service consistency. */
+.catalog-list {
+  grid-template-columns: 1fr !important;
+}
+
+.catalog-list > .catalog-service:last-child:nth-child(odd) {
+  grid-column: auto !important;
+  justify-self: stretch !important;
+  width: 100% !important;
+}
+
+.catalog-service {
+  box-shadow:
+    0 28px 80px rgba(0, 0, 0, 0.26),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.review-marquee {
+  animation: reviewTrain 46s linear infinite;
+  overflow: visible;
+  width: max-content;
+}
+
+.google-review-shell:hover .review-marquee {
+  animation-play-state: paused;
+}
+
+@keyframes reviewTrain {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(calc(-50% - 0.5rem), 0, 0);
+  }
+}
+
+.google-review-card,
+.review-proof-card,
+.review-orbit-card {
+  isolation: isolate;
+  position: relative;
+}
+
+.google-review-card::before,
+.review-proof-card::before,
+.review-orbit-card::before {
+  background: linear-gradient(115deg, transparent, rgba(255, 255, 255, 0.16), transparent);
+  content: "";
+  height: 180%;
+  left: -80%;
+  pointer-events: none;
+  position: absolute;
+  top: -45%;
+  transform: rotate(18deg);
+  width: 34%;
+}
+
+.review-lounge-section {
+  background:
+    radial-gradient(circle at 78% 10%, rgba(100, 224, 218, 0.16), transparent 24rem),
+    radial-gradient(circle at 12% 74%, rgba(176, 144, 19, 0.12), transparent 20rem),
+    linear-gradient(180deg, #06191a, #080507 58%, #0d090c);
+  display: grid;
+  gap: clamp(1.4rem, 4vw, 3rem);
+  padding: clamp(3rem, 7vw, 6.5rem) 1rem;
+}
+
+.review-lounge-hero,
+.review-conversion-panel {
+  display: grid;
+  gap: clamp(1rem, 3vw, 2rem);
+  margin: 0 auto;
+  max-width: 1360px;
+  width: 100%;
+}
+
+.review-score-panel {
+  background:
+    radial-gradient(circle at 18% 8%, rgba(100, 224, 218, 0.24), transparent 16rem),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.035));
+  border: 1px solid rgba(100, 224, 218, 0.22);
+  border-radius: 44px 44px 14px 44px;
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.32);
+  display: grid;
+  gap: 1rem;
+  padding: clamp(1.3rem, 3vw, 2.2rem);
+}
+
+.review-score-panel > span {
+  color: var(--aqua);
+  font-size: 0.68rem;
+  font-weight: 950;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.review-score-panel strong {
+  color: var(--cream);
+  font-family: "Playfair Display", serif;
+  font-size: clamp(6rem, 18vw, 12rem);
+  font-weight: 400;
+  line-height: 0.78;
+}
+
+.review-score-panel p,
+.review-conversion-panel p,
+.journal-micro-card p,
+.about-luxury-collage em {
+  color: rgba(255, 255, 255, 0.68);
+  line-height: 1.75;
+}
+
+.review-score-panel div,
+.review-conversion-panel {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.review-feature-stack,
+.review-proof-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.review-orbit-card,
+.review-proof-card {
+  background:
+    radial-gradient(circle at 12% 0%, rgba(100, 224, 218, 0.16), transparent 12rem),
+    linear-gradient(150deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+  border: 1px solid rgba(100, 224, 218, 0.18);
+  border-radius: 34px 34px 12px 34px;
+  box-shadow: 0 34px 100px rgba(0, 0, 0, 0.28);
+  color: white;
+  display: grid;
+  gap: 1rem;
+  overflow: hidden;
+  padding: 0.8rem;
+  text-decoration: none;
+}
+
+.review-orbit-card > img,
+.review-proof-card > img {
+  aspect-ratio: 16 / 10;
+  border-radius: 26px 26px 8px 26px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.review-proof-grid {
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  margin: 0 auto;
+  max-width: 1360px;
+  width: 100%;
+}
+
+.review-conversion-panel {
+  background: linear-gradient(135deg, rgba(100, 224, 218, 0.16), rgba(176, 144, 19, 0.12));
+  border: 1px solid rgba(241, 237, 155, 0.22);
+  border-radius: 38px 38px 12px 38px;
+  justify-content: space-between;
+  padding: clamp(1.2rem, 3vw, 2rem);
+}
+
+.review-conversion-panel h2 {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(2.5rem, 8vw, 5.4rem);
+  font-weight: 400;
+  line-height: 0.9;
+  max-width: 760px;
+}
+
+.service-page-faqs.luxe-accordion {
+  gap: 0.9rem;
+}
+
+.service-page-faqs.luxe-accordion article,
+.faq-item {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.07), rgba(100, 224, 218, 0.035)),
+    rgba(8, 5, 7, 0.68);
+  border: 1px solid rgba(100, 224, 218, 0.18);
+  border-radius: 999px;
+  box-shadow:
+    0 18px 50px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+  transition: border-radius 240ms ease, border-color 240ms ease, background 240ms ease;
+}
+
+.service-page-faqs.luxe-accordion article.open,
+.faq-item.open {
+  border-color: rgba(100, 224, 218, 0.34);
+  border-radius: 28px 28px 10px 28px;
+}
+
+.service-page-faqs.luxe-accordion button {
+  align-items: center;
+  color: white;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: auto 1fr auto;
+  padding: 1rem 1.15rem;
+  text-align: left;
+  width: 100%;
+}
+
+.service-page-faqs.luxe-accordion h3 {
+  margin: 0;
+}
+
+.service-page-faqs.luxe-accordion article > p {
+  padding: 0 1.2rem 1.2rem 4.1rem;
+}
+
+.service-page-faqs.luxe-accordion article svg {
+  color: var(--aqua);
+  transition: transform 220ms ease;
+}
+
+.service-page-faqs.luxe-accordion article.open svg {
+  transform: rotate(180deg);
+}
+
+.faq-luxury-banner {
+  background:
+    radial-gradient(circle at 86% 15%, rgba(176, 144, 19, 0.14), transparent 16rem),
+    rgba(255, 255, 255, 0.055);
+  border: 1px solid rgba(100, 224, 218, 0.18);
+  border-radius: 38px 38px 12px 38px;
+  display: grid;
+  gap: 1rem;
+  overflow: hidden;
+  padding: 0.8rem;
+}
+
+.faq-luxury-banner img {
+  aspect-ratio: 16 / 9;
+  border-radius: 30px 30px 10px 30px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.faq-luxury-banner div {
+  padding: 0.4rem 0.4rem 0.8rem;
+}
+
+.faq-luxury-banner span,
+.journal-micro-card span,
+.about-luxury-collage span,
+.article-luxury-strip strong,
+.contact-concierge-card span {
+  color: var(--aqua);
+  display: block;
+  font-size: 0.67rem;
+  font-weight: 950;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+}
+
+.faq-luxury-banner strong,
+.about-luxury-collage strong,
+.journal-micro-card strong,
+.article-luxury-strip strong,
+.contact-concierge-card h2 {
+  color: white;
+  display: block;
+  font-family: "Playfair Display", serif;
+  font-size: clamp(1.65rem, 5vw, 3.2rem);
+  font-weight: 400;
+  line-height: 0.98;
+  margin-top: 0.5rem;
+}
+
+.faq-luxury-banner p,
+.contact-concierge-card p {
+  color: rgba(255, 255, 255, 0.68);
+  line-height: 1.75;
+  margin-top: 0.85rem;
+}
+
+.about-story {
+  align-items: end;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 0.9fr);
+}
+
+.about-lead {
+  grid-row: span 2;
+}
+
+.about-luxury-collage {
+  align-items: end;
+  display: grid;
+  gap: 0.85rem;
+  grid-template-columns: 0.88fr 1fr;
+  min-height: 420px;
+  position: relative;
+}
+
+.about-luxury-collage img {
+  border: 1px solid rgba(100, 224, 218, 0.22);
+  box-shadow: 0 34px 90px rgba(0, 0, 0, 0.34);
+  object-fit: cover;
+  width: 100%;
+}
+
+.about-luxury-collage img:first-child {
+  aspect-ratio: 4 / 5;
+  border-radius: 38px 38px 10px 38px;
+}
+
+.about-luxury-collage img:last-child {
+  aspect-ratio: 1 / 1.16;
+  border-radius: 24px 24px 9px 24px;
+  transform: translateY(-3rem);
+}
+
+.about-luxury-collage div {
+  background:
+    radial-gradient(circle at 18% 18%, rgba(100, 224, 218, 0.2), transparent 9rem),
+    rgba(8, 5, 7, 0.86);
+  border: 1px solid rgba(241, 237, 155, 0.18);
+  border-radius: 28px 28px 8px 28px;
+  bottom: 1.2rem;
+  left: 13%;
+  padding: 1rem;
+  position: absolute;
+  width: min(20rem, 74%);
+  z-index: 2;
+}
+
+.values-flow article {
+  background:
+    radial-gradient(circle at 94% 0%, rgba(100, 224, 218, 0.18), transparent 10rem),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.078), rgba(255, 255, 255, 0.035));
+  box-shadow: 0 26px 80px rgba(0, 0, 0, 0.24);
+  min-height: 13rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.values-flow article > svg {
+  color: var(--cream);
+  margin-bottom: 1rem;
+}
+
+.values-flow article::after {
+  background: linear-gradient(135deg, rgba(100, 224, 218, 0.2), transparent);
+  border-radius: 999px;
+  content: "";
+  filter: blur(2px);
+  height: 8rem;
+  position: absolute;
+  right: -3rem;
+  top: -3rem;
+  width: 8rem;
+}
+
+.journal-depth-board {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.journal-micro-card,
+.article-luxury-strip div {
+  background:
+    radial-gradient(circle at 0 0, rgba(100, 224, 218, 0.14), transparent 10rem),
+    rgba(255, 255, 255, 0.052);
+  border: 1px solid rgba(100, 224, 218, 0.16);
+  border-radius: 26px 26px 9px 26px;
+  padding: 1rem;
+}
+
+.article-luxury-strip {
+  display: grid;
+  gap: 0.8rem;
+  margin: 1.5rem 0;
+}
+
+.article-luxury-strip div {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.article-luxury-strip svg {
+  color: var(--cream);
+}
+
+.article-luxury-strip span {
+  color: rgba(255, 255, 255, 0.66);
+  line-height: 1.6;
+}
+
+.contact-layout {
+  grid-template-columns: minmax(0, 0.95fr) minmax(280px, 0.55fr);
+}
+
+.contact-concierge-card {
+  background:
+    radial-gradient(circle at 82% 0%, rgba(100, 224, 218, 0.16), transparent 18rem),
+    rgba(255, 255, 255, 0.055);
+  border: 1px solid rgba(100, 224, 218, 0.18);
+  border-radius: 42px 42px 14px 42px;
+  display: grid;
+  gap: 1rem;
+  overflow: hidden;
+  padding: 0.85rem;
+}
+
+.contact-concierge-card img {
+  aspect-ratio: 16 / 10;
+  border-radius: 34px 34px 10px 34px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.contact-concierge-card > div {
+  padding: 0.5rem 0.35rem 0.8rem;
+}
+
+.contact-concierge-card .gold-cta {
+  margin-top: 1rem;
+}
+
+.contact-cards {
+  align-content: start;
+}
+
+.map-frame {
+  grid-column: 1 / -1;
+  min-height: 460px;
+}
+
+@media (min-width: 760px) {
+  .review-lounge-hero {
+    grid-template-columns: minmax(300px, 0.76fr) minmax(0, 1.24fr);
+  }
+
+  .review-feature-stack {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .review-orbit-card.orbit-2 {
+    transform: translateY(2rem);
+  }
+
+  .faq-luxury-banner,
+  .contact-concierge-card {
+    grid-template-columns: minmax(260px, 0.72fr) minmax(0, 1fr);
+  }
+
+  .article-luxury-strip {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 759px) {
+  .catalog-list {
+    grid-template-columns: 1fr !important;
+  }
+
+  .catalog-service {
+    grid-template-columns: 1fr !important;
+    padding: 0.55rem;
+  }
+
+  .catalog-service img {
+    aspect-ratio: 4 / 5 !important;
+    max-height: none;
+  }
+
+  .catalog-copy p,
+  .catalog-copy small {
+    display: block;
+  }
+
+  .catalog-price .mini-book {
+    width: 100%;
+  }
+
+  .about-story,
+  .contact-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .about-luxury-collage {
+    min-height: auto;
+  }
+
+  .about-luxury-collage img:last-child {
+    transform: translateY(0);
+  }
+
+  .about-luxury-collage div {
+    left: 1rem;
+    width: calc(100% - 2rem);
+  }
+
+  .service-page-faqs.luxe-accordion article,
+  .faq-item {
+    border-radius: 24px 24px 8px 24px;
+  }
+
+  .service-page-faqs.luxe-accordion button,
+  .faq-item button {
+    grid-template-columns: 1fr auto;
+  }
+
+  .service-page-faqs.luxe-accordion button span,
+  .faq-item button span {
+    grid-column: 1 / -1;
+  }
+
+  .service-page-faqs.luxe-accordion article > p,
+  .home-faq-list p {
+    padding-left: 1.2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .review-marquee {
+    animation: none;
+    overflow-x: auto;
+    width: auto;
+  }
+}

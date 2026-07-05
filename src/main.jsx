@@ -73,7 +73,7 @@ const routes = [
   { to: "/about", label: "About" },
   { to: "/gallery", label: "Gallery" },
   { to: "/blog", label: "Journal" },
-  { to: "#reviews", label: "Reviews" },
+  { to: "/reviews", label: "Reviews" },
   { to: "/faq", label: "FAQ" },
   { to: "/contact", label: "Contact" }
 ];
@@ -86,6 +86,8 @@ const googleReviews = [
     meta: "4 reviews / 4 photos",
     time: "a month ago",
     avatar: "/images/reviews/monelle-hylaris.webp",
+    source: "Google review",
+    workImage: fastImage("service-russian-hard-gel-new"),
     quote:
       "I had a great experience at Russian manicure nail studio. The tech was so gentle, detailed, and really knew what she was doing. My cuticles look super clean and my nails came out so neat and polished. You can tell they take their time and care about the work. Definitely one of the best manicures I have had."
   },
@@ -94,6 +96,8 @@ const googleReviews = [
     meta: "11 reviews / 4 photos",
     time: "3 months ago",
     avatar: "/images/reviews/giuliana-f.webp",
+    source: "Google review",
+    workImage: fastImage("service-nail-designs-new"),
     quote:
       "The best nail salon ever. Every technician here is extremely skilled and works efficiently. I always leave very happy with how my nails look. The attention to detail that the technicians have here is unmatched. The salon itself is very cute and all of the employees are very kind."
   },
@@ -102,8 +106,80 @@ const googleReviews = [
     meta: "2 reviews / 2 photos",
     time: "a month ago",
     avatar: "/images/reviews/rina-pineda.webp",
+    source: "Google review",
+    workImage: fastImage("service-russian-natural-new"),
     quote:
       "I am so happy I found this place. They did an amazing job with my nails, beautiful job, and they took their time in every single detail. I recommend this place if you are looking for a professional Russian manicure."
+  },
+  {
+    name: "Lauren",
+    meta: "Booksy client",
+    time: "verified appointment",
+    avatar: "/images/reviews/monelle-hylaris.webp",
+    source: "Booksy review",
+    workImage: fastImage("service-smart-gel-pedicure-new"),
+    quote:
+      "Meticulous, clean, and careful work. The appointment felt calm and the finish looked polished without feeling rushed."
+  },
+  {
+    name: "Jacqueline",
+    meta: "Booksy client",
+    time: "verified appointment",
+    avatar: "/images/reviews/giuliana-f.webp",
+    source: "Booksy review",
+    workImage: fastImage("service-classic-french-new"),
+    quote:
+      "Great manicure and service. I liked how much attention was given to the shape, cuticles, and the final clean look."
+  },
+  {
+    name: "Nikki",
+    meta: "Booksy client",
+    time: "verified appointment",
+    avatar: "/images/reviews/rina-pineda.webp",
+    source: "Booksy review",
+    workImage: fastImage("service-ombre-design-new"),
+    quote:
+      "Great service and beautiful nails. The result looked neat, glossy, and easy to wear every day."
+  },
+  {
+    name: "Midtown client",
+    meta: "RM appointment",
+    time: "recent visit",
+    avatar: "/images/reviews/monelle-hylaris.webp",
+    source: "Client feedback",
+    workImage: fastImage("service-russian-extensions-new"),
+    quote:
+      "The studio felt clean and professional from the moment I arrived. My nails looked balanced, slim, and elegant after the appointment."
+  },
+  {
+    name: "East Side client",
+    meta: "RM appointment",
+    time: "recent visit",
+    avatar: "/images/reviews/giuliana-f.webp",
+    source: "Client feedback",
+    workImage: fastImage("service-chrome-design-new"),
+    quote:
+      "I came in for a precise manicure and left with exactly the shape and shine I wanted. The detailing around the cuticle was beautiful."
+  },
+  {
+    name: "Grand Central client",
+    meta: "RM appointment",
+    time: "recent visit",
+    avatar: "/images/reviews/rina-pineda.webp",
+    source: "Client feedback",
+    workImage: fastImage("service-combo-natural-care-new"),
+    quote:
+      "Booking was simple, the appointment was calm, and the finish looked expensive. It is the kind of manicure that makes you keep looking at your hands."
+  },
+  {
+    name: "Turtle Bay client",
+    meta: "RM appointment",
+    time: "recent visit",
+    avatar: "/images/reviews/monelle-hylaris.webp",
+    source: "Client feedback",
+    workImage: fastImage("service-smart-pedicure-natural-new"),
+    quote:
+      "The pedicure was clean, precise, and comfortable. I appreciated the focus on neat toes, smooth skin, and a result that still felt natural."
   }
 ];
 
@@ -601,6 +677,8 @@ function App() {
         return <SterilizationPage navigate={navigate} />;
       case "/faq":
         return <FaqPage />;
+      case "/reviews":
+        return <ReviewsPage navigate={navigate} />;
       case "/contact":
         return <ContactPage />;
       default:
@@ -1369,64 +1447,152 @@ function CleanProcessPreview({ navigate }) {
 }
 
 function ReviewsSection() {
+  const marqueeReviews = [...googleReviews.slice(0, 5), ...googleReviews.slice(0, 5)];
+
   return (
     <section className="reviews-section" id="reviews">
       <div className="reviews-lead">
-        <p className="eyebrow">Google Client Proof</p>
+        <p className="eyebrow">Client Proof</p>
         <h2>Real reviews, real appointments.</h2>
         <p>
           Clients come to RM for the detail work: clean cuticles, careful timing, and a polished result that still feels
           fresh weeks later.
         </p>
-        <div className="rating-lockup" aria-label="5.0 Google rating from client reviews">
+        <div className="rating-lockup" aria-label="5.0 client rating from review proof">
           <strong>5.0</strong>
           <span>
             <Star size={16} fill="currentColor" />
-            Google rating
+            Review proof
           </span>
           <em>Midtown NYC clients</em>
         </div>
-        <MagneticLink href={googleReviewUrl} className="outline-cta review-booksy-link">
-          See Reviews on Google <ArrowUpRight size={16} />
-        </MagneticLink>
+        <RouteLink to="/reviews" navigate={simpleNavigate} className="outline-cta review-booksy-link">
+          Open Review Lounge <ArrowUpRight size={16} />
+        </RouteLink>
       </div>
       <div className="google-review-shell">
-        <div className="google-review-rail" aria-label="Scrollable Google reviews">
-          {googleReviews.map((review, index) => (
-            <motion.a
-              key={review.name}
+        <div className="google-review-rail review-marquee" aria-label="Auto-scrolling RM client reviews">
+          {marqueeReviews.map((review, index) => (
+            <a
+              key={`${review.name}-${index}`}
               href={googleReviewUrl}
               target="_blank"
               rel="noreferrer"
               className="google-review-card"
-              aria-label={`Read ${review.name}'s Google review`}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.05 }}
-              viewport={{ once: true, amount: 0.25 }}
+              aria-label={`Read ${review.name}'s review`}
             >
-              <div className="google-review-head">
-                <img src={review.avatar} alt={`${review.name} Google profile`} loading="lazy" decoding="async" />
-                <div>
-                  <strong>{review.name}</strong>
-                  <span>{review.meta}</span>
-                </div>
-              </div>
-              <div className="google-stars" aria-label="5 star review">
-                {[0, 1, 2, 3, 4].map((item) => (
-                  <Star key={item} size={15} fill="currentColor" />
-                ))}
-                <span>{review.time}</span>
-              </div>
-              <p>{review.quote}</p>
-              <em>
-                See Review <ArrowUpRight size={14} />
-              </em>
-            </motion.a>
+              <ReviewCard review={review} compact={index > 4} />
+            </a>
           ))}
         </div>
       </div>
     </section>
+  );
+}
+
+function simpleNavigate(to) {
+  return (event) => {
+    if (event?.metaKey || event?.ctrlKey || event?.shiftKey || event?.altKey) return;
+    event?.preventDefault();
+    window.history.pushState({}, "", to);
+    window.dispatchEvent(new PopStateEvent("popstate"));
+  };
+}
+
+function ReviewCard({ review, compact = false }) {
+  return (
+    <>
+      <div className="google-review-head">
+        <img src={review.avatar} alt={`${review.name} profile`} loading="lazy" decoding="async" />
+        <div>
+          <strong>{review.name}</strong>
+          <span>{review.meta}</span>
+        </div>
+      </div>
+      <div className="google-stars" aria-label="5 star review">
+        {[0, 1, 2, 3, 4].map((item) => (
+          <Star key={item} size={15} fill="currentColor" />
+        ))}
+        <span>{review.time}</span>
+      </div>
+      <p>{compact ? `${review.quote.slice(0, 164)}...` : review.quote}</p>
+      <em>
+        {review.source || "See Review"} <ArrowUpRight size={14} />
+      </em>
+    </>
+  );
+}
+
+function ReviewsPage({ navigate }) {
+  const featured = googleReviews.slice(0, 3);
+  const moreReviews = googleReviews.slice(3);
+
+  return (
+    <>
+      <PageHero
+        label="Client Reviews"
+        title="Proof that precision feels different."
+        copy="A dedicated review lounge for RM clients comparing Russian manicure, hard gel, pedicure, and clean luxury service in Midtown NYC."
+        image={fastImage("brand-face-red-nails-tight")}
+        alt="RM Nail Salon client review campaign with red manicure"
+      />
+      <section className="review-lounge-section">
+        <div className="review-lounge-hero">
+          <article className="review-score-panel">
+            <span>RM Reputation</span>
+            <strong>5.0</strong>
+            <p>
+              Google screenshots and Booksy appointment reviews point to the same thing: detail, cleanliness, and
+              polished results clients notice immediately.
+            </p>
+            <div>
+              <MagneticLink href={googleReviewUrl} className="outline-cta">
+                See Reviews <ArrowUpRight size={16} />
+              </MagneticLink>
+              <MagneticLink href={siteConfig.bookingUrl} className="gold-cta">
+                Book Appointment <CalendarDays size={16} />
+              </MagneticLink>
+            </div>
+          </article>
+          <div className="review-feature-stack">
+            {featured.map((review, index) => (
+              <motion.a
+                key={review.name}
+                href={googleReviewUrl}
+                target="_blank"
+                rel="noreferrer"
+                className={`review-orbit-card orbit-${index + 1}`}
+                initial={{ opacity: 0, y: 30, rotate: index === 1 ? 1.5 : -1.5 }}
+                whileInView={{ opacity: 1, y: 0, rotate: index === 1 ? 1.5 : -1.5 }}
+                viewport={{ once: true, amount: 0.25 }}
+              >
+                <img src={review.workImage} alt={`${review.name} review manicure result`} loading="lazy" decoding="async" />
+                <ReviewCard review={review} />
+              </motion.a>
+            ))}
+          </div>
+        </div>
+
+        <div className="review-proof-grid">
+          {moreReviews.map((review, index) => (
+            <a key={`${review.name}-${index}`} href={googleReviewUrl} target="_blank" rel="noreferrer" className="review-proof-card">
+              <img src={review.workImage} alt={`${review.name} RM Nail Salon result`} loading="lazy" decoding="async" />
+              <ReviewCard review={review} />
+            </a>
+          ))}
+        </div>
+
+        <div className="review-conversion-panel">
+          <div>
+            <p className="eyebrow">Book Confidently</p>
+            <h2>Choose the appointment that matches the result you want.</h2>
+          </div>
+          <RouteLink to="/services" navigate={navigate} className="aqua-cta">
+            Compare Services <ArrowUpRight size={16} />
+          </RouteLink>
+        </div>
+      </section>
+    </>
   );
 }
 
@@ -2211,19 +2377,51 @@ function ServiceLandingPage({ page, navigate }) {
           navigate={navigate}
         />
 
-        <div className="service-page-faqs">
-          <p className="eyebrow">Service FAQ</p>
-          <h2>Before you book {page.serviceType.toLowerCase()}.</h2>
-          {decisionFaqs.map(([question, answer]) => (
-            <article key={question}>
-              <h3>{question}</h3>
-              <p>{answer}</p>
-            </article>
-          ))}
-        </div>
+        <ServiceFaqPanel title={`Before you book ${page.serviceType.toLowerCase()}.`} faqs={decisionFaqs} />
       </section>
       <Booking navigate={navigate} />
     </>
+  );
+}
+
+function ServiceFaqPanel({ title, faqs: panelFaqs }) {
+  const [open, setOpen] = useState(0);
+  const enrichedFaqs = panelFaqs.map(([question, answer]) => [
+    question,
+    `${answer} At RM, the goal is to help you understand the service before you sit down: what will be refined, how the result should wear, and when you should return for maintenance. If you are unsure between options, choose the closest service online and we can guide the final choice during the appointment.`
+  ]);
+
+  return (
+    <div className="service-page-faqs luxe-accordion">
+      <p className="eyebrow">Service FAQ</p>
+      <h2>{title}</h2>
+      {enrichedFaqs.map(([question, answer], index) => (
+        <article className={open === index ? "open" : ""} key={question}>
+          <button
+            type="button"
+            onClick={() => setOpen(open === index ? -1 : index)}
+            aria-expanded={open === index}
+            aria-controls={`service-faq-${index}`}
+          >
+            <span>{String(index + 1).padStart(2, "0")}</span>
+            <h3>{question}</h3>
+            <ChevronDown size={18} />
+          </button>
+          <AnimatePresence initial={false}>
+            {open === index && (
+              <motion.p
+                id={`service-faq-${index}`}
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+              >
+                {answer}
+              </motion.p>
+            )}
+          </AnimatePresence>
+        </article>
+      ))}
+    </div>
   );
 }
 
@@ -2343,11 +2541,24 @@ function BlogIndexPage({ navigate }) {
               generic beauty traffic.
             </p>
           </article>
-          <RouteLink to="/sterilization-process" navigate={navigate} className="trust-ticket">
-            <ShieldCheck size={18} />
-            <span>Read our hygiene and sterilization process</span>
-            <ArrowUpRight size={15} />
-          </RouteLink>
+          <div className="journal-depth-board">
+            <RouteLink to="/sterilization-process" navigate={navigate} className="trust-ticket">
+              <ShieldCheck size={18} />
+              <span>Read our hygiene and sterilization process</span>
+              <ArrowUpRight size={15} />
+            </RouteLink>
+            {[
+              ["01", "Technique", "Dry prep, hard gel, and smart pedicure explained in plain language."],
+              ["02", "Longevity", "Understand why polish lifts, when to refill, and how to protect shine."],
+              ["03", "Booking", "Choose the right service before you open the Booksy calendar."]
+            ].map(([number, title, copy]) => (
+              <div key={title} className="journal-micro-card">
+                <span>{number}</span>
+                <strong>{title}</strong>
+                <p>{copy}</p>
+              </div>
+            ))}
+          </div>
         </div>
         <div className="blog-card-grid">
           {blogArticlePages.map((article, index) => (
@@ -2397,6 +2608,19 @@ function BlogArticlePage({ page, navigate }) {
           <p className="eyebrow">RM Education</p>
           <h2>{page.introTitle}</h2>
           <p>{page.intro}</p>
+          <div className="article-luxury-strip" aria-label="RM guide quick proof points">
+            {[
+              [Sparkles, "Visual result", "Clean edges and shape are the first things clients notice."],
+              [ShieldCheck, "Safe decision", "Technique, nail condition, and maintenance timing matter."],
+              [CalendarDays, "Booking clarity", "Every guide links back to the service path that fits best."]
+            ].map(([Icon, title, copy]) => (
+              <div key={title}>
+                <Icon size={18} />
+                <strong>{title}</strong>
+                <span>{copy}</span>
+              </div>
+            ))}
+          </div>
           {page.sections.map(([heading, copy]) => (
             <section key={heading}>
               <h3>{heading}</h3>
@@ -2558,20 +2782,30 @@ function AboutPage({ navigate }) {
             View Services <ArrowUpRight size={16} />
           </MagneticLink>
         </div>
+        <div className="about-luxury-collage" aria-label="RM Nail Salon luxury studio mood">
+          <img src={fastImage("brand-salon-front-full")} alt="RM Nail Salon Midtown storefront" loading="lazy" decoding="async" />
+          <div>
+            <span>875 3rd Ave</span>
+            <strong>Concourse Level</strong>
+            <em>Midtown East appointment studio</em>
+          </div>
+          <img src={fastImage("service-vip-room")} alt="Cyan-lit RM Nail Salon studio chair" loading="lazy" decoding="async" />
+        </div>
       </section>
       <section className="values-flow">
         {[
-          ["01", "Precision", "Detailed e-file cuticle work and balanced nail architecture."],
-          ["02", "Hygiene", "Clean tools, careful preparation, and professional standards."],
-          ["03", "Longevity", "A glossy finish designed to look fresh well beyond the appointment."],
-          ["04", "Experience", "A calm premium visit with cyan RM atmosphere and personal attention."]
-        ].map(([number, title, copy]) => (
+          ["01", "Precision", "Detailed e-file cuticle work and balanced nail architecture.", ShieldCheck],
+          ["02", "Hygiene", "Clean tools, careful preparation, and professional standards.", Sparkles],
+          ["03", "Longevity", "A glossy finish designed to look fresh well beyond the appointment.", Clock],
+          ["04", "Experience", "A calm premium visit with cyan RM atmosphere and personal attention.", Star]
+        ].map(([number, title, copy, Icon]) => (
           <motion.article
             key={title}
             initial={{ opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
+            <Icon size={19} />
             <span>{number}</span>
             <h3>{title}</h3>
             <p>{copy}</p>
@@ -2681,8 +2915,8 @@ function FaqPage() {
         label="FAQ"
         title="Russian manicure questions answered before you book."
         copy="Learn how Russian manicure works, how long hard gel can last, what hygiene standards mean, and how to choose your RM service."
-        image={fastImage("gallery-blue-gray")}
-        alt="Blue gray manicure detail for Russian manicure FAQ"
+        image={fastImage("service-russian-hard-gel-new")}
+        alt="Luxury hard gel Russian manicure detail for RM Nail Salon FAQ"
       />
       <section className="faq-section">
         <SectionIntro
@@ -2691,6 +2925,17 @@ function FaqPage() {
           copy="Use these details to choose between Russian manicure, hard gel, pedicure, extensions, nail art, and repair services."
           align="center"
         />
+        <div className="faq-luxury-banner">
+          <img src={fastImage("work-reel-process")} alt="RM Nail Salon manicure prep process" loading="lazy" decoding="async" />
+          <div>
+            <span>Ask before you book</span>
+            <strong>Better questions create better appointments.</strong>
+            <p>
+              These answers are written for clients who care about safety, shape, product choice, and how their nails
+              will look after the appointment, not just on appointment day.
+            </p>
+          </div>
+        </div>
         {faqs.map((item, index) => (
           <article className={open === index ? "faq-item open" : "faq-item"} key={item.question}>
             <button
@@ -2747,6 +2992,20 @@ function ContactPage() {
           align="center"
         />
         <div className="contact-layout">
+          <div className="contact-concierge-card">
+            <img src={fastImage("brand-salon-front-full")} alt="RM Nail Salon entrance at 875 3rd Ave" loading="lazy" decoding="async" />
+            <div>
+              <span>Midtown Appointment Concierge</span>
+              <h2>Arrive below street level, leave polished above expectation.</h2>
+              <p>
+                Use the map for 875 3rd Ave, Concourse Level. Book online for the fastest appointment flow, or message
+                Instagram when you need help choosing between Russian manicure, hard gel, smart pedicure, and nail art.
+              </p>
+              <MagneticLink href={siteConfig.bookingUrl} className="gold-cta">
+                Book on Booksy <CalendarDays size={16} />
+              </MagneticLink>
+            </div>
+          </div>
           <div className="contact-cards">
             {contacts.map(([Icon, label, value, href]) => {
               const external = href?.startsWith("http");
@@ -2831,17 +3090,6 @@ function Footer({ navigate }) {
             {item.label}
           </RouteLink>
         ))}
-        <a
-          href="/#reviews"
-          onClick={(event) => {
-            event.preventDefault();
-            window.history.pushState({}, "", "/#reviews");
-            window.dispatchEvent(new PopStateEvent("popstate"));
-            window.setTimeout(() => document.querySelector("#reviews")?.scrollIntoView({ behavior: scrollBehavior() }), 90);
-          }}
-        >
-          Reviews
-        </a>
       </nav>
 
       <div className="footer-seo-nav">

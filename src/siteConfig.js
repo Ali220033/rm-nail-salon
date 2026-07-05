@@ -815,41 +815,56 @@ export const faqs = [
   {
     question: "What is a Russian manicure?",
     answer:
-      "A Russian manicure is a dry, detail-focused manicure technique that refines the cuticle area and nail plate before polish or gel is applied, creating an exceptionally clean finish."
+      "A Russian manicure is a dry, detail-focused manicure technique that refines the cuticle area and nail plate before polish or gel is applied. The purpose is to create a cleaner cuticle line, smoother product placement, and a finish that looks refined up close instead of simply polished from a distance."
   },
   {
     question: "How long does a Russian manicure last?",
     answer:
-      "Most clients schedule maintenance around 3 to 4 weeks, depending on nail growth, lifestyle, product choice, and aftercare."
+      "Most clients schedule maintenance around 3 to 4 weeks, depending on nail growth, lifestyle, product choice, and aftercare. Hard gel and structured services can often maintain their shine and balance beautifully when clients avoid picking, use cuticle oil, and return before the product grows too far from the cuticle."
   },
   {
     question: "Is Russian manicure safe?",
     answer:
-      "Russian manicure should be performed by a trained specialist with careful technique and hygienic tools. RM focuses on controlled prep, clean standards, and a professional appointment pace."
+      "Russian manicure should be performed by a trained specialist with careful technique and hygienic tools. RM focuses on controlled prep, clean standards, and a professional appointment pace, especially around the cuticle area where precision matters most. If your nails are damaged or sensitive, tell us before service so we can recommend the safest option."
   },
   {
     question: "What is the difference between Russian manicure and regular manicure?",
     answer:
-      "A regular manicure usually focuses on basic shaping and polish. Russian manicure is more detail-driven around the cuticle area and nail plate, which helps the final result look cleaner and more precise."
+      "A regular manicure usually focuses on basic shaping, soaking, and polish. Russian manicure is more detail-driven around the cuticle area and nail plate, which helps the final result look cleaner, more precise, and more polished as it grows out. It is ideal for clients who notice small details and want a more elevated finish."
   },
   {
     question: "How long does hard gel last?",
     answer:
-      "Hard gel maintenance is commonly booked around 3 to 4 weeks. Retention depends on nail condition, length, daily habits, and aftercare."
+      "Hard gel maintenance is commonly booked around 3 to 4 weeks. Retention depends on nail condition, length, daily habits, and aftercare. Hard gel is a good choice for clients with weak, thin, or brittle nails because it can add structure while keeping the final look slim and glossy."
   },
   {
     question: "Do you sterilize your tools?",
     answer:
-      "RM follows a clean-service workflow: tools are disinfected and prepared between clients, the workspace is reset before each appointment, and detailed cuticle work is performed with controlled professional technique."
+      "RM follows a clean-service workflow: tools are disinfected and prepared between clients, the workspace is reset before each appointment, and detailed cuticle work is performed with controlled professional technique. Cleanliness is part of the luxury experience here, not a hidden back-room promise."
   },
   {
     question: "Where are you located in Midtown NYC?",
     answer:
-      "RM Nail Salon is located at 875 3rd Ave, Concourse Level, New York, NY 10022, close to Midtown East, Grand Central, Turtle Bay, Sutton Place, and Rockefeller Center."
+      "RM Nail Salon is located at 875 3rd Ave, Concourse Level, New York, NY 10022, close to Midtown East, Grand Central, Turtle Bay, Sutton Place, and Rockefeller Center. The location is convenient for clients booking from work, hotels, Instagram, and nearby East Side neighborhoods."
   },
   {
     question: "How do I book an appointment?",
     answer:
-      "Use any Book Appointment button on the website to open the RM Nail Salon Booksy booking page and choose your service, date, and time."
+      "Use any Book Appointment button on the website to open the RM Nail Salon Booksy booking page and choose your service, date, and time. If you are deciding between two similar services, choose the closest option and the RM team can guide the final service path at the appointment."
+  },
+  {
+    question: "Which service should I choose if my nails are weak or brittle?",
+    answer:
+      "Russian Manicure with hard gel is usually the strongest choice for thin, weak, or brittle nails because it combines clean cuticle work with structured support. Japanese Manicure is better for clients who want to restore natural shine without gel, polish, or extensions."
+  },
+  {
+    question: "Can I book a natural look without gel?",
+    answer:
+      "Yes. RM offers Russian Manicure with no polish or regular polish for clients who prefer beautifully groomed natural nails. This is a good option when you want clean cuticles, refined shape, and a healthy finish without long-wear gel."
+  },
+  {
+    question: "What should I do before my appointment?",
+    answer:
+      "Arrive with any inspiration photos, avoid picking at lifted product, and let us know about allergies, sensitivity, or recent nail damage. The cleaner the history we have, the better we can choose a safe product and shape strategy for your nails."
   }
 ];
