@@ -845,7 +845,7 @@ export const faqs = [
   {
     question: "Where are you located in Midtown NYC?",
     answer:
-      "RM Nail Salon is located at 875 3rd Ave, Concourse Level, New York, NY 10022, close to Midtown East, Grand Central, Turtle Bay, Sutton Place, and Rockefeller Center. The location is convenient for clients booking from work, hotels, Instagram, and nearby East Side neighborhoods."
+      "RM Nail Salon has one location at 875 3rd Ave, Concourse Level, New York, NY 10022. It is convenient for clients coming from Midtown East, Grand Central, Sutton Place, Rockefeller Center, Fifth Avenue, work, hotels, and Instagram bookings."
   },
   {
     question: "How do I book an appointment?",

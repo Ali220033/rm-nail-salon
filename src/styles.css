@@ -3387,6 +3387,22 @@ img {
   padding: 1.2rem;
 }
 
+.single-location-note {
+  background:
+    radial-gradient(circle at 12% 18%, rgba(100, 224, 218, 0.16), transparent 12rem),
+    rgba(8, 5, 7, 0.38);
+  border: 1px solid rgba(100, 224, 218, 0.2);
+  border-radius: 22px 22px 8px 22px;
+  color: rgba(255, 255, 255, 0.78) !important;
+  margin: 1.15rem 0;
+  padding: 1rem;
+}
+
+.single-location-note strong {
+  color: var(--cream);
+  font-weight: 800;
+}
+
 .landmark-panel ul {
   display: grid;
   gap: 0.55rem;
@@ -3410,6 +3426,74 @@ img {
 
 .geo-path-card svg {
   color: var(--aqua);
+}
+
+.geo-arrival-board {
+  align-items: stretch;
+  background:
+    radial-gradient(circle at 80% 18%, rgba(100, 224, 218, 0.2), transparent 18rem),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.062), rgba(8, 5, 7, 0.86));
+  border: 1px solid rgba(100, 224, 218, 0.18);
+  border-radius: 36px 36px 12px 36px;
+  box-shadow: 0 34px 110px rgba(0, 0, 0, 0.28);
+  display: grid;
+  gap: 1rem;
+  margin: 0 auto;
+  max-width: 1240px;
+  overflow: hidden;
+  padding: 0.75rem;
+  width: 100%;
+}
+
+.geo-arrival-board img {
+  aspect-ratio: 16 / 11;
+  border-radius: 28px 28px 8px 28px;
+  filter: brightness(1.08) contrast(1.04) saturate(1.08);
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+}
+
+.geo-arrival-board > div {
+  align-content: center;
+  display: grid;
+  gap: 0.85rem;
+  padding: clamp(0.7rem, 2.4vw, 2rem);
+}
+
+.geo-arrival-board h2 {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(2.35rem, 8vw, 5.3rem);
+  font-weight: 400;
+  letter-spacing: -0.045em;
+  line-height: 0.88;
+}
+
+.geo-arrival-board p:not(.eyebrow) {
+  color: var(--white-soft);
+  font-size: 1rem;
+  line-height: 1.75;
+  max-width: 48rem;
+}
+
+.arrival-proof-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 0.25rem;
+}
+
+.arrival-proof-row span {
+  background: rgba(100, 224, 218, 0.08);
+  border: 1px solid rgba(100, 224, 218, 0.2);
+  border-radius: 999px;
+  color: var(--aqua);
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  padding: 0.65rem 0.82rem;
+  text-transform: uppercase;
 }
 
 .service-context-panel {
@@ -5460,6 +5544,15 @@ img {
   text-transform: uppercase;
 }
 
+.footer-nav-note {
+  color: rgba(255, 255, 255, 0.54);
+  flex: 0 0 100%;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  margin: -0.1rem 0 0.4rem;
+  max-width: 32rem;
+}
+
 .footer-watermark {
   color: rgba(255, 255, 255, 0.045);
   font-family: "Playfair Display", serif;
@@ -5554,6 +5647,10 @@ img {
 
   .footer-seo-nav {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .geo-arrival-board {
+    grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
   }
 
   .footer-bottom {

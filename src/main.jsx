@@ -506,8 +506,9 @@ const artistProfiles = [
 const locationAreas = [
   "Midtown East",
   "Grand Central",
-  "Turtle Bay",
-  "Sutton Place"
+  "Sutton Place",
+  "Rockefeller Center",
+  "Fifth Avenue"
 ];
 
 const bookingTimeSlots = [
@@ -2428,6 +2429,17 @@ function ServiceFaqPanel({ title, faqs: panelFaqs }) {
 
 function GeoLandingPage({ page, navigate }) {
   const relatedPages = getRelatedSeoPages(page.related);
+  const nearbyRouteLinks = geoLandingPages
+    .filter((item) => item.path !== page.path && locationAreas.includes(item.label))
+    .slice(0, 5);
+  const arrivalAreas = [page.area, ...locationAreas]
+    .filter(Boolean)
+    .filter((area, index, list) => list.indexOf(area) === index)
+    .slice(0, 4);
+  const arrivalAreaText =
+    arrivalAreas.length > 1
+      ? `${arrivalAreas.slice(0, -1).join(", ")}, or ${arrivalAreas.at(-1)}`
+      : page.area;
 
   return (
     <>
@@ -2441,9 +2453,13 @@ function GeoLandingPage({ page, navigate }) {
       <section className="seo-landing-section geo-seo">
         <div className="geo-story-grid">
           <article className="geo-story-main">
-            <p className="eyebrow">{page.area} Nail Studio</p>
+            <p className="eyebrow">{page.area} Client Route</p>
             <h2>{page.introTitle}</h2>
             <p>{page.intro}</p>
+            <p className="single-location-note">
+              RM Nail Salon has one studio location: <strong>{siteConfig.address}</strong>. This page is a guide for
+              clients coming from {page.area} to our Midtown NYC studio, not a separate branch.
+            </p>
             <p>
               RM Nail Salon is located at {siteConfig.address}, with booking available online and daily appointments
               from 9:30 AM to 7:30 PM.
@@ -2458,13 +2474,30 @@ function GeoLandingPage({ page, navigate }) {
             </div>
           </article>
           <div className="landmark-panel">
-            <p className="eyebrow">Nearby</p>
-            <h3>Clients visit RM from:</h3>
+            <p className="eyebrow">Convenient For Clients From</p>
+            <h3>Nearby routes to our Midtown studio:</h3>
             <ul>
               {page.landmarks.map((landmark) => (
                 <li key={landmark}>{landmark}</li>
               ))}
             </ul>
+          </div>
+        </div>
+
+        <div className="geo-arrival-board">
+          <img src={fastImage("brand-salon-front-full")} alt="RM Nail Salon Midtown NYC entrance at 875 3rd Ave" loading="lazy" decoding="async" />
+          <div>
+            <p className="eyebrow">One Midtown Address</p>
+            <h2>All nearby routes lead to one RM address.</h2>
+            <p>
+              Whether you are booking from {arrivalAreaText}, your appointment
+              takes place at RM Nail Salon in Midtown NYC: {siteConfig.address}.
+            </p>
+            <div className="arrival-proof-row">
+              <span>Daily 9:30 AM - 7:30 PM</span>
+              <span>Booksy booking</span>
+              <span>Concourse Level</span>
+            </div>
           </div>
         </div>
 
@@ -2487,9 +2520,9 @@ function GeoLandingPage({ page, navigate }) {
         </div>
 
         <RelatedSeoLinks
-          title="Explore more Midtown NYC service areas."
-          eyebrow="Nearby Midtown Routes"
-          links={geoLandingPages.filter((item) => item.path !== page.path).slice(0, 5)}
+          title="More nearby client routes to the Midtown studio."
+          eyebrow="Convenient For Clients From"
+          links={nearbyRouteLinks}
           navigate={navigate}
         />
       </section>
@@ -3104,7 +3137,8 @@ function Footer({ navigate }) {
           ))}
         </div>
         <div>
-          <span>Nearby Areas</span>
+          <span>Convenient For Clients From</span>
+          <p className="footer-nav-note">One RM location: {siteConfig.address}.</p>
           {footerGeoLinks.map((item) => (
             <RouteLink key={item.path} to={item.path} navigate={navigate}>
               {item.navLabel}

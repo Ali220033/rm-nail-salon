@@ -307,7 +307,7 @@ export const serviceLandingPages = [
     highlights: [
       ["Smart pedicure detail", "Nail and foot care are paced carefully instead of feeling rushed."],
       ["Gel or no polish", "Choose a glossy gel finish or a clean natural result."],
-      ["Central location", "Convenient for Midtown East, Grand Central, Sutton Place, and Turtle Bay clients."]
+      ["Central location", "Convenient for clients coming from Midtown East, Grand Central, Sutton Place, and Rockefeller Center to the 875 3rd Ave studio."]
     ],
     ctaLabel: "Book Pedicure",
     decisionTitle: "Why a clean pedicure appointment should feel unrushed.",
@@ -606,46 +606,6 @@ export const geoLandingPages = [
     intro:
       "Sutton Place clients can book RM for Russian manicure prep, structured overlays, and pedicures with a cleaner, more precise salon rhythm.",
     related: ["/russian-manicure-nyc", "/smart-pedicure-nyc", "/builder-gel-nyc"],
-    priority: "0.72"
-  },
-  {
-    path: "/nail-salon-turtle-bay",
-    navLabel: "Turtle Bay",
-    label: "Turtle Bay",
-    title: "Nail Salon Near Turtle Bay | RM Nail Salon Midtown",
-    description:
-      "A nail salon near Turtle Bay for Russian manicures, hard gel overlays, smart pedicures, nail extensions, clean editorial nail art, and repair.",
-    h1: "A Turtle Bay-area manicure that looks clean from every angle.",
-    heroCopy:
-      "RM serves nearby East Side clients with careful manicure prep, polished finishes, and a professional booking experience.",
-    image: fastImage("drive-white"),
-    imageAlt: "RM Nail Salon fashion manicure image for Turtle Bay clients",
-    area: "Turtle Bay",
-    landmarks: ["Turtle Bay", "United Nations", "Lexington Avenue", "Third Avenue"],
-    introTitle: "Nearby, precise, and built around a polished result.",
-    intro:
-      "Whether you are coming from the United Nations area, Lexington Avenue, or East Side offices, RM keeps the nail appointment focused and refined.",
-    related: ["/hard-gel-manicure-nyc", "/gel-extensions-nyc", "/nail-art-nyc"],
-    priority: "0.72"
-  },
-  {
-    path: "/russian-manicure-turtle-bay",
-    navLabel: "Russian Manicure Turtle Bay",
-    label: "Turtle Bay",
-    title: "Russian Manicure Near Turtle Bay | RM Nail Salon",
-    description:
-      "RM Nail Salon serves Turtle Bay clients with Russian manicures, hard gel, pedicures, extensions, and clean nail art near Midtown East.",
-    h1: "Russian manicure near Turtle Bay with clean RM precision.",
-    heroCopy:
-      "For nearby East Side clients, RM offers a polished Russian manicure experience with careful prep and long-lasting finish.",
-    image: fastImage("drive-white"),
-    imageAlt: "Russian manicure service near Turtle Bay at RM Nail Salon",
-    area: "Turtle Bay",
-    landmarks: ["Turtle Bay", "United Nations", "Third Avenue", "Lexington Avenue"],
-    introTitle: "A nearby East Side appointment with a more refined standard.",
-    intro:
-      "Turtle Bay clients can book RM for detail-focused cuticle work, hard gel, and clean polish application in a calmer Midtown setting.",
-    related: ["/russian-manicure-nyc", "/hard-gel-manicure-nyc", "/pedicure-midtown-nyc"],
     priority: "0.72"
   },
   {
@@ -1108,7 +1068,6 @@ function localBusinessSchema() {
       "Fifth Avenue",
       "Bryant Park",
       "Sutton Place",
-      "Turtle Bay",
       "Murray Hill",
       "Third Avenue",
       "Lexington Avenue",
