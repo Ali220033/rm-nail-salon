@@ -6127,7 +6127,7 @@ img {
 }
 
 .visit-info-card--hours > div > strong {
-  color: var(--aqua);
+  color: white;
   font-family: "Neue Haas Grotesk", Inter, system-ui, sans-serif;
   font-size: clamp(0.98rem, 1.18vw, 1.08rem);
   font-weight: 950;
