@@ -1294,11 +1294,10 @@ function WorkReel() {
           ref={videoRef}
           className="process-video"
           src={siteConfig.processVideo}
-          poster={fastImage("work-reel-process")}
           muted
           loop
           playsInline
-          preload="none"
+          preload="metadata"
           aria-label="Looping RM Nail Salon manicure work video"
         />
       </motion.div>
@@ -1669,8 +1668,8 @@ function LocationSection({ navigate }) {
     {
       Icon: Clock,
       eyebrow: "Open",
-      title: "Business Hours",
-      lines: [["Daily", "9:30 AM - 7:30 PM"]]
+      title: "Daily 9:30 AM - 7:30 PM",
+      kind: "hours"
     },
     {
       Icon: Phone,
@@ -1739,7 +1738,7 @@ function LocationSection({ navigate }) {
             </a>
           </div>
           <div className="visit-card-stack">
-            {visitCards.map(({ Icon, eyebrow, title, href, external, lines }) => {
+            {visitCards.map(({ Icon, eyebrow, title, href, external, lines, kind }) => {
               const body = lines ? (
                 <div className="hours-lines">
                   {lines.map(([label, value]) => (
@@ -1758,7 +1757,7 @@ function LocationSection({ navigate }) {
               );
 
               return (
-                <article className="visit-info-card" key={eyebrow}>
+                <article className={`visit-info-card${kind ? ` visit-info-card--${kind}` : ""}`} key={eyebrow}>
                   <Icon size={18} />
                   <div>
                     <span>{eyebrow}</span>

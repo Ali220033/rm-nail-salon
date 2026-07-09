@@ -6122,6 +6122,20 @@ img {
   margin-top: 0.38rem;
 }
 
+.visit-info-card--hours {
+  min-height: 7.2rem;
+}
+
+.visit-info-card--hours > div > strong {
+  color: var(--aqua);
+  font-family: "Neue Haas Grotesk", Inter, system-ui, sans-serif;
+  font-size: clamp(0.98rem, 1.18vw, 1.08rem);
+  font-weight: 950;
+  letter-spacing: 0.01em;
+  line-height: 1.22;
+  max-width: 12.5rem;
+}
+
 .visit-info-card a {
   font-family: inherit;
   font-size: clamp(0.9rem, 1.25vw, 1.08rem);
