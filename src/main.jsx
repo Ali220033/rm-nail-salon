@@ -1229,18 +1229,47 @@ function WorkReel() {
     const video = videoRef.current;
     if (!video) return undefined;
 
+    let isInView = false;
+
     const playVideo = () => {
-      if (document.hidden) return;
+      if (document.hidden || !isInView) return;
       const playback = video.play();
       if (playback?.catch) playback.catch(() => {});
     };
 
-    playVideo();
-    document.addEventListener("visibilitychange", playVideo);
+    const pauseVideo = () => {
+      video.pause();
+    };
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isInView = entry.isIntersecting;
+        if (isInView) {
+          playVideo();
+        } else {
+          pauseVideo();
+        }
+      },
+      { rootMargin: "0px 0px -12% 0px", threshold: 0.35 }
+    );
+
+    observer.observe(video);
+
+    const handleVisibility = () => {
+      if (document.hidden) {
+        pauseVideo();
+      } else {
+        playVideo();
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibility);
     window.addEventListener("focus", playVideo);
 
     return () => {
-      document.removeEventListener("visibilitychange", playVideo);
+      observer.disconnect();
+      pauseVideo();
+      document.removeEventListener("visibilitychange", handleVisibility);
       window.removeEventListener("focus", playVideo);
     };
   }, []);
@@ -1266,11 +1295,10 @@ function WorkReel() {
           className="process-video"
           src={siteConfig.processVideo}
           poster={fastImage("work-reel-process")}
-          autoPlay
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="none"
           aria-label="Looping RM Nail Salon manicure work video"
         />
       </motion.div>
