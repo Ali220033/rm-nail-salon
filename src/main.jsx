@@ -53,13 +53,6 @@ import {
   seoPages,
   serviceLandingPages
 } from "./seoData";
-import {
-  LanguageProvider,
-  LanguageSwitcher,
-  translateText,
-  useDomTranslations,
-  useLanguage
-} from "./i18n.jsx";
 import "./styles.css";
 
 const reveal = {
@@ -549,17 +542,13 @@ const calendarMonths = [
 const calendarDays = ["S", "M", "T", "W", "T", "F", "S"];
 
 function SeoHead({ route }) {
-  const { lang } = useLanguage();
-
   useEffect(() => {
     const page = getSeoPage(route);
-    const title = translateText(page.title, lang);
-    const description = translateText(page.description, lang);
-    document.documentElement.lang = lang === "ru" ? "ru" : lang === "es" ? "es" : "en";
-    document.title = title;
-    setMeta("name", "description", description);
-    setMeta("property", "og:title", title);
-    setMeta("property", "og:description", description);
+    document.documentElement.lang = "en";
+    document.title = page.title;
+    setMeta("name", "description", page.description);
+    setMeta("property", "og:title", page.title);
+    setMeta("property", "og:description", page.description);
     setMeta("property", "og:type", "website");
     setMeta("property", "og:url", absoluteUrl(page.path));
     setMeta("property", "og:image", absoluteImage(page.image));
@@ -567,12 +556,12 @@ function SeoHead({ route }) {
     setMeta("property", "og:image:width", "1200");
     setMeta("property", "og:image:height", "1600");
     setMeta("name", "twitter:card", "summary_large_image");
-    setMeta("name", "twitter:title", title);
-    setMeta("name", "twitter:description", description);
+    setMeta("name", "twitter:title", page.title);
+    setMeta("name", "twitter:description", page.description);
     setMeta("name", "twitter:image", absoluteImage(page.image));
     setCanonical(absoluteUrl(page.path));
     setJsonLd(buildStructuredData(page.path));
-  }, [lang, route]);
+  }, [route]);
 
   return null;
 }
@@ -615,12 +604,10 @@ function normalizePath() {
 }
 
 function App() {
-  const { lang } = useLanguage();
   const [loading, setLoading] = useState(true);
   const [selectedGallery, setSelectedGallery] = useState(null);
   const [route, setRoute] = useState(normalizePath);
   const [navCompact, setNavCompact] = useState(false);
-  useDomTranslations(lang, [route, loading, Boolean(selectedGallery)]);
 
   useEffect(() => {
     const timer = window.setTimeout(() => setLoading(false), 420);
@@ -800,7 +787,6 @@ function Nav({ compact, route, navigate }) {
           <em>{siteConfig.salonName}</em>
         </RouteLink>
         <div className="nav-actions">
-          <LanguageSwitcher />
           <MagneticLink href={siteConfig.bookingUrl} className="nav-book">
             Book Now
           </MagneticLink>
@@ -816,7 +802,6 @@ function Nav({ compact, route, navigate }) {
         </div>
       </div>
       <nav id="mobile-navigation" className={open ? "nav-links open" : "nav-links"}>
-        <LanguageSwitcher className="menu-language" />
         {routes.slice(1).map((item) =>
           item.to.startsWith("#") ? (
             <a
@@ -3259,8 +3244,4 @@ function slug(value) {
 const rootElement = document.getElementById("root");
 const appRoot = window.__rmNailSalonRoot || createRoot(rootElement);
 window.__rmNailSalonRoot = appRoot;
-appRoot.render(
-  <LanguageProvider>
-    <App />
-  </LanguageProvider>
-);
+appRoot.render(<App />);
