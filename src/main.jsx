@@ -53,6 +53,7 @@ import {
   seoPages,
   serviceLandingPages
 } from "./seoData";
+import { trackBookingConversion, trackDirectionsConversion } from "./googleAds";
 import "./styles.css";
 
 const reveal = {
@@ -833,7 +834,13 @@ function Nav({ compact, route, navigate }) {
             </RouteLink>
           )
         )}
-        <a className="menu-book" href={siteConfig.bookingUrl} target="_blank" rel="noreferrer">
+        <a
+          className="menu-book"
+          href={siteConfig.bookingUrl}
+          target="_blank"
+          rel="noreferrer"
+          onClick={trackBookingConversion}
+        >
           Book Appointment
         </a>
         <a className="menu-instagram" href={siteConfig.instagramUrl} target="_blank" rel="noreferrer">
@@ -862,6 +869,9 @@ function MagneticLink({ href, className = "", children, onClick }) {
   const handleClick = (event) => {
     resetPosition();
     window.setTimeout(resetPosition, 120);
+    if (href === siteConfig.bookingUrl) {
+      trackBookingConversion();
+    }
     onClick?.(event);
   };
 
@@ -965,6 +975,7 @@ function QuickBookingCard() {
       variants={reveal}
       onSubmit={(event) => {
         event.preventDefault();
+        trackBookingConversion();
         window.open(siteConfig.bookingUrl, "_blank", "noopener,noreferrer");
       }}
       aria-label="Quick appointment planner"
@@ -1732,7 +1743,13 @@ function LocationSection({ navigate }) {
                 <em>Concourse Level / New York, NY 10022</em>
               </div>
             </div>
-            <a className="map-directions-link" href={siteConfig.mapUrl} target="_blank" rel="noreferrer">
+            <a
+              className="map-directions-link"
+              href={siteConfig.mapUrl}
+              target="_blank"
+              rel="noreferrer"
+              onClick={trackDirectionsConversion}
+            >
               <Navigation size={15} />
               Open in Maps
             </a>
@@ -2066,7 +2083,13 @@ function Booking({ navigate }) {
                 </p>
               </div>
             </article>
-            <a className="planner-book-button" href={siteConfig.bookingUrl} target="_blank" rel="noreferrer">
+            <a
+              className="planner-book-button"
+              href={siteConfig.bookingUrl}
+              target="_blank"
+              rel="noreferrer"
+              onClick={trackBookingConversion}
+            >
               <Check size={17} />
               Finish Booking on Booksy
             </a>
@@ -3093,7 +3116,12 @@ function ContactPage() {
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             />
-            <a href={siteConfig.mapUrl} target="_blank" rel="noreferrer">
+            <a
+              href={siteConfig.mapUrl}
+              target="_blank"
+              rel="noreferrer"
+              onClick={trackDirectionsConversion}
+            >
               <MapPin size={18} />
               Open in Google Maps
             </a>
@@ -3140,7 +3168,13 @@ function Footer({ navigate }) {
           <a href={`mailto:${siteConfig.email}`} aria-label="Email RM Nail Salon">
             <Mail size={17} />
           </a>
-          <a href={siteConfig.mapUrl} target="_blank" rel="noreferrer" aria-label="Open map">
+          <a
+            href={siteConfig.mapUrl}
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Open map"
+            onClick={trackDirectionsConversion}
+          >
             <MapPin size={17} />
           </a>
         </div>
@@ -3203,6 +3237,7 @@ function MobileBook({ visible }) {
       rel="noreferrer"
       aria-hidden={!visible}
       tabIndex={visible ? 0 : -1}
+      onClick={trackBookingConversion}
     >
       <span>Book Appointment</span>
       <em>View availability on Booksy</em>
@@ -3221,7 +3256,13 @@ function FloatingBookNow() {
 
 function FloatingOffer() {
   return (
-    <a href={siteConfig.bookingUrl} className="floating-offer" target="_blank" rel="noreferrer">
+    <a
+      href={siteConfig.bookingUrl}
+      className="floating-offer"
+      target="_blank"
+      rel="noreferrer"
+      onClick={trackBookingConversion}
+    >
       <span>10% OFF</span>
       <em>First Visit</em>
     </a>
