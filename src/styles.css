@@ -5878,6 +5878,24 @@ img {
   padding-top: 0.55rem;
 }
 
+.review-booksy-link {
+  align-items: center;
+  display: inline-flex;
+  gap: 0.45rem;
+  justify-content: center;
+  justify-self: center;
+  line-height: 1;
+  margin: 0.72rem auto 0;
+  min-height: 2rem;
+  padding: 0 1rem;
+  white-space: nowrap;
+  width: max-content;
+}
+
+.review-booksy-link svg {
+  flex: 0 0 auto;
+}
+
 .review-cards {
   align-items: start;
 }
