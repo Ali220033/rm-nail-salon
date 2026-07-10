@@ -1519,6 +1519,7 @@ function ReviewsSection() {
               rel="noreferrer"
               className="google-review-card"
               aria-label={`Read ${review.name}'s review`}
+              onClick={trackDirectionsConversion}
             >
               <ReviewCard review={review} compact={index > 4} />
             </a>
@@ -1586,7 +1587,7 @@ function ReviewsPage({ navigate }) {
               polished results clients notice immediately.
             </p>
             <div>
-              <MagneticLink href={googleReviewUrl} className="outline-cta">
+              <MagneticLink href={googleReviewUrl} className="outline-cta" onClick={trackDirectionsConversion}>
                 See Reviews <ArrowUpRight size={16} />
               </MagneticLink>
               <MagneticLink href={siteConfig.bookingUrl} className="gold-cta">
@@ -1602,6 +1603,7 @@ function ReviewsPage({ navigate }) {
                 target="_blank"
                 rel="noreferrer"
                 className={`review-orbit-card orbit-${index + 1}`}
+                onClick={trackDirectionsConversion}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.25 }}
@@ -1615,7 +1617,14 @@ function ReviewsPage({ navigate }) {
 
         <div className="review-proof-grid">
           {moreReviews.map((review, index) => (
-            <a key={`${review.name}-${index}`} href={googleReviewUrl} target="_blank" rel="noreferrer" className="review-proof-card">
+            <a
+              key={`${review.name}-${index}`}
+              href={googleReviewUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="review-proof-card"
+              onClick={trackDirectionsConversion}
+            >
               <img src={review.workImage} alt={`${review.name} RM Nail Salon result`} loading="lazy" decoding="async" />
               <ReviewCard review={review} />
             </a>
@@ -3094,12 +3103,18 @@ function ContactPage() {
           <div className="contact-cards">
             {contacts.map(([Icon, label, value, href]) => {
               const external = href?.startsWith("http");
+              const handleContactClick = href === siteConfig.mapUrl ? trackDirectionsConversion : undefined;
               return (
                 <article key={label}>
                   <Icon size={19} />
                   <span>{label}</span>
                   {href ? (
-                    <a href={href} target={external ? "_blank" : undefined} rel={external ? "noreferrer" : undefined}>
+                    <a
+                      href={href}
+                      target={external ? "_blank" : undefined}
+                      rel={external ? "noreferrer" : undefined}
+                      onClick={handleContactClick}
+                    >
                       {value}
                     </a>
                   ) : (
