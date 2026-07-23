@@ -1235,6 +1235,7 @@ function FeaturedServicesHome({ navigate }) {
 
 function WorkReel() {
   const videoRef = useRef(null);
+  const [videoReady, setVideoReady] = useState(false);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -1243,6 +1244,7 @@ function WorkReel() {
     let isInView = false;
     let hasLoaded = false;
 
+    setVideoReady(false);
     video.muted = true;
     video.defaultMuted = true;
     video.playsInline = true;
@@ -1258,6 +1260,10 @@ function WorkReel() {
       }
       const playback = video.play();
       if (playback?.catch) playback.catch(() => {});
+    };
+
+    const revealVideo = () => {
+      if (video.readyState >= 2) setVideoReady(true);
     };
 
     const pauseVideo = () => {
@@ -1287,7 +1293,9 @@ function WorkReel() {
     };
 
     document.addEventListener("visibilitychange", handleVisibility);
+    video.addEventListener("loadeddata", revealVideo);
     video.addEventListener("canplay", playVideo);
+    video.addEventListener("canplay", revealVideo);
     window.addEventListener("scroll", playVideo, { passive: true });
     window.addEventListener("touchstart", playVideo, { passive: true });
     window.addEventListener("focus", playVideo);
@@ -1296,7 +1304,9 @@ function WorkReel() {
       observer.disconnect();
       pauseVideo();
       document.removeEventListener("visibilitychange", handleVisibility);
+      video.removeEventListener("loadeddata", revealVideo);
       video.removeEventListener("canplay", playVideo);
+      video.removeEventListener("canplay", revealVideo);
       window.removeEventListener("scroll", playVideo);
       window.removeEventListener("touchstart", playVideo);
       window.removeEventListener("focus", playVideo);
@@ -1321,13 +1331,12 @@ function WorkReel() {
       >
         <video
           ref={videoRef}
-          className="process-video"
+          className={`process-video${videoReady ? " is-video-ready" : ""}`}
           muted
           defaultMuted
           loop
           playsInline
-          preload="auto"
-          poster={siteConfig.processVideoPoster}
+          preload="none"
           aria-label="Looping RM Nail Salon manicure work video"
         >
           <source src={siteConfig.processVideo} type="video/mp4" />

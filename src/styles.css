@@ -1102,7 +1102,13 @@ img {
   height: 100%;
   object-fit: cover;
   object-position: center;
+  opacity: 0;
+  transition: opacity 360ms ease;
   width: 100%;
+}
+
+.reel-video-frame .process-video.is-video-ready {
+  opacity: 1;
 }
 
 .reel-phone::before {
