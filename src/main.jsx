@@ -1241,9 +1241,21 @@ function WorkReel() {
     if (!video) return undefined;
 
     let isInView = false;
+    let hasLoaded = false;
+
+    video.muted = true;
+    video.defaultMuted = true;
+    video.playsInline = true;
+    video.setAttribute("muted", "");
+    video.setAttribute("playsinline", "");
+    video.setAttribute("webkit-playsinline", "");
 
     const playVideo = () => {
       if (document.hidden || !isInView) return;
+      if (!hasLoaded) {
+        video.load();
+        hasLoaded = true;
+      }
       const playback = video.play();
       if (playback?.catch) playback.catch(() => {});
     };
@@ -1275,12 +1287,18 @@ function WorkReel() {
     };
 
     document.addEventListener("visibilitychange", handleVisibility);
+    video.addEventListener("canplay", playVideo);
+    window.addEventListener("scroll", playVideo, { passive: true });
+    window.addEventListener("touchstart", playVideo, { passive: true });
     window.addEventListener("focus", playVideo);
 
     return () => {
       observer.disconnect();
       pauseVideo();
       document.removeEventListener("visibilitychange", handleVisibility);
+      video.removeEventListener("canplay", playVideo);
+      window.removeEventListener("scroll", playVideo);
+      window.removeEventListener("touchstart", playVideo);
       window.removeEventListener("focus", playVideo);
     };
   }, []);
@@ -1304,13 +1322,17 @@ function WorkReel() {
         <video
           ref={videoRef}
           className="process-video"
-          src={siteConfig.processVideo}
           muted
+          defaultMuted
           loop
           playsInline
-          preload="metadata"
+          preload="auto"
+          poster={siteConfig.processVideoPoster}
           aria-label="Looping RM Nail Salon manicure work video"
-        />
+        >
+          <source src={siteConfig.processVideo} type="video/mp4" />
+          <source src={siteConfig.processVideoWebm} type="video/webm" />
+        </video>
       </motion.div>
     </section>
   );

@@ -13,6 +13,8 @@ export const siteConfig = {
   instagramHandle: "@rmnailsalon.nyc",
   firstVisitOffer: "10% OFF First Visit",
   processVideo: "/videos/rm-master-work.mp4",
+  processVideoWebm: "/videos/rm-manicure-session.webm",
+  processVideoPoster: "/images/fast/work-reel-process.webp",
   mapUrl:
     "https://www.google.com/maps/search/?api=1&query=875%203rd%20Ave%20Concourse%20Level%20New%20York%20NY%2010022",
   mapEmbedUrl:
