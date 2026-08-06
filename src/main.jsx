@@ -508,8 +508,7 @@ const locationAreas = [
   "Midtown East",
   "Grand Central",
   "Sutton Place",
-  "Rockefeller Center",
-  "Fifth Avenue"
+  "Turtle Bay"
 ];
 
 const bookingTimeSlots = [
@@ -1992,12 +1991,12 @@ function Booking({ navigate }) {
           className="booking-copy"
         >
           <motion.p variants={reveal} className="eyebrow">
-            Reserve Your Visit
+            Ready for perfect nails?
           </motion.p>
-          <motion.h2 variants={reveal}>Book your moment of precision.</motion.h2>
+          <motion.h2 variants={reveal}>Experience precision that still looks fresh weeks later.</motion.h2>
           <motion.p variants={reveal}>
-            Choose a service, preview a date and time, then finish securely on Booksy with RM Nail Salon&apos;s real
-            availability.
+            Book a calm Midtown appointment for Russian manicure, hard gel, smart pedicure, or nail art, then finish
+            securely on Booksy.
           </motion.p>
           <motion.div variants={reveal} className="booking-actions">
             <MagneticLink href={siteConfig.bookingUrl} className="gold-cta">
@@ -3179,96 +3178,112 @@ function ContactPage() {
 }
 
 function Footer({ navigate }) {
-  const primaryLinks = routes.slice(1).filter((item) => !item.to.startsWith("#"));
   const footerGeoLinks = locationAreas
     .map((area) => geoLandingPages.find((item) => item.label === area))
     .filter(Boolean);
-  const trustLinks = [
-    { to: "/blog", label: "RM Journal" },
-    { to: "/team", label: "Meet the Artists" },
-    { to: "/sterilization-process", label: "Sterilization Process" },
-    ...blogArticlePages.slice(0, 3).map((item) => ({ to: item.path, label: item.navLabel }))
+  const footerServices = [
+    { to: "/russian-manicure-nyc", label: "Russian Manicure" },
+    { to: "/smart-pedicure-nyc", label: "Russian Pedicure" },
+    { to: "/gel-extensions-nyc", label: "Extensions" },
+    { to: "/nail-art-nyc", label: "Nail Art" }
+  ];
+  const quickLinks = [
+    { to: "/gallery", label: "Gallery" },
+    { to: "/reviews", label: "Reviews" },
+    { to: "/faq", label: "FAQ" },
+    { to: "/contact", label: "Contact" }
   ];
 
   return (
     <footer className="footer-editorial">
       <div className="footer-lightline" />
-      <div className="footer-topline">
-        <RouteLink to="/" navigate={navigate} className="footer-logo">
-          <span>RM</span>
+      <div className="footer-luxury-wrap">
+        <div className="footer-closing-cta">
           <div>
-            <strong>{siteConfig.salonName}</strong>
-            <em>Midtown NYC / Russian Manicure</em>
+            <span>★★★★★ 5.0 Booksy</span>
+            <h2>Ready for perfect nails?</h2>
+            <p>Experience precision Russian manicure trusted by Midtown NYC clients.</p>
           </div>
-        </RouteLink>
-        <p>
-          Precision Russian manicure, hard gel, smart pedicure, and polished client experience at 875 3rd Ave.
-        </p>
-        <div className="footer-socials">
-          <a href={siteConfig.instagramUrl} target="_blank" rel="noreferrer" aria-label="Instagram">
-            <AtSign size={17} />
-          </a>
-          <a href={`tel:${siteConfig.phone.replace(/[^0-9]/g, "")}`} aria-label="Call RM Nail Salon">
-            <Phone size={17} />
-          </a>
-          <a href={`mailto:${siteConfig.email}`} aria-label="Email RM Nail Salon">
-            <Mail size={17} />
-          </a>
-          <a
-            href={siteConfig.mapUrl}
-            target="_blank"
-            rel="noreferrer"
-            aria-label="Open map"
-            onClick={trackDirectionsConversion}
-          >
-            <MapPin size={17} />
-          </a>
+          <MagneticLink href={siteConfig.bookingUrl} className="gold-cta">
+            Book Appointment <CalendarDays size={16} />
+          </MagneticLink>
         </div>
-      </div>
 
-      <nav className="footer-primary-nav" aria-label="Footer primary navigation">
-        {primaryLinks.map((item) => (
-          <RouteLink key={item.to} to={item.to} navigate={navigate}>
-            {item.label}
-          </RouteLink>
-        ))}
-      </nav>
-
-      <div className="footer-seo-nav">
-        <div>
-          <span>Signature Services</span>
-          {serviceLandingPages.map((item) => (
-            <RouteLink key={item.path} to={item.path} navigate={navigate}>
-              {item.navLabel}
+        <div className="footer-luxury-grid">
+          <div className="footer-brand-block">
+            <RouteLink to="/" navigate={navigate} className="footer-logo">
+              <span>RM</span>
+              <div>
+                <strong>{siteConfig.salonName}</strong>
+                <em>Luxury Russian Manicure Studio</em>
+              </div>
             </RouteLink>
-          ))}
+            <div className="footer-contact-list" aria-label="RM Nail Salon contact details">
+              <a href={siteConfig.mapUrl} target="_blank" rel="noreferrer" onClick={trackDirectionsConversion}>
+                <MapPin size={16} />
+                <span>875 3rd Ave, Concourse Level, New York, NY</span>
+              </a>
+              <span>
+                <Clock size={16} />
+                <span>Open Daily 9:30 AM - 7:30 PM</span>
+              </span>
+              <a href={`tel:${siteConfig.phone.replace(/[^0-9]/g, "")}`}>
+                <Phone size={16} />
+                <span>{siteConfig.phone}</span>
+              </a>
+            </div>
+            <div className="footer-social-labels" aria-label="RM Nail Salon social links">
+              <a href={siteConfig.instagramUrl} target="_blank" rel="noreferrer">
+                <AtSign size={16} />
+                Instagram
+              </a>
+              <a href={siteConfig.bookingUrl} target="_blank" rel="noreferrer" onClick={trackBookingConversion}>
+                <CalendarDays size={16} />
+                Booksy
+              </a>
+            </div>
+          </div>
+
+          <nav className="footer-link-column" aria-label="Footer services">
+            <span>Services</span>
+            {footerServices.map((item) => (
+              <RouteLink key={item.to} to={item.to} navigate={navigate}>
+                {item.label}
+              </RouteLink>
+            ))}
+          </nav>
+
+          <nav className="footer-link-column" aria-label="Footer quick links">
+            <span>Quick Links</span>
+            {quickLinks.map((item) => (
+              <RouteLink key={item.to} to={item.to} navigate={navigate}>
+                {item.label}
+              </RouteLink>
+            ))}
+          </nav>
         </div>
-        <div>
+
+        <div className="footer-mini-nearby">
           <span>Convenient For Clients From</span>
-          <p className="footer-nav-note">One RM location: {siteConfig.address}.</p>
           {footerGeoLinks.map((item) => (
             <RouteLink key={item.path} to={item.path} navigate={navigate}>
               {item.navLabel}
             </RouteLink>
           ))}
         </div>
-        <div>
-          <span>Trust & Education</span>
-          {trustLinks.map((item) => (
-            <RouteLink key={item.to} to={item.to} navigate={navigate}>
-              {item.label}
+
+        <div className="footer-bottom">
+          <span>© 2026 RM Nail Salon. All Rights Reserved.</span>
+          <div>
+            <RouteLink to="/sterilization-process" navigate={navigate}>
+              Sterilization
             </RouteLink>
-          ))}
+            <RouteLink to="/blog" navigate={navigate}>
+              Journal
+            </RouteLink>
+            <a href={`mailto:${siteConfig.email}`}>Email</a>
+          </div>
         </div>
-      </div>
-      <div className="footer-watermark" aria-hidden="true">
-        RM Nail Salon
-      </div>
-      <div className="footer-bottom">
-        <span>Copyright 2026 RM Nail Salon</span>
-        <RouteLink to="/" navigate={navigate}>
-          Back to top
-        </RouteLink>
       </div>
     </footer>
   );
