@@ -7944,13 +7944,20 @@ img {
 
   .review-marquee {
     animation: reviewTrain 38s linear infinite;
+    animation-play-state: running !important;
     overflow: visible;
+    pointer-events: none;
     width: max-content;
     will-change: transform;
   }
 
+  .google-review-shell:hover .review-marquee {
+    animation-play-state: running !important;
+  }
+
   .google-review-rail {
     overflow: visible;
+    pointer-events: none;
     scroll-snap-type: none;
     scrollbar-width: none;
     touch-action: pan-y;
@@ -7962,7 +7969,9 @@ img {
 
   .google-review-card {
     flex-basis: min(84vw, 360px);
+    pointer-events: none;
     scroll-snap-align: none;
+    user-select: none;
   }
 }
 
