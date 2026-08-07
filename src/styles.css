@@ -7903,6 +7903,12 @@ img {
     max-width: 24rem;
   }
 
+  .footer-contact-list a,
+  .footer-contact-list > span {
+    justify-self: start;
+    width: 100%;
+  }
+
   .footer-link-column {
     gap: 0.95rem;
   }
