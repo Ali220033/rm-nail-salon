@@ -7876,16 +7876,74 @@ img {
 
 @media (min-width: 860px) {
   .footer-closing-cta {
+    align-items: center;
     grid-template-columns: minmax(0, 1fr) auto;
   }
 
   .footer-luxury-grid {
-    grid-template-columns: minmax(0, 1.45fr) minmax(10rem, 0.72fr) minmax(10rem, 0.72fr);
+    align-items: start;
+    gap: clamp(2.5rem, 5vw, 5rem);
+    grid-template-columns: minmax(21rem, 1.25fr) minmax(11rem, 0.5fr) minmax(10rem, 0.44fr);
+    padding: clamp(1.8rem, 3vw, 2.4rem);
+  }
+
+  .footer-brand-block,
+  .footer-link-column {
+    align-items: start;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .footer-contact-list {
+    align-items: start;
+    display: grid;
+    gap: 0.9rem;
+    grid-template-columns: 1fr;
+    justify-items: start;
+    max-width: 24rem;
+  }
+
+  .footer-link-column {
+    gap: 0.95rem;
+  }
+
+  .footer-link-column > span {
+    margin-bottom: 0.25rem;
+  }
+
+  .footer-link-column a {
+    font-size: 0.98rem;
+    line-height: 1.45;
+  }
+
+  .footer-mini-nearby {
+    gap: 0.65rem;
+    justify-content: flex-start;
+  }
+
+  .footer-mini-nearby > span {
+    margin-right: 0.4rem;
   }
 
   .footer-bottom {
     flex-direction: row;
     justify-content: space-between;
+  }
+}
+
+@media (max-width: 640px) {
+  .review-marquee {
+    animation: none;
+    overflow-x: auto;
+    width: 100%;
+  }
+
+  .google-review-rail {
+    overflow-x: auto;
+  }
+
+  .google-review-card {
+    flex-basis: min(82vw, 360px);
   }
 }
 
