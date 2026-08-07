@@ -7938,18 +7938,31 @@ img {
 }
 
 @media (max-width: 640px) {
+  .google-review-shell {
+    touch-action: pan-y;
+  }
+
   .review-marquee {
-    animation: none;
-    overflow-x: auto;
-    width: 100%;
+    animation: reviewTrain 38s linear infinite;
+    overflow: visible;
+    width: max-content;
+    will-change: transform;
   }
 
   .google-review-rail {
-    overflow-x: auto;
+    overflow: visible;
+    scroll-snap-type: none;
+    scrollbar-width: none;
+    touch-action: pan-y;
+  }
+
+  .google-review-rail::-webkit-scrollbar {
+    display: none;
   }
 
   .google-review-card {
-    flex-basis: min(82vw, 360px);
+    flex-basis: min(84vw, 360px);
+    scroll-snap-align: none;
   }
 }
 
