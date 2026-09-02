@@ -898,7 +898,7 @@ const serviceFaqsByPath = {
   ],
   "/pedicure-midtown-nyc": [
     ["Do you offer gel pedicure?", "Yes. RM offers Russian Smart Gel Pedicure plus combo options that pair manicure and gel pedicure services."],
-    ["Is pedicure available every day?", "RM lists daily hours from 9:30 AM to 7:30 PM. Current availability is shown on Booksy."],
+    ["Is pedicure available every day?", "RM lists weekday hours from 9:30 AM to 8:00 PM and weekend hours from 10:00 AM to 8:00 PM. Current availability is shown on Booksy."],
     ["Can I book no-polish pedicure?", "Yes. The smart pedicure menu includes with or without regular polish options."]
   ],
   "/gel-extensions-nyc": [
@@ -1009,7 +1009,8 @@ function organizationSchema() {
   return {
     "@type": "Organization",
     "@id": `${siteConfig.siteUrl}/#organization`,
-    name: siteConfig.salonName,
+    name: siteConfig.googleBusinessName,
+    alternateName: siteConfig.salonName,
     url: siteConfig.siteUrl,
     logo: absoluteImage("/favicon.svg"),
     image: absoluteImage(fastImage("brand-salon-front-full")),
@@ -1030,7 +1031,8 @@ function localBusinessSchema() {
   return {
     "@type": "NailSalon",
     "@id": `${siteConfig.siteUrl}/#nailsalon`,
-    name: siteConfig.salonName,
+    name: siteConfig.googleBusinessName,
+    alternateName: siteConfig.salonName,
     url: siteConfig.siteUrl,
     additionalType: "https://schema.org/BeautySalon",
     image: [
@@ -1054,9 +1056,15 @@ function localBusinessSchema() {
     openingHoursSpecification: [
       {
         "@type": "OpeningHoursSpecification",
-        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
         opens: "09:30",
-        closes: "19:30"
+        closes: "20:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Saturday", "Sunday"],
+        opens: "10:00",
+        closes: "20:00"
       }
     ],
     areaServed: [

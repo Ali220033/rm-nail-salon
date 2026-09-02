@@ -253,7 +253,7 @@ const proofStripItems = [
   "5.0 Booksy rating",
   "7 Booksy client reviews",
   "875 3rd Ave, Concourse Level",
-  "Daily 9:30 AM - 7:30 PM",
+  siteConfig.hoursShort,
   "Russian manicure specialists"
 ];
 
@@ -507,8 +507,7 @@ const artistProfiles = [
 const locationAreas = [
   "Midtown East",
   "Grand Central",
-  "Sutton Place",
-  "Turtle Bay"
+  "Sutton Place"
 ];
 
 const bookingTimeSlots = [
@@ -784,7 +783,10 @@ function Nav({ compact, route, navigate }) {
       <div className="nav-top">
         <RouteLink to="/" navigate={navigate} className="nav-logo">
           <span>RM</span>
-          <em>{siteConfig.salonName}</em>
+          <div className="nav-logo-text">
+            <em>{siteConfig.salonName}</em>
+            <small>Midtown NYC Russian Manicure</small>
+          </div>
         </RouteLink>
         <div className="nav-actions">
           <MagneticLink href={siteConfig.bookingUrl} className="nav-book">
@@ -945,7 +947,7 @@ function Hero({ navigate }) {
         <motion.div variants={reveal} className="hero-proof-line">
           <span>5.0 Booksy rating</span>
           <span>Book in 20 seconds</span>
-          <span>Daily 9:30 AM - 7:30 PM</span>
+          <span>{siteConfig.hoursShort}</span>
         </motion.div>
         <motion.div variants={reveal} className="hero-actions">
           <MagneticLink href={siteConfig.bookingUrl} className="gold-cta">
@@ -1718,7 +1720,11 @@ function LocationSection({ navigate }) {
     {
       Icon: Clock,
       eyebrow: "Open",
-      title: "Daily 9:30 AM - 7:30 PM",
+      title: "Hours",
+      lines: [
+        ["Mon-Fri", "9:30 AM - 8:00 PM"],
+        ["Sat-Sun", "10:00 AM - 8:00 PM"]
+      ],
       kind: "hours"
     },
     {
@@ -2550,8 +2556,8 @@ function GeoLandingPage({ page, navigate }) {
               clients coming from {page.area} to our Midtown NYC studio, not a separate branch.
             </p>
             <p>
-              RM Nail Salon is located at {siteConfig.address}, with booking available online and daily appointments
-              from 9:30 AM to 7:30 PM.
+              RM Nail Salon is located at {siteConfig.address}, with booking available online for weekday appointments
+              from 9:30 AM to 8:00 PM and weekend appointments from 10:00 AM to 8:00 PM.
             </p>
             <div className="seo-cta-row">
               <MagneticLink href={siteConfig.bookingUrl} className="gold-cta">
@@ -2583,7 +2589,7 @@ function GeoLandingPage({ page, navigate }) {
               takes place at RM Nail Salon in Midtown NYC: {siteConfig.address}.
             </p>
             <div className="arrival-proof-row">
-              <span>Daily 9:30 AM - 7:30 PM</span>
+              <span>{siteConfig.hoursShort}</span>
               <span>Booksy booking</span>
               <span>Concourse Level</span>
             </div>
@@ -3095,7 +3101,7 @@ function ContactPage() {
     [Mail, "Email", siteConfig.email, `mailto:${siteConfig.email}`],
     [AtSign, "Instagram", siteConfig.instagramHandle, siteConfig.instagramUrl],
     [MapPin, "Address", siteConfig.address, siteConfig.mapUrl],
-    [Clock, "Hours", siteConfig.hours, null]
+    [Clock, "Hours", siteConfig.hoursLines.join("\n"), null]
   ];
 
   return (
@@ -3103,7 +3109,7 @@ function ContactPage() {
       <PageHero
         label="Contact"
         title="Book or contact RM Nail Salon in Midtown NYC."
-        copy="Find our address, phone number, Instagram, booking link, daily hours, and map for your next appointment."
+        copy="Find our address, phone number, Instagram, booking link, business hours, and map for your next appointment."
         image={fastImage("brand-door-review")}
         alt="RM Nail Salon Midtown NYC studio entrance"
         className="contact-page-hero"
@@ -3112,7 +3118,7 @@ function ContactPage() {
         <SectionIntro
           label="Visit RM"
           title="Book online, call, or find us in Midtown Manhattan."
-          copy="RM Nail Salon is located at 875 3rd Ave, Concourse Level, with daily appointments and online booking through Booksy."
+          copy="RM Nail Salon is located at 875 3rd Ave, Concourse Level, with weekday and weekend appointments available through Booksy."
           align="center"
         />
         <div className="contact-layout">
@@ -3135,7 +3141,7 @@ function ContactPage() {
               const external = href?.startsWith("http");
               const handleContactClick = href === siteConfig.mapUrl ? trackDirectionsConversion : undefined;
               return (
-                <article key={label}>
+                <article key={label} className={label === "Hours" ? "contact-hours-card" : undefined}>
                   <Icon size={19} />
                   <span>{label}</span>
                   {href ? (
@@ -3225,7 +3231,7 @@ function Footer({ navigate }) {
               </a>
               <span>
                 <Clock size={16} />
-                <span>Open Daily 9:30 AM - 7:30 PM</span>
+                <span>{siteConfig.hoursShort}</span>
               </span>
               <a href={`tel:${siteConfig.phone.replace(/[^0-9]/g, "")}`}>
                 <Phone size={16} />
@@ -3240,6 +3246,10 @@ function Footer({ navigate }) {
               <a href={siteConfig.bookingUrl} target="_blank" rel="noreferrer" onClick={trackBookingConversion}>
                 <CalendarDays size={16} />
                 Booksy
+              </a>
+              <a href={siteConfig.mapUrl} target="_blank" rel="noreferrer" onClick={trackDirectionsConversion}>
+                <Navigation size={16} />
+                Directions
               </a>
             </div>
           </div>

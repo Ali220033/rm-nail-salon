@@ -147,6 +147,12 @@ img {
   min-width: 0;
 }
 
+.nav-logo-text {
+  display: grid;
+  gap: 0.08rem;
+  min-width: 0;
+}
+
 .nav-logo span {
   border: 1px solid rgba(100, 224, 218, 0.55);
   border-radius: 999px;
@@ -166,6 +172,19 @@ img {
   font-style: normal;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.nav-logo small {
+  color: var(--aqua);
+  display: block;
+  font-size: 0.5rem;
+  font-weight: 950;
+  letter-spacing: 0.14em;
+  line-height: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
   white-space: nowrap;
 }
 
@@ -3115,6 +3134,14 @@ img {
   word-break: break-word;
 }
 
+.contact-hours-card p {
+  font-family: Inter, sans-serif;
+  font-size: clamp(1rem, 3.8vw, 1.28rem);
+  font-weight: 850;
+  letter-spacing: 0.01em;
+  line-height: 1.45;
+}
+
 .contact-cards a:hover {
   color: var(--aqua);
 }
@@ -3831,6 +3858,20 @@ img {
   .nav,
   .nav-compact {
     background: linear-gradient(90deg, #0d090c 0%, #102d30 58%, #0d090c 100%);
+    padding: 0.68rem 1rem 0.62rem;
+  }
+
+  .nav-logo {
+    max-width: calc(100vw - 5.8rem);
+  }
+
+  .nav-logo em {
+    font-size: 1.05rem;
+  }
+
+  .nav-logo small {
+    font-size: 0.47rem;
+    letter-spacing: 0.12em;
   }
 
   main,
@@ -3948,7 +3989,7 @@ img {
     padding: 1.1rem;
     position: fixed;
     right: 0;
-    top: 4.55rem;
+    top: 4.35rem;
   }
 
   .nav-links.open a {
@@ -7704,8 +7745,16 @@ img {
   color: rgba(255, 255, 255, 0.72);
   display: inline-flex;
   gap: 0.7rem;
+  justify-content: flex-start;
   line-height: 1.45;
+  max-width: 100%;
   text-decoration: none;
+}
+
+.footer-contact-list a span,
+.footer-contact-list > span span {
+  min-width: 0;
+  text-align: left;
 }
 
 .footer-contact-list svg,
@@ -7906,7 +7955,7 @@ img {
   .footer-contact-list a,
   .footer-contact-list > span {
     justify-self: start;
-    width: 100%;
+    width: auto;
   }
 
   .footer-link-column {
