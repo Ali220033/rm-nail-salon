@@ -106,6 +106,39 @@ export const coreSeoPages = [
     priority: "0.6"
   },
   {
+    path: "/privacy-policy",
+    navLabel: "Privacy Policy",
+    title: "Privacy Policy | RM Nail Salon Midtown NYC",
+    description:
+      "Read the RM Nail Salon privacy policy for website visits, booking links, contact information, cookies, ads, analytics, and client communication.",
+    h1: "Privacy Policy",
+    image: fastImage("brand-salon-front-full"),
+    imageAlt: "RM Nail Salon Midtown NYC studio interior",
+    priority: "0.3"
+  },
+  {
+    path: "/terms",
+    navLabel: "Terms",
+    title: "Terms of Use | RM Nail Salon Midtown NYC",
+    description:
+      "Read the RM Nail Salon website terms for booking links, service information, third-party platforms, website content, and contact details.",
+    h1: "Terms of Use",
+    image: fastImage("contact-salon-interior"),
+    imageAlt: "RM Nail Salon Midtown NYC manicure studio",
+    priority: "0.3"
+  },
+  {
+    path: "/404",
+    navLabel: "Page Not Found",
+    title: "Page Not Found | RM Nail Salon",
+    description:
+      "The page you are looking for is not available. Return to RM Nail Salon services, reviews, gallery, contact, or Booksy appointment booking.",
+    h1: "Page Not Found",
+    image: fastImage("rm-hero-editorial"),
+    imageAlt: "RM Nail Salon manicure detail",
+    priority: "0.1"
+  },
+  {
     path: "/team",
     navLabel: "Meet the Artists",
     title: "Meet the Nail Artists | RM Nail Salon Midtown NYC",

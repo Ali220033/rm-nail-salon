@@ -599,17 +599,15 @@ function setJsonLd(data) {
 
 function normalizePath() {
   const path = window.location.pathname.replace(/\/$/, "") || "/";
-  return seoPages.some((page) => page.path === path) ? path : "/";
+  return seoPages.some((page) => page.path === path) ? path : "/404";
 }
 
 function App() {
-  const [loading, setLoading] = useState(true);
   const [selectedGallery, setSelectedGallery] = useState(null);
   const [route, setRoute] = useState(normalizePath);
   const [navCompact, setNavCompact] = useState(false);
 
   useEffect(() => {
-    const timer = window.setTimeout(() => setLoading(false), 420);
     let frame = 0;
     const updateScrollState = () => {
       frame = 0;
@@ -626,7 +624,6 @@ function App() {
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("popstate", onPop);
     return () => {
-      window.clearTimeout(timer);
       if (frame) window.cancelAnimationFrame(frame);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("popstate", onPop);
@@ -663,6 +660,8 @@ function App() {
     }
 
     switch (route) {
+      case "/":
+        return <HomePage navigate={navigate} setSelectedGallery={setSelectedGallery} />;
       case "/services":
         return <ServicesPage navigate={navigate} />;
       case "/about":
@@ -681,8 +680,14 @@ function App() {
         return <ReviewsPage navigate={navigate} />;
       case "/contact":
         return <ContactPage />;
+      case "/privacy-policy":
+        return <PrivacyPolicyPage navigate={navigate} />;
+      case "/terms":
+        return <TermsPage navigate={navigate} />;
+      case "/404":
+        return <NotFoundPage navigate={navigate} />;
       default:
-        return <HomePage navigate={navigate} setSelectedGallery={setSelectedGallery} />;
+        return <NotFoundPage navigate={navigate} />;
     }
   }, [route]);
 
@@ -691,7 +696,6 @@ function App() {
       <LazyMotion features={domAnimation} strict>
         <div className="lux-site">
           <SeoHead route={route} />
-          <AnimatePresence>{loading && <Loader />}</AnimatePresence>
           <Nav compact={navCompact} route={route} navigate={navigate} />
           <main>
             <AnimatePresence mode="wait">
@@ -703,6 +707,7 @@ function App() {
           <Footer navigate={navigate} />
           <FloatingBookNow />
           <GalleryModal item={selectedGallery} onClose={() => setSelectedGallery(null)} />
+          <CookieBanner />
         </div>
       </LazyMotion>
     </MotionConfig>
@@ -3183,6 +3188,138 @@ function ContactPage() {
   );
 }
 
+function LegalPageShell({ label, title, copy, children }) {
+  return (
+    <>
+      <PageHero
+        label={label}
+        title={title}
+        copy={copy}
+        image={fastImage("contact-salon-interior")}
+        alt="RM Nail Salon Midtown NYC manicure studio"
+        className="legal-page-hero"
+      />
+      <section className="legal-editorial">
+        <div className="legal-document">
+          {children}
+          <div className="legal-contact-panel">
+            <ShieldCheck size={20} />
+            <div>
+              <strong>RM Nail Salon Midtown NYC Russian Manicure</strong>
+              <span>{siteConfig.address}</span>
+              <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+              <a href={`tel:${siteConfig.phone.replace(/[^0-9]/g, "")}`}>{siteConfig.phone}</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
+
+function PrivacyPolicyPage() {
+  return (
+    <LegalPageShell
+      label="Privacy"
+      title="Privacy Policy"
+      copy="How RM Nail Salon handles website visits, booking links, contact details, cookies, and advertising tools."
+    >
+      <p className="legal-updated">Last updated September 2, 2026</p>
+      <h2>Information We Collect</h2>
+      <p>
+        RM Nail Salon may receive information you choose to share when you call, email, message us on Instagram, or use
+        a booking link. This can include your name, phone number, email address, appointment questions, service
+        preferences, and any details you provide while asking about an appointment.
+      </p>
+      <h2>Booking and Third-Party Platforms</h2>
+      <p>
+        Appointment booking is handled through Booksy. When you click a Book Appointment or Booksy link, you leave this
+        website and Booksy may collect information under its own privacy policy and account terms.
+      </p>
+      <h2>Cookies, Ads, and Analytics</h2>
+      <p>
+        This website uses Google advertising and measurement tools to understand visits, measure booking and direction
+        clicks, and improve marketing. Non-essential storage is controlled by the cookie banner. If you choose
+        essential cookies only, advertising and analytics storage remain disabled where supported by Google consent
+        mode.
+      </p>
+      <h2>How We Use Information</h2>
+      <p>
+        We use contact information to answer questions, help with booking, provide directions, improve the website, and
+        understand which pages help clients choose services. We do not sell personal information from this website.
+      </p>
+      <h2>Contact</h2>
+      <p>
+        For privacy questions, contact RM Nail Salon at {siteConfig.email} or {siteConfig.phone}.
+      </p>
+    </LegalPageShell>
+  );
+}
+
+function TermsPage() {
+  return (
+    <LegalPageShell
+      label="Terms"
+      title="Terms of Use"
+      copy="The simple rules for using the RM Nail Salon website, service information, and booking links."
+    >
+      <p className="legal-updated">Last updated September 2, 2026</p>
+      <h2>Website Information</h2>
+      <p>
+        This website provides general information about RM Nail Salon services, location, hours, reviews, gallery
+        images, and appointment options. We work to keep details accurate, but services, timing, pricing, and
+        availability can change.
+      </p>
+      <h2>Appointments</h2>
+      <p>
+        Booking is completed through Booksy or by contacting RM Nail Salon directly. Appointment availability,
+        cancellation rules, deposits, and final service choices are handled through the booking flow and salon
+        communication at the time of booking.
+      </p>
+      <h2>Service Results</h2>
+      <p>
+        Nail results depend on natural nail condition, product choice, lifestyle, aftercare, and the service selected.
+        Website content is not medical advice. If your nails are damaged, sensitive, or affected by a health condition,
+        tell the salon before service.
+      </p>
+      <h2>Website Content</h2>
+      <p>
+        Text, images, layout, and branding on this site belong to RM Nail Salon or are used for RM Nail Salon marketing.
+        Do not copy or reuse website content without permission.
+      </p>
+      <h2>Third-Party Links</h2>
+      <p>
+        This website links to Booksy, Instagram, Google Maps, and other third-party services. Those services are
+        responsible for their own websites, policies, and account experiences.
+      </p>
+    </LegalPageShell>
+  );
+}
+
+function NotFoundPage({ navigate }) {
+  return (
+    <section className="not-found-page">
+      <img src={fastImage("rm-hero-editorial")} alt="RM Nail Salon manicure detail" loading="eager" decoding="async" />
+      <div>
+        <p className="eyebrow">404 / Page Not Found</p>
+        <h1>This page is not on the RM menu.</h1>
+        <p>
+          The link may have moved, but the Midtown studio is still right here. Choose a service, view the map, or book
+          directly on Booksy.
+        </p>
+        <div className="not-found-actions">
+          <RouteLink to="/services" navigate={navigate} className="gold-cta">
+            View Services <ArrowUpRight size={16} />
+          </RouteLink>
+          <RouteLink to="/contact" navigate={navigate} className="outline-cta">
+            Contact & Map <MapPin size={16} />
+          </RouteLink>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Footer({ navigate }) {
   const footerGeoLinks = locationAreas
     .map((area) => geoLandingPages.find((item) => item.label === area))
@@ -3285,6 +3422,12 @@ function Footer({ navigate }) {
         <div className="footer-bottom">
           <span>© 2026 RM Nail Salon. All Rights Reserved.</span>
           <div>
+            <RouteLink to="/privacy-policy" navigate={navigate}>
+              Privacy Policy
+            </RouteLink>
+            <RouteLink to="/terms" navigate={navigate}>
+              Terms
+            </RouteLink>
             <RouteLink to="/sterilization-process" navigate={navigate}>
               Sterilization
             </RouteLink>
@@ -3313,6 +3456,64 @@ function MobileBook({ visible }) {
       <span>Book Appointment</span>
       <em>View availability on Booksy</em>
     </a>
+  );
+}
+
+function CookieBanner() {
+  const [choice, setChoice] = useState(() => {
+    try {
+      return window.localStorage.getItem("rm-cookie-consent") || "";
+    } catch {
+      return "";
+    }
+  });
+
+  const updateConsent = (value) => {
+    const granted = value === "accepted";
+    try {
+      window.localStorage.setItem("rm-cookie-consent", value);
+    } catch {
+      // Consent still updates for this visit if storage is unavailable.
+    }
+
+    if (typeof window.gtag === "function") {
+      window.gtag("consent", "update", {
+        analytics_storage: granted ? "granted" : "denied",
+        ad_storage: granted ? "granted" : "denied",
+        ad_user_data: granted ? "granted" : "denied",
+        ad_personalization: granted ? "granted" : "denied"
+      });
+    }
+    setChoice(value);
+  };
+
+  if (choice) return null;
+
+  return (
+    <div className="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie preferences">
+      <div>
+        <span>Privacy Preferences</span>
+        <p>
+          RM uses essential site storage and Google measurement tools to understand booking and direction clicks. Choose
+          what feels right for you.
+        </p>
+      </div>
+      <div className="cookie-actions">
+        <button type="button" onClick={() => updateConsent("essential")}>
+          Essential Only
+        </button>
+        <button type="button" onClick={() => updateConsent("accepted")}>
+          Accept All
+        </button>
+      </div>
+      <RouteLink to="/privacy-policy" navigate={(to) => (event) => {
+        event.preventDefault();
+        window.history.pushState({}, "", to);
+        window.dispatchEvent(new PopStateEvent("popstate"));
+      }}>
+        Privacy Policy
+      </RouteLink>
+    </div>
   );
 }
 

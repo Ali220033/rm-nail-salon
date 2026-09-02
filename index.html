@@ -24,6 +24,11 @@
     <meta property="og:image" content="https://www.rmnailsalon.com/images/fast/rm-hero.webp" />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <style>
+      #root > .seo-static-snapshot {
+        display: none !important;
+      }
+    </style>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18148785181"></script>
     <script>
@@ -31,6 +36,22 @@
       function gtag() {
         dataLayer.push(arguments);
       }
+      (function () {
+        var consent = "";
+        try {
+          consent = window.localStorage.getItem("rm-cookie-consent") || "";
+        } catch (error) {
+          consent = "";
+        }
+        var granted = consent === "accepted";
+        gtag("consent", "default", {
+          analytics_storage: granted ? "granted" : "denied",
+          ad_storage: granted ? "granted" : "denied",
+          ad_user_data: granted ? "granted" : "denied",
+          ad_personalization: granted ? "granted" : "denied",
+          wait_for_update: 500
+        });
+      })();
       gtag("js", new Date());
       gtag("config", "AW-18148785181");
       gtag("config", "AW-18148785181/fPcbCK6J480cEJ34gc5D", {
