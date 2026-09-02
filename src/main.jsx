@@ -3123,7 +3123,7 @@ function ContactPage() {
         />
         <div className="contact-layout">
           <div className="contact-concierge-card">
-            <img src={fastImage("brand-salon-front-full")} alt="RM Nail Salon entrance at 875 3rd Ave" loading="lazy" decoding="async" />
+            <img src={fastImage("contact-salon-interior")} alt="RM Nail Salon Midtown NYC manicure studio interior" loading="lazy" decoding="async" />
             <div>
               <span>Midtown Appointment Concierge</span>
               <h2>Arrive below street level, leave polished above expectation.</h2>
