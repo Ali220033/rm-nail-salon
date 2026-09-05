@@ -787,10 +787,10 @@ function Nav({ compact, route, navigate }) {
     <header className={compact ? "nav nav-compact" : "nav"}>
       <div className="nav-top">
         <RouteLink to="/" navigate={navigate} className="nav-logo">
-          <span>RM</span>
+          <span aria-hidden="true">RM</span>
           <div className="nav-logo-text">
             <em>{siteConfig.salonName}</em>
-            <small>Midtown NYC Studio</small>
+            <small><b>Midtown NYC</b><i>Russian Manicure</i></small>
           </div>
         </RouteLink>
         <div className="nav-actions">
