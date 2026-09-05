@@ -787,10 +787,10 @@ function Nav({ compact, route, navigate }) {
     <header className={compact ? "nav nav-compact" : "nav"}>
       <div className="nav-top">
         <RouteLink to="/" navigate={navigate} className="nav-logo">
-          <span aria-hidden="true">RM</span>
+          <img className="nav-monogram" src="/images/rm-platinum-monogram.webp" alt="" width="64" height="64" fetchPriority="high" />
           <div className="nav-logo-text">
             <em>{siteConfig.salonName}</em>
-            <small><b>Midtown NYC</b><i>Russian Manicure</i></small>
+            <small><b>Midtown NYC</b>{" "}<i>Russian Manicure</i></small>
           </div>
         </RouteLink>
         <div className="nav-actions">
