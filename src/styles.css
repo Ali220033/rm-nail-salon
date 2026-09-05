@@ -8239,6 +8239,11 @@ body:has(.cookie-banner) .floating-book-circle {
 }
 
 @media (max-width: 640px) {
+  .contact-concierge-card img {
+    aspect-ratio: 4 / 4.65;
+    object-position: center;
+  }
+
   .cookie-banner {
     bottom: calc(0.8rem + env(safe-area-inset-bottom));
     left: 0.8rem;
