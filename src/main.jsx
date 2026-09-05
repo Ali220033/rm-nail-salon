@@ -790,7 +790,7 @@ function Nav({ compact, route, navigate }) {
           <span>RM</span>
           <div className="nav-logo-text">
             <em>{siteConfig.salonName}</em>
-            <small>Midtown NYC Russian Manicure</small>
+            <small>Midtown NYC Studio</small>
           </div>
         </RouteLink>
         <div className="nav-actions">
@@ -3354,25 +3354,39 @@ function Footer({ navigate }) {
 
         <div className="footer-luxury-grid">
           <div className="footer-brand-block">
-            <RouteLink to="/" navigate={navigate} className="footer-logo">
-              <span>RM</span>
+            <div className="footer-brand-heading">
               <div>
-                <strong>{siteConfig.salonName}</strong>
-                <em>Luxury Russian Manicure Studio</em>
+                <span className="footer-brand-kicker">One Midtown Location</span>
+                <h3>{siteConfig.salonName}</h3>
               </div>
-            </RouteLink>
+            </div>
+            <p className="footer-brand-copy">
+              Luxury Russian manicure studio at 875 3rd Ave for precise manicure, hard gel, pedicure, and nail art.
+            </p>
             <div className="footer-contact-list" aria-label="RM Nail Salon contact details">
               <a href={siteConfig.mapUrl} target="_blank" rel="noreferrer" onClick={trackDirectionsConversion}>
                 <MapPin size={16} />
-                <span>875 3rd Ave, Concourse Level, New York, NY</span>
+                <span>
+                  <small>Address</small>
+                  <strong>875 3rd Ave, Concourse Level</strong>
+                  <em>New York, NY</em>
+                </span>
               </a>
               <span>
                 <Clock size={16} />
-                <span>{siteConfig.hoursShort}</span>
+                <span>
+                  <small>Hours</small>
+                  {siteConfig.hoursLines.map((line) => (
+                    <strong key={line}>{line}</strong>
+                  ))}
+                </span>
               </span>
               <a href={`tel:${siteConfig.phone.replace(/[^0-9]/g, "")}`}>
                 <Phone size={16} />
-                <span>{siteConfig.phone}</span>
+                <span>
+                  <small>Call</small>
+                  <strong>{siteConfig.phone}</strong>
+                </span>
               </a>
             </div>
             <div className="footer-social-labels" aria-label="RM Nail Salon social links">
