@@ -2,6 +2,38 @@
 @tailwind components;
 @tailwind utilities;
 
+.booking-direct .booking-copy { max-width: 760px; margin-inline: auto; text-align: center; }
+.booking-direct .booking-actions { justify-content: center; }
+.booking-direct .booking-copy h2 { font-size: 3rem; }
+.booking-direct .booking-address { font-size: 0.85rem; }
+.review-initial { align-items: center; border: 1px solid var(--aqua); border-radius: 50%; color: var(--aqua); display: inline-flex; flex: 0 0 52px; font-family: "Playfair Display", serif; font-size: 1.5rem; height: 52px; justify-content: center; }
+.review-photo-label, .review-source-note { color: var(--white-soft); font-size: 0.75rem; line-height: 1.5; }
+.review-photo-label { display: block; margin-block: 0.5rem; }
+.verified-artist { display: flex; flex-direction: column; min-height: 260px; }
+.verified-artist .artist-initial { color: var(--aqua); display: grid; font-family: "Playfair Display", serif; font-size: 3rem; min-height: 100px; place-items: center; }
+.cookie-banner p a { color: var(--aqua); text-decoration: underline; }
+.nearby-directory { margin-top: 2rem; padding-block: 2rem; border-top: 1px solid var(--white-faint); }
+.nearby-directory h2 { font-size: 1.75rem; margin-bottom: 0.75rem; }
+.nearby-directory ul { columns: 3; list-style: none; padding: 0; }
+.nearby-directory li { break-inside: avoid; margin-bottom: 0.85rem; }
+.nearby-directory a { color: var(--aqua); display: inline-flex; gap: 0.4rem; align-items: center; }
+.article-sources { border-top: 1px solid var(--white-faint); padding-top: 1rem; }
+.article-sources a { color: var(--aqua); text-decoration: underline; }
+.team-page-section .team-intro-card h2,
+.sterile-section .sterile-manifesto h2,
+.article-layout .article-body h2 { font-size: 3rem; line-height: 1.1; letter-spacing: 0; }
+.article-layout .article-luxury-strip strong { font-size: 1.1rem; line-height: 1.25; letter-spacing: 0; }
+.team-intro-card > .aqua-cta { margin-top: 1rem; }
+.gold-cta, .aqua-cta, .outline-cta, .plum-cta { align-items: center; display: inline-flex; gap: 0.45rem; justify-content: center; max-width: 100%; }
+.gold-cta > svg, .aqua-cta > svg, .outline-cta > svg, .plum-cta > svg { flex-shrink: 0; }
+@media (max-width: 640px) {
+  .booking-direct .booking-copy h2 { font-size: 2.25rem; }
+  .nearby-directory ul { columns: 1; }
+  .team-page-section .team-intro-card h2,
+  .sterile-section .sterile-manifesto h2,
+  .article-layout .article-body h2 { font-size: 2rem; }
+}
+
 :root {
   --aqua: #64e0da;
   --aqua-deep: #20beba;
@@ -3307,13 +3339,13 @@ img {
     radial-gradient(circle at 12% 0%, rgba(100, 224, 218, 0.18), transparent 15rem),
     rgba(8, 5, 7, 0.94);
   border: 1px solid rgba(100, 224, 218, 0.24);
-  border-radius: 24px 24px 8px 24px;
+  border-radius: 8px;
   bottom: 1rem;
   box-shadow: 0 28px 90px rgba(0, 0, 0, 0.42);
   display: grid;
-  gap: 0.9rem;
+  gap: 0.55rem;
   left: 1rem;
-  max-width: min(620px, calc(100vw - 2rem));
+  max-width: min(430px, calc(100vw - 2rem));
   padding: 1rem;
   position: fixed;
   z-index: 80;
@@ -3331,8 +3363,8 @@ img {
 
 .cookie-banner p {
   color: rgba(255, 255, 255, 0.72);
-  font-size: 0.92rem;
-  line-height: 1.55;
+  font-size: 0.8rem;
+  line-height: 1.4;
   margin: 0;
 }
 

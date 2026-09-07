@@ -7,7 +7,8 @@ export const reviewSummary = {
   source: "Booksy",
   sourceUrl: siteConfig.bookingUrl,
   ratingValue: "5.0",
-  reviewCount: "7",
+  reviewCount: "8",
+  checkedAt: "2026-09-06",
   reviews: [
     {
       author: "Lauren",
@@ -17,12 +18,22 @@ export const reviewSummary = {
     {
       author: "Jacqueline",
       ratingValue: "5",
-      reviewBody: "Great manicure and service."
+      reviewBody: "Great manicure and service"
     },
     {
       author: "Nikki",
       ratingValue: "5",
-      reviewBody: "Great service and beautiful nails."
+      reviewBody: "Great service! Love my nails"
+    },
+    {
+      author: "Emily",
+      ratingValue: "5",
+      reviewBody: "The manicures here always come out really nice!"
+    },
+    {
+      author: "B.",
+      ratingValue: "5",
+      reviewBody: "10/10"
     }
   ]
 };
@@ -129,6 +140,7 @@ export const coreSeoPages = [
   },
   {
     path: "/404",
+    noindex: true,
     navLabel: "Page Not Found",
     title: "Page Not Found | RM Nail Salon",
     description:
@@ -146,19 +158,19 @@ export const coreSeoPages = [
       "Meet the RM Nail Salon artists behind precise Russian manicures, hard gel overlays, extensions, nail art, and hygienic Midtown NYC nail care.",
     h1: "Meet the artists behind the RM finish",
     label: "Nail Artists",
-    image: fastImage("drive-white"),
-    imageAlt: "RM Nail Salon artist profile image for Midtown NYC nail team",
+    image: fastImage("contact-salon-interior"),
+    imageAlt: "Manicure stations inside RM Nail Salon in Midtown NYC",
     priority: "0.62",
     related: ["/russian-manicure-nyc", "/hard-gel-manicure-nyc", "/sterilization-process"]
   },
   {
     path: "/sterilization-process",
     navLabel: "Sterilization",
-    title: "Nail Salon Sterilization Process | RM Nail Salon NYC",
+    title: "Tool Hygiene & Nail Preparation | RM Nail Salon NYC",
     description:
-      "Learn how RM Nail Salon approaches clean tools, hygienic manicure prep, appointment care, and professional Russian manicure standards in Midtown NYC.",
-    h1: "A cleaner process for a more confident manicure",
-    label: "Hygiene Standards",
+      "Plan your visit with questions about reusable tools, single-use items, station preparation, and nail care at RM Nail Salon in Midtown NYC.",
+    h1: "Tool hygiene and preparation: what to know",
+    label: "Before Your Visit",
     image: fastImage("work-reel-process"),
     imageAlt: "RM Nail Salon manicure process with professional nail tools",
     priority: "0.64",
@@ -699,16 +711,34 @@ export const blogArticlePages = [
     category: "Russian Manicure",
     author: "RM Nail Salon Editorial Team",
     datePublished: "2026-06-27",
-    introTitle: "A regular manicure refreshes the nail. A Russian manicure refines the entire nail frame.",
-    intro:
-      "Clients search for Russian manicures because they want a closer cuticle line, neater shaping, and a manicure that still looks intentional weeks later. At RM Nail Salon in Midtown NYC, the service is built around dry manicure preparation and controlled detail work.",
+    introTitle: "Compare the preparation separately from the finish.",
+    intro: "Russian manicure describes a preparation approach; regular polish, gel polish, and structured gel describe different finishes. A photograph alone will not tell you which service was used. Decide whether you want tidy natural nails, color, added support, or extra length before comparing appointment names.",
     excerpt:
       "Understand how Russian manicure prep differs from a regular manicure before booking in Midtown NYC.",
     sections: [
-      ["Prep style", "A regular manicure often softens the cuticle with water and trims the visible edge. Russian manicure is usually dry and uses detailed e-file refinement to clean the nail fold more precisely."],
-      ["Final look", "Russian manicure creates a cleaner polish edge, especially in close-up photos. The result can look more editorial because the cuticle line and nail shape are treated as part of the design."],
-      ["Who should choose it", "Choose Russian manicure if you want a highly polished, long-wearing finish. Choose regular care if you prefer a faster appointment or very minimal cuticle work."]
+      [
+        "What changes during preparation",
+        "A conventional manicure may include a soak and hand-tool preparation. A Russian manicure is usually performed without soaking and can involve an electric file. The label does not guarantee a particular result or make aggressive cuticle removal appropriate. Ask what preparation is included and tell the technician how much cuticle work you are comfortable with."
+      ],
+      [
+        "Choose a finish that matches your plans",
+        "No-polish care is an option when you want shaping without a gel coating. Regular polish is a color finish rather than a structural overlay. Hard gel adds a separate product structure. If your reference photo has extra length, ask about extensions rather than assuming any manicure can create that shape on your existing nails."
+      ],
+      [
+        "Compare the complete appointment",
+        "At RM, the natural manicure and hard-gel manicure are separate menu choices with different appointment lengths. Check the current menu and Booksy availability, and mention existing product, removal, repair, or nail art. Comparing only the headline price can miss extras needed to achieve your reference."
+      ],
+      [
+        "A closer polish edge is not the only priority",
+        "The American Academy of Dermatology advises against cutting or forcefully pushing back cuticles. A careful consultation should respect that protective skin, not promise the deepest possible removal. Say immediately if a service hurts; a premium result should not depend on tolerating pain."
+      ],
+      [
+        "Before visiting Midtown",
+        "Bring a reference photo and know the name of your existing product if possible. Decide whether maintaining your current length matters more than copying a particular image. All RM appointments take place at 875 3rd Ave, Concourse Level; choose the service on Booksy before planning your travel."
+      ]
     ],
+    sources: [["AAD: manicure and pedicure safety","https://www.aad.org/public/everyday-care/nail-care-secrets/basics/pedicures/manicure-pedicure-safety"]],
+    dateModified: "2026-09-06",
     related: ["/russian-manicure-nyc", "/hard-gel-manicure-nyc", "/sterilization-process"],
     priority: "0.58"
   },
@@ -727,16 +757,34 @@ export const blogArticlePages = [
     category: "Hard Gel",
     author: "RM Nail Salon Editorial Team",
     datePublished: "2026-06-27",
-    introTitle: "Hard gel is a structure service, not just a color choice.",
-    intro:
-      "For many RM clients, hard gel is chosen because it reinforces the natural nail while preserving a slim, refined profile. Most clients plan maintenance around natural nail growth rather than waiting for the manicure to fail.",
+    introTitle: "Plan maintenance, not a maximum wear record.",
+    intro: "RM's public Booksy description gives a three-to-four-week wear expectation for its hard-gel manicure. Treat that as an estimate rather than a guarantee or a reason to ignore lifting. Your nails continue growing, so a set can need attention even when the color still looks glossy.",
     excerpt:
       "A practical hard gel guide for clients comparing overlay, fill-in, and long-wear manicure options.",
     sections: [
-      ["Typical wear", "Hard gel often looks fresh for several weeks when the nail is properly prepared and the structure is balanced for the client."],
-      ["Fill-in timing", "A fill-in is usually booked when growth becomes visible or the apex needs to be rebalanced. Waiting too long can make the nail feel heavy or more vulnerable."],
-      ["What affects longevity", "Cuticle prep, nail oil habits, daily work with water, picking, and nail length all affect wear. The strongest result comes from precise prep and realistic maintenance."]
+      [
+        "What the estimate does and does not mean",
+        "Wear time describes how long a result may remain presentable; it does not mean every nail should be left untouched for the same interval. Ask the technician for a return plan based on your existing product, length, growth, and appointment goals. Arrange an earlier assessment if something changes."
+      ],
+      [
+        "An overlay and a fill-in are different appointments",
+        "An overlay adds structure over your current nails. A fill-in or correction maintains existing product and addresses growth and shape. Do not choose a correction solely because it is listed at a different price: tell the salon what you are wearing and whether it was applied elsewhere."
+      ],
+      [
+        "Plan around the way you use your hands",
+        "Tell your artist about keyboard work, cleaning, sports, and whether you prefer short or long nails. Think about the period between visits as part of the design choice. A shape you can comfortably maintain is more useful than a length chosen only for a photograph."
+      ],
+      [
+        "Do not turn removal into a home experiment",
+        "The AAD warns that artificial-nail application and removal can damage natural nails. Ask which product was used and how it should be removed; do not assume all gels dissolve the same way. Arrange professional advice when a set needs correction instead of peeling it off."
+      ],
+      [
+        "Book the right next step",
+        "Keep a photo of the finished set and note when any problem first appeared. That gives the salon more useful context than a general statement that gel did not last. For current prices and appointment lengths, compare the hard-gel and fill-in services, then choose an available time on Booksy."
+      ]
     ],
+    sources: [["RM booking menu","https://booksy.com/en-us/1762849_rm-nail-salon-midtown-nyc-russian-manicure_nail-salon_30067_new-york-city"],["AAD: artificial nails and nail damage","https://www.aad.org/public/everyday-care/nail-care-secrets/basics/pedicures/reduce-artificial-nail-damage"]],
+    dateModified: "2026-09-06",
     related: ["/hard-gel-manicure-nyc", "/builder-gel-nyc", "/blog/gel-lifting-reasons"],
     priority: "0.58"
   },
@@ -755,16 +803,34 @@ export const blogArticlePages = [
     category: "Safety",
     author: "RM Nail Salon Editorial Team",
     datePublished: "2026-06-27",
-    introTitle: "The technique is only as good as the professional performing it.",
-    intro:
-      "Russian manicure work requires precision around the cuticle area. Clients should look for a salon that values hygiene, controlled technique, and a service pace that does not feel rushed.",
+    introTitle: "No manicure technique is automatically risk-free.",
+    intro: "A precise-looking manicure is not proof of a safe process. The condition of your nails and surrounding skin, the products used, and how the appointment is performed all matter. This guide is general information, not a medical assessment or a guarantee that any technique suits everyone.",
     excerpt:
       "What to know about Russian manicure safety, tools, and professional hygiene before booking.",
     sections: [
-      ["Training matters", "The service should be performed by a technician who understands cuticle anatomy, e-file control, and when to keep the work conservative."],
-      ["Clean tools matter", "Hygienic processing and clean appointment setup are part of the experience, especially for detailed cuticle services."],
-      ["Client comfort matters", "A premium appointment should never feel aggressive. Tell your technician if you feel discomfort so the service can be adjusted immediately."]
+      [
+        "Protect the skin around the nail",
+        "Cuticles are protective tissue. The AAD recommends avoiding cutting or forcefully pushing them back. Ask for conservative preparation and discuss your comfort with the technician; clean-looking edges do not justify injury. Stop the service if you experience pain or burning."
+      ],
+      [
+        "Ask about the tools and the setup",
+        "Before the appointment, ask how reusable instruments are prepared between clients and which items are single-use. Ask to see the artist's applicable license if you want to verify it. A photograph, a sealed-looking pouch, or the word 'sterile' alone does not explain a salon's complete process."
+      ],
+      [
+        "Tell the salon about previous product reactions",
+        "The FDA notes that nail products can cause allergic reactions. Give the salon the product name if you have reacted before, and speak with a healthcare professional about a suspected allergy. Do not treat a different marketing label as proof that another gel will be suitable."
+      ],
+      [
+        "When to postpone cosmetic work",
+        "If a nail or the surrounding skin is painful, swollen, injured, or showing an unexplained change, seek appropriate medical advice before covering it with product. A salon visit is not a substitute for diagnosis. You can contact RM about rescheduling or choosing a non-product appointment after receiving advice."
+      ],
+      [
+        "Make the consultation useful",
+        "Explain your current product, recent removal, and any sensitivity before work starts. You can ask questions or decline a step. For appointment questions, contact the Midtown studio directly; for health concerns, contact a qualified healthcare professional."
+      ]
     ],
+    sources: [["AAD: manicure and pedicure safety","https://www.aad.org/public/everyday-care/nail-care-secrets/basics/pedicures/manicure-pedicure-safety"],["FDA: nail care products","https://www.fda.gov/cosmetics/cosmetic-products/nail-care-products"]],
+    dateModified: "2026-09-06",
     related: ["/sterilization-process", "/russian-manicure-nyc", "/faq"],
     priority: "0.58"
   },
@@ -783,16 +849,34 @@ export const blogArticlePages = [
     category: "Technique",
     author: "RM Nail Salon Editorial Team",
     datePublished: "2026-06-27",
-    introTitle: "No soaking does not mean less care.",
-    intro:
-      "Dry manicure work is intentionally controlled. Without water swelling the nail plate, the technician can prepare the nail and cuticle area with more visual accuracy before polish or gel is applied.",
+    introTitle: "Dry describes the preparation, not the finished coating.",
+    intro: "A dry manicure does not include a water soak as its preparation step. It can finish with bare nails, regular polish, or a gel service. Russian manicure commonly uses a dry approach, but the two phrases do not tell you every tool, product, or technique a salon will use.",
     excerpt:
       "Why dry manicure prep is central to the clean, long-lasting Russian manicure look.",
     sections: [
-      ["Why dry prep is used", "Dry prep keeps the nail surface more stable before product application and supports a neat polish edge."],
-      ["How it feels", "A good dry manicure should feel precise, not harsh. The service focuses on controlled refinement rather than force."],
-      ["When it pairs best", "Dry prep pairs beautifully with hard gel, gel polish, French, chrome, and clean natural finishes."]
+      [
+        "Start by separating three decisions",
+        "Preparation concerns shaping and the area around the nail. The coating may be polish or a structured product. Length may remain natural or involve extensions. Asking about these separately helps you book the service you actually want instead of choosing only from a trend name."
+      ],
+      [
+        "What to discuss before work begins",
+        "Let the artist know whether you currently have gel, acrylic, dip, or extensions. If you do not know, explain where and when it was applied and show a photo. Removal, a broken nail, or a design request can change the appointment; a dry manicure label does not automatically include every extra."
+      ],
+      [
+        "Dry does not mean more aggressive",
+        "Skipping a soak is not a reason to remove more skin or file the natural nail heavily. The AAD notes that artificial-nail preparation can weaken nails. Discuss recent thinning or damage and avoid choosing extra product simply to hide a problem that needs assessment."
+      ],
+      [
+        "Choose a useful reference photo",
+        "Look for a photo with the nail length and finish you would like, then ask whether that look fits your natural nails. A natural glossy finish, an opaque gel color, and a sculpted extension can look similar in a close crop while requiring different services."
+      ],
+      [
+        "Planning an RM appointment",
+        "Compare the natural Russian manicure with the hard-gel option in the service menu. Book real availability on Booksy and mention removal or artwork before your visit. For a first appointment, bring your reference and leave enough time for the full service at our Concourse Level studio."
+      ]
     ],
+    sources: [["AAD: artificial nails and nail damage","https://www.aad.org/public/everyday-care/nail-care-secrets/basics/pedicures/reduce-artificial-nail-damage"]],
+    dateModified: "2026-09-06",
     related: ["/russian-manicure-nyc", "/gel-manicure-midtown-nyc", "/blog/russian-manicure-vs-regular-manicure"],
     priority: "0.56"
   },
@@ -811,16 +895,34 @@ export const blogArticlePages = [
     category: "Builder Gel",
     author: "RM Nail Salon Editorial Team",
     datePublished: "2026-06-27",
-    introTitle: "Structure is personal. The manicure should be built around your nails.",
-    intro:
-      "Clients often compare hard gel, builder gel, and BIAB-style services when they want more strength than regular gel. RM focuses on choosing a structure that looks slim, balanced, and appropriate for the natural nail.",
+    introTitle: "Check the exact product, not just the category name.",
+    intro: "Hard gel, builder gel, and BIAB are not interchangeable labels. Builder gel describes a broad product category; BIAB is The GelBottle's branded range. The specific formula determines its intended use and removal method. RM's published hard-gel service does not by itself confirm availability of a particular BIAB product.",
     excerpt:
       "A simple guide to hard gel and BIAB-style builder gel before choosing a manicure service.",
     sections: [
-      ["Hard gel", "Hard gel is often chosen for stronger structure, overlays, corrections, and extension maintenance."],
-      ["Builder gel or BIAB-style support", "Builder-style gel can be a good option for natural nail reinforcement when the client wants strength without full extensions."],
-      ["How RM chooses", "The technician considers nail condition, length, lifestyle, and desired finish before recommending the service."]
+      [
+        "There is more than one BIAB formula",
+        "The GelBottle lists both soak-off products and Hard BIAB. Its HEMA-Free BIAB guidance describes soak-off removal, while its Hard BIAB range is a hard-gel hybrid. That means 'all BIAB soaks off' is not a dependable rule. Ask for the exact product name before comparing options."
+      ],
+      [
+        "Compare your goal before comparing names",
+        "Tell the artist whether you want to maintain natural length, support a longer shape, or add extensions. Also mention how often you can return for maintenance. The appropriate appointment depends on those goals and your existing set, not simply which label is more popular online."
+      ],
+      [
+        "Understand the next appointment too",
+        "Ask whether the proposed product will be maintained with a fill-in or removed for a new application, and what that service costs. Removal methods differ between formulas. Do not use a tutorial for one product as instructions for another, or assume a stronger structure is automatically better for your nails."
+      ],
+      [
+        "What to book at RM",
+        "The service menu identifies the Russian hard-gel manicure, extensions, and fill-in options separately. If you specifically want BIAB or need maintenance on an existing BIAB set, contact the studio with its product name before booking. We do not list a branded formula as available without confirming it."
+      ],
+      [
+        "Bring a realistic comparison",
+        "A useful reference includes your current nails as well as the result you want. Ask about shape, finished thickness, total appointment time, and maintenance, not just shine. Check the final service and price on Booksy before confirming your visit."
+      ]
     ],
+    sources: [["The GelBottle: HEMA-Free BIAB removal","https://help.thegelbottle.com/support/solutions/articles/202000060645-is-it-a-soak-off-or-file-off-"],["The GelBottle: Hard BIAB","https://thegelbottle.com/hard-biab/"]],
+    dateModified: "2026-09-06",
     related: ["/hard-gel-manicure-nyc", "/builder-gel-nyc", "/gel-extensions-nyc"],
     priority: "0.56"
   },
@@ -839,16 +941,34 @@ export const blogArticlePages = [
     category: "Aftercare",
     author: "RM Nail Salon Editorial Team",
     datePublished: "2026-06-27",
-    introTitle: "Gel lifting is usually a mix of prep, product placement, and daily habits.",
-    intro:
-      "Clients come to RM for manicures that look cleaner and wear longer. Understanding why gel lifts helps you protect the result after leaving the salon.",
+    introTitle: "A lifted edge needs assessment, not a stronger top coat.",
+    intro: "Lifting describes product separating from the natural nail. The location, timing, product, and daily wear help the salon understand what happened. A photo may show a raised edge, but it cannot reliably establish the cause or rule out a nail or skin condition.",
     excerpt:
       "Common reasons gel lifts and how precise Russian manicure prep can help reduce problems.",
     sections: [
-      ["Prep problems", "Product does not wear well if the nail plate is not prepared cleanly or if cuticle residue remains near the polish edge."],
-      ["Lifestyle factors", "Frequent water exposure, picking, using nails as tools, and very long lengths can increase lifting risk."],
-      ["Maintenance timing", "Booking fill-ins before the structure grows too far out helps prevent imbalance and keeps the manicure looking intentional."]
+      [
+        "Describe what happened and when",
+        "Tell the salon which nails are affected, whether the change started near the cuticle or free edge, and how long you have worn the set. Mention an impact, recent removal, or a product change. Do not assume every problem is caused by either the technician or the client."
+      ],
+      [
+        "Preparation and product choices deserve review",
+        "The artist can assess the existing set and discuss preparation, application, length, and maintenance. Different products have different requirements. If another salon applied the set, share its product name if possible; an ordinary fill-in may not be the right appointment."
+      ],
+      [
+        "Avoid picking at the lifted area",
+        "The AAD advises against picking gel polish or trying to remove it aggressively. Contact the salon for an appropriate correction or removal appointment. Keeping a record of when the issue began is more helpful than repeatedly trying to conceal it."
+      ],
+      [
+        "Watch for more than a cosmetic change",
+        "The FDA notes that nail products can cause reactions. Pain, swelling, a rash, or an unexplained nail change deserves medical advice rather than another coating. A manicure service should not be presented as treatment for a suspected infection or allergy."
+      ],
+      [
+        "Plan a practical maintenance routine",
+        "Choose a length that fits your daily tasks, use gloves for cleaning, and discuss a return interval with your artist. Regular care does not guarantee that lifting will never occur. For RM correction questions, call or message the studio with a clear photo before choosing a Booksy appointment."
+      ]
     ],
+    sources: [["AAD: gel manicures","https://www.aad.org/public/everyday-care/nail-care-secrets/basics/pedicures/gel-manicures"],["FDA: nail care products","https://www.fda.gov/cosmetics/cosmetic-products/nail-care-products"]],
+    dateModified: "2026-09-06",
     related: ["/hard-gel-manicure-nyc", "/blog/how-long-does-hard-gel-last", "/sterilization-process"],
     priority: "0.56"
   }
@@ -1045,7 +1165,7 @@ function organizationSchema() {
     name: siteConfig.googleBusinessName,
     alternateName: siteConfig.salonName,
     url: siteConfig.siteUrl,
-    logo: absoluteImage("/favicon.svg"),
+    logo: absoluteImage("/images/rm-platinum-monogram.webp"),
     image: absoluteImage(fastImage("brand-salon-front-full")),
     sameAs: [siteConfig.instagramCleanUrl || siteConfig.instagramUrl],
     contactPoint: [
@@ -1291,7 +1411,7 @@ function articleSchema(article) {
     description: article.description,
     image: absoluteImage(article.image),
     datePublished: article.datePublished,
-    dateModified: article.datePublished,
+    dateModified: article.dateModified || article.datePublished,
     author: {
       "@type": "Organization",
       name: siteConfig.salonName,

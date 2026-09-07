@@ -25,3 +25,8 @@ export function trackBookingConversion() {
 export function trackDirectionsConversion() {
   trackConversion(directionsConversion);
 }
+
+export function trackReviewClick() {
+  if (typeof window === "undefined" || typeof window.gtag !== "function") return;
+  window.gtag("event", "review_click", { source: "Booksy", send_to: "AW-18148785181" });
+}

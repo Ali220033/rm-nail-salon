@@ -1,8 +1,64 @@
 {
-  "rewrites": [
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "routes": [
     {
-      "source": "/(.*)",
-      "destination": "/index.html"
+      "src": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "rmnailsalon.com"
+        }
+      ],
+      "status": 308,
+      "headers": {
+        "Location": "https://www.rmnailsalon.com/$1"
+      }
+    },
+    {
+      "src": "^/index(?:\\.html)?$",
+      "status": 308,
+      "headers": {
+        "Location": "/"
+      }
+    },
+    {
+      "src": "^/(.+)/index(?:\\.html)?$",
+      "status": 308,
+      "headers": {
+        "Location": "/$1"
+      }
+    },
+    {
+      "src": "^/(.+)\\.html$",
+      "status": 308,
+      "headers": {
+        "Location": "/$1"
+      }
+    },
+    {
+      "src": "^/(.+)/$",
+      "status": 308,
+      "headers": {
+        "Location": "/$1"
+      }
+    },
+    {
+      "src": "^/404$",
+      "dest": "/404.html",
+      "status": 404
+    },
+    {
+      "src": "^/(services|about|gallery|faq|reviews|contact|privacy-policy|terms|team|sterilization-process|blog|russian-manicure-nyc|hard-gel-manicure-nyc|gel-manicure-midtown-nyc|smart-pedicure-nyc|pedicure-midtown-nyc|gel-extensions-nyc|builder-gel-nyc|nail-art-nyc|russian-manicure-midtown-manhattan|russian-manicure-midtown-east|nail-salon-midtown-nyc|nail-salon-grand-central|russian-manicure-grand-central|nail-salon-rockefeller-center|nail-salon-fifth-avenue|nail-salon-bryant-park|nail-salon-sutton-place|nail-salon-murray-hill|russian-manicure-murray-hill|blog/russian-manicure-vs-regular-manicure|blog/how-long-does-hard-gel-last|blog/is-russian-manicure-safe|blog/dry-manicure-explained|blog/hard-gel-vs-biab|blog/gel-lifting-reasons)$",
+      "dest": "/$1.html",
+      "caseSensitive": true
+    },
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/.*",
+      "dest": "/404.html",
+      "status": 404
     }
   ]
 }

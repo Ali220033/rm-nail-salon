@@ -153,7 +153,7 @@ export const serviceMenu = [
         topTech: null,
         image: newRussianExtensionsImage,
         description:
-          "An advanced extension service designed to create customized length and shape in a single visit. Meticulous Russian manicure techniques are combined with a safe, flexible, long-lasting gel system to sculpt balanced, elegant nail architecture tailored to each client."
+          "An advanced extension service designed to create customized length and shape in a single visit. Meticulous Russian manicure techniques are combined with a structured gel system to sculpt balanced, elegant nail architecture tailored to each client."
       },
       {
         id: "fill-in",
@@ -176,9 +176,10 @@ export const serviceMenu = [
         id: "smart-pedicure",
         name: "Russian Smart Pedicure w/no regular polish",
         shortName: "Smart Pedicure",
-        time: "1 h 15 min",
+        time: "1 h",
         price: "$95",
         topTech: null,
+        bookingCheckedAt: "2026-09-06",
         image: newSmartPedicureNaturalImage,
         description:
           "A luxurious dry pedicure performed with professional e-file techniques to refine the nails, perfect the cuticles, and gently smooth the entire foot. Calluses and dry skin are carefully polished away with precision for a hygienic, controlled treatment. Available with regular polish or without polish for a clean, natural finish."
@@ -204,9 +205,10 @@ export const serviceMenu = [
         id: "combo-clear",
         name: "No polish Manicure + Regular/No polish Pedicure",
         shortName: "Clean Combo",
-        time: "2 hr",
-        price: "$135",
-        topTech: "$150",
+        time: "1 h 45 min",
+        price: "$150",
+        topTech: null,
+        bookingCheckedAt: "2026-09-06",
         image: comboNoPolishRegularPediImage,
         description:
           "A clean natural-care appointment for hands and feet in one visit. This combo pairs precise dry manicure work with a regular or no-polish pedicure, including careful shaping, cuticle refinement, and a smooth natural finish. Best for clients who want polished, healthy-looking nails without gel."
@@ -215,9 +217,10 @@ export const serviceMenu = [
         id: "hard-gel-smart",
         name: "Gel Manicure+Pedicure w/no polish",
         shortName: "Hard Gel Combo",
-        time: "2 hr 45 min",
-        price: "$185",
-        topTech: "$200",
+        time: "2 h 30 min",
+        price: "$200",
+        topTech: null,
+        bookingCheckedAt: "2026-09-06",
         image: comboGelNoPolishImage,
         description:
           "A complete elevated appointment pairing structured gel manicure work with smart pedicure care finished without polish on the toes. The manicure focuses on strength, balance, and a glossy refined surface, while the pedicure keeps the feet clean, smooth, and naturally groomed."
@@ -226,9 +229,10 @@ export const serviceMenu = [
         id: "hard-gel-smart-gel",
         name: "Russian Gel Manicure+Russian Smart Gel Pedicure",
         shortName: "Gel Combo",
-        time: "2 hr 45 min",
-        price: "$210",
-        topTech: "$220",
+        time: "2 h 45 min",
+        price: "$220",
+        topTech: null,
+        bookingCheckedAt: "2026-09-06",
         image: comboRussianGelSmartGelImage,
         description:
           "A high-gloss long-wear combo for clients who want a finished gel look on both hands and feet. Russian gel manicure precision is paired with Russian Smart Gel Pedicure detailing for clean cuticles, balanced shaping, smooth skin refinement, and durable color designed to stay polished for weeks."
@@ -830,7 +834,7 @@ export const faqs = [
   {
     question: "Is Russian manicure safe?",
     answer:
-      "Russian manicure should be performed by a trained specialist with careful technique and hygienic tools. RM focuses on controlled prep, clean standards, and a professional appointment pace, especially around the cuticle area where precision matters most. If your nails are damaged or sensitive, tell us before service so we can recommend the safest option."
+      "No manicure technique is risk-free. Discuss preparation, product reactions, and comfort before the service. Tell the technician if anything hurts, and seek medical advice for nail or skin concerns rather than covering them with product. Read our safety guide for sources and questions to ask."
   },
   {
     question: "What is the difference between Russian manicure and regular manicure?",
@@ -843,9 +847,9 @@ export const faqs = [
       "Hard gel maintenance is commonly booked around 3 to 4 weeks. Retention depends on nail condition, length, daily habits, and aftercare. Hard gel is a good choice for clients with weak, thin, or brittle nails because it can add structure while keeping the final look slim and glossy."
   },
   {
-    question: "Do you sterilize your tools?",
+    question: "Can I ask about tool preparation?",
     answer:
-      "RM follows a clean-service workflow: tools are disinfected and prepared between clients, the workspace is reset before each appointment, and detailed cuticle work is performed with controlled professional technique. Cleanliness is part of the luxury experience here, not a hidden back-room promise."
+      "Yes. Ask the studio how reusable instruments are processed and stored, which items are single-use, and how the station is prepared between appointments. Cleaning, disinfection, and sterilization are different processes; contact us for the details of the tools used in your service."
   },
   {
     question: "Where are you located in Midtown NYC?",
@@ -855,12 +859,12 @@ export const faqs = [
   {
     question: "How do I book an appointment?",
     answer:
-      "Use any Book Appointment button on the website to open the RM Nail Salon Booksy booking page and choose your service, date, and time. If you are deciding between two similar services, choose the closest option and the RM team can guide the final service path at the appointment."
+      "Use any Book Appointment button on the website to open the RM Nail Salon Booksy booking page and choose your service, date, and time. If you are deciding between two similar services, contact the studio before booking so enough time is reserved for the correct service."
   },
   {
     question: "Which service should I choose if my nails are weak or brittle?",
     answer:
-      "Russian Manicure with hard gel is usually the strongest choice for thin, weak, or brittle nails because it combines clean cuticle work with structured support. Japanese Manicure is better for clients who want to restore natural shine without gel, polish, or extensions."
+      "Tell the studio about thinning, breakage, or recent product removal before choosing a service. A cosmetic overlay is not a treatment for damaged nails. New or persistent nail changes should be assessed by a healthcare professional before applying another coating."
   },
   {
     question: "Can I book a natural look without gel?",

@@ -1,5 +1,8 @@
 node_modules/
 dist/
+.ssr/
+src/imageManifest.json
+public/images/responsive/
 .tools/
 *.tgz
 *.pid
