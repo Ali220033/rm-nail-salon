@@ -1106,7 +1106,7 @@ function FeaturedServicesHome({ navigate }) {
                 {active.bookLabel} <CalendarDays size={16} />
               </MagneticLink>
               <RouteLink to={active.learnMorePath} navigate={navigate} className="outline-cta">
-                Learn More <ArrowUpRight size={16} />
+                {active.shortName || active.name} details <ArrowUpRight size={16} />
               </RouteLink>
             </div>
           </div>
@@ -1443,7 +1443,7 @@ function ReviewCard({ review, compact = false }) {
           <span>{review.meta}</span>
         </div>
       </div>
-      <div className="google-stars" aria-label="5 star review">
+      <div className="google-stars" role="img" aria-label="5 star review">
         {[0, 1, 2, 3, 4].map((item) => (
           <Star key={item} size={15} fill="currentColor" />
         ))}
@@ -1954,7 +1954,7 @@ function ServicesPage({ navigate }) {
                       {service.bookLabel} <ArrowUpRight size={14} />
                     </MagneticLink>
                     <RouteLink to={service.learnMorePath} navigate={navigate} className="service-learn-link">
-                      Learn more
+                      {service.shortName || service.name} details
                     </RouteLink>
                   </div>
                 </article>
@@ -2640,7 +2640,6 @@ function GalleryGrid({ items, setSelectedGallery }) {
         <motion.button
           key={`${item.title}-${index}`}
           className={`masonry-item ${item.size} tone-${item.tone} gallery-${slug(item.title)}`}
-          aria-label={`Open ${item.title} gallery photo`}
           onClick={() => setSelectedGallery({ ...item, index })}
           initial={false}
           whileInView={{ opacity: 1, y: 0 }}
@@ -2652,7 +2651,7 @@ function GalleryGrid({ items, setSelectedGallery }) {
             <span>{item.category || "RM Gallery"}</span>
             <strong>{item.title}</strong>
             <em>{item.caption}</em>
-            <small>Book this look <ArrowUpRight size={13} /></small>
+            <small>View photo <ArrowUpRight size={13} /></small>
           </div>
         </motion.button>
       ))}

@@ -124,3 +124,18 @@ test("homepage service summaries use the shared menu values", async () => {
   }
   assert.ok(!html.includes("7 Booksy client reviews"));
 });
+
+test("review stars and gallery actions have accurate accessible labels", async () => {
+  const home = await readFile("dist/index.html", "utf8");
+  assert.ok(home.includes('class="google-stars" role="img" aria-label="5 star review"'));
+  assert.ok(!home.includes("Book this look"));
+  assert.ok(home.includes("View photo"));
+  assert.ok(!home.includes('aria-label="Open Pearl Line Detail gallery photo"'));
+});
+
+test("standalone service links describe their destination", async () => {
+  const html = await readFile("dist/services.html", "utf8");
+  const links = [...html.matchAll(/class="service-learn-link"[^>]*>(.*?)<\/a>/g)];
+  assert.ok(links.length > 0);
+  for (const [, label] of links) assert.ok(label.includes("details") && !/^Learn more$/i.test(label));
+});

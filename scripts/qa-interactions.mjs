@@ -38,7 +38,7 @@ try {
     assert.ok((await page.locator("h1").innerText()).length > 0);
     if (width === 390) assert.equal(await page.getByRole("button", { name: "Open navigation menu" }).getAttribute("aria-expanded"), "false");
     await page.goto(base + "/gallery", { waitUntil: "networkidle" });
-    await page.getByRole("button", { name: /^Open .+ gallery photo$/ }).first().click();
+    await page.getByRole("button", { name: /View photo/i }).first().click();
     const dialog = page.getByRole("dialog");
     await dialog.waitFor({ state: "visible" });
     const image = dialog.locator("img");
