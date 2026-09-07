@@ -41,11 +41,19 @@ for file, family, style, weight in [
     subsetter = subset.Subsetter(options=options)
     subsetter.populate(unicodes=retained)
     subsetter.subset(font)
-    target = root / (file + "-subset.woff2")
+    # The original display family has an OFL Reserved Font Name. Keep copyright/license records intact.
+    if family == "Playfair Display":
+        for record in font["name"].names:
+            if record.nameID in (0, 7, 8, 9, 10, 11, 12, 13, 14):
+                continue
+            value = record.toUnicode().replace("Playfair Display", "RM Editorial").replace("PlayfairDisplay", "RMEditorial")
+            record.string = value.encode(record.getEncoding())
+    output_name = "rm-editorial-" + style + "-latin" if family == "Playfair Display" else file
+    target = root / (output_name + "-subset.woff2")
     font.flavor = "woff2"
     font.save(target)
     digest = sha256(target.read_bytes()).hexdigest()[:10]
-    versioned = target.with_name(file + "-" + digest + ".woff2")
+    versioned = target.with_name(output_name + "-" + digest + ".woff2")
     target.replace(versioned)
     unicode_range = ",".join(f"U+{code:X}" for code in retained)
     css.append(f"@font-face {{ font-family: '{family}'; font-style: {style}; font-weight: {weight}; font-display: swap; src: url('/fonts/{versioned.name}') format('woff2'); unicode-range: {unicode_range}; }}")
