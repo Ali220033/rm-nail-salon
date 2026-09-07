@@ -33,7 +33,7 @@ async function visit(directory) {
       }
       candidates.push({ src: `/images/responsive/${filename}`, width });
     }
-    manifest[url] = { width: metadata.width, height: metadata.height, candidates };
+    manifest[url] = { width: metadata.width, height: metadata.height, hash, widths: candidates.map((item) => item.width) };
   }
 }
 

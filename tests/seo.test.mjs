@@ -130,6 +130,7 @@ test("review stars and gallery actions have accurate accessible labels", async (
   assert.ok(home.includes('class="google-stars" role="img" aria-label="5 star review"'));
   assert.ok(!home.includes("Book this look"));
   assert.ok(home.includes("View photo"));
+  assert.ok(!home.includes('class="masonry-caption"'));
   assert.ok(!home.includes('aria-label="Open Pearl Line Detail gallery photo"'));
 });
 

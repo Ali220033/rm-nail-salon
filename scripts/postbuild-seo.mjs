@@ -6,7 +6,8 @@ import { siteConfig } from "../src/siteConfig.js";
 import { render } from "../.ssr/entry-server.js";
 
 const dist = path.resolve("dist");
-const template = await readFile(path.join(dist, "index.html"), "utf8");
+let template = await readFile(path.join(dist, "index.html"), "utf8");
+assert.ok(template.includes('<div id="root"></div>'), "Run the client build before prerendering; never reuse an already-rendered homepage as the page template.");
 const images = JSON.parse(await readFile("src/imageManifest.json", "utf8"));
 const renderedPages = [];
 const titles = new Set();

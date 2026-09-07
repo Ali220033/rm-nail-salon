@@ -51,9 +51,11 @@ import {
   serviceLandingPages
 } from "./seoData";
 import { trackBookingConversion, trackDirectionsConversion, trackReviewClick } from "./googleAds";
-import "../public/fonts/site-fonts.css";
+import "../public/fonts/optimized-fonts.css";
 import "./styles.css";
 import { ResponsiveImage } from "./ResponsiveImage.jsx";
+import { GalleryViewer } from "./GalleryViewer.jsx";
+import { ReviewLoop } from "./ReviewLoop.jsx";
 import imageManifest from "./imageManifest.json";
 import { arrivalGuides, directionsFrom } from "./arrivalGuides.js";
 
@@ -582,7 +584,7 @@ export function App({ initialPath = "/" }) {
           <main key={route}>{page}</main>
           <Footer navigate={navigate} />
           <FloatingBookNow />
-          <GalleryModal item={selectedGallery} onClose={() => setSelectedGallery(null)} />
+          {selectedGallery && <GalleryViewer items={galleryItems} initialIndex={selectedGallery.index} onClose={() => setSelectedGallery(null)} />}
           <CookieBanner />
         </div>
       </LazyMotion>
@@ -1384,8 +1386,6 @@ function CleanProcessPreview({ navigate }) {
 }
 
 function ReviewsSection() {
-  const marqueeReviews = [...clientReviews.slice(0, 5), ...clientReviews.slice(0, 5)];
-
   return (
     <section className="reviews-section" id="reviews">
       <div className="reviews-lead">
@@ -1407,19 +1407,13 @@ function ReviewsSection() {
           Open Review Lounge <ArrowUpRight size={16} />
         </RouteLink>
       </div>
-      <div className="google-review-shell">
-        <div className="google-review-rail review-marquee" aria-label="Auto-scrolling RM client reviews">
-          {marqueeReviews.map((review, index) => (
-            <article
-              key={`${review.name}-${index}`}
-              className="google-review-card"
-              aria-hidden={index >= clientReviews.length ? true : undefined}
-            >
-              <ReviewCard review={review} compact={index > 4} />
-            </article>
-          ))}
-        </div>
-      </div>
+      <ReviewLoop>
+        {clientReviews.slice(0, 5).map((review) => (
+          <article key={review.name} className="google-review-card">
+            <ReviewCard review={review} />
+          </article>
+        ))}
+      </ReviewLoop>
     </section>
   );
 }
@@ -2640,63 +2634,17 @@ function GalleryGrid({ items, setSelectedGallery }) {
         <motion.button
           key={`${item.title}-${index}`}
           className={`masonry-item ${item.size} tone-${item.tone} gallery-${slug(item.title)}`}
-          onClick={() => setSelectedGallery({ ...item, index })}
+          aria-label={`View photo: ${item.title}`}
+          onClick={() => setSelectedGallery({ index: galleryItems.findIndex((photo) => photo.image === item.image) })}
           initial={false}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           style={{ "--image-focus": item.focal || "center" }}
         >
           <ResponsiveImage src={item.image} sizes={item.size === "wide" ? "(max-width: 819px) calc(50vw - 24px), (max-width: 1440px) 50vw, 680px" : "(max-width: 819px) calc(50vw - 24px), (max-width: 1440px) 25vw, 340px"} alt={item.alt || `${item.title} manicure gallery photo`} loading="lazy" decoding="async" />
-          <div className="masonry-caption">
-            <span>{item.category || "RM Gallery"}</span>
-            <strong>{item.title}</strong>
-            <em>{item.caption}</em>
-            <small>View photo <ArrowUpRight size={13} /></small>
-          </div>
         </motion.button>
       ))}
     </div>
-  );
-}
-
-function GalleryModal({ item, onClose }) {
-  useEffect(() => {
-    if (!item) return undefined;
-    const onKeyDown = (event) => {
-      if (event.key === "Escape") onClose();
-    };
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, [item, onClose]);
-
-  return (
-    <AnimatePresence>
-      {item && (
-        <motion.div
-          className="modal-backdrop"
-          role="dialog"
-          aria-modal="true"
-          aria-label={`${item.title} gallery preview`}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          onClick={onClose}
-        >
-          <motion.div
-            className={`modal-card tone-${item.tone}`}
-            initial={{ scale: 0.94, opacity: 0, y: 24 }}
-            animate={{ scale: 1, opacity: 1, y: 0 }}
-            exit={{ scale: 0.94, opacity: 0, y: 24 }}
-            onClick={(event) => event.stopPropagation()}
-          >
-            <ResponsiveImage src={item.image} fullSize alt={`${item.title} manicure close-up`} decoding="async" />
-            <button className="modal-close" onClick={onClose} aria-label="Close gallery preview">
-              <X size={19} />
-            </button>
-          </motion.div>
-        </motion.div>
-      )}
-    </AnimatePresence>
   );
 }
 

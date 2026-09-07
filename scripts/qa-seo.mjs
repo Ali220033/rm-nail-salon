@@ -4,7 +4,7 @@ import { chromium } from "playwright-core";
 import { seoPages } from "../src/seoData.js";
 
 const base = process.env.QA_BASE_URL || "http://127.0.0.1:5188";
-const output = "output/seo-implementation-20260906";
+const output = process.env.QA_OUTPUT || "output/seo-implementation-20260906";
 await mkdir(output, { recursive: true });
 const browser = await chromium.launch({ channel: "msedge", headless: true });
 const results = [];

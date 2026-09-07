@@ -41,7 +41,7 @@ try {
     await page.getByRole("button", { name: /View photo/i }).first().click();
     const dialog = page.getByRole("dialog");
     await dialog.waitFor({ state: "visible" });
-    const image = dialog.locator("img");
+    const image = dialog.locator('.gallery-viewer__slide[aria-hidden="false"] img');
     await image.evaluate((element) => element.decode());
     assert.ok(!(await image.getAttribute("src")).includes("/responsive/"), "Gallery no longer opens original photo");
     await page.keyboard.press("Escape");

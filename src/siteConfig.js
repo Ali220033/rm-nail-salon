@@ -314,7 +314,7 @@ export const serviceMenu = [
         name: "Classic French",
         shortName: "French",
         time: "15 min",
-        price: "$25",
+        price: "$25+",
         topTech: null,
         image: newClassicFrenchImage,
         description:
@@ -325,7 +325,7 @@ export const serviceMenu = [
         name: "Cat eye",
         shortName: "Cat Eye",
         time: "15 min",
-        price: "$20",
+        price: "$20+",
         topTech: null,
         image: newCatEyeImage,
         description:
@@ -336,7 +336,7 @@ export const serviceMenu = [
         name: "Chrome design",
         shortName: "Chrome",
         time: "15 min",
-        price: "$20",
+        price: "$20+",
         topTech: null,
         image: newChromeDesignImage,
         description:
@@ -347,7 +347,7 @@ export const serviceMenu = [
         name: "Ombre design",
         shortName: "Ombre",
         time: "20 min",
-        price: "$30",
+        price: "$30+",
         topTech: null,
         image: newOmbreDesignImage,
         description:
@@ -357,8 +357,8 @@ export const serviceMenu = [
         id: "nail-design",
         name: "Nail Designs",
         shortName: "Nail Designs",
-        time: "Varies",
-        price: "Individual",
+        time: "20 min",
+        price: "$25+",
         topTech: null,
         image: newNailDesignsImage,
         description:
@@ -368,7 +368,7 @@ export const serviceMenu = [
         id: "regular-polish",
         name: "Regular Polish",
         shortName: "Polish",
-        time: "15 min",
+        time: "20 min",
         price: "$15+",
         topTech: null,
         image: regularPolishImage,
@@ -419,7 +419,7 @@ export const serviceMenu = [
         name: "Gel removal",
         shortName: "Gel Removal",
         time: "15 min",
-        price: "$25",
+        price: "Varies",
         topTech: null,
         image: gelRemovalNewImage,
         description:
@@ -429,8 +429,8 @@ export const serviceMenu = [
         id: "acrylic-removal",
         name: "Acrylic / Dip removal",
         shortName: "Acrylic Removal",
-        time: "25 min",
-        price: "$25",
+        time: "20 min",
+        price: "$25+",
         topTech: null,
         image: acrylicRemovalImage,
         description:
@@ -441,7 +441,7 @@ export const serviceMenu = [
         name: "One Nail Repair",
         shortName: "Nail Repair",
         time: "10 min",
-        price: "$5+",
+        price: "$10+",
         topTech: null,
         image: oneNailRepairImage,
         description:
@@ -451,8 +451,8 @@ export const serviceMenu = [
         id: "hooked-nail-fix",
         name: "Hooked nail fix",
         shortName: "Hooked Nail Fix",
-        time: "5 min",
-        price: "$3",
+        time: "10 min",
+        price: "Varies",
         topTech: null,
         image: hookedNailFixImage,
         description:
