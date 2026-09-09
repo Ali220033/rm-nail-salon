@@ -3,6 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      // Set this before the page paints: React's route effect runs too late to
+      // prevent a restored scroll position flashing during a slow mobile load.
+      if ("scrollRestoration" in window.history) {
+        window.history.scrollRestoration = "manual";
+      }
+      window.addEventListener("pageshow", function (event) {
+        // A cached page resumes without remounting React. Keep explicit section
+        // links intact, but reopen ordinary pages at their complete header.
+        if (event.persisted && !window.location.hash) {
+          window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+        }
+      });
+    </script>
     <meta
       name="description"
       content="RM Nail Salon Midtown NYC Russian Manicure offers luxury Russian manicures, hard gel, gel manicures, pedicures, and nail art in Midtown Manhattan. Book your appointment today."
