@@ -7,7 +7,7 @@ const scenes = [
   ["gallery", ".masonry-item"],
   ["heading", ".section-intro, .catalog-group-heading, .work-reel-copy, .about-lead, .about-body, .seo-lead-block, .geo-story-main, .sterile-manifesto, .booking-copy"],
   ["step", ".proof-block, .values-flow > article, .seo-proof-grid > article, .decision-columns > article, .related-service-card, .blog-card, .journal-micro-card, .visit-info-card, .sterile-timeline > article, .artist-card, .team-intro-card, .geo-path-card, .luxe-accordion > article"],
-  ["image", ".reel-video-frame, .salon-preview-card, .about-luxury-collage > img, .service-image-story > article, .geo-arrival-board > img, .contact-concierge-card"]
+  ["image", ".salon-preview-card, .about-luxury-collage > img, .service-image-story > article, .geo-arrival-board > img, .contact-concierge-card"]
 ];
 
 export function useScrollChoreography(route) {

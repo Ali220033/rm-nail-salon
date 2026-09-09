@@ -8,22 +8,39 @@ export const reviewSummary = {
   sourceUrl: siteConfig.bookingUrl,
   ratingValue: "5.0",
   reviewCount: "8",
-  checkedAt: "2026-09-06",
+  checkedAt: "2026-09-08",
   reviews: [
     {
       author: "Lauren",
       ratingValue: "5",
-      reviewBody: "Meticulous, clean and careful work."
+      avatar: "/images/reviews/booksy-lauren.jpeg",
+      isSummary: true,
+      reviewBody: "Lauren highlights Anastasia's careful technique and attention to cleanliness. She describes RM as her favorite Russian manicure studio in Midtown and says she plans to return."
     },
     {
-      author: "Jacqueline",
+      author: "Aryuna",
       ratingValue: "5",
-      reviewBody: "Great manicure and service"
+      isSummary: true,
+      reviewBody: "Aryuna praises the precise nail shaping, clean work, and stylish setting. Her review also highlights the atmosphere and talented technicians, with plans to book another visit."
     },
     {
-      author: "Nikki",
+      author: "Alexa",
       ratingValue: "5",
-      reviewBody: "Great service! Love my nails"
+      isSummary: true,
+      reviewBody: "Alexa loved the natural nude finish, balanced shape, and exceptionally tidy cuticle work. She describes it as one of her cleanest NYC manicures and plans to return."
+    },
+    {
+      author: "Eldor",
+      ratingValue: "5",
+      isSummary: true,
+      reviewBody: "Eldor praises the detailed work and thin, natural-looking result. The review also highlights the clean, attractive studio and welcoming, professional team, calling it a welcome addition to Midtown."
+    },
+    {
+      author: "B.",
+      ratingValue: "5",
+      avatar: "/images/reviews/booksy-b.jpeg",
+      isSummary: true,
+      reviewBody: "B. gave RM a perfect 10/10 after a hard gel Russian manicure appointment. The confirmed Booksy review awards five stars to the experience."
     },
     {
       author: "Emily",
@@ -31,9 +48,15 @@ export const reviewSummary = {
       reviewBody: "The manicures here always come out really nice!"
     },
     {
-      author: "B.",
+      author: "Nikki",
       ratingValue: "5",
-      reviewBody: "10/10"
+      reviewBody: "Great service! Love my nails"
+    },
+    {
+      author: "Jacqueline",
+      ratingValue: "5",
+      avatar: "/images/reviews/booksy-jacqueline.jpeg",
+      reviewBody: "Great manicure and service"
     }
   ]
 };

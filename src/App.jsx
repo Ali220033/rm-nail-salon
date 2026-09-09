@@ -86,11 +86,13 @@ const routes = [
 const reviewUrl = siteConfig.bookingUrl;
 const clientReviews = reviewSummary.reviews.map((review, index) => ({
   name: review.author,
-  meta: "Booksy client",
+  meta: "Confirmed Booksy client",
+  avatar: review.avatar,
+  isSummary: review.isSummary,
   time: "",
   source: "Read on Booksy",
   quote: review.reviewBody,
-  workImage: `/images/reviews/review-work-${String(index + 4).padStart(2, "0")}.webp`
+  workImage: `/images/reviews/review-work-${String((index + 3) % 10 + 1).padStart(2, "0")}.webp`
 }));
 
 const prefersReducedScroll = () =>
@@ -1131,6 +1133,7 @@ function WorkReel() {
 
     let isInView = false;
     let hasLoaded = false;
+    let isApproaching = false;
 
     setVideoReady(false);
     video.muted = true;
@@ -1140,12 +1143,16 @@ function WorkReel() {
     video.setAttribute("playsinline", "");
     video.setAttribute("webkit-playsinline", "");
 
+    const prepareVideo = () => {
+      if (hasLoaded) return;
+      hasLoaded = true;
+      video.preload = "auto";
+      video.load();
+    };
+
     const playVideo = () => {
       if (document.hidden || !isInView) return;
-      if (!hasLoaded) {
-        video.load();
-        hasLoaded = true;
-      }
+      prepareVideo();
       const playback = video.play();
       if (playback?.catch) playback.catch(() => {});
     };
@@ -1167,9 +1174,21 @@ function WorkReel() {
           pauseVideo();
         }
       },
-      { rootMargin: "0px 0px -12% 0px", threshold: 0.35 }
+      { rootMargin: "0px", threshold: 0 }
     );
 
+    // Fetch only as visitors approach this lower-page section, giving the
+    // browser time to buffer without competing with the initial hero load.
+    const warmVideo = () => {
+      if (!isApproaching || window.scrollY === 0) return;
+      prepareVideo();
+      warmup.disconnect();
+    };
+    const warmup = new IntersectionObserver(([entry]) => {
+      isApproaching = entry.isIntersecting;
+      warmVideo();
+    }, { rootMargin: `${Math.max(1600, Math.min(innerHeight * 3, 2600))}px 0px` });
+    warmup.observe(video);
     observer.observe(video);
 
     const handleVisibility = () => {
@@ -1179,23 +1198,28 @@ function WorkReel() {
         playVideo();
       }
     };
+    const handleScroll = () => {
+      warmVideo();
+      playVideo();
+    };
 
     document.addEventListener("visibilitychange", handleVisibility);
     video.addEventListener("loadeddata", revealVideo);
     video.addEventListener("canplay", playVideo);
     video.addEventListener("canplay", revealVideo);
-    window.addEventListener("scroll", playVideo, { passive: true });
+    window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("touchstart", playVideo, { passive: true });
     window.addEventListener("focus", playVideo);
 
     return () => {
       observer.disconnect();
+      warmup.disconnect();
       pauseVideo();
       document.removeEventListener("visibilitychange", handleVisibility);
       video.removeEventListener("loadeddata", revealVideo);
       video.removeEventListener("canplay", playVideo);
       video.removeEventListener("canplay", revealVideo);
-      window.removeEventListener("scroll", playVideo);
+      window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("touchstart", playVideo);
       window.removeEventListener("focus", playVideo);
     };
@@ -1431,10 +1455,15 @@ function simpleNavigate(to) {
 }
 
 function ReviewCard({ review, compact = false }) {
+  const [photoFailed, setPhotoFailed] = useState(false);
   return (
     <>
       <div className="google-review-head">
-        <span className="review-initial" aria-hidden="true">{review.name.slice(0, 1)}</span>
+        <span className="review-avatar">
+          {review.avatar && !photoFailed ? (
+            <img src={review.avatar} alt={`${review.name}'s Booksy profile photo`} width="56" height="56" loading="lazy" decoding="async" onError={() => setPhotoFailed(true)} />
+          ) : <span className="review-initial" aria-hidden="true">{review.name.slice(0, 1)}</span>}
+        </span>
         <div>
           <strong>{review.name}</strong>
           <span>{review.meta}</span>
@@ -1444,7 +1473,7 @@ function ReviewCard({ review, compact = false }) {
         {[0, 1, 2, 3, 4].map((item) => (
           <Star key={item} size={15} fill="currentColor" />
         ))}
-        <span>{review.time}</span>
+        <span>{review.isSummary ? "Review summary" : review.time}</span>
       </div>
       <p>{review.quote}</p>
       <em>
@@ -1474,7 +1503,7 @@ function ReviewsPage({ navigate }) {
             <span>RM Reputation</span>
             <strong>5.0</strong>
             <p>
-              {reviewSummary.ratingValue} from {reviewSummary.reviewCount} reviews on Booksy. Read selected client excerpts below or visit Booksy for the full reviews.
+              {reviewSummary.ratingValue} from {reviewSummary.reviewCount} reviews on Booksy. Read client review summaries below or visit Booksy for the original reviews.
             </p>
             <div>
               <MagneticLink href={reviewUrl} className="outline-cta" onClick={trackReviewClick}>
@@ -1506,7 +1535,7 @@ function ReviewsPage({ navigate }) {
           </div>
         </div>
 
-        <p className="review-source-note">Booksy rating checked September 6, 2026. Gallery images illustrate RM work and are not linked to individual reviewers.</p>
+        <p className="review-source-note">Booksy rating checked September 8, 2026. Profile photos come from Booksy where available; initials appear otherwise. Gallery images illustrate RM work and are not linked to individual reviewers.</p>
         <div className="review-proof-grid">
           {moreReviews.map((review, index) => (
             <a

@@ -19,7 +19,7 @@ export function ReviewLoop({ children }) {
       const previousDuration = animation?.effect.getTiming().duration || 1;
       const progress = animation ? (animation.currentTime % previousDuration) / previousDuration : 0;
       animation?.cancel();
-      const duration = matchMedia("(max-width: 640px)").matches ? 38000 : 46000;
+      const duration = matchMedia("(max-width: 640px)").matches ? 56000 : 64000;
       animation = track.current.animate([
         { transform: "translate3d(0, 0, 0)" },
         { transform: `translate3d(-${distance}px, 0, 0)` }

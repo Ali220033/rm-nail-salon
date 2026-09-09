@@ -69,7 +69,10 @@ test("verified review excerpts and dates use one source", () => {
   assert.equal(reviewSummary.source, "Booksy");
   assert.equal(reviewSummary.sourceUrl, siteConfig.bookingUrl);
   assert.equal(reviewSummary.reviewCount, "8");
-  assert.equal(reviewSummary.checkedAt, "2026-09-06");
+  assert.equal(reviewSummary.checkedAt, "2026-09-08");
+  assert.equal(reviewSummary.reviews.length, 8);
+  assert.equal(new Set(reviewSummary.reviews.slice(0, 5).map(review => review.author)).size, 5);
+  assert.ok(reviewSummary.reviews.slice(0, 5).every(review => review.isSummary));
   assert.equal(reviewSummary.reviews.find((review) => review.author === "Nikki").reviewBody, "Great service! Love my nails");
 });
 
