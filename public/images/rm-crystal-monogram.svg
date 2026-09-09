@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 144 144" fill="none">
+  <defs>
+    <radialGradient id="crystal" cx="0" cy="0" r="1" gradientTransform="translate(43 27) rotate(61) scale(124)">
+      <stop stop-color="#66888c" stop-opacity=".48"/>
+      <stop offset=".38" stop-color="#17383d" stop-opacity=".7"/>
+      <stop offset=".72" stop-color="#071a20" stop-opacity=".88"/>
+      <stop offset="1" stop-color="#386268" stop-opacity=".6"/>
+    </radialGradient>
+    <linearGradient id="rim" x1="24" y1="15" x2="119" y2="131" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#f7fafa"/>
+      <stop offset=".22" stop-color="#b4cdd0"/>
+      <stop offset=".45" stop-color="#527980"/>
+      <stop offset=".68" stop-color="#83cdcf"/>
+      <stop offset=".86" stop-color="#e6f4f3"/>
+      <stop offset="1" stop-color="#6b9b9f"/>
+    </linearGradient>
+    <linearGradient id="platinum" x1="49" y1="32" x2="87" y2="111" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#f7fafa"/>
+      <stop offset=".28" stop-color="#dce9eb"/>
+      <stop offset=".48" stop-color="#769ca5"/>
+      <stop offset=".57" stop-color="#ecf6f6"/>
+      <stop offset=".82" stop-color="#b3cbce"/>
+      <stop offset="1" stop-color="#7eafb6"/>
+    </linearGradient>
+    <linearGradient id="edge" x1="30" y1="45" x2="113" y2="111" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#eef7f7" stop-opacity=".7"/>
+      <stop offset=".5" stop-color="#eef7f7" stop-opacity=".08"/>
+      <stop offset="1" stop-color="#64e0da" stop-opacity=".65"/>
+    </linearGradient>
+    <!-- Distinct, drawn letterforms: open counter on R, deep central valley on M. -->
+    <path id="r" fill-rule="evenodd" d="M26 35H46C62 35 69 42 69 53C69 64 61 70 51 72C57 78 61 87 67 97C69 100 71 102 74 103V105H64C57 98 54 86 47 78C44 74 41 72 37 72V97C37 102 40 103 45 103V105H23V103C28 103 30 101 30 97V43C30 39 29 37 26 37V35ZM37 39V68H44C56 68 61 62 61 53C61 44 56 39 45 39H37Z"/>
+    <path id="m" d="M73 35H84L98 78L112 35H122V37C118 37 117 39 117 44V96C117 101 119 103 123 103V105H102V103C107 103 110 101 110 96V47L97 90H94L80 48V95C80 101 82 103 87 103V105H73V103C77 102 77 99 77 95V45C77 40 76 38 73 37V35Z"/>
+  </defs>
+  <circle cx="72" cy="72" r="65" fill="url(#crystal)" stroke="url(#rim)" stroke-width="2.4"/>
+  <!-- A single rim with a quiet reflected highlight, without a glow filter. -->
+  <path d="M21 43A59 59 0 0 1 88 15" stroke="#f7fafa" stroke-opacity=".52" stroke-width="1.1" stroke-linecap="round"/>
+  <path d="M112 116A59 59 0 0 1 53 129" stroke="#64e0da" stroke-opacity=".38" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M19 66C24 32 53 15 87 19C53 23 33 38 19 66Z" fill="#e4f5f5" fill-opacity=".07"/>
+  <g transform="translate(-1 0)">
+    <use href="#r" transform="translate(.7 1.1)" fill="#496f78" fill-opacity=".8"/>
+    <use href="#m" transform="translate(.7 1.1)" fill="#496f78" fill-opacity=".8"/>
+    <use href="#r" fill="url(#platinum)"/>
+    <use href="#m" fill="url(#platinum)"/>
+    <use href="#r" stroke="url(#edge)" stroke-width=".65"/>
+    <use href="#m" stroke="url(#edge)" stroke-width=".65"/>
+    <path d="M32 43V96M39 38H45C56 38 63 43 64 50M113 43V96" stroke="#f7fafa" stroke-opacity=".4" stroke-width=".8"/>
+  </g>
+</svg>

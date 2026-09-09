@@ -674,7 +674,7 @@ function Nav({ compact, route, navigate }) {
     <header className={compact ? "nav nav-compact" : "nav"}>
       <div className="nav-top">
         <RouteLink to="/" navigate={navigate} className="nav-logo">
-          <ResponsiveImage className="nav-monogram" src="/images/rm-glass-emblem.png" alt="" width="64" height="64" sizes="64px" loading="eager" />
+          <ResponsiveImage className="nav-monogram" src="/images/rm-crystal-monogram.svg" alt="" width="64" height="64" sizes="64px" loading="eager" />
           <div className="nav-logo-text">
             <em>RM NAIL SALON</em>
             <small><span>MIDTOWN NYC</span>{" "}<span>RUSSIAN MANICURE</span></small>

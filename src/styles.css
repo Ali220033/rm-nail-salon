@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .booking-direct .booking-copy { max-width: 760px; margin-inline: auto; text-align: center; }
-.booking-direct .booking-actions { justify-content: center; }
+.booking-direct .booking-actions { justify-content: center; margin-bottom: 0; }
 .booking-direct .booking-copy h2 { font-size: 3rem; }
 .booking-direct .booking-address { font-size: 0.85rem; }
 .review-initial { align-items: center; border: 1px solid var(--aqua); border-radius: 50%; color: var(--aqua); display: inline-flex; flex: 0 0 52px; font-family: "Playfair Display", serif; font-size: 1.5rem; height: 52px; justify-content: center; }
@@ -8583,4 +8583,30 @@ body:has(.cookie-banner) .floating-book-circle {
 .google-stars span {
   font-size: 0.68rem;
   font-weight: 500;
+}
+
+/* Section boundaries: compact breathing room without changing cards or motion. */
+main :is(
+  .signature-section, .social-proof-strip, .luxury-services-section,
+  .before-after-section, .process-timeline-section, .artist-section,
+  .reviews-section, .journal-section, .home-location-section, .home-faq-section,
+  .blog-index-section, .article-layout, .team-page-section, .sterile-section,
+  .brand-ribbon-section, .featured-service-section, .work-reel-section,
+  .clean-process-section, .gallery-editorial.preview, .gallery-editorial.full, .proof-editorial,
+  .booking-editorial, .contact-editorial, .catalog-section, .about-story,
+  .faq-section, .seo-landing-section, .invitation-section
+) {
+  padding-block: clamp(1.75rem, 3.5vw, 3rem);
+}
+main :is(.values-flow, .review-lounge-section) {
+  padding-bottom: clamp(1.75rem, 3.5vw, 3rem);
+}
+@media (min-width: 820px) {
+  main :is(.values-flow, .review-lounge-section) { padding-top: 3rem; }
+}
+@media (max-width: 819px) {
+  /* The footer already owns the bottom safe area; main needs no empty spacer. */
+  main { padding-bottom: 0; }
+  .featured-service-list > .outline-cta,
+  .section-action { margin-bottom: 0; }
 }

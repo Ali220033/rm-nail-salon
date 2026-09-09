@@ -19,9 +19,9 @@ export const siteConfig = {
   processVideoWebm: "/videos/rm-manicure-session.webm",
   processVideoPoster: "/images/fast/work-reel-process.webp",
   mapUrl:
-    "https://www.google.com/maps/search/?api=1&query=875%203rd%20Ave%20Concourse%20Level%20New%20York%20NY%2010022",
+    "https://www.google.com/maps?cid=1853536134617682245",
   mapEmbedUrl:
-    "https://maps.google.com/maps?q=875%203rd%20Ave%20Concourse%20Level%2C%20New%20York%2C%20NY%2010022&t=m&z=14&output=embed"
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.2119644636655!2d-73.969416!3d40.7573625!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259da315ca5b3%3A0x19b9154b423cd145!2sRM%20Nail%20Salon%20Midtown%20NYC%20Russian%20Manicure!5e0!3m2!1sen!2sus!4v1788975838077!5m2!1sen!2sus"
 };
 
 export const fastImage = (name) => `/images/fast/${name}.webp`;

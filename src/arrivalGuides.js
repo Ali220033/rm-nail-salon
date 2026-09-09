@@ -14,6 +14,6 @@ export const arrivalGuides = {
 
 export function directionsFrom(area) {
   const url = new URL("https://www.google.com/maps/dir/");
-  url.search = new URLSearchParams({ api: "1", origin: `${area}, Manhattan, New York`, destination: siteConfig.address, travelmode: "walking" });
+  url.search = new URLSearchParams({ api: "1", origin: `${area}, Manhattan, New York`, destination: `${siteConfig.googleBusinessName}, ${siteConfig.address}`, travelmode: "walking" });
   return url.toString();
 }

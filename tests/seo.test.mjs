@@ -90,10 +90,12 @@ test("review reading is not an advertising conversion; the existing IDs remain i
   } finally { delete global.window; }
 });
 
-test("nearby directions always end at the single approved Midtown address", () => {
+test("maps and nearby directions identify RM Nail Salon at the approved Midtown address", () => {
+  assert.equal(new URL(siteConfig.mapUrl).searchParams.get("cid"), "1853536134617682245");
+  assert.ok(decodeURIComponent(siteConfig.mapEmbedUrl).includes("0x89c259da315ca5b3:0x19b9154b423cd145"));
   for (const page of geoLandingPages) {
     const url = new URL(directionsFrom(page.area));
-    assert.equal(url.searchParams.get("destination"), siteConfig.address);
+    assert.equal(url.searchParams.get("destination"), `${siteConfig.googleBusinessName}, ${siteConfig.address}`);
     assert.ok(url.searchParams.get("origin").includes(page.area));
     assert.equal(url.searchParams.get("api"), "1");
   }
