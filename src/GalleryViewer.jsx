@@ -1,6 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { ResponsiveImage } from "./ResponsiveImage.jsx";
+import imageManifest from "./imageManifest.json";
 
 export function GalleryViewer({ items, initialIndex, onClose }) {
   const [index, setIndex] = useState(Math.max(0, initialIndex));
@@ -12,9 +13,16 @@ export function GalleryViewer({ items, initialIndex, onClose }) {
 
   useLayoutEffect(() => {
     const element = track.current;
+    let width = element.clientWidth;
     const align = () => element.scrollTo({ left: activeIndex.current * element.clientWidth, behavior: "instant" });
     align();
-    const observer = new ResizeObserver(align);
+    const observer = new ResizeObserver(() => {
+      // Its initial notification must not cancel a swipe or arrow action that
+      // started after the first alignment while the photograph was loading.
+      if (element.clientWidth === width) return;
+      width = element.clientWidth;
+      align();
+    });
     observer.observe(element);
     return () => observer.disconnect();
   }, []);
@@ -73,7 +81,8 @@ export function GalleryViewer({ items, initialIndex, onClose }) {
         {items.map((item, position) => (
           <div key={`${item.image}-${position}`} className="gallery-viewer__slide" aria-hidden={position !== index}>
             {Math.abs(position - index) <= 2 && <ResponsiveImage src={item.image} fullSize
-              alt={item.alt || `${item.title} manicure close-up`} loading="eager" draggable={false} />}
+              sizes={`min(calc(100vw - 32px), calc((100dvh - 64px) * ${imageManifest[item.image]?.width / imageManifest[item.image]?.height || 1}))`}
+              alt={item.alt || `${item.title} manicure close-up`} loading={position === index ? "eager" : "lazy"} draggable={false} />}
           </div>
         ))}
       </div>

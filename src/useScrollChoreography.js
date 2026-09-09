@@ -1,13 +1,12 @@
 import { useEffect } from "react";
 
 // Quiet entrances only where they help introduce services or studio imagery.
-// Gallery photos reveal through a soft mask, with their geometry unchanged.
+// Gallery photographs stay unfiltered and opaque; their geometry is unchanged.
 // Headings, reading content, utilities and the footer stay independent.
 const scenes = [
   ["service", ".service-line, .catalog-service, .seo-service-card"],
-  ["gallery", ".masonry-item"],
   ["detail", ".values-flow > article, .artist-card"],
-  ["image", ".salon-preview-card, .about-luxury-collage > img, .service-image-story > article"]
+  ["image", ".salon-preview-card, .about-luxury-collage > img, .about-luxury-collage > .responsive-image > img, .service-image-story > article"]
 ];
 // The user explicitly kept the existing homepage motion from the video onward.
 const preservedHomeScenes = [
@@ -80,7 +79,7 @@ export function useScrollChoreography(route) {
           play(element, element, {
             transform: `perspective(900px) translate3d(${direction * 28}px, ${48 + (index % 3) * 20}px, 0) rotateX(9deg) rotateZ(${direction * 1.2}deg)`
           }, 1000, delay);
-          play(element, element.querySelector(":scope > img"), { transform: "scale(1.06)" }, 1150, delay);
+          play(element, element.querySelector(":scope > img, :scope > .responsive-image > img"), { transform: "scale(1.06)" }, 1150, delay);
         }
         return;
       }
@@ -91,20 +90,6 @@ export function useScrollChoreography(route) {
           opacity: 0.18,
           transform: `translate3d(${direction * distance}px, 12px, 0)`
         }, 850, delay);
-      } else if (kind === "gallery") {
-        // A broad gradient edge travels diagonally over the image. The photo
-        // and button never move, crop, rotate or scale during this entrance.
-        const mask = "linear-gradient(135deg, #000 40%, transparent 60%)";
-        const feather = CSS.supports("mask-image", mask) ? {
-          maskImage: mask, maskSize: "250% 250%", maskRepeat: "no-repeat"
-        } : {};
-        play(element, element.querySelector("img"), {
-          opacity: 0.65, ...feather,
-          ...(feather.maskImage ? { maskPosition: "100% 100%" } : {})
-        }, 1300, delay, {
-          opacity: 1, ...feather,
-          ...(feather.maskImage ? { maskPosition: "0% 0%" } : {})
-        });
       } else if (kind === "image") {
         play(element, element, {
           opacity: 0.3,
@@ -150,8 +135,10 @@ export function useScrollChoreography(route) {
         const siblings = new Map();
         main.querySelectorAll(selector).forEach(element => {
           if (preserved !== isPreserved(element)) return;
-          const index = siblings.get(element.parentElement) || 0;
-          siblings.set(element.parentElement, index + 1);
+          const parent = element.parentElement.matches("picture.responsive-image")
+            ? element.parentElement.parentElement : element.parentElement;
+          const index = siblings.get(parent) || 0;
+          siblings.set(parent, index + 1);
           targets.set(element, { kind, index, preserved });
           element.dataset.scrollStyle = kind;
           // Visible first-screen content never disappears during hydration.

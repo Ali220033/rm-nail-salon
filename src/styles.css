@@ -1492,7 +1492,7 @@ a.instagram-icon-link > svg {
 
 .masonry-item img {
   background: rgba(8, 5, 7, 0.86);
-  filter: brightness(0.9) saturate(1.04);
+  filter: none;
   inset: 0;
   object-fit: cover;
   object-position: var(--image-focus, center);
@@ -1501,7 +1501,7 @@ a.instagram-icon-link > svg {
 }
 
 .masonry-item:hover img {
-  filter: brightness(1) saturate(1.1);
+  filter: none;
 }
 
 .masonry-gallery > .masonry-item:last-child:nth-child(odd) {
@@ -1652,6 +1652,15 @@ a.instagram-icon-link > svg {
 }
 
 .service-line > * {
+  position: relative;
+  z-index: 1;
+}
+
+.responsive-image > source {
+  display: none;
+}
+
+.service-line > .responsive-image > img {
   position: relative;
   z-index: 1;
 }
@@ -2050,7 +2059,7 @@ a.instagram-icon-link > svg {
   width: 100%;
 }
 
-.clean-process-media img:first-child {
+:is(.clean-process-media > img:first-child, .clean-process-media > picture.responsive-image:first-child > img) {
   object-position: 52% 42%;
 }
 
@@ -3306,7 +3315,7 @@ a.instagram-icon-link > svg {
   position: relative;
 }
 
-.not-found-page > img {
+:is(.not-found-page > img, .not-found-page > picture.responsive-image > img) {
   filter: brightness(0.42) saturate(0.98);
   height: 100%;
   inset: 0;
@@ -4769,7 +4778,7 @@ body:has(.cookie-banner) .floating-book-circle {
     grid-template-columns: 0.78fr 1fr;
   }
 
-  .clean-process-media img:first-child {
+  :is(.clean-process-media > img:first-child, .clean-process-media > picture.responsive-image:first-child > img) {
     margin-top: 3rem;
   }
 
@@ -7340,8 +7349,8 @@ body:has(.cookie-banner) .floating-book-circle {
   text-decoration: none;
 }
 
-.review-orbit-card > img,
-.review-proof-card > img {
+:is(.review-orbit-card > img, .review-orbit-card > picture.responsive-image > img),
+:is(.review-proof-card > img, .review-proof-card > picture.responsive-image > img) {
   aspect-ratio: auto;
   border-radius: 26px 26px 8px 26px;
   display: block;
@@ -7507,12 +7516,12 @@ body:has(.cookie-banner) .floating-book-circle {
   width: 100%;
 }
 
-.about-luxury-collage img:first-child {
+:is(.about-luxury-collage > img:first-child, .about-luxury-collage > picture.responsive-image:first-child > img) {
   aspect-ratio: 4 / 5;
   border-radius: 38px 38px 10px 38px;
 }
 
-.about-luxury-collage img:last-child {
+:is(.about-luxury-collage > img:last-child, .about-luxury-collage > picture.responsive-image:last-child > img) {
   aspect-ratio: 1 / 1.16;
   border-radius: 24px 24px 9px 24px;
   transform: translateY(-3rem);
@@ -7702,7 +7711,7 @@ body:has(.cookie-banner) .floating-book-circle {
     min-height: auto;
   }
 
-  .about-luxury-collage img:last-child {
+  :is(.about-luxury-collage > img:last-child, .about-luxury-collage > picture.responsive-image:last-child > img) {
     transform: translateY(0);
   }
 
@@ -7755,8 +7764,8 @@ body:has(.cookie-banner) .floating-book-circle {
   transform: none !important;
 }
 
-.review-orbit-card > img,
-.review-proof-card > img {
+:is(.review-orbit-card > img, .review-orbit-card > picture.responsive-image > img),
+:is(.review-proof-card > img, .review-proof-card > picture.responsive-image > img) {
   background:
     radial-gradient(circle at 70% 18%, rgba(100, 224, 218, 0.14), transparent 12rem),
     linear-gradient(145deg, rgba(255, 255, 255, 0.045), rgba(8, 5, 7, 0.92));
@@ -7887,8 +7896,8 @@ body:has(.cookie-banner) .floating-book-circle {
     padding: 0.6rem;
   }
 
-  .review-orbit-card > img,
-  .review-proof-card > img {
+  :is(.review-orbit-card > img, .review-orbit-card > picture.responsive-image > img),
+  :is(.review-proof-card > img, .review-proof-card > picture.responsive-image > img) {
     aspect-ratio: auto;
     border-radius: 22px 22px 8px 22px;
     height: auto;
@@ -8221,7 +8230,7 @@ body:has(.cookie-banner) .floating-book-circle {
 }
 
 .masonry-item:hover img {
-  transform: scale(1.012);
+  transform: none;
 }
 
 .google-review-head img {

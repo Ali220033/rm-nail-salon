@@ -822,18 +822,16 @@ function HomePage({ navigate, setSelectedGallery }) {
 function Hero({ navigate }) {
   return (
     <section className="hero-editorial">
-      <picture>
-        <source media="(min-width: 820px)" srcSet="/images/hero-rm-hq.webp" />
         <ResponsiveImage
           className="hero-backdrop"
-          sizes="100vw"
+          sources={[{ media: "(min-width: 820px)", src: "/images/hero-rm-hq.webp", sizes: "max(100vw, 1840px)" }]}
+          sizes="max(100vw, 458px)"
           src="/images/hero-rm-mobile-hq.webp"
           alt="RM Nail Salon luxury Russian manicure hero"
           decoding="async"
           fetchPriority="high"
           loading="eager"
         />
-      </picture>
 
       <motion.div
         className="hero-type"
@@ -1481,7 +1479,7 @@ function ReviewCard({ review, compact = false }) {
         <span className="review-avatar">
           <span className="review-initial" role="img" aria-label={`${review.name}'s initials avatar`} aria-hidden={Boolean(review.avatar && !photoFailed)}>{review.name.slice(0, 1)}</span>
           {review.avatar && !photoFailed ? (
-            <img ref={avatarRef} src={review.avatar} alt={review.avatarKind === "client-photo" ? `Review photo shared by ${review.name} on Booksy` : `${review.name}'s Booksy profile image`} width="56" height="56" loading="eager" fetchPriority="low" decoding="async" onError={() => setPhotoFailed(true)} />
+            <ResponsiveImage ref={avatarRef} src={review.avatar} sizes="56px" alt={review.avatarKind === "client-photo" ? `Review photo shared by ${review.name} on Booksy` : `${review.name}'s Booksy profile image`} width="56" height="56" loading="lazy" fetchPriority="low" decoding="async" onError={() => setPhotoFailed(true)} />
           ) : null}
         </span>
         <div>
@@ -1881,10 +1879,10 @@ function Booking({ navigate }) {
   );
 }
 
-function PageHero({ label, title, copy, image = fastImage("rm-hero-editorial"), alt = "", className = "" }) {
+function PageHero({ label, title, copy, image = fastImage("rm-hero-editorial"), alt = "", className = "", sizes }) {
   return (
     <section className={`page-hero ${className}`.trim()}>
-      <ResponsiveImage src={image} alt={alt} sizes="100vw" loading="eager" decoding="async" fetchPriority="high" />
+      <ResponsiveImage src={image} alt={alt} sizes={sizes || `max(100vw, ${Math.ceil(900 * (imageManifest[image]?.width / imageManifest[image]?.height || 1))}px)`} loading="eager" decoding="async" fetchPriority="high" />
       <div>
         <p className="eyebrow">{label}</p>
         <h1>{title}</h1>
@@ -1892,6 +1890,19 @@ function PageHero({ label, title, copy, image = fastImage("rm-hero-editorial"), 
       </div>
     </section>
   );
+}
+
+function serviceThumbnailSizes(image) {
+  const asset = imageManifest[image];
+  const cover = Math.max(1, 1.25 * (asset?.width / asset?.height || 1));
+  // Match the existing rail's button padding, grid tracks and 4:5 photo frames
+  // before hydration, so the browser can request the correct file immediately.
+  const desktop = (outerPadding, share, minimum) =>
+    `calc((max(${minimum}px, (min(1360px, 100vw - ${outerPadding}rem) - 2px - 2.75rem) * ${share}) / 2 - 6.5px - 2.06rem) * ${cover})`;
+  return `(max-width: 819px) calc((6.59rem - 2px) * ${cover}), `
+    + `(max-width: 1019px) ${desktop(2, 0.86 / 1.8, 350)}, `
+    + `(max-width: 1159px) ${desktop(2, 0.82 / 1.82, 360)}, `
+    + desktop(10, 0.82 / 1.82, 360);
 }
 
 function ServicesPage({ navigate }) {
@@ -1954,6 +1965,7 @@ function ServicesPage({ navigate }) {
                 <ResponsiveImage
                   className="rail-thumb"
                   src={service.image}
+                  sizes={serviceThumbnailSizes(service.image)}
                   alt=""
                   loading="lazy"
                   decoding="async"
@@ -1986,7 +1998,7 @@ function ServicesPage({ navigate }) {
                   id={service.id}
                   onMouseEnter={() => setSpotlight({ ...service, category: group.category })}
                 >
-                  <ResponsiveImage src={service.image} alt={service.imageAlt} loading="lazy" decoding="async" />
+                  <ResponsiveImage src={service.image} sizes={`(max-width: 759px) max(calc(100vw - 52px), calc((100vw - 52px) * ${1.25 * (imageManifest[service.image]?.width / imageManifest[service.image]?.height || 1)})), 210px`} alt={service.imageAlt} loading="lazy" decoding="async" />
                   <div className="catalog-copy">
                     <span>{service.time}</span>
                     <h3>{service.name}</h3>
@@ -2659,13 +2671,16 @@ function AboutPage({ navigate }) {
 }
 
 function GalleryPage({ setSelectedGallery }) {
+  const heroImage = galleryItems[0]?.image || fastImage("gallery-aqua-french");
+  const heroAspect = imageManifest[heroImage]?.width / imageManifest[heroImage]?.height || 1;
   return (
     <>
       <PageHero
         label="Gallery"
         title="Russian manicure gallery with clean shape, shine, and detail."
         copy="Browse RM manicure, pedicure, chrome, French, extension, and nail art inspiration before choosing your next appointment."
-        image={galleryItems[0]?.image || fastImage("gallery-aqua-french")}
+        image={heroImage}
+        sizes={`(max-width: 819px) max(100vw, calc(92svh * ${heroAspect})), max(100vw, calc(72svh * ${heroAspect}))`}
         alt="RM Nail Salon gallery photo from the 1346 portfolio set"
       />
       <section className="gallery-editorial full">
@@ -2678,6 +2693,18 @@ function GalleryPage({ setSelectedGallery }) {
       </section>
     </>
   );
+}
+
+function galleryImageSizes(item) {
+  const metadata = imageManifest[item.image];
+  const ratio = metadata ? metadata.width / metadata.height : 1;
+  const height = item.size === "tall" ? 678 : 332;
+  const wide = item.size === "wide";
+  return [
+    `(max-width: 819px) max(calc(50vw - 24px), ${Math.ceil(238 * ratio)}px)`,
+    `(max-width: 1159px) max(calc(${wide ? "50vw - 56px" : "25vw - 35px"}), ${Math.ceil(height * ratio)}px)`,
+    `max(min(calc(${wide ? "50vw - 88px" : "25vw - 51px"}), ${wide ? 672 : 329}px), ${Math.ceil(height * ratio)}px)`
+  ].join(", ");
 }
 
 function GalleryGrid({ items, setSelectedGallery }) {
@@ -2694,7 +2721,7 @@ function GalleryGrid({ items, setSelectedGallery }) {
           viewport={{ once: true, amount: 0.2 }}
           style={{ "--image-focus": item.focal || "center" }}
         >
-          <ResponsiveImage src={item.image} sizes={item.size === "wide" ? "(max-width: 819px) calc(50vw - 24px), (max-width: 1440px) 50vw, 680px" : "(max-width: 819px) calc(50vw - 24px), (max-width: 1440px) 25vw, 340px"} alt={item.alt || `${item.title} manicure gallery photo`} loading="lazy" decoding="async" />
+          <ResponsiveImage src={item.image} sizes={galleryImageSizes(item)} alt={item.alt || `${item.title} manicure gallery photo`} loading="lazy" decoding="async" />
         </motion.button>
       ))}
     </div>
