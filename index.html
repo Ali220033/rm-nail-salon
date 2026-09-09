@@ -36,34 +36,74 @@
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" href="/favicon.png" type="image/png" sizes="32x32" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18148785181"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
+    <!-- Queue measurement immediately; defer Google's download until after load or a real interaction. -->
+    <script id="rm-google-tag-bootstrap">
       (function () {
+        window.dataLayer = window.dataLayer || [];
         var consent = "";
         try {
           consent = window.localStorage.getItem("rm-cookie-consent") || "";
         } catch (error) {
-          consent = "";
+          // The banner can still grant consent for this visit without storage.
         }
         var granted = consent === "accepted";
-        gtag("consent", "default", {
+        var requested = false;
+        var scheduled = false;
+
+        function loadTag() {
+          if (requested) return;
+          requested = true;
+          var script = document.createElement("script");
+          script.async = true;
+          script.src = "https://www.googletagmanager.com/gtag/js?id=AW-18148785181";
+          script.onerror = function () { requested = false; };
+          document.head.appendChild(script);
+        }
+
+        function scheduleTag() {
+          if (requested || scheduled) return;
+          scheduled = true;
+          function afterLoad() {
+            function whenIdle() {
+              scheduled = false;
+              loadTag();
+            }
+            if (typeof window.requestIdleCallback === "function") {
+              window.requestIdleCallback(whenIdle, { timeout: 1500 });
+            } else {
+              window.setTimeout(whenIdle, 1500);
+            }
+          }
+          if (document.readyState === "complete") afterLoad();
+          else window.addEventListener("load", afterLoad, { once: true });
+        }
+
+        window.gtag = function () {
+          // Preserve the standard gtag queue, including events clicked before download finishes.
+          window.dataLayer.push(arguments);
+          if (arguments[0] === "event" || (arguments[0] === "consent" && arguments[1] === "update")) {
+            // Actual measurement and consent actions do not wait for the idle timer.
+            loadTag();
+          }
+        };
+        window.gtag("consent", "default", {
           analytics_storage: granted ? "granted" : "denied",
           ad_storage: granted ? "granted" : "denied",
           ad_user_data: granted ? "granted" : "denied",
           ad_personalization: granted ? "granted" : "denied",
           wait_for_update: 500
         });
+        window.gtag("js", new Date());
+        window.gtag("config", "AW-18148785181");
+        window.gtag("config", "AW-18148785181/fPcbCK6J480cEJ34gc5D", {
+          phone_conversion_number: "346-865-6565"
+        });
+        // Keep advanced consent mode: denied-consent cookieless measurement still
+        // runs after the initial rendering work, with Google's original defaults.
+        window.addEventListener("pointerdown", loadTag, { once: true, passive: true });
+        window.addEventListener("keydown", loadTag, { once: true });
+        scheduleTag();
       })();
-      gtag("js", new Date());
-      gtag("config", "AW-18148785181");
-      gtag("config", "AW-18148785181/fPcbCK6J480cEJ34gc5D", {
-        phone_conversion_number: "346-865-6565"
-      });
     </script>
     <title>Russian Manicure NYC | Luxury Nail Salon in Midtown Manhattan | RM Nail Salon Midtown NYC Russian Manicure</title>
   </head>

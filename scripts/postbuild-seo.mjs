@@ -1,8 +1,9 @@
 import assert from "node:assert/strict";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
-import { absoluteImage, absoluteUrl, buildStructuredData, seoPages } from "../src/seoData.js";
+import { absoluteUrl, seoPages } from "../src/seoData.js";
 import { siteConfig } from "../src/siteConfig.js";
+import { getSeoMetadata, renderSeoMetadata } from "../src/seoMetadata.js";
 import { render } from "../.ssr/entry-server.js";
 
 const dist = path.resolve("dist");
@@ -16,32 +17,12 @@ const descriptions = new Set();
 for (const page of seoPages) {
   const body = render(page.path);
   let html = template
-    .replace(/<title>[\s\S]*?<\/title>/, "")
-    .replace(/<meta\s+name="description"\s+content="[\s\S]*?"\s*\/?>/, "")
+    .replace(/<title>[\s\S]*?<\/title>/g, "")
+    .replace(/<meta\s+name="(?:description|robots)"\s+content="[\s\S]*?"\s*\/?>/g, "")
+    .replace(/<script\s+id="rm-jsonld"[\s\S]*?<\/script>/g, "")
     .replace(/<link\s+rel="canonical"[\s\S]*?>/g, "")
     .replace(/<meta\s+(?:property|name)="(?:og:|twitter:)[\s\S]*?>/g, "");
-  const image = images[page.image];
-  const tags = [
-    `<title>${escapeHtml(page.title)}</title>`,
-    `<meta name="description" content="${escapeHtml(page.description)}" />`,
-    `<meta name="robots" content="${page.noindex ? "noindex, follow" : "index, follow, max-image-preview:large"}" />`,
-    `<link rel="canonical" href="${absoluteUrl(page.path)}" />`,
-    `<meta property="og:title" content="${escapeHtml(page.title)}" />`,
-    `<meta property="og:description" content="${escapeHtml(page.description)}" />`,
-    `<meta property="og:type" content="${page.datePublished ? "article" : "website"}" />`,
-    `<meta property="og:site_name" content="${siteConfig.salonName}" />`,
-    '<meta property="og:locale" content="en_US" />',
-    `<meta property="og:url" content="${absoluteUrl(page.path)}" />`,
-    `<meta property="og:image" content="${absoluteImage(page.image)}" />`,
-    `<meta property="og:image:alt" content="${escapeHtml(page.imageAlt || page.h1)}" />`,
-    image ? `<meta property="og:image:width" content="${image.width}" /><meta property="og:image:height" content="${image.height}" />` : "",
-    '<meta name="twitter:card" content="summary_large_image" />',
-    `<meta name="twitter:title" content="${escapeHtml(page.title)}" />`,
-    `<meta name="twitter:description" content="${escapeHtml(page.description)}" />`,
-    `<meta name="twitter:image" content="${absoluteImage(page.image)}" />`,
-    `<meta name="twitter:image:alt" content="${escapeHtml(page.imageAlt || page.h1)}" />`,
-    `<script id="rm-jsonld" type="application/ld+json">${JSON.stringify(buildStructuredData(page.path)).replace(/</g, "\\u003c")}</script>`
-  ].join("\n");
+  const tags = renderSeoMetadata(getSeoMetadata(page.path, images));
   html = html.replace("</head>", () => tags + "\n</head>")
     .replace('<div id="root"></div>', () => `<div id="root" data-prerendered="true">${body}</div>`);
   const target = path.join(dist, page.path === "/" ? "index.html" : page.path.slice(1) + ".html");
@@ -76,7 +57,3 @@ for (const page of seoPages.filter((page) => !page.noindex)) {
 }
 assert.ok(!sitemap.includes("<loc>" + absoluteUrl("/404") + "</loc>"));
 console.log(`Prerendered and validated ${seoPages.length} actual React pages. Sitemap contains ${seoPages.filter((page) => !page.noindex).length} indexable URLs.`);
-
-function escapeHtml(value = "") {
-  return String(value).replaceAll("&", "&amp;").replaceAll('"', "&quot;").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
-}

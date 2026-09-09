@@ -3,6 +3,42 @@ import manifest from "./imageManifest.json";
 
 const defaultSizes = "(max-width: 600px) 100vw, (max-width: 1000px) 50vw, 600px";
 
+const pendingMeasurements = new Map();
+let nearViewportObserver;
+
+function measureWhenNear(image, start) {
+  if (typeof IntersectionObserver === "undefined") {
+    start();
+    return () => {};
+  }
+  if (!nearViewportObserver) {
+    nearViewportObserver = new IntersectionObserver((entries, observer) => {
+      if (observer !== nearViewportObserver) return;
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        const activate = pendingMeasurements.get(entry.target);
+        pendingMeasurements.delete(entry.target);
+        observer.unobserve(entry.target);
+        activate?.();
+      }
+      if (!pendingMeasurements.size) {
+        observer.disconnect();
+        nearViewportObserver = undefined;
+      }
+    }, { rootMargin: "400px" });
+  }
+  pendingMeasurements.set(image, start);
+  nearViewportObserver.observe(image);
+  return () => {
+    pendingMeasurements.delete(image);
+    nearViewportObserver?.unobserve(image);
+    if (!pendingMeasurements.size && nearViewportObserver) {
+      nearViewportObserver.disconnect();
+      nearViewportObserver = undefined;
+    }
+  };
+}
+
 function candidates(src, asset, format, fullSize) {
   if (!asset) return undefined;
   const hash = format === "avif" ? asset.avifHash : asset.hash;
@@ -40,13 +76,29 @@ export function ResponsiveImage({ src, sizes = defaultSizes, fullSize = false, s
       const next = `${Math.ceil(effectiveWidth)}px`;
       setMeasuredSizes(previous => previous === next ? previous : next);
     };
-    measure();
-    const observer = new ResizeObserver(measure);
-    observer.observe(image);
-    image.addEventListener("load", measure);
-    window.addEventListener("resize", measure, { passive: true });
-    return () => { observer.disconnect(); image.removeEventListener("load", measure); window.removeEventListener("resize", measure); };
-  }, [src, sourceKey, fullSize]);
+    let observer;
+    let active = false;
+    const start = () => {
+      if (active) return;
+      active = true;
+      measure();
+      observer = new ResizeObserver(measure);
+      observer.observe(image);
+      image.addEventListener("load", measure);
+      window.addEventListener("resize", measure, { passive: true });
+    };
+    // Keep the supplied cover-aware SSR sizes until a lazy image approaches the
+    // viewport. Eager images still measure immediately for the first screen.
+    let stopWaiting = () => {};
+    if (props.loading === "lazy") stopWaiting = measureWhenNear(image, start);
+    else start();
+    return () => {
+      stopWaiting();
+      observer?.disconnect();
+      image.removeEventListener("load", measure);
+      window.removeEventListener("resize", measure);
+    };
+  }, [src, sourceKey, fullSize, props.loading]);
 
   const widths = asset?.widths || [];
   const fallbackWidth = widths.find(width => width >= 800) || widths.at(-1);

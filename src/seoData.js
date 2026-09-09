@@ -8,10 +8,11 @@ export const reviewSummary = {
   sourceUrl: siteConfig.bookingUrl,
   ratingValue: "5.0",
   reviewCount: "8",
-  checkedAt: "2026-09-08",
+  checkedAt: "2026-09-09",
   reviews: [
     {
       author: "Lauren",
+      serviceId: "russian-hard-gel",
       ratingValue: "5",
       avatar: "/images/reviews/booksy-lauren.jpeg",
       isSummary: true,
@@ -19,6 +20,7 @@ export const reviewSummary = {
     },
     {
       author: "Aryuna",
+      serviceId: "russian-clear",
       ratingValue: "5",
       avatar: "/images/reviews/booksy-aryuna-work.jpeg",
       avatarKind: "client-photo",
@@ -27,6 +29,7 @@ export const reviewSummary = {
     },
     {
       author: "Alexa",
+      serviceId: "russian-hard-gel",
       ratingValue: "5",
       avatar: "/images/reviews/booksy-alexa-work.jpeg",
       avatarKind: "client-photo",
@@ -35,6 +38,7 @@ export const reviewSummary = {
     },
     {
       author: "Eldor",
+      serviceId: "russian-hard-gel",
       ratingValue: "5",
       avatar: "/images/reviews/booksy-eldor-work.jpeg",
       avatarKind: "client-photo",
@@ -43,6 +47,7 @@ export const reviewSummary = {
     },
     {
       author: "B.",
+      serviceId: "russian-hard-gel",
       ratingValue: "5",
       avatar: "/images/reviews/booksy-b.jpeg",
       isSummary: true,
@@ -50,11 +55,13 @@ export const reviewSummary = {
     },
     {
       author: "Emily",
+      serviceId: "russian-hard-gel",
       ratingValue: "5",
       reviewBody: "The manicures here always come out really nice!"
     },
     {
       author: "Nikki",
+      serviceId: "russian-hard-gel",
       ratingValue: "5",
       avatar: "/images/reviews/booksy-nikki-work.jpeg",
       avatarKind: "client-photo",
@@ -62,6 +69,7 @@ export const reviewSummary = {
     },
     {
       author: "Jacqueline",
+      serviceId: "russian-hard-gel",
       ratingValue: "5",
       avatar: "/images/reviews/booksy-jacqueline.jpeg",
       reviewBody: "Great manicure and service"
@@ -84,7 +92,7 @@ export const coreSeoPages = [
   {
     path: "/services",
     navLabel: "Services",
-    title: "Russian Manicure Services Midtown NYC | RM Nail Salon",
+    title: "Nail Services & Prices NYC | RM Nail Salon Midtown",
     description:
       "Explore RM Nail Salon service pricing for Russian manicures, hard gel overlays, smart pedicures, extensions, nail art, repair, and online booking.",
     h1: "Russian manicure services in Midtown NYC",
@@ -106,7 +114,7 @@ export const coreSeoPages = [
   {
     path: "/gallery",
     navLabel: "Gallery",
-    title: "Nail Gallery Midtown NYC | RM Nail Salon",
+    title: "Russian Manicure Gallery NYC | RM Nail Salon",
     description:
       "View RM Nail Salon manicure and pedicure inspiration, from clean Russian manicures and hard gel to chrome, French, nail art, and extensions.",
     h1: "RM Nail Salon gallery",
@@ -139,7 +147,7 @@ export const coreSeoPages = [
   {
     path: "/contact",
     navLabel: "Contact",
-    title: "Contact RM Nail Salon | Midtown NYC",
+    title: "Contact RM Nail Salon | 875 3rd Ave Midtown NYC",
     description:
       "Contact RM Nail Salon at 875 3rd Ave, Concourse Level, New York, NY 10022. Book online, call, message Instagram, or open the Midtown NYC map.",
     h1: "Contact RM Nail Salon in Midtown NYC",
@@ -227,7 +235,7 @@ export const serviceLandingPages = [
     path: "/russian-manicure-nyc",
     navLabel: "Russian Manicure NYC",
     label: "Signature Service",
-    title: "Russian Manicure NYC | RM Nail Salon Midtown",
+    title: "Russian Manicure NYC | Midtown East | RM Nail Salon",
     description:
       "Book a precise Russian manicure in Midtown NYC with detailed cuticle care, clean shaping, hygienic tools, hard gel options, and long-lasting shine.",
     h1: "Russian Manicure in Midtown NYC",
@@ -331,7 +339,7 @@ export const serviceLandingPages = [
     path: "/smart-pedicure-nyc",
     navLabel: "Smart Pedicure NYC",
     label: "Pedicure Detail",
-    title: "Smart Pedicure NYC | RM Nail Salon Midtown",
+    title: "Russian Smart Pedicure NYC | RM Nail Salon Midtown",
     description:
       "Book a Russian smart pedicure in Midtown NYC with hygienic tools, clean nail care, smooth detail work, spa options, and optional gel polish.",
     h1: "Smart Pedicure in Midtown NYC",
@@ -397,7 +405,7 @@ export const serviceLandingPages = [
     path: "/gel-extensions-nyc",
     navLabel: "Gel Extensions NYC",
     label: "Sculpted Length",
-    title: "Gel Extensions NYC | RM Nail Salon Midtown",
+    title: "Gel Nail Extensions NYC | RM Nail Salon Midtown",
     description:
       "Gel nail extensions in Midtown NYC with sculpted length, slim architecture, clean Russian manicure prep, refined shaping, and nail art options.",
     h1: "Gel Extensions in Midtown NYC",
@@ -475,7 +483,7 @@ export const serviceLandingPages = [
     path: "/nail-art-nyc",
     navLabel: "Nail Art NYC",
     label: "Editorial Detail",
-    title: "Nail Art NYC | RM Nail Salon Midtown",
+    title: "Nail Art NYC | French, Chrome & Cat Eye | RM Nail Salon",
     description:
       "Nail art in Midtown NYC from French and chrome to cat eye, ombre, custom details, and editorial accents paired with precise RM manicure prep.",
     h1: "Nail Art in Midtown NYC",
@@ -1196,7 +1204,7 @@ function organizationSchema() {
     name: siteConfig.googleBusinessName,
     alternateName: siteConfig.salonName,
     url: siteConfig.siteUrl,
-    logo: absoluteImage("/images/rm-platinum-monogram.webp"),
+    logo: absoluteImage(siteConfig.logo),
     image: absoluteImage(fastImage("brand-salon-front-full")),
     sameAs: [siteConfig.instagramCleanUrl || siteConfig.instagramUrl],
     contactPoint: [
@@ -1229,28 +1237,12 @@ function localBusinessSchema() {
     priceRange: "$$",
     description:
       "Premium Russian manicure studio in Midtown NYC specializing in precise cuticle work, hard gel, pedicures, nail extensions, and nail art.",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "875 3rd Ave, Concourse Level",
-      addressLocality: "New York",
-      addressRegion: "NY",
-      postalCode: "10022",
-      addressCountry: "US"
-    },
-    openingHoursSpecification: [
-      {
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-        opens: "09:30",
-        closes: "20:00"
-      },
-      {
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: ["Saturday", "Sunday"],
-        opens: "10:00",
-        closes: "20:00"
-      }
-    ],
+    logo: absoluteImage(siteConfig.logo),
+    geo: { "@type": "GeoCoordinates", ...siteConfig.geo },
+    address: { "@type": "PostalAddress", ...siteConfig.postalAddress },
+    openingHoursSpecification: siteConfig.openingHours.map(({ dayOfWeek, opens, closes }) => ({
+      "@type": "OpeningHoursSpecification", dayOfWeek, opens, closes
+    })),
     areaServed: [
       "Midtown Manhattan",
       "Midtown NYC",
@@ -1396,7 +1388,8 @@ function serviceSchema(page) {
         description: page.intro,
         image: page.image,
         price: primaryService?.price,
-        time: primaryService?.time
+        time: primaryService?.time,
+        bookingUrl: primaryService?.bookingUrl
       },
       `${absoluteUrl(page.path)}#service`
     ),
@@ -1476,7 +1469,7 @@ function serviceToSchema(service, id) {
       priceCurrency: "USD",
       price: extractPrice(service.price),
       availability: "https://schema.org/InStock",
-      url: siteConfig.bookingUrl,
+      url: service.bookingUrl || siteConfig.bookingUrl,
       eligibleRegion: "New York, NY"
     }
   };

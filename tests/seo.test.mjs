@@ -69,7 +69,7 @@ test("verified review excerpts and dates use one source", () => {
   assert.equal(reviewSummary.source, "Booksy");
   assert.equal(reviewSummary.sourceUrl, siteConfig.bookingUrl);
   assert.equal(reviewSummary.reviewCount, "8");
-  assert.equal(reviewSummary.checkedAt, "2026-09-08");
+  assert.equal(reviewSummary.checkedAt, "2026-09-09");
   assert.equal(reviewSummary.reviews.length, 8);
   assert.equal(new Set(reviewSummary.reviews.slice(0, 5).map(review => review.author)).size, 5);
   assert.ok(reviewSummary.reviews.slice(0, 5).every(review => review.isSummary));
@@ -109,7 +109,7 @@ test("reconciled combo prices and durations are shared by pages and structured d
     assert.equal(service.time, duration);
     assert.equal(service.topTech, null);
   }
-  assert.ok(JSON.stringify(buildStructuredData("/services")).includes("rm-platinum-monogram.webp"));
+  assert.ok(JSON.stringify(buildStructuredData("/services")).includes(siteConfig.logo));
 });
 
 test("all article updates include sources and real modification dates", () => {

@@ -1,6 +1,5 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useMemo, useRef, useState } from "react";
 import {
-  AnimatePresence,
   LazyMotion,
   MotionConfig,
   domAnimation,
@@ -57,11 +56,15 @@ import "./styles.css";
 import "./header.css";
 import "./footer.css";
 import { ResponsiveImage } from "./ResponsiveImage.jsx";
-import { GalleryViewer } from "./GalleryViewer.jsx";
+const GalleryViewer = lazy(() => import("./GalleryViewer.jsx").then((module) => ({ default: module.GalleryViewer })));
 import { ReviewLoop } from "./ReviewLoop.jsx";
 import { useScrollChoreography } from "./useScrollChoreography.js";
 import imageManifest from "./imageManifest.json";
 import { arrivalGuides, directionsFrom } from "./arrivalGuides.js";
+import { getSeoMetadata } from "./seoMetadata.js";
+import { getVisitorContent } from "./visitorContent.js";
+import { getGalleryContext } from "./galleryContext.js";
+import "./seo-accessibility.css";
 
 const reveal = {
   hidden: { opacity: 0, y: 34 },
@@ -90,6 +93,7 @@ const reviewUrl = siteConfig.bookingUrl;
 const clientReviews = reviewSummary.reviews.map((review, index) => ({
   name: review.author,
   meta: "Confirmed Booksy client",
+  service: review.serviceId ? getServiceById(review.serviceId)?.name : undefined,
   avatar: review.avatar,
   avatarKind: review.avatarKind,
   isSummary: review.isSummary,
@@ -152,7 +156,7 @@ const luxuryServices = [
   }
 ].map((service) => {
   const menuItem = getServiceById(service.id);
-  return { ...service, price: menuItem.price, time: menuItem.time, image: menuItem.image };
+  return { ...service, link: menuItem.seoPath, price: menuItem.price, time: menuItem.time, image: menuItem.image };
 });
 
 const proofStripItems = [
@@ -367,7 +371,8 @@ function enrichService(service) {
   return {
     ...service,
     ...defaults,
-    ...(serviceDetails[service.id] || {})
+    ...(serviceDetails[service.id] || {}),
+    learnMorePath: service.seoPath || "/services"
   };
 }
 
@@ -427,25 +432,12 @@ const calendarDays = ["S", "M", "T", "W", "T", "F", "S"];
 
 function SeoHead({ route }) {
   useEffect(() => {
-    const page = getSeoPage(route);
+    const metadata = getSeoMetadata(route, imageManifest);
     document.documentElement.lang = "en";
-    document.title = page.title;
-    setMeta("name", "description", page.description);
-    setMeta("property", "og:title", page.title);
-    setMeta("property", "og:description", page.description);
-    setMeta("property", "og:type", page.datePublished ? "article" : "website");
-    setMeta("property", "og:url", absoluteUrl(page.path));
-    setMeta("property", "og:image", absoluteImage(page.image));
-    setMeta("property", "og:image:alt", page.imageAlt || page.h1 || page.title);
-    setMeta("property", "og:image:width", imageManifest[page.image]?.width);
-    setMeta("property", "og:image:height", imageManifest[page.image]?.height);
-    setMeta("name", "robots", page.noindex ? "noindex, follow" : "index, follow, max-image-preview:large");
-    setMeta("name", "twitter:card", "summary_large_image");
-    setMeta("name", "twitter:title", page.title);
-    setMeta("name", "twitter:description", page.description);
-    setMeta("name", "twitter:image", absoluteImage(page.image));
-    setCanonical(absoluteUrl(page.path));
-    setJsonLd(buildStructuredData(page.path));
+    document.title = metadata.title;
+    metadata.meta.forEach(({ attribute, key, content }) => setMeta(attribute, key, content));
+    setCanonical(metadata.canonical);
+    setJsonLd(metadata.structuredData);
   }, [route]);
 
   return null;
@@ -492,6 +484,7 @@ export function App({ initialPath = "/" }) {
   const [selectedGallery, setSelectedGallery] = useState(null);
   const [route, setRoute] = useState(() => normalizePath(initialPath));
   const [navCompact, setNavCompact] = useState(false);
+  const previousRoute = useRef(route);
 
   useEffect(() => {
     let frame = 0;
@@ -523,6 +516,10 @@ export function App({ initialPath = "/" }) {
     const target = id && document.getElementById(id);
     if (target) target.scrollIntoView({ block: "start" });
     else window.scrollTo({ top: 0, behavior: "instant" });
+    if (previousRoute.current !== route) {
+      document.getElementById("main-content")?.focus({ preventScroll: true });
+      previousRoute.current = route;
+    }
   }, [route]);
 
   useScrollChoreography(route);
@@ -589,11 +586,12 @@ export function App({ initialPath = "/" }) {
       <LazyMotion features={domAnimation} strict>
         <div className="lux-site">
           <SeoHead route={route} />
+          <a className="skip-link" href="#main-content">Skip to main content</a>
           <Nav compact={navCompact} route={route} navigate={navigate} />
-          <main key={route}>{page}</main>
-          <Footer navigate={navigate} />
+          <main id="main-content" tabIndex={-1} key={route}>{page}</main>
+          <Footer navigate={navigate} showBooking={!(["/", ...serviceLandingPages.map((item) => item.path), ...geoLandingPages.map((item) => item.path)].includes(route))} />
           <FloatingBookNow />
-          {selectedGallery && <GalleryViewer items={galleryItems} initialIndex={selectedGallery.index} onClose={() => setSelectedGallery(null)} />}
+          {selectedGallery && <Suspense fallback={<div className="sr-only" role="status">Opening photo gallery…</div>}><GalleryViewer items={galleryItems} initialIndex={selectedGallery.index} onClose={() => setSelectedGallery(null)} /></Suspense>}
           <CookieBanner />
         </div>
       </LazyMotion>
@@ -641,6 +639,10 @@ function RouteLink({ to = "/", navigate, className = "", children }) {
 
 function Nav({ compact, route, navigate }) {
   const [open, setOpen] = useState(false);
+  const navRef = useRef(null);
+  const toggleRef = useRef(null);
+  const menuRoute = useRef(route);
+  menuRoute.current = route;
 
   useEffect(() => {
     setOpen(false);
@@ -649,19 +651,32 @@ function Nav({ compact, route, navigate }) {
   useEffect(() => {
     if (!open) return undefined;
 
+    const openingRoute = menuRoute.current;
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-
+    const background = [...document.querySelectorAll("main, .footer-editorial, .floating-book-circle, .cookie-banner, .skip-link")];
+    const previousInert = background.map((node) => node.inert);
+    background.forEach((node) => { node.inert = true; });
+    const frame = requestAnimationFrame(() => navRef.current?.querySelector("a")?.focus({ preventScroll: true }));
     const handleKeyDown = (event) => {
-      if (event.key === "Escape") {
-        setOpen(false);
+      if (event.key === "Escape") { event.preventDefault(); setOpen(false); }
+      if (event.key === "Tab") {
+        const stops = [toggleRef.current, ...navRef.current.querySelectorAll("a[href]")].filter(Boolean);
+        const index = stops.indexOf(document.activeElement);
+        if (event.shiftKey ? index <= 0 : index === stops.length - 1 || index === -1) {
+          event.preventDefault();
+          stops[event.shiftKey ? stops.length - 1 : 0]?.focus();
+        }
       }
     };
-
     window.addEventListener("keydown", handleKeyDown);
     return () => {
+      cancelAnimationFrame(frame);
       document.body.style.overflow = previousOverflow;
+      background.forEach((node, index) => { node.inert = previousInert[index]; });
       window.removeEventListener("keydown", handleKeyDown);
+      if (menuRoute.current === openingRoute) toggleRef.current?.focus({ preventScroll: true });
+      else document.getElementById("main-content")?.focus({ preventScroll: true });
     };
   }, [open]);
 
@@ -685,6 +700,7 @@ function Nav({ compact, route, navigate }) {
             Book Now
           </MagneticLink>
           <button
+            ref={toggleRef}
             className="nav-menu-toggle"
             onClick={() => setOpen((value) => !value)}
             aria-expanded={open}
@@ -695,7 +711,7 @@ function Nav({ compact, route, navigate }) {
           </button>
         </div>
       </div>
-      <nav id="mobile-navigation" aria-label="Main navigation" className={open ? "nav-links open" : "nav-links"}>
+      <nav ref={navRef} id="mobile-navigation" aria-label="Main navigation" className={open ? "nav-links open" : "nav-links"}>
         {routes.slice(1).map((item) =>
           item.to.startsWith("#") ? (
             <a
@@ -1436,9 +1452,9 @@ function ReviewsSection() {
           <strong>{reviewSummary.ratingValue}</strong>
           <span>
             <Star size={16} fill="currentColor" />
-            Review proof
+            On {reviewSummary.source}
           </span>
-          <em>Midtown NYC clients</em>
+          <em>{reviewSummary.reviewCount} verified reviews</em>
         </div>
         <RouteLink to="/reviews" navigate={simpleNavigate} className="outline-cta review-booksy-link">
           Open Review Lounge <ArrowUpRight size={16} />
@@ -1447,7 +1463,7 @@ function ReviewsSection() {
       <ReviewLoop>
         {clientReviews.slice(0, 5).map((review) => (
           <article key={review.name} className="google-review-card">
-            <ReviewCard review={review} />
+            <ReviewCard review={review} sourceLink />
           </article>
         ))}
       </ReviewLoop>
@@ -1464,7 +1480,7 @@ function simpleNavigate(to) {
   };
 }
 
-function ReviewCard({ review, compact = false }) {
+function ReviewCard({ review, compact = false, sourceLink = false }) {
   const [photoFailed, setPhotoFailed] = useState(false);
   const avatarRef = useRef(null);
   useEffect(() => {
@@ -1495,9 +1511,10 @@ function ReviewCard({ review, compact = false }) {
         <span>{review.isSummary ? "Review summary" : review.time}</span>
       </div>
       <p>{review.quote}</p>
-      <em>
-        {review.source || "See Review"} <ArrowUpRight size={14} />
-      </em>
+      {review.service && <span className="review-service">Service: {review.service}</span>}
+      {sourceLink ? <a className="review-source-link" href={reviewUrl} target="_blank" rel="noreferrer" onClick={trackReviewClick}>
+        <em>{review.source || "See Review"} <ArrowUpRight size={14} /></em>
+      </a> : <em>{review.source || "See Review"} <ArrowUpRight size={14} /></em>}
     </>
   );
 }
@@ -1520,7 +1537,7 @@ function ReviewsPage({ navigate }) {
         <div className="review-lounge-hero">
           <article className="review-score-panel">
             <span>RM Reputation</span>
-            <strong>5.0</strong>
+            <strong>{reviewSummary.ratingValue}</strong>
             <p>
               {reviewSummary.ratingValue} from {reviewSummary.reviewCount} reviews on Booksy. Read client review summaries below or visit Booksy for the original reviews.
             </p>
@@ -1554,7 +1571,7 @@ function ReviewsPage({ navigate }) {
           </div>
         </div>
 
-        <p className="review-source-note">Booksy rating checked September 8, 2026. Avatars use Booksy profile images or the reviewer&apos;s own uploaded review photo, labeled Client-shared photo; initials appear when neither is available. Gallery images illustrate RM work and are not linked to individual reviewers.</p>
+        <p className="review-source-note">Booksy rating checked {new Date(reviewSummary.checkedAt + "T12:00:00Z").toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: "UTC" })}. Avatars use Booksy profile images or the reviewer&apos;s own uploaded review photo, labeled Client-shared photo; initials appear when neither is available. Gallery images illustrate RM work and are not linked to individual reviewers.</p>
         <div className="review-proof-grid">
           {moreReviews.map((review, index) => (
             <a
@@ -1630,10 +1647,7 @@ function LocationSection({ navigate }) {
       Icon: Clock,
       eyebrow: "Open",
       title: "Hours",
-      lines: [
-        ["Mon-Fri", "9:30 AM - 8:00 PM"],
-        ["Sat-Sun", "10:00 AM - 8:00 PM"]
-      ],
+      lines: siteConfig.hoursLines.map((line) => [line.slice(0, line.indexOf(" ")), line.slice(line.indexOf(" ") + 1)]),
       kind: "hours"
     },
     {
@@ -1780,18 +1794,7 @@ function HomeFaq() {
               <strong>{item.question}</strong>
               <ChevronDown size={18} />
             </button>
-            <AnimatePresence>
-              {open === index && (
-                <motion.p
-                  id={`home-faq-${index}`}
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: "auto", opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                >
-                  {item.answer}
-                </motion.p>
-              )}
-            </AnimatePresence>
+            <div className="faq-answer" id={`home-faq-${index}`} hidden={open !== index}><p>{item.answer}</p></div>
           </article>
         ))}
       </div>
@@ -2231,16 +2234,13 @@ function ServiceLandingPage({ page, navigate }) {
 
 function ServiceFaqPanel({ title, faqs: panelFaqs }) {
   const [open, setOpen] = useState(0);
-  const enrichedFaqs = panelFaqs.map(([question, answer]) => [
-    question,
-    `${answer} At RM, the goal is to help you understand the service before you sit down: what will be refined, how the result should wear, and when you should return for maintenance. If you are unsure between options, choose the closest service online and we can guide the final choice during the appointment.`
-  ]);
+
 
   return (
     <div className="service-page-faqs luxe-accordion">
       <p className="eyebrow">Service FAQ</p>
       <h2>{title}</h2>
-      {enrichedFaqs.map(([question, answer], index) => (
+      {panelFaqs.map(([question, answer], index) => (
         <article className={open === index ? "open" : ""} key={question}>
           <button
             type="button"
@@ -2252,18 +2252,7 @@ function ServiceFaqPanel({ title, faqs: panelFaqs }) {
             <h3>{question}</h3>
             <ChevronDown size={18} />
           </button>
-          <AnimatePresence initial={false}>
-            {open === index && (
-              <motion.p
-                id={`service-faq-${index}`}
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: "auto", opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-              >
-                {answer}
-              </motion.p>
-            )}
-          </AnimatePresence>
+          <div className="faq-answer" id={`service-faq-${index}`} hidden={open !== index}><p>{answer}</p></div>
         </article>
       ))}
     </div>
@@ -2271,6 +2260,7 @@ function ServiceFaqPanel({ title, faqs: panelFaqs }) {
 }
 
 function GeoLandingPage({ page, navigate }) {
+  const visitor = getVisitorContent(page.path);
   const arrival = arrivalGuides[page.area];
   const relatedPages = getRelatedSeoPages(page.related);
   const nearbyRouteLinks = geoLandingPages
@@ -2305,8 +2295,7 @@ function GeoLandingPage({ page, navigate }) {
               clients coming from {page.area} to our Midtown NYC studio, not a separate branch.
             </p>
             <p>
-              RM Nail Salon is located at {siteConfig.address}, with booking available online for weekday appointments
-              from 9:30 AM to 8:00 PM and weekend appointments from 10:00 AM to 8:00 PM.
+              RM Nail Salon is located at {siteConfig.address}. Studio hours: {siteConfig.hours}. Available appointment times are shown on Booksy.
             </p>
             <div className="seo-cta-row">
               <MagneticLink href={siteConfig.bookingUrl} className="gold-cta">
@@ -2367,6 +2356,8 @@ function GeoLandingPage({ page, navigate }) {
             </RouteLink>
           ))}
         </div>
+
+        {visitor && <ServiceFaqPanel title={visitor.title} faqs={visitor.faqs} />}
 
         <RelatedSeoLinks
           title="More nearby client routes to the Midtown studio."
@@ -2690,6 +2681,14 @@ function GalleryPage({ setSelectedGallery }) {
           copy="Explore cuticle work, hard gel structure, pedicure detail, extensions, and editorial nail art through a curated RM portfolio."
         />
         <GalleryGrid items={galleryItems} setSelectedGallery={setSelectedGallery} />
+        <details className="gallery-portfolio-notes">
+          <summary>Explore the looks and related services</summary>
+          <p>Use these photographs as inspiration. Your artist can help you choose the preparation and finish for your nails.</p>
+          <ul>{galleryItems.map((item) => {
+            const context = getGalleryContext(item);
+            return <li key={item.image}><strong>{item.title}</strong> — {context.caption} <a href={context.servicePath} onClick={simpleNavigate(context.servicePath)}>{context.serviceLabel}</a></li>;
+          })}</ul>
+        </details>
       </section>
     </>
   );
@@ -2769,18 +2768,7 @@ function FaqPage() {
               <strong>{item.question}</strong>
               <ChevronDown size={19} />
             </button>
-            <AnimatePresence>
-              {open === index && (
-                <motion.p
-                  id={`faq-answer-${index}`}
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: "auto", opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                >
-                  {item.answer}
-                </motion.p>
-              )}
-            </AnimatePresence>
+            <div className="faq-answer" id={`faq-answer-${index}`} hidden={open !== index}><p>{item.answer}</p></div>
           </article>
         ))}
       </section>
@@ -3016,7 +3004,7 @@ function NotFoundPage({ navigate }) {
   );
 }
 
-function Footer({ navigate }) {
+function Footer({ navigate, showBooking = true }) {
   const footerGeoLinks = locationAreas
     .map((area) => geoLandingPages.find((item) => item.label === area))
     .filter(Boolean);
@@ -3090,7 +3078,7 @@ function Footer({ navigate }) {
             </div>
           </div>
 
-        <div className="footer-closing-cta">
+        {showBooking && <div className="footer-closing-cta">
           <div>
             <span>★★★★★ {reviewSummary.ratingValue} Booksy</span>
             <h2>Ready for perfect nails?</h2>
@@ -3099,7 +3087,7 @@ function Footer({ navigate }) {
           <MagneticLink href={siteConfig.bookingUrl} className="gold-cta">
             Book Appointment <CalendarDays size={16} />
           </MagneticLink>
-        </div>
+        </div>}
 
           <nav className="footer-link-column" aria-label="Footer services">
             <span>Services</span>

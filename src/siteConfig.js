@@ -1,3 +1,14 @@
+// Owner-approved opening hours. Display copy and structured data derive from this schedule.
+const openingHours = [
+  { label: "Mon-Fri", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "09:30", closes: "20:00" },
+  { label: "Sat-Sun", dayOfWeek: ["Saturday", "Sunday"], opens: "10:00", closes: "20:00" }
+];
+function displayTime(time, compact = false) {
+  const [hour, minute] = time.split(":").map(Number);
+  return `${hour % 12 || 12}${compact && minute === 0 ? "" : `:${String(minute).padStart(2, "0")}`} ${hour >= 12 ? "PM" : "AM"}`;
+}
+const formatHours = (item, compact = false) => `${displayTime(item.opens, compact)} - ${displayTime(item.closes, compact)}`;
+
 export const siteConfig = {
   salonName: "RM Nail Salon",
   googleBusinessName: "RM Nail Salon Midtown NYC Russian Manicure",
@@ -10,9 +21,13 @@ export const siteConfig = {
   phone: "346-865-6565",
   email: "rmnyc2026@gmail.com",
   address: "875 3rd Ave, Concourse Level, New York, NY 10022",
-  hours: "Mon-Fri: 9:30 AM - 8:00 PM; Sat-Sun: 10:00 AM - 8:00 PM",
-  hoursShort: "Mon-Fri 9:30 AM - 8 PM | Sat-Sun 10 AM - 8 PM",
-  hoursLines: ["Mon-Fri 9:30 AM - 8:00 PM", "Sat-Sun 10:00 AM - 8:00 PM"],
+  logo: "/images/rm-crystal-monogram.svg",
+  geo: { latitude: 40.7573625, longitude: -73.969416 },
+  postalAddress: { streetAddress: "875 3rd Ave, Concourse Level", addressLocality: "New York", addressRegion: "NY", postalCode: "10022", addressCountry: "US" },
+  openingHours,
+  hours: openingHours.map((item) => `${item.label}: ${formatHours(item)}`).join("; "),
+  hoursShort: openingHours.map((item) => `${item.label} ${formatHours(item, true)}`).join(" | "),
+  hoursLines: openingHours.map((item) => `${item.label} ${formatHours(item)}`),
   instagramHandle: "@rmnailsalon.nyc",
   firstVisitOffer: "10% OFF First Visit",
   processVideo: "/videos/rm-master-work.mp4",
@@ -94,6 +109,21 @@ const newClassicFrenchImage = fastImage("service-classic-french-new");
 const newChromeDesignImage = fastImage("service-chrome-design-new");
 const newOmbreDesignImage = fastImage("service-ombre-design-new");
 const newNailDesignsImage = fastImage("service-nail-designs-new");
+
+const serviceSeoPaths = {
+  "russian-clear": "/russian-manicure-nyc",
+  "russian-hard-gel": "/hard-gel-manicure-nyc",
+  "nail-extensions": "/gel-extensions-nyc",
+  "fill-in": "/gel-extensions-nyc",
+  "extra-long-nails": "/gel-extensions-nyc",
+  "smart-pedicure": "/smart-pedicure-nyc",
+  "smart-gel-pedicure": "/smart-pedicure-nyc",
+  "french": "/nail-art-nyc",
+  "cat-eye": "/nail-art-nyc",
+  "chrome": "/nail-art-nyc",
+  "ombre": "/nail-art-nyc",
+  "nail-design": "/nail-art-nyc"
+};
 
 export const serviceMenu = [
   {
@@ -460,7 +490,15 @@ export const serviceMenu = [
       }
     ]
   }
-];
+].map((group) => ({
+  ...group,
+  services: group.services.map((service) => ({
+    ...service,
+    category: group.category,
+    bookingUrl: siteConfig.bookingUrl,
+    seoPath: serviceSeoPaths[service.id] || `/services#${service.id}`
+  }))
+}));
 
 export const featuredServiceIds = [
   "russian-hard-gel",

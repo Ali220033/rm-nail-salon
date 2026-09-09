@@ -131,6 +131,7 @@ export function useScrollChoreography(route) {
           preservedObserver.unobserve(target);
         });
       }, { rootMargin: "0px 0px -7% 0px", threshold: 0 });
+      const collected = [];
       for (const [kind, selector, preserved = false] of [...scenes, ...preservedHomeScenes]) {
         const siblings = new Map();
         main.querySelectorAll(selector).forEach(element => {
@@ -140,19 +141,27 @@ export function useScrollChoreography(route) {
           const index = siblings.get(parent) || 0;
           siblings.set(parent, index + 1);
           targets.set(element, { kind, index, preserved });
-          element.dataset.scrollStyle = kind;
-          // Visible first-screen content never disappears during hydration.
-          // Nothing is hidden while waiting: no JS, missed observers, or errors
-          // can leave blank sections in the prerendered page.
-          const box = element.getBoundingClientRect();
-          if (box.top < innerHeight && box.bottom > 0) {
-            element.dataset.scrollState = "complete";
-          } else {
-            element.dataset.scrollState = "waiting";
-            (preserved ? preservedObserver : observer).observe(element);
-          }
+          collected.push({ element, kind, preserved });
         });
       }
+      // Read every initial rectangle before setting attributes or observing
+      // targets, so attribute writes cannot force a layout for each next card.
+      const measured = collected.map(target => {
+        const box = target.element.getBoundingClientRect();
+        return { ...target, visible: box.top < innerHeight && box.bottom > 0 };
+      });
+      measured.forEach(({ element, kind, preserved, visible }) => {
+        element.dataset.scrollStyle = kind;
+        // Visible first-screen content never disappears during hydration.
+        // Nothing is hidden while waiting: no JS, missed observers, or errors
+        // can leave blank sections in the prerendered page.
+        if (visible) {
+          element.dataset.scrollState = "complete";
+        } else {
+          element.dataset.scrollState = "waiting";
+          (preserved ? preservedObserver : observer).observe(element);
+        }
+      });
     };
 
     const onInteract = event => {

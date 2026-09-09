@@ -45,7 +45,7 @@ export function GalleryViewer({ items, initialIndex, onClose }) {
         const target = Math.min(items.length - 1, Math.max(0, next));
         activeIndex.current = target;
         setIndex(target);
-        track.current.scrollTo({ left: target * track.current.clientWidth, behavior: "smooth" });
+        track.current.scrollTo({ left: target * track.current.clientWidth, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" });
       }
       if (event.key === "Tab") {
         event.preventDefault();
