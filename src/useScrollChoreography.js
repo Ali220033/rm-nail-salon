@@ -1,13 +1,19 @@
 import { useEffect } from "react";
 
-// Deliberate motion families shared across routes. Hero, navigation, sticky
-// controls, reading paragraphs, and the continuous review loop stay independent.
+// Quiet entrances only where they help introduce services or studio imagery.
+// Gallery photos reveal through a soft mask, with their geometry unchanged.
+// Headings, reading content, utilities and the footer stay independent.
 const scenes = [
   ["service", ".service-line, .catalog-service, .seo-service-card"],
   ["gallery", ".masonry-item"],
-  ["heading", ".section-intro, .catalog-group-heading, .work-reel-copy, .about-lead, .about-body, .seo-lead-block, .geo-story-main, .sterile-manifesto, .booking-copy"],
-  ["step", ".proof-block, .values-flow > article, .seo-proof-grid > article, .decision-columns > article, .related-service-card, .blog-card, .journal-micro-card, .visit-info-card, .sterile-timeline > article, .artist-card, .team-intro-card, .geo-path-card, .luxe-accordion > article"],
-  ["image", ".salon-preview-card, .about-luxury-collage > img, .service-image-story > article, .geo-arrival-board > img, .contact-concierge-card"]
+  ["detail", ".values-flow > article, .artist-card"],
+  ["image", ".salon-preview-card, .about-luxury-collage > img, .service-image-story > article"]
+];
+// The user explicitly kept the existing homepage motion from the video onward.
+const preservedHomeScenes = [
+  ["heading", ".work-reel-copy, .booking-copy", true],
+  ["step", ".visit-info-card", true],
+  ["image", ".salon-preview-card", true]
 ];
 
 export function useScrollChoreography(route) {
@@ -18,6 +24,11 @@ export function useScrollChoreography(route) {
     const active = new Map();
     const targets = new Map();
     let observer;
+    let preservedObserver;
+    const preservedStart = route === "/" ? main.querySelector(".work-reel-section") : null;
+    const isPreserved = element => Boolean(preservedStart &&
+      (preservedStart.contains(element) ||
+        (preservedStart.compareDocumentPosition(element) & Node.DOCUMENT_POSITION_FOLLOWING)));
 
     const settle = (element) => {
       active.get(element)?.forEach(animation => animation.cancel());
@@ -26,20 +37,14 @@ export function useScrollChoreography(route) {
     };
     const settleAll = () => [...active.keys()].forEach(settle);
 
-    const play = (owner, element, from, duration, delay = 0, overshoot) => {
+    const play = (owner, element, from, duration, delay = 0, to = {}) => {
       if (!element) return;
       const style = getComputedStyle(element);
-      const end = Object.fromEntries(Object.keys(from).map(key => [key, style[key]]));
-      // Match shape types so the shutter interpolates instead of switching
-      // discretely from a polygon/inset to `none` halfway through the reveal.
-      if (from.clipPath && end.clipPath === "none") {
-        end.clipPath = from.clipPath.startsWith("polygon")
-          ? "polygon(0 0, 100% 0, 100% 100%, 0 100%)"
-          : "inset(0 0 0 0)";
-      }
-      const frames = overshoot ? [from, { ...overshoot, offset: 0.76 }, end] : [from, end];
-      const animation = element.animate(frames, {
-        duration, delay, fill: "both", easing: "cubic-bezier(0.22, 1, 0.36, 1)"
+      const end = { ...Object.fromEntries(Object.keys(from).map(key => [key, style[key]])), ...to };
+      if (from.clipPath && end.clipPath === "none") end.clipPath = "inset(0 0 0 0)";
+      const animation = element.animate([from, end], {
+        duration, delay, fill: "both", easing: targets.get(owner).preserved
+          ? "cubic-bezier(0.22, 1, 0.36, 1)" : "cubic-bezier(0.22, 0.61, 0.36, 1)"
       });
       animation.id = `rm-scroll-${targets.get(owner).kind}`;
       if (!active.has(owner)) active.set(owner, new Set());
@@ -54,53 +59,68 @@ export function useScrollChoreography(route) {
       };
     };
 
-    const enter = (element, { kind, index }) => {
+    const enter = (element, { kind, index, preserved }) => {
       element.dataset.scrollState = "playing";
       const direction = index % 2 === 0 ? -1 : 1;
-      const distance = Math.min(100, innerWidth * 0.18);
-      const delay = (index % 3) * 65;
-      if (kind === "heading") {
-        [...element.children].filter(child => child.matches("p, h2, h3")).forEach((child, i) => {
-          play(element, child, {
-            transform: `translate3d(${i === 0 ? -26 : 0}px, ${i === 0 ? 0 : 36}px, 0) skewY(${i === 1 ? 2 : 0}deg)`,
-            clipPath: "inset(0 0 100% 0)"
-          }, 900, i * 90);
-        });
-      } else if (kind === "service") {
+      if (preserved) {
+        const delay = (index % 3) * 65;
+        if (kind === "heading") {
+          [...element.children].filter(child => child.matches("p, h2, h3")).forEach((child, i) => {
+            play(element, child, {
+              transform: `translate3d(${i === 0 ? -26 : 0}px, ${i === 0 ? 0 : 36}px, 0) skewY(${i === 1 ? 2 : 0}deg)`,
+              clipPath: "inset(0 0 100% 0)"
+            }, 900, i * 90);
+          });
+        } else if (kind === "image") {
+          play(element, element, {
+            transform: `translate3d(${direction * 36}px, 28px, 0) scale(0.96)`,
+            clipPath: direction < 0 ? "inset(0 90% 12% 0)" : "inset(12% 0 0 90%)"
+          }, 1200, delay);
+        } else {
+          play(element, element, {
+            transform: `perspective(900px) translate3d(${direction * 28}px, ${48 + (index % 3) * 20}px, 0) rotateX(9deg) rotateZ(${direction * 1.2}deg)`
+          }, 1000, delay);
+          play(element, element.querySelector(":scope > img"), { transform: "scale(1.06)" }, 1150, delay);
+        }
+        return;
+      }
+      const distance = innerWidth < 820 ? 12 : 18;
+      const delay = (index % 3) * 40;
+      if (kind === "service") {
         play(element, element, {
-          transform: `translate3d(${direction * distance}px, 38px, 0) rotate(${direction * 1.4}deg)`
-        }, 1000, delay, { transform: `translate3d(${-direction * 3}px, -2px, 0) rotate(0deg)` });
-        play(element, element.querySelector(":scope > img"), {
-          transform: `rotate(${-direction * 18}deg) scale(0.82)`
-        }, 1100, delay + 50);
-        play(element, element.querySelector(":scope > div"), {
-          transform: "translate3d(0, 24px, 0)", clipPath: "inset(0 0 100% 0)"
-        }, 900, delay + 120);
+          opacity: 0.18,
+          transform: `translate3d(${direction * distance}px, 12px, 0)`
+        }, 850, delay);
       } else if (kind === "gallery") {
-        const shutter = direction < 0
-          ? "polygon(0 0, 12% 0, 0 100%, 0 100%)"
-          : "polygon(88% 0, 100% 0, 100% 100%, 100% 100%)";
-        // Keep the button's hit area stationary. Moving/clipping the button
-        // itself makes focus/scroll-into-view follow its transient geometry.
+        // A broad gradient edge travels diagonally over the image. The photo
+        // and button never move, crop, rotate or scale during this entrance.
+        const mask = "linear-gradient(135deg, #000 40%, transparent 60%)";
+        const feather = CSS.supports("mask-image", mask) ? {
+          maskImage: mask, maskSize: "250% 250%", maskRepeat: "no-repeat"
+        } : {};
         play(element, element.querySelector("img"), {
-          transform: `translate3d(${direction * 28}px, ${32 + (index % 3) * 12}px, 0) rotate(${direction * 3}deg) scale(1.12)`,
-          clipPath: shutter
-        }, 1200, delay);
+          opacity: 0.65, ...feather,
+          ...(feather.maskImage ? { maskPosition: "100% 100%" } : {})
+        }, 1300, delay, {
+          opacity: 1, ...feather,
+          ...(feather.maskImage ? { maskPosition: "0% 0%" } : {})
+        });
       } else if (kind === "image") {
         play(element, element, {
-          transform: `translate3d(${direction * 36}px, 28px, 0) scale(0.96)`,
-          clipPath: direction < 0 ? "inset(0 90% 12% 0)" : "inset(12% 0 0 90%)"
-        }, 1200, delay);
+          opacity: 0.3,
+          transform: `translate3d(${direction * 10}px, 14px, 0)`
+        }, 950, delay);
       } else {
         play(element, element, {
-          transform: `perspective(900px) translate3d(${direction * 28}px, ${48 + (index % 3) * 20}px, 0) rotateX(9deg) rotateZ(${direction * 1.2}deg)`
-        }, 1000, delay);
-        play(element, element.querySelector(":scope > img"), { transform: "scale(1.06)" }, 1150, delay);
+          opacity: 0.25,
+          transform: "translate3d(0, 12px, 0)"
+        }, 850, delay);
       }
     };
 
     const setup = () => {
       observer?.disconnect();
+      preservedObserver?.disconnect();
       settleAll();
       targets.clear();
       main.querySelectorAll("[data-scroll-style]").forEach(element => {
@@ -111,18 +131,28 @@ export function useScrollChoreography(route) {
       observer = new IntersectionObserver(entries => {
         entries.forEach(({ target, isIntersecting, boundingClientRect }) => {
           if (!isIntersecting || target.dataset.scrollState !== "waiting") return;
-          // Don't animate content a fast scroll has already carried above view.
-          if (boundingClientRect.bottom > 90) enter(target, targets.get(target));
+          // Start just below the viewport. If a fast scroll or anchor jump has
+          // already brought content into the reading area, leave it visible.
+          if (boundingClientRect.top >= innerHeight * 0.6) enter(target, targets.get(target));
           else settle(target);
           observer.unobserve(target);
         });
+      }, { rootMargin: "0px 0px 48px 0px", threshold: 0 });
+      preservedObserver = new IntersectionObserver(entries => {
+        entries.forEach(({ target, isIntersecting, boundingClientRect }) => {
+          if (!isIntersecting || target.dataset.scrollState !== "waiting") return;
+          if (boundingClientRect.bottom > 90) enter(target, targets.get(target));
+          else settle(target);
+          preservedObserver.unobserve(target);
+        });
       }, { rootMargin: "0px 0px -7% 0px", threshold: 0 });
-      for (const [kind, selector] of scenes) {
+      for (const [kind, selector, preserved = false] of [...scenes, ...preservedHomeScenes]) {
         const siblings = new Map();
         main.querySelectorAll(selector).forEach(element => {
+          if (preserved !== isPreserved(element)) return;
           const index = siblings.get(element.parentElement) || 0;
           siblings.set(element.parentElement, index + 1);
-          targets.set(element, { kind, index });
+          targets.set(element, { kind, index, preserved });
           element.dataset.scrollStyle = kind;
           // Visible first-screen content never disappears during hydration.
           // Nothing is hidden while waiting: no JS, missed observers, or errors
@@ -132,7 +162,7 @@ export function useScrollChoreography(route) {
             element.dataset.scrollState = "complete";
           } else {
             element.dataset.scrollState = "waiting";
-            observer.observe(element);
+            (preserved ? preservedObserver : observer).observe(element);
           }
         });
       }
@@ -142,6 +172,7 @@ export function useScrollChoreography(route) {
       const owner = event.target.closest?.("[data-scroll-style]");
       if (owner && targets.has(owner)) {
         observer?.unobserve(owner);
+        preservedObserver?.unobserve(owner);
         if (event.type === "pointerdown") {
           active.get(owner)?.forEach(animation => animation.pause());
         } else if (event.type !== "focusin" || event.target.matches(":focus-visible")) {
@@ -167,6 +198,7 @@ export function useScrollChoreography(route) {
     window.addEventListener("beforeprint", settleAll);
     return () => {
       observer?.disconnect();
+      preservedObserver?.disconnect();
       settleAll();
       preference.removeEventListener("change", setup);
       main.removeEventListener("focusin", onInteract);
