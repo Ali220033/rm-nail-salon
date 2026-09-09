@@ -589,7 +589,7 @@ export function App({ initialPath = "/" }) {
           <a className="skip-link" href="#main-content">Skip to main content</a>
           <Nav compact={navCompact} route={route} navigate={navigate} />
           <main id="main-content" tabIndex={-1} key={route}>{page}</main>
-          <Footer navigate={navigate} showBooking={!(["/", ...serviceLandingPages.map((item) => item.path), ...geoLandingPages.map((item) => item.path)].includes(route))} />
+          <Footer navigate={navigate} />
           <FloatingBookNow />
           {selectedGallery && <Suspense fallback={<div className="sr-only" role="status">Opening photo gallery…</div>}><GalleryViewer items={galleryItems} initialIndex={selectedGallery.index} onClose={() => setSelectedGallery(null)} /></Suspense>}
           <CookieBanner />
@@ -689,7 +689,7 @@ function Nav({ compact, route, navigate }) {
     <header className={compact ? "nav nav-compact" : "nav"}>
       <div className="nav-top">
         <RouteLink to="/" navigate={navigate} className="nav-logo">
-          <ResponsiveImage className="nav-monogram" src="/images/rm-crystal-monogram.svg" alt="" width="64" height="64" sizes="64px" loading="eager" />
+          <ResponsiveImage className="nav-monogram" src={siteConfig.logo} alt="" width="64" height="64" sizes="64px" loading="eager" />
           <div className="nav-logo-text">
             <em>RM NAIL SALON</em>
             <small><span>MIDTOWN NYC</span>{" "}<span>RUSSIAN MANICURE</span></small>
@@ -1511,7 +1511,6 @@ function ReviewCard({ review, compact = false, sourceLink = false }) {
         <span>{review.isSummary ? "Review summary" : review.time}</span>
       </div>
       <p>{review.quote}</p>
-      {review.service && <span className="review-service">Service: {review.service}</span>}
       {sourceLink ? <a className="review-source-link" href={reviewUrl} target="_blank" rel="noreferrer" onClick={trackReviewClick}>
         <em>{review.source || "See Review"} <ArrowUpRight size={14} /></em>
       </a> : <em>{review.source || "See Review"} <ArrowUpRight size={14} /></em>}
@@ -1794,7 +1793,7 @@ function HomeFaq() {
               <strong>{item.question}</strong>
               <ChevronDown size={18} />
             </button>
-            <div className="faq-answer" id={`home-faq-${index}`} hidden={open !== index}><p>{item.answer}</p></div>
+            <FaqAnswer id={`home-faq-${index}`} open={open === index}>{item.answer}</FaqAnswer>
           </article>
         ))}
       </div>
@@ -2232,6 +2231,17 @@ function ServiceLandingPage({ page, navigate }) {
   );
 }
 
+function FaqAnswer({ id, open, children }) {
+  const reduceMotion = useReducedMotion();
+  // Retain every answer in the server HTML while restoring the original
+  // expanding/collapsing fade, including the closing animation.
+  return <motion.div className="faq-answer" id={id} aria-hidden={!open} inert={!open}
+    initial={false} animate={{ height: open ? "auto" : 0, opacity: open ? 1 : 0 }}
+    transition={reduceMotion ? { duration: 0 } : undefined} style={{ overflow: "hidden" }}>
+    <p>{children}</p>
+  </motion.div>;
+}
+
 function ServiceFaqPanel({ title, faqs: panelFaqs }) {
   const [open, setOpen] = useState(0);
 
@@ -2252,7 +2262,7 @@ function ServiceFaqPanel({ title, faqs: panelFaqs }) {
             <h3>{question}</h3>
             <ChevronDown size={18} />
           </button>
-          <div className="faq-answer" id={`service-faq-${index}`} hidden={open !== index}><p>{answer}</p></div>
+          <FaqAnswer id={`service-faq-${index}`} open={open === index}>{answer}</FaqAnswer>
         </article>
       ))}
     </div>
@@ -2768,7 +2778,7 @@ function FaqPage() {
               <strong>{item.question}</strong>
               <ChevronDown size={19} />
             </button>
-            <div className="faq-answer" id={`faq-answer-${index}`} hidden={open !== index}><p>{item.answer}</p></div>
+            <FaqAnswer id={`faq-answer-${index}`} open={open === index}>{item.answer}</FaqAnswer>
           </article>
         ))}
       </section>

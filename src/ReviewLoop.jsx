@@ -97,8 +97,6 @@ export function ReviewLoop({ children }) {
   return <div className="review-loop" data-review-mode={manual ? "manual" : "automatic"}>
     <div className="google-review-shell" ref={shell} id={railId}
       role="region" aria-label="RM client reviews" tabIndex={manual ? 0 : undefined}
-      onPointerEnter={event => { if (event.pointerType === "mouse") updateInteraction("hovering", true); }}
-      onPointerLeave={() => updateInteraction("hovering", false)}
       onFocusCapture={event => {
         updateInteraction("focused", true);
         if (event.target.matches(":focus-visible")) {

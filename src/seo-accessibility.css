@@ -12,22 +12,16 @@
 }
 .skip-link:focus { transform: none; }
 #main-content:focus { outline: none; }
-.faq-answer[hidden] { display: none !important; }
-.faq-answer:not([hidden]) { animation: rm-answer-open 240ms ease-out; }
 .service-page-faqs.luxe-accordion article > .faq-answer > p {
   padding: 0 1.2rem 1.2rem 4.1rem;
 }
-.google-review-card > .review-source-link { display: block; margin-top: auto; min-height: 44px; }
+.google-review-card > .review-source-link { display: block; margin-top: auto; }
 .google-review-card > .review-source-link > em { margin-top: 0; }
 .gallery-portfolio-notes { margin-top: 24px; color: #c9d6d7; }
 .gallery-portfolio-notes summary { cursor: pointer; min-height: 44px; padding-block: 12px; color: var(--aqua); }
 .gallery-portfolio-notes li { margin-block: 16px; line-height: 1.6; }
 .gallery-portfolio-notes a { color: var(--aqua); text-decoration: underline; text-underline-offset: 4px; }
 .gallery-portfolio-notes ul { padding-left: 20px; }
-@keyframes rm-answer-open { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
 @media (max-width: 819px) {
   .service-page-faqs.luxe-accordion article > .faq-answer > p { padding-left: 1.2rem; }
 }
-@media (prefers-reduced-motion: reduce) { .faq-answer:not([hidden]) { animation: none; } }
-
-.review-service { display: block; color: #c9d6d7; font-size: .8rem; line-height: 1.5; margin-bottom: 1rem; }

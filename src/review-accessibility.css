@@ -1,14 +1,24 @@
-.review-loop { min-width: 0; }
+.review-loop { min-width: 0; position: relative; }
 
 .review-loop .google-review-rail.review-marquee,
 .review-loop .review-loop-group .google-review-card { pointer-events: auto; }
 
 .review-loop-controls {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 2;
+  opacity: 0;
+  pointer-events: none;
   display: flex;
   justify-content: flex-end;
   align-items: center;
   min-height: 44px;
 }
+
+/* Keep the established uninterrupted rail appearance. Keyboard users can
+   reveal its pause control without adding a new row to the page layout. */
+.review-loop-controls:focus-within { opacity: 1; pointer-events: auto; background: #091a1b; }
 
 .review-loop-toggle {
   display: inline-flex;

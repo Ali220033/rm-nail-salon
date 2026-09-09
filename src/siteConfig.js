@@ -21,7 +21,7 @@ export const siteConfig = {
   phone: "346-865-6565",
   email: "rmnyc2026@gmail.com",
   address: "875 3rd Ave, Concourse Level, New York, NY 10022",
-  logo: "/images/rm-crystal-monogram.svg",
+  logo: "/images/rm-glass-emblem.png",
   geo: { latitude: 40.7573625, longitude: -73.969416 },
   postalAddress: { streetAddress: "875 3rd Ave, Concourse Level", addressLocality: "New York", addressRegion: "NY", postalCode: "10022", addressCountry: "US" },
   openingHours,

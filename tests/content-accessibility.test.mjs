@@ -24,7 +24,7 @@ test("every FAQ answer is in the page body and every control has a panel", async
   }
 });
 
-test("homepage has five semantic reviews and one preferred booking block", async () => {
+test("homepage has five semantic reviews and the restored booking presentation", async () => {
   const html = await htmlFor("/");
   assert.equal((html.match(/class="google-review-card"/g) || []).length, 5);
   assert.equal((html.match(/class="review-loop-group"/g) || []).length, 1);
@@ -32,7 +32,8 @@ test("homepage has five semantic reviews and one preferred booking block", async
   for (const review of reviewSummary.reviews.slice(0, 5)) assert.equal(html.split(escape(review.reviewBody)).length - 1, 1);
   for (const page of seoPages) {
     const body = await htmlFor(page.path);
-    assert.equal((body.match(/Ready for perfect nails\?/g) || []).length, 1, page.path);
+    const hasMainBooking = page.path === "/" || serviceLandingPages.some(item => item.path === page.path) || geoLandingPages.some(item => item.path === page.path);
+    assert.equal((body.match(/Ready for perfect nails\?/g) || []).length, hasMainBooking ? 2 : 1, page.path);
     assert.ok(body.includes('id="main-content" tabindex="-1"'), page.path);
     assert.ok(body.includes('class="skip-link"'), page.path);
   }
