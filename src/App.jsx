@@ -90,6 +90,7 @@ const clientReviews = reviewSummary.reviews.map((review, index) => ({
   name: review.author,
   meta: "Confirmed Booksy client",
   avatar: review.avatar,
+  avatarKind: review.avatarKind,
   isSummary: review.isSummary,
   time: "",
   source: "Read on Booksy",
@@ -675,7 +676,7 @@ function Nav({ compact, route, navigate }) {
           <ResponsiveImage className="nav-monogram" src="/images/rm-glass-emblem.png" alt="" width="64" height="64" sizes="64px" loading="eager" />
           <div className="nav-logo-text">
             <em>RM NAIL SALON</em>
-            <small>MIDTOWN NYC RUSSIAN MANICURE</small>
+            <small><span>MIDTOWN NYC</span>{" "}<span>RUSSIAN MANICURE</span></small>
           </div>
         </RouteLink>
         <div className="nav-actions">
@@ -1459,17 +1460,26 @@ function simpleNavigate(to) {
 
 function ReviewCard({ review, compact = false }) {
   const [photoFailed, setPhotoFailed] = useState(false);
+  const avatarRef = useRef(null);
+  useEffect(() => {
+    // An eagerly loaded server-rendered image can fail before React attaches
+    // onError. Check that case as well so the avatar never stays broken.
+    const photo = avatarRef.current;
+    if (photo?.complete && !photo.naturalWidth) setPhotoFailed(true);
+  }, [review.avatar]);
   return (
     <>
       <div className="google-review-head">
         <span className="review-avatar">
+          <span className="review-initial" role="img" aria-label={`${review.name}'s initials avatar`} aria-hidden={Boolean(review.avatar && !photoFailed)}>{review.name.slice(0, 1)}</span>
           {review.avatar && !photoFailed ? (
-            <img src={review.avatar} alt={`${review.name}'s Booksy profile photo`} width="56" height="56" loading="lazy" decoding="async" onError={() => setPhotoFailed(true)} />
-          ) : <span className="review-initial" aria-hidden="true">{review.name.slice(0, 1)}</span>}
+            <img ref={avatarRef} src={review.avatar} alt={review.avatarKind === "client-photo" ? `Review photo shared by ${review.name} on Booksy` : `${review.name}'s Booksy profile image`} width="56" height="56" loading="eager" fetchPriority="low" decoding="async" onError={() => setPhotoFailed(true)} />
+          ) : null}
         </span>
         <div>
           <strong>{review.name}</strong>
           <span>{review.meta}</span>
+          {review.avatarKind === "client-photo" && <span className="review-photo-kind">Client-shared photo</span>}
         </div>
       </div>
       <div className="google-stars" role="img" aria-label="5 star review">
@@ -1538,7 +1548,7 @@ function ReviewsPage({ navigate }) {
           </div>
         </div>
 
-        <p className="review-source-note">Booksy rating checked September 8, 2026. Profile photos come from Booksy where available; initials appear otherwise. Gallery images illustrate RM work and are not linked to individual reviewers.</p>
+        <p className="review-source-note">Booksy rating checked September 8, 2026. Avatars use Booksy profile images or the reviewer&apos;s own uploaded review photo, labeled Client-shared photo; initials appear when neither is available. Gallery images illustrate RM work and are not linked to individual reviewers.</p>
         <div className="review-proof-grid">
           {moreReviews.map((review, index) => (
             <a

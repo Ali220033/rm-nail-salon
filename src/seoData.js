@@ -20,18 +20,24 @@ export const reviewSummary = {
     {
       author: "Aryuna",
       ratingValue: "5",
+      avatar: "/images/reviews/booksy-aryuna-work.jpeg",
+      avatarKind: "client-photo",
       isSummary: true,
       reviewBody: "Aryuna praises the precise nail shaping, clean work, and stylish setting. Her review also highlights the atmosphere and talented technicians, with plans to book another visit."
     },
     {
       author: "Alexa",
       ratingValue: "5",
+      avatar: "/images/reviews/booksy-alexa-work.jpeg",
+      avatarKind: "client-photo",
       isSummary: true,
       reviewBody: "Alexa loved the natural nude finish, balanced shape, and exceptionally tidy cuticle work. She describes it as one of her cleanest NYC manicures and plans to return."
     },
     {
       author: "Eldor",
       ratingValue: "5",
+      avatar: "/images/reviews/booksy-eldor-work.jpeg",
+      avatarKind: "client-photo",
       isSummary: true,
       reviewBody: "Eldor praises the detailed work and thin, natural-looking result. The review also highlights the clean, attractive studio and welcoming, professional team, calling it a welcome addition to Midtown."
     },
@@ -50,6 +56,8 @@ export const reviewSummary = {
     {
       author: "Nikki",
       ratingValue: "5",
+      avatar: "/images/reviews/booksy-nikki-work.jpeg",
+      avatarKind: "client-photo",
       reviewBody: "Great service! Love my nails"
     },
     {

@@ -7129,7 +7129,7 @@ body:has(.cookie-banner) .floating-book-circle {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.5rem;
   justify-items: stretch;
-  margin: 0.18rem auto 0 calc(-3rem - 0.95rem);
+  margin: 1.75rem auto 0 calc(-3rem - 0.95rem);
   width: calc(100% + 3rem + 0.95rem);
 }
 
@@ -8507,6 +8507,7 @@ body:has(.cookie-banner) .floating-book-circle {
   margin: 0;
   overflow: hidden;
   place-items: center;
+  position: relative;
   width: 3.5rem;
 }
 
@@ -8526,6 +8527,18 @@ body:has(.cookie-banner) .floating-book-circle {
   font-family: "Playfair Display", serif;
   font-size: 1.45rem;
   font-weight: 400;
+}
+
+.google-review-head .review-avatar img {
+  inset: 0;
+  position: absolute;
+}
+
+.google-review-head .review-photo-kind {
+  color: #a0dce0;
+  font-size: 0.72rem;
+  font-weight: 500;
+  margin-top: 0.15rem;
 }
 
 .review-loop-group .google-review-card {

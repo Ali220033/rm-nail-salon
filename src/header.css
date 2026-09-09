@@ -39,10 +39,10 @@
 .nav .nav-monogram { filter: none; }
 .nav .nav-logo-text {
   font-size: clamp(1.1rem, 1.65vw, 1.5rem);
-  gap: 0.35em;
+  gap: 0.14em;
 }
 .nav .nav-logo em {
-  background: linear-gradient(180deg, #ffffff 14%, #dce6e9 46%, #a7b9bf 63%, #e4f8fa 88%);
+  background: linear-gradient(180deg, #f5fcff 14%, #dceef0 46%, #a4cbd2 68%, #e4f8fa 92%);
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
@@ -53,13 +53,17 @@
   line-height: 1.1;
 }
 .nav .nav-logo small {
-  color: #c1e9ec;
-  display: block;
-  font-size: 0.57em;
-  font-weight: 500;
-  letter-spacing: 0.015em;
-  line-height: 1.25;
+  color: #a0dce0;
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 0.3em;
+  font-size: 0.82em;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+  white-space: normal;
 }
+.nav .nav-logo small span { white-space: nowrap; }
 
 .nav .nav-links a:not(.menu-book) {
   background: transparent;
@@ -112,7 +116,7 @@
 }
 
 @media (max-width: 819px) {
-  .nav .nav-logo-text { font-size: clamp(1.05rem, 4.55vw, 1.32rem); }
+  .nav .nav-logo-text { font-size: clamp(1.05rem, 4.55vw, 1.125rem); }
   .nav .nav-logo { gap: 0.38rem; max-width: none; }
   .nav .nav-top { gap: 0.6rem; }
   .nav .nav-links.open {
