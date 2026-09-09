@@ -53,6 +53,8 @@ import {
 import { trackBookingConversion, trackDirectionsConversion, trackReviewClick } from "./googleAds";
 import "../public/fonts/optimized-fonts.css";
 import "./styles.css";
+import "./header.css";
+import "./footer.css";
 import { ResponsiveImage } from "./ResponsiveImage.jsx";
 import { GalleryViewer } from "./GalleryViewer.jsx";
 import { ReviewLoop } from "./ReviewLoop.jsx";
@@ -670,10 +672,10 @@ function Nav({ compact, route, navigate }) {
     <header className={compact ? "nav nav-compact" : "nav"}>
       <div className="nav-top">
         <RouteLink to="/" navigate={navigate} className="nav-logo">
-          <ResponsiveImage className="nav-monogram" src="/images/rm-platinum-monogram.webp" alt="" width="64" height="64" sizes="64px" />
+          <ResponsiveImage className="nav-monogram" src="/images/rm-glass-emblem.png" alt="" width="64" height="64" sizes="64px" loading="eager" />
           <div className="nav-logo-text">
-            <em>{siteConfig.salonName}</em>
-            <small><b>Midtown NYC</b>{" "}<i>Russian Manicure</i></small>
+            <em>RM NAIL SALON</em>
+            <small>MIDTOWN NYC RUSSIAN MANICURE</small>
           </div>
         </RouteLink>
         <div className="nav-actions">
@@ -691,7 +693,7 @@ function Nav({ compact, route, navigate }) {
           </button>
         </div>
       </div>
-      <nav id="mobile-navigation" className={open ? "nav-links open" : "nav-links"}>
+      <nav id="mobile-navigation" aria-label="Main navigation" className={open ? "nav-links open" : "nav-links"}>
         {routes.slice(1).map((item) =>
           item.to.startsWith("#") ? (
             <a
@@ -713,14 +715,15 @@ function Nav({ compact, route, navigate }) {
               {item.label}
             </a>
           ) : (
-            <RouteLink
+            <a
               key={item.to}
-              to={item.to}
-              navigate={menuNavigate}
+              href={item.to}
+              onClick={menuNavigate(item.to)}
               className={route === item.to ? "active" : ""}
+              aria-current={route === item.to ? "page" : undefined}
             >
               {item.label}
-            </RouteLink>
+            </a>
           )
         )}
         <a
@@ -2989,17 +2992,6 @@ function Footer({ navigate }) {
     <footer className="footer-editorial">
       <div className="footer-lightline" />
       <div className="footer-luxury-wrap">
-        <div className="footer-closing-cta">
-          <div>
-            <span>★★★★★ {reviewSummary.ratingValue} Booksy</span>
-            <h2>Ready for perfect nails?</h2>
-            <p>Experience precision Russian manicure trusted by Midtown NYC clients.</p>
-          </div>
-          <MagneticLink href={siteConfig.bookingUrl} className="gold-cta">
-            Book Appointment <CalendarDays size={16} />
-          </MagneticLink>
-        </div>
-
         <div className="footer-luxury-grid">
           <div className="footer-brand-block">
             <div className="footer-brand-heading">
@@ -3025,7 +3017,10 @@ function Footer({ navigate }) {
                 <span>
                   <small>Hours</small>
                   {siteConfig.hoursLines.map((line) => (
-                    <strong key={line}>{line}</strong>
+                    <strong className="footer-hours-row" key={line}>
+                      <span>{line.slice(0, line.indexOf(" "))}</span>{" "}
+                      <span>{line.slice(line.indexOf(" ") + 1)}</span>
+                    </strong>
                   ))}
                 </span>
               </span>
@@ -3053,6 +3048,17 @@ function Footer({ navigate }) {
             </div>
           </div>
 
+        <div className="footer-closing-cta">
+          <div>
+            <span>★★★★★ {reviewSummary.ratingValue} Booksy</span>
+            <h2>Ready for perfect nails?</h2>
+            <p>Experience precision Russian manicure trusted by Midtown NYC clients.</p>
+          </div>
+          <MagneticLink href={siteConfig.bookingUrl} className="gold-cta">
+            Book Appointment <CalendarDays size={16} />
+          </MagneticLink>
+        </div>
+
           <nav className="footer-link-column" aria-label="Footer services">
             <span>Services</span>
             {footerServices.map((item) => (
@@ -3073,12 +3079,13 @@ function Footer({ navigate }) {
         </div>
 
         <div className="footer-mini-nearby">
-          <span>Convenient For Clients From</span>
-          {footerGeoLinks.map((item) => (
-            <RouteLink key={item.path} to={item.path} navigate={navigate}>
-              {item.navLabel}
-            </RouteLink>
-          ))}
+          <span>Convenient for clients from </span>
+          {footerGeoLinks.map((item, index) => (
+            <span key={item.path}>
+              {index > 0 ? (index === footerGeoLinks.length - 1 ? " and " : ", ") : ""}
+              <RouteLink to={item.path} navigate={navigate}>{item.label}</RouteLink>
+            </span>
+          ))}{"."}
         </div>
 
         <div className="footer-bottom">
