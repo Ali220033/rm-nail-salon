@@ -60,7 +60,7 @@ const GalleryViewer = lazy(() => import("./GalleryViewer.jsx").then((module) => 
 import { ReviewLoop } from "./ReviewLoop.jsx";
 import { useScrollChoreography } from "./useScrollChoreography.js";
 import imageManifest from "./imageManifest.json";
-import { arrivalGuides, directionsFrom } from "./arrivalGuides.js";
+import { arrivalGuides } from "./arrivalGuides.js";
 import { getSeoMetadata } from "./seoMetadata.js";
 import { getVisitorContent } from "./visitorContent.js";
 import { getGalleryContext } from "./galleryContext.js";
@@ -2332,8 +2332,8 @@ function GeoLandingPage({ page, navigate }) {
               <span>Booksy booking</span>
               <span>Concourse Level</span>
             </div>
-            <MagneticLink href={directionsFrom(page.area)} onClick={trackDirectionsConversion} className="outline-cta">
-              Directions from {page.area} <Navigation size={16} />
+            <MagneticLink href={siteConfig.mapUrl} onClick={trackDirectionsConversion} className="outline-cta">
+              Open RM Nail Salon in Maps <Navigation size={16} />
             </MagneticLink>
             <p>Need step-free access or help finding the entrance? Call {siteConfig.phone} before traveling so we can discuss your arrival.</p>
           </div>

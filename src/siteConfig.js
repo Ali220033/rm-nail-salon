@@ -34,7 +34,7 @@ export const siteConfig = {
   processVideoWebm: "/videos/rm-manicure-session.webm",
   processVideoPoster: "/images/fast/work-reel-process.webp",
   mapUrl:
-    "https://www.google.com/maps?cid=1853536134617682245",
+    "https://www.google.com/maps/place/RM+Nail+Salon+Midtown+NYC+Russian+Manicure/@40.7573665,-73.9719909,17z/data=!3m1!4b1!4m6!3m5!1s0x89c259da315ca5b3:0x19b9154b423cd145!8m2!3d40.7573625!4d-73.969416!16s%2Fg%2F11z6qt707l?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D",
   mapEmbedUrl:
     "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.2119644636655!2d-73.969416!3d40.7573625!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259da315ca5b3%3A0x19b9154b423cd145!2sRM%20Nail%20Salon%20Midtown%20NYC%20Russian%20Manicure!5e0!3m2!1sen!2sus!4v1788975838077!5m2!1sen!2sus"
 };

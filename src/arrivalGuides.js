@@ -1,5 +1,3 @@
-import { siteConfig } from "./siteConfig.js";
-
 export const arrivalGuides = {
   "Midtown Manhattan": ["Plan from your actual starting point", "Midtown covers a large area. Check the route from your office, hotel, or station before choosing your appointment time; a neighborhood name alone is not a reliable travel estimate."],
   "Midtown East": ["An appointment around your workday", "Use your building's street entrance as the starting point for directions. Book the full service duration, including any removal or design extras, rather than assuming a manicure will fit into a short lunch break."],
@@ -11,9 +9,3 @@ export const arrivalGuides = {
   "Sutton Place": ["Make time for the complete appointment", "Check directions from your Sutton Place address and choose a service length that suits your day. For regular-polish pedicures, consider footwear and drying time before planning your trip home."],
   "Murray Hill": ["Plan the trip to our Midtown studio", "Enter your Murray Hill starting address in the map rather than using the neighborhood center. If you are combining hands and feet, compare the combo menu and leave time for the full appointment before your return plans."]
 };
-
-export function directionsFrom(area) {
-  const url = new URL("https://www.google.com/maps/dir/");
-  url.search = new URLSearchParams({ api: "1", origin: `${area}, Manhattan, New York`, destination: `${siteConfig.googleBusinessName}, ${siteConfig.address}`, travelmode: "walking" });
-  return url.toString();
-}

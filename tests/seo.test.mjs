@@ -4,7 +4,6 @@ import { readFile } from "node:fs/promises";
 import { seoPages, blogArticlePages, geoLandingPages, buildStructuredData, reviewSummary } from "../src/seoData.js";
 import { siteConfig, serviceMenu } from "../src/siteConfig.js";
 import { trackBookingConversion, trackDirectionsConversion, trackReviewClick } from "../src/googleAds.js";
-import { directionsFrom } from "../src/arrivalGuides.js";
 import { server } from "../scripts/preview.mjs";
 
 let base;
@@ -90,14 +89,20 @@ test("review reading is not an advertising conversion; the existing IDs remain i
   } finally { delete global.window; }
 });
 
-test("maps and nearby directions identify RM Nail Salon at the approved Midtown address", () => {
-  assert.equal(new URL(siteConfig.mapUrl).searchParams.get("cid"), "1853536134617682245");
+test("every page opens the exact owner-supplied Google Maps listing", async () => {
+  assert.ok(siteConfig.mapUrl.startsWith("https://www.google.com/maps/place/RM+Nail+Salon+Midtown+NYC+Russian+Manicure/"));
+  assert.ok(siteConfig.mapUrl.includes("!1s0x89c259da315ca5b3:0x19b9154b423cd145"));
   assert.ok(decodeURIComponent(siteConfig.mapEmbedUrl).includes("0x89c259da315ca5b3:0x19b9154b423cd145"));
-  for (const page of geoLandingPages) {
-    const url = new URL(directionsFrom(page.area));
-    assert.equal(url.searchParams.get("destination"), `${siteConfig.googleBusinessName}, ${siteConfig.address}`);
-    assert.ok(url.searchParams.get("origin").includes(page.area));
-    assert.equal(url.searchParams.get("api"), "1");
+  for (const page of seoPages) {
+    const html = await (await fetch(base + page.path)).text();
+    const links = [...html.matchAll(/<a\b[^>]*href="([^"]+)"/g)]
+      .map((match) => match[1].replaceAll("&amp;", "&"))
+      .filter((href) => href.includes("google.com/maps"));
+    assert.ok(links.length >= 2, page.path);
+    assert.ok(links.every((href) => href === siteConfig.mapUrl), page.path);
+    if (geoLandingPages.some((item) => item.path === page.path)) {
+      assert.ok(html.includes("Open RM Nail Salon in Maps"), page.path);
+    }
   }
 });
 
