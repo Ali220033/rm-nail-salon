@@ -56,6 +56,7 @@ import "./styles.css";
 import { ResponsiveImage } from "./ResponsiveImage.jsx";
 import { GalleryViewer } from "./GalleryViewer.jsx";
 import { ReviewLoop } from "./ReviewLoop.jsx";
+import { useScrollChoreography } from "./useScrollChoreography.js";
 import imageManifest from "./imageManifest.json";
 import { arrivalGuides, directionsFrom } from "./arrivalGuides.js";
 
@@ -517,6 +518,8 @@ export function App({ initialPath = "/" }) {
     if (target) target.scrollIntoView({ block: "start" });
     else window.scrollTo({ top: 0, behavior: "instant" });
   }, [route]);
+
+  useScrollChoreography(route);
 
   const navigate = (to) => (event) => {
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;

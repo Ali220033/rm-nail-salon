@@ -491,16 +491,6 @@ export const galleryItems = [
     focal: "50% 50%"
   },
   {
-    title: "Precision Cuticle Work",
-    caption: "Close-up studio detail from a precise manicure session.",
-    category: "RM Gallery",
-    tone: "cream",
-    size: "small",
-    image: gallery1346Image("rm-gallery-02"),
-    alt: "RM Nail Salon precision cuticle work gallery image",
-    focal: "50% 50%"
-  },
-  {
     title: "Soft Nude Gloss",
     caption: "Natural glossy nails with a quiet luxury finish.",
     category: "RM Gallery",
