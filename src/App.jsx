@@ -15,6 +15,7 @@ import {
   CalendarDays,
   ChevronDown,
   Clock,
+  Instagram,
   Mail,
   MapPin,
   Menu,
@@ -736,11 +737,18 @@ function Nav({ compact, route, navigate }) {
         >
           Book Appointment
         </a>
-        <a className="menu-instagram" href={siteConfig.instagramUrl} target="_blank" rel="noreferrer">
-          Instagram
-        </a>
+        <InstagramLink className="menu-instagram" />
       </nav>
     </header>
+  );
+}
+
+function InstagramLink({ className = "" }) {
+  return (
+    <a className={`instagram-icon-link ${className}`} href={siteConfig.instagramUrl}
+      target="_blank" rel="noreferrer" aria-label="RM Nail Salon on Instagram" title="Instagram">
+      <Instagram size={24} aria-hidden="true" />
+    </a>
   );
 }
 
@@ -1725,7 +1733,7 @@ function LocationSection({ navigate }) {
                 <article className={`visit-info-card${kind ? ` visit-info-card--${kind}` : ""}`} key={eyebrow}>
                   <Icon size={18} />
                   <div>
-                    <span>{eyebrow}</span>
+                    <span>{eyebrow === "Instagram" ? <InstagramLink /> : eyebrow}</span>
                     {lines ? <h3>{title}</h3> : body}
                     {lines && body}
                   </div>
@@ -2801,7 +2809,7 @@ function ContactPage({ navigate }) {
               return (
                 <article key={label} className={label === "Hours" ? "contact-hours-card" : undefined}>
                   <Icon size={19} />
-                  <span>{label}</span>
+                  <span>{label === "Instagram" ? <InstagramLink /> : label}</span>
                   {href ? (
                     <a
                       href={href}
@@ -3043,10 +3051,7 @@ function Footer({ navigate }) {
               </a>
             </div>
             <div className="footer-social-labels" aria-label="RM Nail Salon social links">
-              <a href={siteConfig.instagramUrl} target="_blank" rel="noreferrer">
-                <AtSign size={16} />
-                Instagram
-              </a>
+              <InstagramLink />
               <a href={siteConfig.bookingUrl} target="_blank" rel="noreferrer" onClick={trackBookingConversion}>
                 <CalendarDays size={16} />
                 Booksy

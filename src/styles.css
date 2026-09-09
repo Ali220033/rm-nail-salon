@@ -313,6 +313,27 @@ img {
   color: var(--aqua) !important;
 }
 
+a.instagram-icon-link {
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+  min-height: 44px;
+  min-width: 44px;
+}
+
+a.instagram-icon-link > svg {
+  color: var(--aqua);
+  flex: none;
+  height: 24px;
+  width: 24px;
+}
+
+.visit-info-card span > a.instagram-icon-link,
+.contact-cards span > a.instagram-icon-link {
+  display: inline-flex;
+  margin: 0;
+}
+
 .magnetic {
   align-items: center;
   display: inline-flex;
