@@ -360,7 +360,7 @@
 }
 
 .nav .nav-monogram {
-  background: url("/images/rm-glass-emblem.png") center / contain no-repeat;
+  background: url("/images/rm-header-emblem.png") center / contain no-repeat;
   border: 0;
   border-radius: 0;
   box-shadow: none;
@@ -391,7 +391,7 @@
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
-  font-family: "RM Wordmark", "Playfair Display", serif;
+  font-family: "Playfair Display", serif;
   font-size: 1em;
   font-weight: 500;
   letter-spacing: 0.025em;
@@ -401,10 +401,10 @@
 .nav .nav-logo small {
   color: #b6dbde;
   display: block;
-  font-family: "RM Wordmark", "Playfair Display", serif;
-  font-size: 0.9em;
+  font-family: "Playfair Display", serif;
+  font-size: 0.84em;
   font-weight: 500;
-  letter-spacing: -0.018em;
+  letter-spacing: 0.012em;
   line-height: 1.05;
   white-space: nowrap;
 }
