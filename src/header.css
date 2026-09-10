@@ -1,4 +1,4 @@
-/* Header-only presentation. Existing breakpoints, height and navigation remain. */
+/* Header-only presentation. */
 .nav,
 .nav.nav-compact {
   background: transparent;
@@ -11,13 +11,18 @@
 
 .nav::before {
   background:
-    linear-gradient(112deg, rgba(210, 246, 248, 0.15), transparent 15%, rgba(89, 171, 177, 0.035) 54%, transparent 78%),
-    linear-gradient(180deg, rgba(17, 35, 38, 0.3), rgba(5, 17, 20, 0.46));
-  backdrop-filter: blur(10px) saturate(125%);
-  -webkit-backdrop-filter: blur(10px) saturate(125%);
-  border: 1px solid rgba(153, 227, 232, 0.38);
+    linear-gradient(108deg, rgba(241, 238, 232, 0.1), transparent 18%, rgba(94, 191, 193, 0.025) 58%, rgba(215, 195, 154, 0.045)),
+    rgba(9, 13, 16, 0.45);
+  backdrop-filter: blur(18px) saturate(125%);
+  -webkit-backdrop-filter: blur(18px) saturate(125%);
+  border: 1px solid rgba(94, 191, 193, 0.46);
   border-radius: 20px 20px 8px 8px;
-  box-shadow: inset 0 1px 0 rgba(231, 255, 255, 0.35), inset 1px 0 0 rgba(214, 246, 248, 0.2), 0 5px 18px rgba(0, 7, 10, 0.12);
+  box-shadow:
+    inset 0 1px 0 rgba(241, 238, 232, 0.22),
+    inset 1px 0 0 rgba(182, 219, 222, 0.12),
+    inset 0 -1px 0 rgba(94, 191, 193, 0.13),
+    0 5px 18px rgba(0, 7, 10, 0.1),
+    0 0 12px rgba(94, 191, 193, 0.035);
   content: "";
   inset: 3px 5px 0;
   pointer-events: none;
@@ -26,7 +31,10 @@
 }
 
 .nav::after {
-  border: 1px solid rgba(118, 213, 218, 0.09);
+  background:
+    linear-gradient(90deg, rgba(241, 238, 232, 0.28), rgba(182, 219, 222, 0.07), transparent 46%) left top / 72% 1px no-repeat,
+    linear-gradient(90deg, rgba(94, 191, 193, 0.25), rgba(94, 191, 193, 0.05), transparent 86%) left bottom / 100% 1px no-repeat;
+  border: 0;
   border-radius: 17px 17px 6px 6px;
   content: "";
   inset: 6px 8px 3px;
@@ -39,17 +47,17 @@
 .nav .nav-monogram {
   align-items: center;
   background:
-    radial-gradient(circle at 29% 19%, rgba(235, 255, 255, 0.28), transparent 22%),
-    radial-gradient(circle at 66% 76%, rgba(35, 181, 190, 0.17), transparent 42%),
-    linear-gradient(145deg, rgba(91, 177, 183, 0.17), rgba(5, 18, 22, 0.72) 48%, rgba(27, 71, 75, 0.3));
-  border: 1px solid rgba(139, 237, 240, 0.65);
+    radial-gradient(circle at 28% 18%, rgba(241, 238, 232, 0.18), transparent 24%),
+    radial-gradient(circle at 70% 82%, rgba(94, 191, 193, 0.11), transparent 44%),
+    rgba(6, 20, 23, 0.34);
+  border: 1px solid rgba(94, 191, 193, 0.66);
   border-radius: 50%;
   box-shadow:
-    inset 0 1px 0 rgba(235, 255, 255, 0.48),
-    inset 5px 7px 18px rgba(116, 231, 235, 0.08),
-    inset -8px -10px 20px rgba(0, 5, 8, 0.48),
-    0 0 0 3px rgba(61, 174, 181, 0.07),
-    0 0 17px rgba(63, 218, 225, 0.18);
+    inset 0 1px 0 rgba(241, 238, 232, 0.34),
+    inset 4px 6px 16px rgba(182, 219, 222, 0.055),
+    inset -7px -9px 18px rgba(0, 5, 8, 0.38),
+    0 0 0 2px rgba(94, 191, 193, 0.055),
+    0 0 13px rgba(94, 191, 193, 0.13);
   display: grid;
   filter: none;
   font-size: 0;
@@ -59,8 +67,8 @@
   position: relative;
 }
 .nav .nav-monogram::before {
-  background: linear-gradient(118deg, rgba(255, 255, 255, 0.38), rgba(255, 255, 255, 0.02) 36%, transparent 52%);
-  border: 1px solid rgba(199, 250, 251, 0.15);
+  background: linear-gradient(124deg, rgba(241, 238, 232, 0.3), rgba(241, 238, 232, 0.015) 34%, transparent 54%);
+  border: 1px solid rgba(182, 219, 222, 0.1);
   border-radius: inherit;
   content: "";
   inset: 4px;
@@ -69,12 +77,12 @@
   z-index: -1;
 }
 .nav .nav-monogram::after {
-  background: linear-gradient(165deg, #f8ffff 4%, #b9edef 32%, #58cbd0 58%, #e9ffff 82%);
+  background: linear-gradient(160deg, #f1eee8 8%, #f7f3eb 38%, #d7c39a 54%, #b6dbde 68%, #f1eee8 90%);
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
   content: "RM";
-  filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.2)) drop-shadow(0 0 5px rgba(86, 231, 235, 0.18));
+  filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.16)) drop-shadow(0 0 4px rgba(94, 191, 193, 0.12));
   font-family: "Playfair Display", serif;
   font-size: 1.45rem;
   font-weight: 500;
@@ -83,29 +91,30 @@
   padding-right: 0.08em;
 }
 .nav .nav-logo-text {
-  font-size: clamp(1.1rem, 1.65vw, 1.5rem);
-  gap: 0.14em;
+  font-size: clamp(1.1rem, 1.7vw, 1.55rem);
+  gap: 0.1em;
 }
 .nav .nav-logo em {
-  background: linear-gradient(180deg, #f5fcff 14%, #dceef0 46%, #a4cbd2 68%, #e4f8fa 92%);
+  background: linear-gradient(180deg, #f7f4ee 12%, #f1eee8 55%, #d7c39a 76%, #f1eee8 94%);
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
   font-family: "Playfair Display", serif;
   font-size: 1em;
   font-weight: 500;
-  letter-spacing: 0.015em;
-  line-height: 1.1;
+  letter-spacing: 0.012em;
+  line-height: 1.04;
 }
 .nav .nav-logo small {
-  color: #a0dce0;
+  color: #b6dbde;
   display: flex;
   flex-wrap: wrap;
   column-gap: 0.3em;
-  font-size: 0.82em;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-  line-height: 1.2;
+  font-family: "Playfair Display", serif;
+  font-size: 0.9em;
+  font-weight: 500;
+  letter-spacing: 0.005em;
+  line-height: 1.08;
   white-space: normal;
 }
 .nav .nav-logo small span { white-space: nowrap; }
@@ -154,57 +163,60 @@
 .nav .nav-book:hover,
 .nav .nav-links.open .menu-book:hover { background-color: rgba(63, 147, 153, 0.28); }
 .nav .nav-menu-toggle {
-  background: rgba(10, 37, 41, 0.36);
-  border-color: rgba(119, 224, 229, 0.45);
-  box-shadow: inset 0 1px 0 rgba(223, 255, 255, 0.12);
-  color: #a3eef0;
+  background: rgba(9, 13, 16, 0.22);
+  border-color: rgba(94, 191, 193, 0.58);
+  box-shadow: inset 0 1px 0 rgba(241, 238, 232, 0.16), 0 0 10px rgba(94, 191, 193, 0.055);
+  color: #b6dbde;
 }
 
 @media (max-width: 819px) {
   .nav::before {
     background:
-      linear-gradient(105deg, rgba(216, 250, 251, 0.13), transparent 17%, rgba(80, 174, 180, 0.025) 58%, rgba(5, 15, 18, 0.2)),
-      linear-gradient(180deg, rgba(9, 26, 29, 0.42), rgba(2, 13, 16, 0.56));
-    backdrop-filter: blur(13px) saturate(132%);
-    -webkit-backdrop-filter: blur(13px) saturate(132%);
-    border-color: rgba(108, 222, 226, 0.42);
+      linear-gradient(106deg, rgba(241, 238, 232, 0.105), transparent 18%, rgba(94, 191, 193, 0.02) 60%, rgba(215, 195, 154, 0.035)),
+      rgba(9, 13, 16, 0.45);
+    backdrop-filter: blur(18px) saturate(125%);
+    -webkit-backdrop-filter: blur(18px) saturate(125%);
+    border-color: rgba(94, 191, 193, 0.46);
     box-shadow:
-      inset 1px 1px 0 rgba(231, 255, 255, 0.32),
-      inset 0 -1px 0 rgba(77, 230, 232, 0.2),
+      inset 1px 1px 0 rgba(241, 238, 232, 0.24),
+      inset 0 -1px 0 rgba(94, 191, 193, 0.14),
       0 4px 16px rgba(0, 8, 11, 0.1),
-      0 0 14px rgba(43, 190, 196, 0.045);
+      0 0 11px rgba(94, 191, 193, 0.035);
   }
   .nav::after {
     background:
-      linear-gradient(90deg, rgba(237, 255, 255, 0.42), rgba(133, 235, 238, 0.15), transparent 46%) left top / 72% 1px no-repeat,
-      linear-gradient(90deg, rgba(66, 230, 232, 0.42), rgba(80, 206, 211, 0.12), transparent 88%) left bottom / 100% 1px no-repeat;
+      linear-gradient(90deg, rgba(241, 238, 232, 0.32), rgba(182, 219, 222, 0.09), transparent 48%) left top / 72% 1px no-repeat,
+      linear-gradient(90deg, rgba(94, 191, 193, 0.28), rgba(94, 191, 193, 0.06), transparent 88%) left bottom / 100% 1px no-repeat;
     border: 0;
     inset: 5px 7px 2px;
   }
   .nav .nav-monogram {
     background:
-      radial-gradient(circle at 32% 23%, rgba(226, 255, 255, 0.13), transparent 31%),
-      rgba(3, 20, 23, 0.26);
-    border-color: rgba(111, 242, 243, 0.9);
+      radial-gradient(circle at 30% 21%, rgba(241, 238, 232, 0.16), transparent 29%),
+      rgba(6, 20, 23, 0.3);
+    border-color: rgba(94, 191, 193, 0.72);
     box-shadow:
-      inset 0 1px 0 rgba(237, 255, 255, 0.35),
-      inset 0 0 15px rgba(63, 218, 222, 0.1),
-      0 0 0 1px rgba(83, 227, 230, 0.08),
-      0 0 13px rgba(67, 235, 237, 0.46);
+      inset 0 1px 0 rgba(241, 238, 232, 0.3),
+      inset 0 0 14px rgba(94, 191, 193, 0.07),
+      0 0 0 1px rgba(94, 191, 193, 0.055),
+      0 0 11px rgba(94, 191, 193, 0.2);
   }
   .nav .nav-monogram::before {
-    background: linear-gradient(128deg, rgba(255, 255, 255, 0.27), transparent 35%);
+    background: linear-gradient(128deg, rgba(241, 238, 232, 0.24), transparent 35%);
     border: 0;
     inset: 2px;
   }
   .nav .nav-monogram::after {
-    background: linear-gradient(180deg, #f6ffff 5%, #bfeaec 47%, #6dd7da 78%, #eaffff 100%);
+    background: linear-gradient(165deg, #f1eee8 7%, #f7f4ee 43%, #d7c39a 58%, #b6dbde 73%, #f1eee8 94%);
     background-clip: text;
     -webkit-background-clip: text;
-    filter: drop-shadow(0 0 5px rgba(92, 238, 240, 0.3));
+    filter: drop-shadow(0 0 4px rgba(94, 191, 193, 0.14));
   }
-  .nav .nav-logo-text { font-size: clamp(1.05rem, 4.55vw, 1.125rem); }
-  .nav .nav-logo { gap: 0.38rem; max-width: none; }
+  .nav .nav-logo-text { font-size: clamp(0.95rem, 4.15vw, 1.08rem); }
+  .nav .nav-logo { gap: clamp(0.32rem, 1.6vw, 0.45rem); max-width: none; }
+  .nav .nav-monogram { height: clamp(3rem, 13.6vw, 3.35rem); width: clamp(3rem, 13.6vw, 3.35rem); }
+  .nav .nav-monogram::after { font-size: clamp(1.25rem, 5.8vw, 1.4rem); }
+  .nav .nav-logo small { font-size: 0.9em; }
   .nav .nav-top { gap: 0.6rem; }
   .nav .nav-links.open {
     background: linear-gradient(155deg, rgba(10, 27, 31, 0.72), rgba(5, 15, 19, 0.84));
@@ -223,9 +235,47 @@
 }
 
 @media (min-width: 820px) {
-  .nav { min-height: 9.369rem; }
-  .nav .nav-links { gap: 0.35rem; }
-  .nav .nav-links a { padding-inline: 0.65rem; }
+  .nav { min-height: 6.035rem; }
+  .nav .nav-book { display: none; }
+  .nav .nav-menu-toggle {
+    display: grid;
+    height: 3rem;
+    width: 3rem;
+  }
+  .nav .nav-links {
+    display: none;
+  }
+  .nav .nav-links.open {
+    background: linear-gradient(155deg, rgba(9, 21, 24, 0.82), rgba(5, 13, 16, 0.92));
+    backdrop-filter: blur(18px) saturate(125%);
+    -webkit-backdrop-filter: blur(18px) saturate(125%);
+    border: 1px solid rgba(94, 191, 193, 0.28);
+    border-radius: 18px 18px 8px 18px;
+    box-shadow: inset 0 1px 0 rgba(241, 238, 232, 0.14), 0 18px 42px rgba(0, 0, 0, 0.3);
+    display: grid;
+    gap: 0.5rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    left: auto;
+    margin-top: 0.55rem;
+    max-height: calc(100vh - 8rem);
+    overflow-y: auto;
+    padding: 0.75rem;
+    position: absolute;
+    right: 2rem;
+    top: calc(100% - 0.35rem);
+    width: min(28rem, calc(100vw - 4rem));
+  }
+  .nav .nav-links.open a {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    min-height: 3rem;
+    text-align: center;
+  }
+  .nav .nav-links.open .menu-book,
+  .nav .nav-links.open .menu-instagram {
+    display: flex !important;
+  }
 }
 @media (min-width: 1440px) {
   .nav {
