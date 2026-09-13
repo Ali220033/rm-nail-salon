@@ -360,11 +360,16 @@
 }
 
 .nav .nav-monogram {
-  background: url("/images/rm-social-glass.svg") center / contain no-repeat;
+  background: url("/brand/rm-raised-192.webp") center / contain no-repeat;
+  background-image: image-set(
+    url("/brand/rm-raised-128.webp") 1x,
+    url("/brand/rm-raised-192.webp") 2x,
+    url("/brand/rm-raised-256.webp") 3x
+  );
   border: 0;
   border-radius: 0;
   box-shadow: none;
-  filter: drop-shadow(0 0 7px rgba(63, 205, 211, 0.16));
+  filter: none;
   height: clamp(2.9rem, 13vw, 3.3rem);
   overflow: visible;
   width: clamp(2.9rem, 13vw, 3.3rem);
