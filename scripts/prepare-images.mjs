@@ -234,9 +234,7 @@ for (const asset of assets) {
     sourceWidth: source.width, sourceHeight: source.height, widths,
     originalSha256: createHash("sha256").update(originalData).digest("hex") });
 }
-// Existing favicon identity remains outside this header-only brand update.
-await sharp(path.join(imageRoot, "rm-platinum-monogram.webp")).resize(32, 32, { fit: "contain" }).png().toFile("public/favicon.png");
-await sharp(path.join(imageRoot, "rm-platinum-monogram.webp")).resize(180, 180, { fit: "contain" }).png().toFile("public/apple-touch-icon.png");
+await import("./prepare-favicons.mjs");
 await writeFile("src/imageManifest.json", JSON.stringify(manifest));
 await mkdir("output/image-quality", { recursive: true });
 await writeFile("output/image-quality/audit.json", JSON.stringify({ recipe, assets: audit }, null, 2));
