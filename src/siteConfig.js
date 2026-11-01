@@ -20,10 +20,10 @@ export const siteConfig = {
   instagramCleanUrl: "https://www.instagram.com/rmnailsalon.nyc/",
   phone: "346-865-6565",
   email: "rmnyc2026@gmail.com",
-  address: "875 3rd Ave, Concourse Level, New York, NY 10022",
+  address: "875 3rd Avenue, New York, NY 10022, United States",
   logo: "/images/rm-glass-emblem.png",
   geo: { latitude: 40.7573625, longitude: -73.969416 },
-  postalAddress: { streetAddress: "875 3rd Ave, Concourse Level", addressLocality: "New York", addressRegion: "NY", postalCode: "10022", addressCountry: "US" },
+  postalAddress: { streetAddress: "875 3rd Avenue", addressLocality: "New York", addressRegion: "NY", postalCode: "10022", addressCountry: "US" },
   openingHours,
   hours: openingHours.map((item) => `${item.label}: ${formatHours(item)}`).join("; "),
   hoursShort: openingHours.map((item) => `${item.label} ${formatHours(item, true)}`).join(" | "),
@@ -882,7 +882,7 @@ export const faqs = [
   {
     question: "Where are you located in Midtown NYC?",
     answer:
-      "RM Nail Salon has one location at 875 3rd Ave, Concourse Level, New York, NY 10022. It is convenient for clients coming from Midtown East, Grand Central, Sutton Place, Rockefeller Center, Fifth Avenue, work, hotels, and Instagram bookings."
+      "RM Nail Salon has one location at 875 3rd Avenue, New York, NY 10022, United States. It is convenient for clients coming from Midtown East, Grand Central, Sutton Place, Rockefeller Center, Fifth Avenue, work, hotels, and Instagram bookings."
   },
   {
     question: "How do I book an appointment?",

@@ -21,7 +21,7 @@ const visitorGuides = {
     title: "Choose a service that fits your workday.",
     serviceIds: ["russian-clear", "russian-hard-gel", "nail-design"],
     faqs: () => [
-      ["Will a Russian manicure fit into my lunch break?", `Compare your available time with the service itself: ${serviceTime("russian-clear")} for the natural manicure or ${serviceTime("russian-hard-gel")} for hard gel. These times do not include getting from your building to the Concourse Level studio. Check removal and design requirements before selecting a lunch appointment.`],
+      ["Will a Russian manicure fit into my lunch break?", `Compare your available time with the service itself: ${serviceTime("russian-clear")} for the natural manicure or ${serviceTime("russian-hard-gel")} for hard gel. These times do not include getting from your building to the studio. Check removal and design requirements before selecting a lunch appointment.`],
       ["What should I send before booking a detailed design?", "Send a reference photo and describe any product currently on your nails. Tell the studio about your next meeting or other time constraint before booking so you can select the appropriate service and artwork time."]
     ]
   },
@@ -30,7 +30,7 @@ const visitorGuides = {
     title: "Find the salon and reserve the complete service.",
     serviceIds: ["combo-clear", "hard-gel-smart-gel"],
     faqs: () => [
-      ["Does the street address take me directly to the salon?", `Your appointment is at ${siteConfig.address}. Use the RM Nail Salon business pin and allow time to find the studio on the Concourse Level. Call ${siteConfig.phone} if you need help finding it.`],
+      ["Does the street address take me directly to the salon?", `Your appointment is at ${siteConfig.address}. Use the RM Nail Salon business pin and allow time to find the studio. Call ${siteConfig.phone} if you need help finding it.`],
       ["Can I combine hands and feet in one appointment?", `The natural-care manicure and pedicure combo is listed at ${serviceTime("combo-clear")}; the gel manicure and gel pedicure combo is ${serviceTime("hard-gel-smart-gel")}. Choose the corresponding combo on Booksy and review the available time before planning the rest of your day.`]
     ]
   },
@@ -75,7 +75,7 @@ const visitorGuides = {
     title: "Choose your departure point before booking.",
     serviceIds: ["smart-pedicure", "russian-hard-gel"],
     faqs: () => [
-      ["How should I plan the journey from Bryant Park?", "Start directions from the side of the park where you expect to leave, or from your nearby office or hotel. Your appointment is at RM's Concourse Level studio on Third Avenue, so include the journey and time to find the salon in your plan."],
+      ["How should I plan the journey from Bryant Park?", "Start directions from the side of the park where you expect to leave, or from your nearby office or hotel. Your appointment is at RM's studio on Third Avenue, so include the journey and time to find the salon in your plan."],
       ["What should I consider for a pedicure before more walking?", `The smart pedicure is listed at ${serviceTime("smart-pedicure")}. Discuss your polish choice, footwear, and any drying time with the studio before booking if you plan to continue walking or sightseeing afterward.`]
     ]
   },

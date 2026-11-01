@@ -55,6 +55,7 @@ import "../public/fonts/optimized-fonts.css";
 import "./styles.css";
 import "./header.css";
 import "./footer.css";
+import "./header-phone.css";
 import { ResponsiveImage } from "./ResponsiveImage.jsx";
 const GalleryViewer = lazy(() => import("./GalleryViewer.jsx").then((module) => ({ default: module.GalleryViewer })));
 import { ReviewLoop } from "./ReviewLoop.jsx";
@@ -162,7 +163,7 @@ const luxuryServices = [
 const proofStripItems = [
   `${reviewSummary.ratingValue} Booksy rating`,
   `${reviewSummary.reviewCount} Booksy client reviews`,
-  "875 3rd Ave, Concourse Level",
+  siteConfig.address,
   siteConfig.hoursShort,
   "Russian manicure specialists"
 ];
@@ -687,6 +688,7 @@ function Nav({ compact, route, navigate }) {
 
   return (
     <header className={compact ? "nav nav-compact" : "nav"}>
+      <a className="rm-header-phone" href={`tel:+1${siteConfig.phone.replace(/\D/g, "")}`} aria-label={`Call RM Nail Salon at ${siteConfig.phone}`}><Phone size={13} aria-hidden="true"/><span>{siteConfig.phone}</span></a>
       <div className="nav-top">
         <RouteLink to="/" navigate={navigate} className="nav-logo">
           <span className="nav-monogram" aria-hidden="true">RM</span>
@@ -1012,8 +1014,8 @@ function BrandRibbon() {
         <div className="brand-media-panel">
           <ResponsiveImage src={fastImage("drive-midtown")} alt="RM Nail Salon Midtown NYC campaign skyline" loading="lazy" decoding="async" />
           <div>
-            <span>875 3rd Ave</span>
-            <strong>Concourse Level</strong>
+            <span>{siteConfig.postalAddress.streetAddress}</span>
+            <strong>New York, NY 10022, United States</strong>
           </div>
         </div>
       </motion.div>
@@ -1674,7 +1676,7 @@ function LocationSection({ navigate }) {
     <section className="home-location-section">
       <div className="location-copy">
         <p className="eyebrow">Midtown Manhattan</p>
-        <h2>Visit us at 875 3rd Ave, Concourse Level.</h2>
+        <h2>Visit us at {siteConfig.address}.</h2>
         <p>
           RM Nail Salon is positioned for city clients booking from work, Instagram, hotels, and nearby East Side
           neighborhoods.
@@ -1706,8 +1708,8 @@ function LocationSection({ navigate }) {
               <MapPin size={18} />
               <div>
                 <span>RM Nail Salon</span>
-                <strong>875 3rd Ave</strong>
-                <em>Concourse Level / New York, NY 10022</em>
+                <strong>{siteConfig.postalAddress.streetAddress}</strong>
+                <em>New York, NY 10022, United States</em>
               </div>
             </div>
             <a
@@ -2340,7 +2342,7 @@ function GeoLandingPage({ page, navigate }) {
             <div className="arrival-proof-row">
               <span>{siteConfig.hoursShort}</span>
               <span>Booksy booking</span>
-              <span>Concourse Level</span>
+              <span>New York City</span>
             </div>
             <MagneticLink href={siteConfig.mapUrl} onClick={trackDirectionsConversion} className="outline-cta">
               Open RM Nail Salon in Maps <Navigation size={16} />
@@ -2640,8 +2642,8 @@ function AboutPage({ navigate }) {
         <div className="about-luxury-collage" aria-label="RM Nail Salon luxury studio mood">
             <ResponsiveImage src={fastImage("brand-salon-front-full")} alt="Manicure stations inside RM Nail Salon in Midtown NYC" loading="lazy" decoding="async" />
           <div>
-            <span>875 3rd Ave</span>
-            <strong>Concourse Level</strong>
+            <span>{siteConfig.postalAddress.streetAddress}</span>
+            <strong>New York, NY 10022, United States</strong>
             <em>Midtown East appointment studio</em>
           </div>
           <ResponsiveImage src={fastImage("service-vip-room")} alt="Cyan-lit RM Nail Salon studio chair" loading="lazy" decoding="async" />
@@ -2809,7 +2811,7 @@ function ContactPage({ navigate }) {
         <SectionIntro
           label="Visit RM"
           title="Book online, call, or find us in Midtown Manhattan."
-          copy="RM Nail Salon is located at 875 3rd Ave, Concourse Level, with weekday and weekend appointments available through Booksy."
+          copy="RM Nail Salon is located at 875 3rd Avenue, New York, NY 10022, United States, with weekday and weekend appointments available through Booksy."
           align="center"
         />
         <div className="contact-layout">
@@ -2819,7 +2821,7 @@ function ContactPage({ navigate }) {
               <span>Midtown Appointment Concierge</span>
               <h2>Arrive below street level, leave polished above expectation.</h2>
               <p>
-                Use the map for 875 3rd Ave, Concourse Level. Book online for the fastest appointment flow, or message
+                Use the map for {siteConfig.address}. Book online for the fastest appointment flow, or message
                 Instagram when you need help choosing between Russian manicure, hard gel, smart pedicure, and nail art.
               </p>
               <MagneticLink href={siteConfig.bookingUrl} className="gold-cta">
@@ -3051,8 +3053,8 @@ function Footer({ navigate, showBooking = true }) {
                 <MapPin size={16} />
                 <span>
                   <small>Address</small>
-                  <strong>875 3rd Ave, Concourse Level</strong>
-                  <em>New York, NY</em>
+                  <strong>{siteConfig.postalAddress.streetAddress}</strong>
+                  <em>New York, NY 10022, United States</em>
                 </span>
               </a>
               <span>

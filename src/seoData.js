@@ -149,7 +149,7 @@ export const coreSeoPages = [
     navLabel: "Contact",
     title: "Contact RM Nail Salon | 875 3rd Ave Midtown NYC",
     description:
-      "Contact RM Nail Salon at 875 3rd Ave, Concourse Level, New York, NY 10022. Book online, call, message Instagram, or open the Midtown NYC map.",
+      "Contact RM Nail Salon at 875 3rd Avenue, New York, NY 10022, United States. Book online, call, message Instagram, or open the Midtown NYC map.",
     h1: "Contact RM Nail Salon in Midtown NYC",
     image: fastImage("rm-hero-editorial"),
     imageAlt: "RM Nail Salon contact page manicure detail",
@@ -538,7 +538,7 @@ export const geoLandingPages = [
     label: "Midtown East",
     title: "Russian Manicure Midtown East | RM Nail Salon",
     description:
-      "Book a Russian manicure in Midtown East near Lexington Avenue, Park Avenue, Madison Avenue, Third Avenue, and RM's Concourse Level nail studio.",
+      "Book a Russian manicure in Midtown East near Lexington Avenue, Park Avenue, Madison Avenue, Third Avenue, and RM's nail studio.",
     h1: "Russian manicure in Midtown East with RM precision.",
     heroCopy:
       "Close to Midtown East offices, hotels, and residential buildings, RM offers a polished appointment for clients who care about details.",
@@ -773,7 +773,7 @@ export const blogArticlePages = [
       ],
       [
         "Before visiting Midtown",
-        "Bring a reference photo and know the name of your existing product if possible. Decide whether maintaining your current length matters more than copying a particular image. All RM appointments take place at 875 3rd Ave, Concourse Level; choose the service on Booksy before planning your travel."
+        "Bring a reference photo and know the name of your existing product if possible. Decide whether maintaining your current length matters more than copying a particular image. All RM appointments take place at 875 3rd Ave; choose the service on Booksy before planning your travel."
       ]
     ],
     sources: [["AAD: manicure and pedicure safety","https://www.aad.org/public/everyday-care/nail-care-secrets/basics/pedicures/manicure-pedicure-safety"]],
@@ -911,7 +911,7 @@ export const blogArticlePages = [
       ],
       [
         "Planning an RM appointment",
-        "Compare the natural Russian manicure with the hard-gel option in the service menu. Book real availability on Booksy and mention removal or artwork before your visit. For a first appointment, bring your reference and leave enough time for the full service at our Concourse Level studio."
+        "Compare the natural Russian manicure with the hard-gel option in the service menu. Book real availability on Booksy and mention removal or artwork before your visit. For a first appointment, bring your reference and leave enough time for the full service at our studio."
       ]
     ],
     sources: [["AAD: artificial nails and nail damage","https://www.aad.org/public/everyday-care/nail-care-secrets/basics/pedicures/reduce-artificial-nail-damage"]],
