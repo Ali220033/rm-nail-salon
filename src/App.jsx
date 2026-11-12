@@ -65,6 +65,7 @@ import { arrivalGuides } from "./arrivalGuides.js";
 import { getSeoMetadata } from "./seoMetadata.js";
 import { getVisitorContent } from "./visitorContent.js";
 import { getGalleryContext } from "./galleryContext.js";
+import { isBookingDestination } from "./serviceBooking.js";
 import "./seo-accessibility.css";
 
 const reveal = {
@@ -770,7 +771,7 @@ function InstagramLink({ className = "" }) {
   );
 }
 
-function MagneticLink({ href, className = "", children, onClick }) {
+function MagneticLink({ href, className = "", children, onClick, ...props }) {
   const reduceMotion = useReducedMotion();
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
@@ -788,7 +789,7 @@ function MagneticLink({ href, className = "", children, onClick }) {
   const handleClick = (event) => {
     resetPosition();
     window.setTimeout(resetPosition, 120);
-    if (href === siteConfig.bookingUrl && !onClick) {
+    if (isBookingDestination(href, siteConfig.bookingUrl) && !onClick) {
       trackBookingConversion();
     }
     onClick?.(event);
@@ -796,6 +797,7 @@ function MagneticLink({ href, className = "", children, onClick }) {
 
   return (
     <motion.a
+      {...props}
       href={href}
       className={`magnetic ${className}`}
       style={{ x, y }}
@@ -894,7 +896,7 @@ function QuickBookingCard() {
       onSubmit={(event) => {
         event.preventDefault();
         trackBookingConversion();
-        window.open(siteConfig.bookingUrl, "_blank", "noopener,noreferrer");
+        window.open(selected?.bookingUrl || siteConfig.bookingUrl, "_blank", "noopener,noreferrer");
       }}
       aria-label="Quick appointment planner"
     >
@@ -1137,7 +1139,7 @@ function FeaturedServicesHome({ navigate }) {
             <span>Best for: {active.bestFor}</span>
             <p>{active.includes}</p>
             <div>
-              <MagneticLink href={siteConfig.bookingUrl} className="gold-cta">
+              <MagneticLink href={active.bookingUrl} data-booking-service={active.id} className="gold-cta">
                 {active.bookLabel} <CalendarDays size={16} />
               </MagneticLink>
               <RouteLink to={active.learnMorePath} navigate={navigate} className="outline-cta">
@@ -2013,7 +2015,7 @@ function ServicesPage({ navigate }) {
                   <div className="catalog-price">
                     <strong>{service.price}</strong>
                     {service.topTech && <span>Top tech {service.topTech}</span>}
-                    <MagneticLink href={siteConfig.bookingUrl} className="mini-book">
+                    <MagneticLink href={service.bookingUrl} data-booking-service={service.id} className="mini-book">
                       {service.bookLabel} <ArrowUpRight size={14} />
                     </MagneticLink>
                     <RouteLink to={service.learnMorePath} navigate={navigate} className="service-learn-link">
@@ -2105,7 +2107,7 @@ function ServiceLandingPage({ page, navigate }) {
           <h2>{page.introTitle}</h2>
           <p>{page.intro}</p>
           <div className="seo-cta-row">
-            <MagneticLink href={siteConfig.bookingUrl} className="gold-cta">
+            <MagneticLink href={services[0]?.bookingUrl || siteConfig.bookingUrl} data-booking-service={services[0]?.id} className="gold-cta">
               {page.ctaLabel || `Book ${page.serviceType}`} <CalendarDays size={16} />
             </MagneticLink>
             <RouteLink to="/services" navigate={navigate} className="aqua-cta">
@@ -2212,7 +2214,7 @@ function ServiceLandingPage({ page, navigate }) {
                 <small>Best for: {service.bestFor}</small>
               </div>
               <strong>{service.price}</strong>
-              <MagneticLink href={siteConfig.bookingUrl} className="mini-book">
+              <MagneticLink href={service.bookingUrl} data-booking-service={service.id} className="mini-book">
                 {service.bookLabel} <ArrowUpRight size={14} />
               </MagneticLink>
             </article>

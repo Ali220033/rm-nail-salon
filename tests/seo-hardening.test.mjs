@@ -1,3 +1,4 @@
+import { getServiceBookingUrl } from '../src/serviceBooking.js';
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { test } from "node:test";
@@ -76,7 +77,7 @@ test("all service records have a valid internal destination and the existing Boo
       assert.ok(!ids.has(service.id), service.id);
       ids.add(service.id);
       assert.equal(service.category, group.category);
-      assert.equal(service.bookingUrl, siteConfig.bookingUrl);
+      assert.equal(service.bookingUrl, getServiceBookingUrl(service.id, siteConfig.bookingUrl));
       assert.ok(routes.has(service.seoPath.split("#")[0]), service.id);
       if (service.seoPath.includes("#")) assert.equal(service.seoPath, `/services#${service.id}`);
     }

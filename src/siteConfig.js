@@ -1,3 +1,5 @@
+import { getServiceBookingUrl } from './serviceBooking.js';
+
 // Owner-approved opening hours. Display copy and structured data derive from this schedule.
 const openingHours = [
   { label: "Mon-Fri", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "09:30", closes: "20:00" },
@@ -495,7 +497,7 @@ export const serviceMenu = [
   services: group.services.map((service) => ({
     ...service,
     category: group.category,
-    bookingUrl: siteConfig.bookingUrl,
+    bookingUrl: getServiceBookingUrl(service.id, siteConfig.bookingUrl),
     seoPath: serviceSeoPaths[service.id] || `/services#${service.id}`
   }))
 }));
