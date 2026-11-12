@@ -108,7 +108,7 @@ test("every page opens the exact owner-supplied Google Maps listing", async () =
 
 test("reconciled combo prices and durations are shared by pages and structured data", () => {
   const services = serviceMenu.flatMap((group) => group.services);
-  for (const [id, price, duration] of [["combo-clear", "$150", "1 h 45 min"], ["hard-gel-smart", "$200", "2 h 30 min"], ["hard-gel-smart-gel", "$220", "2 h 45 min"]]) {
+  for (const [id, price, duration] of [["combo-clear","$150.00","1 h 45 min"],["hard-gel-smart","$200.00","2 h 30 min"],["hard-gel-smart-gel","$220.00","2 h 45 min"]]) {
     const service = services.find((item) => item.id === id);
     assert.equal(service.price, price);
     assert.equal(service.time, duration);
@@ -126,11 +126,11 @@ test("all article updates include sources and real modification dates", () => {
 });
 
 test("homepage service summaries use the shared menu values", async () => {
-  const html = await readFile("dist/index.html", "utf8");
-  for (const id of ["russian-clear", "russian-hard-gel", "nail-extensions", "smart-pedicure", "smart-gel-pedicure", "nail-design"]) {
+  const html = (await readFile("dist/index.html", "utf8")).replaceAll("<!-- -->", "");
+  for (const id of ["russian-clear", "russian-hard-gel", "junior-hard-gel", "smart-pedicure", "smart-gel-pedicure", "nail-design"]) {
     const service = serviceMenu.flatMap((group) => group.services).find((item) => item.id === id);
     const escapedPrice = service.price.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    assert.match(html, new RegExp(`<strong>${escapedPrice}<small>${service.time}</small></strong>`), id);
+    assert.match(html, new RegExp(`<strong>${escapedPrice}(?:<small>[^<]*</small>)?<small>${service.time}</small></strong>`), id);
   }
   assert.ok(!html.includes("7 Booksy client reviews"));
 });

@@ -247,7 +247,7 @@ export const serviceLandingPages = [
     intro:
       "Russian manicure is a dry, detail-focused technique. At RM, the appointment is built around careful nail prep, precise cuticle refinement, balanced shaping, and a polished finish that stays clean as the nail grows.",
     serviceType: "Russian Manicure",
-    serviceIds: ["russian-clear", "russian-hard-gel", "nail-extensions"],
+    serviceIds: ["russian-clear", "russian-hard-gel", "junior-clear"],
     highlights: [
       ["Dry precision", "Detailed e-file cuticle care creates the crisp, photo-clean line Russian manicures are known for."],
       ["Long-wear finish", "Hard gel and polish options are structured for shine, balance, and a refined grow-out."],
@@ -278,7 +278,7 @@ export const serviceLandingPages = [
     intro:
       "Hard gel is ideal when natural nails need extra support, shape correction, or a longer-wearing finish. The RM approach keeps the profile refined while protecting the clean luxury look clients expect from a Russian manicure studio.",
     serviceType: "Hard Gel Manicure",
-    serviceIds: ["russian-hard-gel", "nail-extensions", "fill-in"],
+    serviceIds: ["russian-hard-gel", "junior-hard-gel"],
     processImage: fastImage("service-hard-gel"),
     processAlt: "Hard gel manicure application process at RM Nail Salon",
     processTitle: "How Hard Gel Is Applied",
@@ -411,17 +411,17 @@ export const serviceLandingPages = [
     label: "Sculpted Length",
     title: "Gel Nail Extensions NYC | RM Nail Salon Midtown",
     description:
-      "Gel nail extensions in Midtown NYC with sculpted length, slim architecture, clean Russian manicure prep, refined shaping, and nail art options.",
+      "Find RM Nail Salon's currently bookable one-nail extension and extra-length add-on in Midtown NYC.",
     h1: "Gel Extensions in Midtown NYC",
     heroCopy:
-      "For clients who want more length, RM builds extensions with balanced architecture and a refined high-end profile.",
+      "Booksy currently lists a one-nail extension and an extra-length add-on at RM Nail Salon.",
     image: serviceImageById("nail-extensions", "service-russian-extensions-new"),
     imageAlt: "Finished gel nail extensions at RM Nail Salon",
     introTitle: "Elegant gel extensions with balanced shape, clean cuticle work, and refined structure.",
     intro:
-      "RM Nail Salon approaches extensions like architecture. The service focuses on structure, proportion, and cuticle cleanliness so long nails still feel refined, balanced, and elegant.",
+      "See the current Booksy options below for a single nail extension or extra length on an eligible appointment.",
     serviceType: "Gel Nail Extensions",
-    serviceIds: ["nail-extensions", "fill-in", "extra-long-nails"],
+    serviceIds: ["one-nail-extension", "extra-long-nails"],
     processImage: fastImage("service-extensions"),
     processAlt: "Gel extension form and structure process at RM Nail Salon",
     processTitle: "How Extensions Are Built",
@@ -438,8 +438,8 @@ export const serviceLandingPages = [
       ["Russian manicure base", "The clean prep work supports the final shape and keeps the set looking refined."],
       ["Design-ready", "Extensions can be finished natural, glossy, chrome, French, or with custom nail art."]
     ],
-    ctaLabel: "Book Gel Extensions",
-    bookingServiceId: "nail-extensions",
+    ctaLabel: "Book One Nail Extension",
+    bookingServiceId: "one-nail-extension",
     decisionTitle: "Why extensions require structure, not just length.",
     decisionCopy:
       "A refined extension set depends on proportion, sidewalls, balance, prep, and finish. RM designs length to look polished rather than heavy.",
@@ -463,7 +463,7 @@ export const serviceLandingPages = [
     intro:
       "Builder gel is used when a client wants strength, smoother shape, or a more durable manicure on natural nails. RM pairs the overlay with Russian cuticle preparation so the finish stays crisp around the nail fold.",
     serviceType: "Builder Gel Manicure",
-    serviceIds: ["russian-hard-gel", "nail-extensions", "fill-in"],
+    serviceIds: ["russian-hard-gel", "junior-hard-gel"],
     comparisonLabel: "Builder, Hard Gel, Extensions",
     comparisonTitle: "Choose by what your natural nails need.",
     comparisonRows: [

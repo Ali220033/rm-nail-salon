@@ -134,11 +134,13 @@ export const serviceMenu = [
     services: [
       {
         id: "russian-clear",
-        name: "Russian Manicure (no polish/regular polish)",
+        name: "Russian Manicure (clear/no polish)",
         shortName: "Russian Manicure",
         time: "45 min",
-        price: "$65",
+        price: "$65.00",
         topTech: null,
+        promotionPrice: "$58.50",
+        promotionLabel: "Save up to 10%",
         image: newRussianNaturalImage,
         description:
           "A highly precise dry manicure using professional e-file techniques to deeply clean cuticles and shape nails perfectly. Available with no polish for a natural, healthy look or finished with regular nail polish for a classic touch of color. Best for clients who prefer beautifully groomed nails without gel."
@@ -148,8 +150,10 @@ export const serviceMenu = [
         name: "Men's Manicure (no polish)",
         shortName: "Men's Manicure",
         time: "40 min",
-        price: "$75",
+        price: "$75.00",
         topTech: null,
+        promotionPrice: "$67.50",
+        promotionLabel: "Save up to 10%",
         image: newMensNoPolishImage,
         description:
           "A professional manicure designed for men, combining expert cuticle cleaning, shaping, and buffing for a clean, healthy appearance. Includes a relaxing hand massage for overall care. Best for men who want neat, strong, and well-maintained nails."
@@ -159,8 +163,10 @@ export const serviceMenu = [
         name: "Japanese Manicure (clear)",
         shortName: "Japanese Care",
         time: "1 h",
-        price: "$90",
+        price: "$90.00",
         topTech: null,
+        promotionPrice: "$81.00",
+        promotionLabel: "Save up to 10%",
         image: newJapaneseClearImage,
         description:
           "A restorative nail treatment using mineral-rich paste and powder to strengthen nails, smooth the nail plate, and create a natural glossy shine. Performed only on natural nails without polish or gel. Best for weak, brittle, or damaged nails that need strength and natural shine."
@@ -170,33 +176,53 @@ export const serviceMenu = [
         name: "Russian Manicure (Hard gel)",
         shortName: "Hard Gel Russian",
         time: "1 h 30 min",
-        price: "$115",
+        price: "$115.00",
         topTech: null,
+        promotionPrice: "$103.50",
+        promotionLabel: "Save up to 10%",
         image: newRussianHardGelImage,
         description:
           "A luxury service that combines precise Russian cuticle work with structured hard gel to create strong, perfectly balanced nail architecture. Ideal for weak, thin, or brittle nails, this technique reinforces the natural nail, corrects shape, and provides exceptional durability while maintaining an elegant, glossy, natural-looking finish."
       },
       {
-        id: "nail-extensions",
-        name: "Russian Nail Extensions",
-        shortName: "Extensions",
-        time: "2 h 30 min",
-        price: "$195-$215",
+        id: "junior-hard-gel",
+        name: "Junior Russian Hard Gel Manicure (short nails)",
+        shortName: "Junior Hard Gel",
+        time: "1 h 30 min",
+        price: "$70.00",
         topTech: null,
-        image: newRussianExtensionsImage,
-        description:
-          "An advanced extension service designed to create customized length and shape in a single visit. Meticulous Russian manicure techniques are combined with a structured gel system to sculpt balanced, elegant nail architecture tailored to each client."
+        image: newRussianHardGelImage,
+        description: "Hard gel manicure for short nails with a junior nail technician."
       },
       {
-        id: "fill-in",
-        name: "Fill-in (correction of extended nails)",
-        shortName: "Fill-in",
-        time: "2 hr",
-        price: "$130",
-        topTech: "$140",
-        image: fillInImage,
-        description:
-          "A detailed correction service for grown-out extended nails. The existing structure is carefully refined, lifted areas are addressed when possible, the apex is rebalanced, and the shape is restored before a fresh glossy finish is applied. Best for clients who want to maintain length while keeping the nails strong, elegant, and properly balanced."
+        id: "junior-clear",
+        name: "Junior Russian Manicure (clear/regular polish)",
+        shortName: "Junior Russian Manicure",
+        time: "1 h",
+        price: "$40.00",
+        topTech: null,
+        image: newRussianNaturalImage,
+        description: "Russian manicure with a clear or regular polish finish, performed by a junior nail technician."
+      },
+      {
+        id: "junior-japanese",
+        name: "Junior Japanese Manicure (clear)",
+        shortName: "Junior Japanese Manicure",
+        time: "1 h 10 min",
+        price: "$50.00",
+        topTech: null,
+        image: newJapaneseClearImage,
+        description: "Clear Japanese manicure on natural nails with a junior nail technician."
+      },
+      {
+        id: "junior-mens",
+        name: "Junior Men's Manicure (clear/no polish)",
+        shortName: "Junior Men's Manicure",
+        time: "50 min",
+        price: "$50.00",
+        topTech: null,
+        image: newMensNoPolishImage,
+        description: "Men’s manicure with a clear or no-polish finish, performed by a junior nail technician."
       }
     ]
   },
@@ -206,11 +232,13 @@ export const serviceMenu = [
     services: [
       {
         id: "smart-pedicure",
-        name: "Russian Smart Pedicure w/no regular polish",
+        name: "Russian Smart Pedicure (w/without) reg polish",
         shortName: "Smart Pedicure",
         time: "1 h",
-        price: "$95",
+        price: "$95.00",
         topTech: null,
+        promotionPrice: "$85.50",
+        promotionLabel: "Save up to 10%",
         bookingCheckedAt: "2026-09-06",
         image: newSmartPedicureNaturalImage,
         description:
@@ -221,8 +249,10 @@ export const serviceMenu = [
         name: "Russian Smart Gel Pedicure",
         shortName: "Smart Gel Pedicure",
         time: "1 h 15 min",
-        price: "$120",
+        price: "$120.00",
         topTech: null,
+        promotionPrice: "$108.00",
+        promotionLabel: "Save up to 10%",
         image: newSmartGelPedicureImage,
         description:
           "An elevated pedicure designed for precision and comfort. Includes meticulous dry cuticle detailing, precise nail shaping, gentle controlled callus refinement, and a high-gloss long-lasting gel application for a clean, flawlessly smooth look."
@@ -235,11 +265,13 @@ export const serviceMenu = [
     services: [
       {
         id: "combo-clear",
-        name: "No polish Manicure + Regular/No polish Pedicure",
+        name: "Combo Russian Mani(clear)+Pedi(NO/with reg polish)",
         shortName: "Clean Combo",
         time: "1 h 45 min",
-        price: "$150",
+        price: "$150.00",
         topTech: null,
+        promotionPrice: "$135.00",
+        promotionLabel: "Save up to 10%",
         bookingCheckedAt: "2026-09-06",
         image: comboNoPolishRegularPediImage,
         description:
@@ -247,11 +279,13 @@ export const serviceMenu = [
       },
       {
         id: "hard-gel-smart",
-        name: "Gel Manicure+Pedicure w/no polish",
+        name: "Russian Gel Manicure + Pedicure NO/With peg polish",
         shortName: "Hard Gel Combo",
         time: "2 h 30 min",
-        price: "$200",
+        price: "$200.00",
         topTech: null,
+        promotionPrice: "$180.00",
+        promotionLabel: "Save up to 10%",
         bookingCheckedAt: "2026-09-06",
         image: comboGelNoPolishImage,
         description:
@@ -259,82 +293,18 @@ export const serviceMenu = [
       },
       {
         id: "hard-gel-smart-gel",
-        name: "Russian Gel Manicure+Russian Smart Gel Pedicure",
+        name: "Combo Russian Gel Manicure + Smart Gel Pedicure",
         shortName: "Gel Combo",
         time: "2 h 45 min",
-        price: "$220",
+        price: "$220.00",
         topTech: null,
+        promotionPrice: "$198.00",
+        promotionLabel: "Save up to 10%",
         bookingCheckedAt: "2026-09-06",
         image: comboRussianGelSmartGelImage,
         description:
           "A high-gloss long-wear combo for clients who want a finished gel look on both hands and feet. Russian gel manicure precision is paired with Russian Smart Gel Pedicure detailing for clean cuticles, balanced shaping, smooth skin refinement, and durable color designed to stay polished for weeks."
       },
-      {
-        id: "natural-care-combo",
-        name: "Natural Nail Care Combo",
-        shortName: "Natural Care",
-        time: "2 hr 30 min",
-        price: "$185",
-        topTech: "$200",
-        image: comboNaturalCareImage,
-        description:
-          "A restorative natural-nail appointment for clients who want strength, shine, and healthy-looking hands and feet without heavy product. Japanese manicure care is paired with precise foot grooming to smooth, refine, and refresh the natural nail plate while keeping the finish soft and elegant."
-      },
-      {
-        id: "mens-grooming-combo",
-        name: "Men's Grooming Combo",
-        shortName: "Men's Combo",
-        time: "1 hr 55 min",
-        price: "$140",
-        topTech: "$160",
-        image: comboMensGroomingImage,
-        description:
-          "A complete grooming appointment for men who want clean, healthy-looking hands and feet. Nails are shaped, cuticles are refined, rough edges are smoothed, and the final buffed finish looks neat, strong, and natural without polish."
-      },
-      {
-        id: "vip-room",
-        name: "VIP Room Service",
-        shortName: "VIP Room",
-        time: "2 hr",
-        price: "$285",
-        topTech: "$300",
-        image: vipRoomImage,
-        description:
-          "A private elevated appointment experience for clients who want extra calm, focus, and personal attention during their service. Ideal for special occasions, quiet self-care time, or anyone who prefers a more discreet RM studio moment with the same precise manicure and pedicure standards."
-      },
-      {
-        id: "best-friends-combo",
-        name: "Best Friends Combo",
-        shortName: "Best Friends",
-        time: "1 hr 30 min",
-        price: "$200",
-        topTech: "$220",
-        image: comboBestFriendsImage,
-        description:
-          "A shared beauty appointment for two guests who want to enjoy the RM experience together. Each client receives polished nail care with clean shaping, refined detail, and a finished look designed for photos, plans, and a relaxed moment with someone close."
-      },
-      {
-        id: "mr-mrs-combo",
-        name: "Mr & Mrs Combo Service",
-        shortName: "Mr & Mrs",
-        time: "1 hr 30 min",
-        price: "$250",
-        topTech: "$275",
-        image: comboMrMrsImage,
-        description:
-          "A couples appointment designed for two people who want clean, refined grooming in one calm booking. The service balances feminine polish and masculine grooming with precise shaping, cuticle care, and a naturally elevated finish for both clients."
-      },
-      {
-        id: "four-hands-combo",
-        name: "SAME TIME (4 Hands) combo",
-        shortName: "4 Hands",
-        time: "1 hr 30 min",
-        price: "$275",
-        topTech: "$290",
-        image: comboFourHandsImage,
-        description:
-          "A time-saving luxury appointment where two technicians work simultaneously so your manicure and pedicure can be completed with less waiting. Best for busy clients who still want the full RM standard: clean cuticles, balanced shaping, smooth detail, and a polished finish."
-      }
     ]
   },
   {
@@ -343,11 +313,13 @@ export const serviceMenu = [
     services: [
       {
         id: "french",
-        name: "Classic French",
+        name: "French tips",
         shortName: "French",
         time: "15 min",
-        price: "$25+",
+        price: "$25.00+",
         topTech: null,
+        promotionPrice: "$22.50+",
+        promotionLabel: "Save up to 10%",
         image: newClassicFrenchImage,
         description:
           "A timeless choice that highlights elegance and natural beauty. Performed with exceptional precision: ultra-thin smile lines, seamless blending, and perfectly balanced shaping that enhances the natural nail structure."
@@ -357,52 +329,62 @@ export const serviceMenu = [
         name: "Cat eye",
         shortName: "Cat Eye",
         time: "15 min",
-        price: "$20+",
+        price: "$20.00+",
         topTech: null,
+        promotionPrice: "$18.00+",
+        promotionLabel: "Save up to 10%",
         image: newCatEyeImage,
         description:
           "A magnet-activated technique that creates a deep, dimensional glow reminiscent of gemstone reflections. Premium magnetic gels create sharp luminous lines or soft diffused galaxy effects tailored to your preference."
       },
       {
         id: "chrome",
-        name: "Chrome design",
+        name: "Chrome",
         shortName: "Chrome",
         time: "15 min",
-        price: "$20+",
+        price: "$20.00+",
         topTech: null,
+        promotionPrice: "$18.00+",
+        promotionLabel: "Save up to 10%",
         image: newChromeDesignImage,
         description:
           "Chrome designs create a flawless mirror-like shine or delicate pearlescent glow using high-grade rubbed pigments. The effect can range from soft opalescent shimmer to bold ultra-metallic reflection."
       },
       {
         id: "ombre",
-        name: "Ombre design",
+        name: "Ombre",
         shortName: "Ombre",
         time: "20 min",
-        price: "$30+",
+        price: "$30.00+",
         topTech: null,
+        promotionPrice: "$27.00+",
+        promotionLabel: "Save up to 10%",
         image: newOmbreDesignImage,
         description:
           "A flawlessly blended gradient created using soft-brush techniques for a smooth, seamless color transition. The Russian approach keeps the fade clean at the cuticle with no harsh lines, streaks, or uneven texture."
       },
       {
         id: "nail-design",
-        name: "Nail Designs",
+        name: "Nail Design",
         shortName: "Nail Designs",
         time: "20 min",
-        price: "$25+",
+        price: "$25.00+",
         topTech: null,
+        promotionPrice: "$22.50+",
+        promotionLabel: "Save up to 10%",
         image: newNailDesignsImage,
         description:
           "Fully customized nail art inspired by your ideas, from intricate hand-painted designs to multi-layer textures, 3D elements, abstract concepts, or themed sets. Pricing is individual and based on design complexity."
       },
       {
         id: "regular-polish",
-        name: "Regular Polish",
+        name: "Regular polish (add-on)",
         shortName: "Polish",
         time: "20 min",
-        price: "$15+",
+        price: "$15.00+",
         topTech: null,
+        promotionPrice: "$13.50+",
+        promotionLabel: "Save up to 10%",
         image: regularPolishImage,
         description:
           "A classic polish finish added after clean manicure or pedicure work. Nails are prepared with careful shaping and surface refinement before regular color is applied for a fresh, elegant look that feels light and easy to change."
@@ -412,8 +394,10 @@ export const serviceMenu = [
         name: "Extra Long Nails",
         shortName: "Extra Long",
         time: "15 min",
-        price: "$20+",
+        price: "$20.00+",
         topTech: null,
+        promotionPrice: "$18.00+",
+        promotionLabel: "Save up to 10%",
         image: extraLongImage,
         description:
           "Additional time and structure for clients choosing extra-long nail length. This add-on allows the artist to refine the architecture, balance the apex, protect the natural nail, and shape the length with the precision needed for a sleek, durable finish."
@@ -425,30 +409,8 @@ export const serviceMenu = [
     note: "Protective removal and small corrections before the next perfect set.",
     services: [
       {
-        id: "gel-removal-toes",
-        name: "Gel Removal Only (toes)",
-        shortName: "Toe Gel Removal",
-        time: "15 min",
-        price: "$15",
-        topTech: null,
-        image: removalToesImage,
-        description:
-          "A standalone toe gel removal performed with controlled technique to protect the natural nail plate. Product is removed carefully, edges are refined, and the nails are left clean and ready for natural wear, repair, or a fresh pedicure service."
-      },
-      {
-        id: "gel-removal-hands",
-        name: "Gel Removal Only (hands)",
-        shortName: "Hand Gel Removal",
-        time: "20 min",
-        price: "$20",
-        topTech: null,
-        image: removalHandsImage,
-        description:
-          "A gentle standalone gel removal for hands, designed to protect the natural nail while removing old product. The service focuses on clean product breakdown, careful surface work, and a neat finish before your next manicure or natural nail break."
-      },
-      {
         id: "gel-removal",
-        name: "Gel removal",
+        name: "Gel Removal",
         shortName: "Gel Removal",
         time: "15 min",
         price: "Varies",
@@ -459,29 +421,33 @@ export const serviceMenu = [
       },
       {
         id: "acrylic-removal",
-        name: "Acrylic / Dip removal",
+        name: "Acrylic/Dip/Extensions removal",
         shortName: "Acrylic Removal",
         time: "20 min",
-        price: "$25+",
+        price: "$25.00+",
         topTech: null,
+        promotionPrice: "$22.50+",
+        promotionLabel: "Save up to 10%",
         image: acrylicRemovalImage,
         description:
           "A protective removal service for acrylic or dip product. The material is reduced and removed with controlled technique to minimize stress on the natural nail, then the surface is refined so the nails are ready for recovery care, repair, or a new RM service."
       },
       {
         id: "one-nail-repair",
-        name: "One Nail Repair",
+        name: "One nail fix",
         shortName: "Nail Repair",
         time: "10 min",
-        price: "$10+",
+        price: "$10.00+",
         topTech: null,
+        promotionPrice: "$9.00+",
+        promotionLabel: "Save up to 10%",
         image: oneNailRepairImage,
         description:
           "A focused correction for one chipped, cracked, lifted, or broken nail. The damaged area is cleaned, stabilized, reshaped, and blended into the existing set so the repair looks neat and comfortable until your next full appointment."
       },
       {
         id: "hooked-nail-fix",
-        name: "Hooked nail fix",
+        name: "Hooked Nail Lift (per 1 nail)",
         shortName: "Hooked Nail Fix",
         time: "10 min",
         price: "Varies",
@@ -489,6 +455,16 @@ export const serviceMenu = [
         image: hookedNailFixImage,
         description:
           "A precise shape correction for a hooked or downward-growing nail. The artist refines the structure and edge direction to create a cleaner visual line, helping the nail look more balanced while keeping the correction gentle and controlled."
+      },
+      {
+        id: "one-nail-extension",
+        name: "One nail extension",
+        shortName: "One Nail Extension",
+        time: "15 min",
+        price: "Varies",
+        topTech: null,
+        image: newRussianExtensionsImage,
+        description: "An extension for one nail. Booksy lists the price as variable."
       }
     ]
   }
@@ -505,7 +481,7 @@ export const serviceMenu = [
 export const featuredServiceIds = [
   "russian-hard-gel",
   "russian-clear",
-  "nail-extensions",
+  "junior-hard-gel",
   "smart-gel-pedicure",
   "smart-pedicure",
   "nail-design"

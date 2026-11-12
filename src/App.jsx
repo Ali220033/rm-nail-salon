@@ -129,11 +129,11 @@ const luxuryServices = [
     link: "/russian-manicure-nyc"
   },
   {
-    id: "nail-extensions",
-    title: "Russian Nail Extensions",
-    copy: "Customized length and shape sculpted with a flexible long-lasting gel system for smooth, lightweight durability.",
-    bestFor: "Full transformation",
-    link: "/gel-extensions-nyc"
+    id: "junior-hard-gel",
+    title: "Junior Russian Hard Gel Manicure (short nails)",
+    copy: "Hard gel manicure for short nails with a junior nail technician.",
+    bestFor: "Hard gel on short nails",
+    link: "/services#junior-hard-gel"
   },
   {
     id: "smart-gel-pedicure",
@@ -158,7 +158,7 @@ const luxuryServices = [
   }
 ].map((service) => {
   const menuItem = getServiceById(service.id);
-  return { ...service, link: menuItem.seoPath, price: menuItem.price, time: menuItem.time, image: menuItem.image };
+  return { ...service, title: menuItem.name, link: menuItem.seoPath, price: menuItem.price, promotionPrice: menuItem.promotionPrice, promotionLabel: menuItem.promotionLabel, time: menuItem.time, image: menuItem.image };
 });
 
 const proofStripItems = [
@@ -379,7 +379,7 @@ function enrichService(service) {
 }
 
 function bookingOptionLabel(service) {
-  return `${service.shortName || service.name} / ${service.price}`;
+  return `${service.shortName || service.name} / ${service.price}${service.promotionPrice ? ` · ${service.promotionPrice} (${service.promotionLabel})` : ""}`;
 }
 
 const processSteps = [
@@ -980,6 +980,7 @@ function LuxuryServicesOverview({ navigate }) {
             </div>
             <strong>
               {service.price}
+              {service.promotionPrice && <small>{service.promotionPrice} · {service.promotionLabel}</small>}
               <small>{service.time}</small>
             </strong>
             <ArrowUpRight size={18} />
@@ -1121,6 +1122,7 @@ function FeaturedServicesHome({ navigate }) {
           <div className="featured-price">
             <span>{active.time}</span>
             <strong>{active.price}</strong>
+            {active.promotionPrice && <small>{active.promotionPrice} · {active.promotionLabel}</small>}
           </div>
         </motion.div>
         <div className="featured-service-list">
@@ -2014,7 +2016,7 @@ function ServicesPage({ navigate }) {
                   </div>
                   <div className="catalog-price">
                     <strong>{service.price}</strong>
-                    {service.topTech && <span>Top tech {service.topTech}</span>}
+                    {service.promotionPrice && <span>{service.promotionPrice} · {service.promotionLabel}</span>}
                     <MagneticLink href={service.bookingUrl} data-booking-service={service.id} className="mini-book">
                       {service.bookLabel} <ArrowUpRight size={14} />
                     </MagneticLink>
@@ -2214,7 +2216,7 @@ function ServiceLandingPage({ page, navigate }) {
                 <p>{service.description}</p>
                 <small>Best for: {service.bestFor}</small>
               </div>
-              <strong>{service.price}</strong>
+              <strong>{service.price}{service.promotionPrice && <small> · {service.promotionPrice} ({service.promotionLabel})</small>}</strong>
               <MagneticLink href={service.bookingUrl} data-booking-service={service.id} className="mini-book">
                 {service.bookLabel} <ArrowUpRight size={14} />
               </MagneticLink>
