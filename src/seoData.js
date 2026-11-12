@@ -254,6 +254,7 @@ export const serviceLandingPages = [
       ["Midtown access", "The studio is close to Lexington Avenue, Park Avenue, and Grand Central for city appointments."]
     ],
     ctaLabel: "Book Russian Manicure",
+    bookingServiceId: "russian-clear",
     decisionTitle: "Why Russian manicure is different from a basic manicure.",
     decisionCopy:
       "The value is in the prep: clean cuticle work, careful shaping, controlled technique, and a finish that looks polished up close as the nails grow.",
@@ -298,6 +299,7 @@ export const serviceLandingPages = [
       ["Maintenance rhythm", "Most clients schedule fill-in or refresh appointments around their natural growth cycle."]
     ],
     ctaLabel: "Book Hard Gel",
+    bookingServiceId: "russian-hard-gel",
     decisionTitle: "Why hard gel costs more than regular gel polish.",
     decisionCopy:
       "Hard gel is a structured service. It requires prep, product control, surface refinement, and balance so the nail feels stronger without looking thick.",
@@ -328,6 +330,7 @@ export const serviceLandingPages = [
       ["Midtown booking", "Easy online booking for clients near Third Avenue, Grand Central, and Midtown East."]
     ],
     ctaLabel: "Book Gel Manicure",
+    bookingServiceId: "russian-hard-gel",
     decisionTitle: "Why RM gel manicures start with detailed prep.",
     decisionCopy:
       "A gel manicure looks more refined when the cuticle area, nail plate, and polish edges are prepared carefully before color is applied.",
@@ -364,6 +367,7 @@ export const serviceLandingPages = [
       ["Pairs well", "Many clients book smart pedicure care with Russian manicure or hard gel services."]
     ],
     ctaLabel: "Book Smart Pedicure",
+    bookingServiceId: "smart-pedicure",
     decisionTitle: "Why smart pedicure clients choose detail over speed.",
     decisionCopy:
       "This service is for clients who want careful foot and nail care, clean shaping, and a polished finish without the rushed feeling of a basic pedicure.",
@@ -435,6 +439,7 @@ export const serviceLandingPages = [
       ["Design-ready", "Extensions can be finished natural, glossy, chrome, French, or with custom nail art."]
     ],
     ctaLabel: "Book Gel Extensions",
+    bookingServiceId: "nail-extensions",
     decisionTitle: "Why extensions require structure, not just length.",
     decisionCopy:
       "A refined extension set depends on proportion, sidewalls, balance, prep, and finish. RM designs length to look polished rather than heavy.",

@@ -2088,6 +2088,7 @@ function BeforeAfterExperience() {
 
 function ServiceLandingPage({ page, navigate }) {
   const services = page.serviceIds.map(getServiceById).filter(Boolean).map(enrichService);
+  const bookingService = services.find((service) => service.id === page.bookingServiceId);
   const relatedPages = getRelatedSeoPages(page.related);
   const decision = getDecisionDetails(page);
   const decisionFaqs = getDecisionFaqs(page);
@@ -2107,7 +2108,7 @@ function ServiceLandingPage({ page, navigate }) {
           <h2>{page.introTitle}</h2>
           <p>{page.intro}</p>
           <div className="seo-cta-row">
-            <MagneticLink href={services[0]?.bookingUrl || siteConfig.bookingUrl} data-booking-service={services[0]?.id} className="gold-cta">
+            <MagneticLink href={bookingService?.bookingUrl || siteConfig.bookingUrl} data-booking-service={bookingService?.id} className="gold-cta">
               {page.ctaLabel || `Book ${page.serviceType}`} <CalendarDays size={16} />
             </MagneticLink>
             <RouteLink to="/services" navigate={navigate} className="aqua-cta">
