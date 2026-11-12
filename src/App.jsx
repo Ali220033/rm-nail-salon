@@ -158,7 +158,7 @@ const luxuryServices = [
   }
 ].map((service) => {
   const menuItem = getServiceById(service.id);
-  return { ...service, title: menuItem.name, link: menuItem.seoPath, price: menuItem.price, promotionPrice: menuItem.promotionPrice, promotionLabel: menuItem.promotionLabel, time: menuItem.time, image: menuItem.image };
+  return { ...service, name: menuItem.name, link: menuItem.seoPath, price: menuItem.price, promotionPrice: menuItem.promotionPrice, promotionLabel: menuItem.promotionLabel, time: menuItem.time, image: menuItem.image };
 });
 
 const proofStripItems = [
@@ -972,10 +972,10 @@ function LuxuryServicesOverview({ navigate }) {
             className={`${index === 0 ? "service-line feature" : "service-line"} service-${slug(service.title)}`}
           >
             <span>{String(index + 1).padStart(2, "0")}</span>
-            <ResponsiveImage src={service.image} sizes="(min-width: 640px) 92px, 72px" alt={`${service.title} at RM Nail Salon in Midtown Manhattan`} loading="lazy" decoding="async" />
+            <ResponsiveImage src={service.image} sizes="(min-width: 640px) 92px, 72px" alt={`${service.name} at RM Nail Salon in Midtown Manhattan`} loading="lazy" decoding="async" />
             <div>
               <em>{service.bestFor}</em>
-              <h3>{service.title}</h3>
+              <h3>{service.name}</h3>
               <p>{service.copy}</p>
             </div>
             <strong>
